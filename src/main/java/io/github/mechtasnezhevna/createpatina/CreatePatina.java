@@ -1,5 +1,7 @@
 package io.github.mechtasnezhevna.createpatina;
 
+import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
+import io.github.mechtasnezhevna.createpatina.registry.ItemRegistry;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -36,9 +38,9 @@ public class CreatePatina {
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
+        BlockRegistry.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
+        ItemRegistry.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 

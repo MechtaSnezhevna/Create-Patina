@@ -1,0 +1,13 @@
+{
+  "values": {
+    "createpatina:example_copper_block": {
+      "next_oxidation_stage": "createpatina:example_exposed_copper_block"
+    },
+    "createpatina:example_exposed_copper_block": {
+      "next_oxidation_stage": "createpatina:example_weathered_copper_block"
+    },
+    "createpatina:example_weathered_copper_block": {
+      "next_oxidation_stage": "createpatina:example_oxidized_copper_block"
+    }
+  }
+}
