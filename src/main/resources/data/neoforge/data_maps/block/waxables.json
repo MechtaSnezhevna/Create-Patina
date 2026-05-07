@@ -1,0 +1,16 @@
+{
+  "values": {
+    "createpatina:example_copper_block": {
+      "waxed": "createpatina:waxed_example_copper_block"
+    },
+    "createpatina:example_exposed_copper_block": {
+      "waxed": "createpatina:waxed_example_exposed_copper_block"
+    },
+    "createpatina:example_weathered_copper_block": {
+      "waxed": "createpatina:waxed_example_weathered_copper_block"
+    },
+    "createpatina:example_oxidized_copper_block": {
+      "waxed": "createpatina:waxed_example_oxidized_copper_block"
+    }
+  }
+}

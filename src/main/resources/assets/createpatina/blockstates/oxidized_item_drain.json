@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createpatina:block/item_drain/oxidized_item_drain"
+    }
+  }
+}
