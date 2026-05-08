@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout_mipped",
 	"parent": "block/block",
 	"textures": {
 		"0": "createpatina:block/oxidized_item_drain_side",
