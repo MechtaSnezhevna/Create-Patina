@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin;
 
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
+import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -23,6 +24,11 @@ public abstract class ItemDrainOxidizationMixin extends Block implements Weather
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
+    }
+
+    @Override
+    public void changeOverTime(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        OxidizeUtil.applyChangeWithState(state, level, pos);
     }
 
     @Override

@@ -3,6 +3,7 @@ package io.github.mechtasnezhevna.createpatina.block;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
+import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -33,6 +34,11 @@ public class WeatheringItemDrainBlock extends ItemDrainBlock implements Weatheri
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
+    }
+
+    @Override
+    public void changeOverTime(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        OxidizeUtil.applyChangeWithState(state, level, pos);
     }
 
     @Override
