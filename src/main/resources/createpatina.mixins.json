@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "io.github.mechtasnezhevna.createpatina.mixin",
+  "mixins": [
+    "ItemDrainOxidizationMixin"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "compatibilityLevel": "JAVA_21",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

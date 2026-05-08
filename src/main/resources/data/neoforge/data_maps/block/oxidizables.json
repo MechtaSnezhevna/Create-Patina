@@ -1,13 +1,13 @@
 {
   "values": {
-    "createpatina:example_copper_block": {
-      "next_oxidation_stage": "createpatina:example_exposed_copper_block"
+    "create:item_drain": {
+        "next_oxidation_stage": "createpatina:exposed_item_drain"
     },
-    "createpatina:example_exposed_copper_block": {
-      "next_oxidation_stage": "createpatina:example_weathered_copper_block"
+    "createpatina:exposed_item_drain": {
+        "next_oxidation_stage": "createpatina:weathered_item_drain"
     },
-    "createpatina:example_weathered_copper_block": {
-      "next_oxidation_stage": "createpatina:example_oxidized_copper_block"
+    "createpatina:weathered_item_drain": {
+      "next_oxidation_stage": "createpatina:oxidized_item_drain"
     }
   }
 }

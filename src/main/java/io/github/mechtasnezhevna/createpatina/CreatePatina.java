@@ -1,7 +1,8 @@
 package io.github.mechtasnezhevna.createpatina;
 
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
-import io.github.mechtasnezhevna.createpatina.registry.ItemRegistry;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -31,6 +32,8 @@ public class CreatePatina {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
+
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public CreatePatina(IEventBus modEventBus, ModContainer modContainer) {
@@ -38,9 +41,11 @@ public class CreatePatina {
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        BlockRegistry.register(modEventBus);
+        REGISTRATE.registerEventListeners(modEventBus);
+        BlockEntityRegistry.register();
+        BlockRegistry.register();
         // Register the Deferred Register to the mod event bus so items get registered
-        ItemRegistry.register(modEventBus);
+//        ItemRegistry.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -60,5 +65,9 @@ public class CreatePatina {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    public static CreateRegistrate registrate() {
+        return REGISTRATE;
     }
 }
