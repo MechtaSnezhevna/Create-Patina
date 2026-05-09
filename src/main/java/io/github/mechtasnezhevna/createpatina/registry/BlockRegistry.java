@@ -21,7 +21,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WEATHERED_ITEM_DRAIN = REGISTRATE
@@ -30,7 +29,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> OXIDIZED_ITEM_DRAIN = REGISTRATE
@@ -39,7 +37,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_ITEM_DRAIN = REGISTRATE
@@ -48,7 +45,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_EXPOSED_ITEM_DRAIN = REGISTRATE
@@ -57,7 +53,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_WEATHERED_ITEM_DRAIN = REGISTRATE
@@ -66,7 +61,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_OXIDIZED_ITEM_DRAIN = REGISTRATE
@@ -75,7 +69,6 @@ public class BlockRegistry {
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
-            .simpleItem()
             .register();
 
 
