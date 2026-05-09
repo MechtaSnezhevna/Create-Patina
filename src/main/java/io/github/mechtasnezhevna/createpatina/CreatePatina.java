@@ -34,6 +34,7 @@ public class CreatePatina {
         BlockRegistry.register();
         CREATIVE_MODE_TABS.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
+        NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
