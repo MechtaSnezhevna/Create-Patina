@@ -1,7 +1,5 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -17,26 +15,35 @@ public class BlockRegistry {
 
     public static final BlockEntry<WeatheringItemDrainBlock> EXPOSED_ITEM_DRAIN = REGISTRATE
             .block("exposed_item_drain", (properties) -> new WeatheringItemDrainBlock(WeatheringItemDrainBlock.WeatherState.EXPOSED, properties))
-            .initialProperties(AllBlocks.ITEM_DRAIN)
+            .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WEATHERED_ITEM_DRAIN = REGISTRATE
             .block("weathered_item_drain", (properties) -> new WeatheringItemDrainBlock(WeatheringItemDrainBlock.WeatherState.WEATHERED, properties))
-            .initialProperties(AllBlocks.ITEM_DRAIN)
+            .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> OXIDIZED_ITEM_DRAIN = REGISTRATE
             .block("oxidized_item_drain", (properties) -> new WeatheringItemDrainBlock(WeatheringItemDrainBlock.WeatherState.OXIDIZED, properties))
-            .initialProperties(AllBlocks.ITEM_DRAIN)
+            .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_ITEM_DRAIN = REGISTRATE
@@ -44,7 +51,10 @@ public class BlockRegistry {
             .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_EXPOSED_ITEM_DRAIN = REGISTRATE
@@ -52,7 +62,10 @@ public class BlockRegistry {
             .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_WEATHERED_ITEM_DRAIN = REGISTRATE
@@ -60,7 +73,10 @@ public class BlockRegistry {
             .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
     public static final BlockEntry<WeatheringItemDrainBlock> WAXED_OXIDIZED_ITEM_DRAIN = REGISTRATE
@@ -68,7 +84,10 @@ public class BlockRegistry {
             .initialProperties(SharedProperties::copperMetal)
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .blockstate((c, p) -> {
+                var modelPath = p.modLoc("block/item_drain/" + c.getName());
+                p.simpleBlock(c.get(), p.models().getExistingFile(modelPath));
+            })
             .register();
 
 
