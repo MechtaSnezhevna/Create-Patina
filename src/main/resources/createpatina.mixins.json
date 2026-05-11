@@ -3,7 +3,8 @@
   "package": "io.github.mechtasnezhevna.createpatina.mixin",
   "mixins": [
     "ItemDrainBlockEntityAccessor",
-    "ItemDrainOxidizationMixin"
+    "ItemDrainOxidizationMixin",
+    "LightningBoltMixin"
   ],
   "client": [
   ],
