@@ -1,11 +1,14 @@
 package io.github.mechtasnezhevna.createpatina.util;
 
+import com.simibubi.create.content.fluids.FluidPropagator;
+import com.simibubi.create.content.fluids.FluidTransportBehaviour;
+import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.ChangeOverTimeBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,6 +35,8 @@ public final class OxidizeUtil {
         CompoundTag tag = null;
         if (oldBE != null) {
             tag = oldBE.saveWithFullMetadata(level.registryAccess());
+//            level.removeBlockEntity(pos);
+//            level.invalidateCapabilities(pos);
         }
 
         level.setBlockAndUpdate(pos, finalState);
@@ -40,9 +45,34 @@ public final class OxidizeUtil {
             BlockEntity newBE = level.getBlockEntity(pos);
             if (newBE != null) {
                 newBE.loadWithComponents(tag, level.registryAccess());
+//                if (newBE instanceof SyncedBlockEntity synced) {
+//                    synced.notifyUpdate();
+//                } else {
+//                    newBE.setChanged();
+//                }
                 newBE.setChanged();
             }
         }
+
+        for (Direction d : Direction.values()) {
+            BlockPos neighborPos = pos.relative(d);
+            BlockState neighborState = level.getBlockState(neighborPos);
+            FluidTransportBehaviour pipe = FluidPropagator.getPipe(level, neighborPos);
+            if (pipe != null) {
+                // Force remove old connection
+                if (pipe.interfaces != null) {
+                    pipe.interfaces.remove(d.getOpposite());
+                }
+                FluidPropagator.propagateChangedPipe(level, neighborPos, neighborState);
+                FluidPropagator.resetAffectedFluidNetworks(level, neighborPos, d.getOpposite());
+            }
+
+            BlockEntity neighborBE = level.getBlockEntity(neighborPos);
+            if (neighborBE instanceof PumpBlockEntity pumpBE) {
+                pumpBE.updatePressureChange();
+            }
+        }
+
     }
 
     private static <T extends Comparable<T>> BlockState copyProperty(BlockState from, BlockState to, Property<T> property) {
