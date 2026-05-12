@@ -2,7 +2,10 @@ package io.github.mechtasnezhevna.createpatina.util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.ChangeOverTimeBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,14 +15,6 @@ public final class OxidizeUtil {
     
     private OxidizeUtil() {}
 
-    /**
-     * 用于氧化的自动替换
-     */
-    public static void applyChangeWithState(BlockState state, Level level, BlockPos pos) {
-        WeatheringCopper.getNext(state.getBlock()).ifPresent(nextBlock -> {
-            replaceWithState(state, nextBlock.defaultBlockState(), level, pos);
-        });
-    }
 
     /**
      * 通用的状态保留替换方法
@@ -50,8 +45,15 @@ public final class OxidizeUtil {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private static <T extends Comparable<T>> BlockState copyProperty(BlockState from, BlockState to, Property<T> property) {
         return to.setValue(property, from.getValue(property));
+    }
+
+    public static void changeOverTimeWithState(WeatheringCopper copper, BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        float f = 0.05688889F;
+        if (random.nextFloat() < f) {
+            copper.getNextState(state, level, pos, random).ifPresent((next) ->
+                    replaceWithState(state, next, level, pos));
+        }
     }
 }

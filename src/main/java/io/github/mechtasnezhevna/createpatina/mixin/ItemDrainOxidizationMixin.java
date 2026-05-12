@@ -28,7 +28,7 @@ public abstract class ItemDrainOxidizationMixin extends Block implements Weather
 
     @Override
     public void changeOverTime(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        OxidizeUtil.applyChangeWithState(state, level, pos);
+        OxidizeUtil.changeOverTimeWithState(this, state, level, pos, random);
     }
 
     @Override
