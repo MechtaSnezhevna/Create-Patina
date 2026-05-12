@@ -1,7 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.event;
 
-import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
+import io.github.mechtasnezhevna.createpatina.util.WaxUtil;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,14 +11,12 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
-import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
-import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
 
 import java.util.Optional;
 
@@ -36,13 +34,12 @@ public class CommonEvents {
         Level level = event.getLevel();
         BlockState state = level.getBlockState(pos);
 
-        Waxable waxData = state.getBlockHolder().getData(NeoForgeDataMaps.WAXABLES);
-        if (waxData == null) return;
-
-        if (!(state.getBlock() instanceof ItemDrainBlock)) return;
+        Optional<BlockState> waxedState = WaxUtil.getWaxed(state);
+        if (waxedState.isEmpty()) return;
 
         if (!level.isClientSide) {
-            OxidizeUtil.replaceWithState(state, waxData.waxed().defaultBlockState(), level, pos);
+
+            OxidizeUtil.replaceWithState(state, waxedState.get(), level, pos);
 
             if (event.getPlayer() instanceof ServerPlayer sp) {
                 CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(sp, pos, stack);
@@ -72,19 +69,8 @@ public class CommonEvents {
         Level level = event.getLevel();
         BlockState state = level.getBlockState(pos);
 
-        if (!(state.getBlock() instanceof ItemDrainBlock)) return;
-
-        var registry = level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BLOCK);
-
         // 优先尝试脱蜡
-        Optional<BlockState> unwaxedState = registry
-                .getDataMap(NeoForgeDataMaps.WAXABLES)
-                .entrySet().stream()
-                .filter(entry -> entry.getValue().waxed() == state.getBlock())
-                .map(entry -> registry.getOptional(entry.getKey()))
-                .flatMap(Optional::stream)
-                .map(Block::defaultBlockState)
-                .findFirst();
+        Optional<BlockState> unwaxedState = WaxUtil.getUnwaxed(state);
 
         if (unwaxedState.isPresent()) {
             if (!level.isClientSide) {
@@ -99,14 +85,7 @@ public class CommonEvents {
         }
 
         // 尝试除锈
-        Optional<BlockState> previousStage = registry
-                .getDataMap(NeoForgeDataMaps.OXIDIZABLES)
-                .entrySet().stream()
-                .filter(entry -> entry.getValue().nextOxidationStage() == state.getBlock())
-                .map(entry -> registry.getOptional(entry.getKey()))
-                .flatMap(Optional::stream)
-                .map(Block::defaultBlockState)
-                .findFirst();
+        Optional<BlockState> previousStage = WeatheringCopper.getPrevious(state);
 
         if (previousStage.isPresent()) {
             if (!level.isClientSide) {
