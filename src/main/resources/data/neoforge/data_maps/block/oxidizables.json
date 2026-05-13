@@ -8,6 +8,15 @@
     },
     "createpatina:weathered_item_drain": {
       "next_oxidation_stage": "createpatina:oxidized_item_drain"
+    },
+    "create:mechanical_pump": {
+      "next_oxidation_stage": "createpatina:exposed_mechanical_pump"
+    },
+    "createpatina:exposed_mechanical_pump": {
+      "next_oxidation_stage": "createpatina:weathered_mechanical_pump"
+    },
+    "createpatina:weathered_mechanical_pump": {
+      "next_oxidation_stage": "createpatina:oxidized_mechanical_pump"
     }
   }
 }

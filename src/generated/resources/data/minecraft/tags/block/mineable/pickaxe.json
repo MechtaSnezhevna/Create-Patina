@@ -6,6 +6,13 @@
     "createpatina:waxed_item_drain",
     "createpatina:waxed_exposed_item_drain",
     "createpatina:waxed_weathered_item_drain",
-    "createpatina:waxed_oxidized_item_drain"
+    "createpatina:waxed_oxidized_item_drain",
+    "createpatina:exposed_mechanical_pump",
+    "createpatina:weathered_mechanical_pump",
+    "createpatina:oxidized_mechanical_pump",
+    "createpatina:waxed_mechanical_pump",
+    "createpatina:waxed_exposed_mechanical_pump",
+    "createpatina:waxed_weathered_mechanical_pump",
+    "createpatina:waxed_oxidized_mechanical_pump"
   ]
 }

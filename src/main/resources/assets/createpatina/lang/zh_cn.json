@@ -1,5 +1,5 @@
 {
-  "itemGroup.createpatina": "机械动力：铜染春秋",
+  "itemGroup.createpatina": "机械动力：铜染光阴",
 
   "block.createpatina.exposed_item_drain": "斑驳的分液池",
   "block.createpatina.weathered_item_drain": "锈蚀的分液池",
@@ -7,6 +7,12 @@
   "block.createpatina.waxed_item_drain": "涂蜡的分液池",
   "block.createpatina.waxed_exposed_item_drain": "涂蜡的斑驳分液池",
   "block.createpatina.waxed_weathered_item_drain": "涂蜡的锈蚀分液池",
-  "block.createpatina.waxed_oxidized_item_drain": "涂蜡的氧化分液池"
-
+  "block.createpatina.waxed_oxidized_item_drain": "涂蜡的氧化分液池",
+  "block.createpatina.exposed_mechanical_pump": "斑驳的动力泵",
+  "block.createpatina.weathered_mechanical_pump": "锈蚀的动力泵",
+  "block.createpatina.oxidized_mechanical_pump": "氧化的动力泵",
+  "block.createpatina.waxed_mechanical_pump": "涂蜡的动力泵",
+  "block.createpatina.waxed_exposed_mechanical_pump": "涂蜡的斑驳动力泵",
+  "block.createpatina.waxed_weathered_mechanical_pump": "涂蜡的锈蚀动力泵",
+  "block.createpatina.waxed_oxidized_mechanical_pump": "涂蜡的氧化动力泵"
 }

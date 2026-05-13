@@ -4,6 +4,7 @@
   "mixins": [
     "ItemDrainBlockEntityAccessor",
     "ItemDrainOxidizationMixin",
+    "PumpOxidizationMixin",
     "LightningBoltMixin"
   ],
   "client": [
