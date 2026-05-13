@@ -1,16 +1,23 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
+import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
-import com.simibubi.create.infrastructure.config.CStress;
+import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
+import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringItemDrainBlock;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringPumpBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 
+import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
 public class BlockRegistry {
@@ -94,61 +101,105 @@ public class BlockRegistry {
             })
             .register();
 
+    private static <T extends Block> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> pumpBlockstate() {
+        return (c, p) ->
+                BlockStateGen.directionalBlockIgnoresWaterlogged(c, p, $ ->
+                        p.models().getExistingFile(
+                                p.modLoc("block/mechanical_pump/" + c.getName() + "/block")
+                        )
+                );
+    }
+
+
     public static final BlockEntry<WeatheringPumpBlock> EXPOSED_MECHANICAL_PUMP = REGISTRATE
             .block("exposed_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.EXPOSED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
-
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WEATHERED_MECHANICAL_PUMP = REGISTRATE
             .block("weathered_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.WEATHERED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> OXIDIZED_MECHANICAL_PUMP = REGISTRATE
             .block("oxidized_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.OXIDIZED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_MECHANICAL_PUMP = REGISTRATE
             .block("waxed_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.UNAFFECTED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_EXPOSED_MECHANICAL_PUMP = REGISTRATE
             .block("waxed_exposed_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.EXPOSED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_WEATHERED_MECHANICAL_PUMP = REGISTRATE
             .block("waxed_weathered_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.WEATHERED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_OXIDIZED_MECHANICAL_PUMP = REGISTRATE
             .block("waxed_oxidized_mechanical_pump", (properties) -> new WeatheringPumpBlock(WeatheringPumpBlock.WeatherState.OXIDIZED, properties))
             .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::randomTicks)
             .transform(pickaxeOnly())
-            .blockstate((c, p) -> {})
+            .blockstate(pumpBlockstate())
+            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+            .transform(PatinaStress.setImpact(4.0d))
+            .item()
+            .transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static void register() {

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createpatina:block/mechanical_pump/weathered_mechanical_pump/block",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "createpatina:block/mechanical_pump/weathered_mechanical_pump/block",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "createpatina:block/mechanical_pump/weathered_mechanical_pump/block",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "createpatina:block/mechanical_pump/weathered_mechanical_pump/block",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "createpatina:block/mechanical_pump/weathered_mechanical_pump/block"
+    },
+    "facing=west": {
+      "model": "createpatina:block/mechanical_pump/weathered_mechanical_pump/block",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
