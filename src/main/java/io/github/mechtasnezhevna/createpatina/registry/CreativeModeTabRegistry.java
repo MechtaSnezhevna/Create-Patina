@@ -29,14 +29,14 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.WAXED_EXPOSED_ITEM_DRAIN.get());
                         output.accept(BlockRegistry.WAXED_WEATHERED_ITEM_DRAIN.get());
                         output.accept(BlockRegistry.WAXED_OXIDIZED_ITEM_DRAIN.get());
-//                        output.accept(AllBlocks.MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.EXPOSED_MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.WEATHERED_MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.OXIDIZED_MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.WAXED_MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.WAXED_EXPOSED_MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.WAXED_WEATHERED_MECHANICAL_PUMP.get());
-//                        output.accept(BlockRegistry.WAXED_OXIDIZED_MECHANICAL_PUMP.get());
+                        output.accept(AllBlocks.MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.EXPOSED_MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.WEATHERED_MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.OXIDIZED_MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.WAXED_MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.WAXED_EXPOSED_MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.WAXED_WEATHERED_MECHANICAL_PUMP.get());
+                        output.accept(BlockRegistry.WAXED_OXIDIZED_MECHANICAL_PUMP.get());
                     })
                     .build()
     );

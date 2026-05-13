@@ -120,8 +120,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WEATHERED_MECHANICAL_PUMP = REGISTRATE
@@ -133,8 +133,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> OXIDIZED_MECHANICAL_PUMP = REGISTRATE
@@ -146,8 +146,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_MECHANICAL_PUMP = REGISTRATE
@@ -159,8 +159,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_EXPOSED_MECHANICAL_PUMP = REGISTRATE
@@ -172,8 +172,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_WEATHERED_MECHANICAL_PUMP = REGISTRATE
@@ -185,8 +185,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static final BlockEntry<WeatheringPumpBlock> WAXED_OXIDIZED_MECHANICAL_PUMP = REGISTRATE
@@ -198,8 +198,8 @@ public class BlockRegistry {
             .blockstate(pumpBlockstate())
             .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
             .transform(PatinaStress.setImpact(4.0d))
-            .item()
-            .transform(customItemModel("mechanical_pump", "_", "item"))
+            //.item()
+            //.transform(customItemModel("mechanical_pump", "_", "item"))
             .register();
 
     public static void register() {
