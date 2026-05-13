@@ -26,11 +26,12 @@ public class CreatePatina {
     public CreatePatina(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         REGISTRATE.registerEventListeners(modEventBus);
+        CreativeModeTabRegistry.register(modEventBus);
 
         ItemRegistry.register(modEventBus);
         BlockEntityRegistry.register();
         BlockRegistry.register();
-        CreativeModeTabRegistry.register(modEventBus);
+
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);
     }
