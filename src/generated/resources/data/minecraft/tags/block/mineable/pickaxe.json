@@ -13,6 +13,13 @@
     "createpatina:waxed_mechanical_pump",
     "createpatina:waxed_exposed_mechanical_pump",
     "createpatina:waxed_weathered_mechanical_pump",
-    "createpatina:waxed_oxidized_mechanical_pump"
+    "createpatina:waxed_oxidized_mechanical_pump",
+    "createpatina:exposed_fluid_pipe",
+    "createpatina:weathered_fluid_pipe",
+    "createpatina:oxidized_fluid_pipe",
+    "createpatina:waxed_fluid_pipe",
+    "createpatina:waxed_exposed_fluid_pipe",
+    "createpatina:waxed_weathered_fluid_pipe",
+    "createpatina:waxed_oxidized_fluid_pipe"
   ]
 }

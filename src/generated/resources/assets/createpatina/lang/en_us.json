@@ -1,16 +1,23 @@
 {
+  "block.createpatina.exposed_fluid_pipe": "Exposed Fluid Pipe",
   "block.createpatina.exposed_item_drain": "Exposed Item Drain",
   "block.createpatina.exposed_mechanical_pump": "Exposed Mechanical Pump",
+  "block.createpatina.oxidized_fluid_pipe": "Oxidized Fluid Pipe",
   "block.createpatina.oxidized_item_drain": "Oxidized Item Drain",
   "block.createpatina.oxidized_mechanical_pump": "Oxidized Mechanical Pump",
+  "block.createpatina.waxed_exposed_fluid_pipe": "Waxed Exposed Fluid Pipe",
   "block.createpatina.waxed_exposed_item_drain": "Waxed Exposed Item Drain",
   "block.createpatina.waxed_exposed_mechanical_pump": "Waxed Exposed Mechanical Pump",
+  "block.createpatina.waxed_fluid_pipe": "Waxed Fluid Pipe",
   "block.createpatina.waxed_item_drain": "Waxed Item Drain",
   "block.createpatina.waxed_mechanical_pump": "Waxed Mechanical Pump",
+  "block.createpatina.waxed_oxidized_fluid_pipe": "Waxed Oxidized Fluid Pipe",
   "block.createpatina.waxed_oxidized_item_drain": "Waxed Oxidized Item Drain",
   "block.createpatina.waxed_oxidized_mechanical_pump": "Waxed Oxidized Mechanical Pump",
+  "block.createpatina.waxed_weathered_fluid_pipe": "Waxed Weathered Fluid Pipe",
   "block.createpatina.waxed_weathered_item_drain": "Waxed Weathered Item Drain",
   "block.createpatina.waxed_weathered_mechanical_pump": "Waxed Weathered Mechanical Pump",
+  "block.createpatina.weathered_fluid_pipe": "Weathered Fluid Pipe",
   "block.createpatina.weathered_item_drain": "Weathered Item Drain",
   "block.createpatina.weathered_mechanical_pump": "Weathered Mechanical Pump"
 }

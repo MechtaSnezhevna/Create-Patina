@@ -23,6 +23,18 @@
     },
     "createpatina:oxidized_mechanical_pump": {
       "waxed": "createpatina:waxed_oxidized_mechanical_pump"
+    },
+    "create:fluid_pipe": {
+      "waxed": "createpatina:waxed_fluid_pipe"
+    },
+    "createpatina:exposed_fluid_pipe": {
+      "waxed": "createpatina:waxed_exposed_fluid_pipe"
+    },
+    "createpatina:weathered_fluid_pipe": {
+      "waxed": "createpatina:waxed_weathered_fluid_pipe"
+    },
+    "createpatina:oxidized_fluid_pipe": {
+      "waxed": "createpatina:waxed_oxidized_fluid_pipe"
     }
   }
 }

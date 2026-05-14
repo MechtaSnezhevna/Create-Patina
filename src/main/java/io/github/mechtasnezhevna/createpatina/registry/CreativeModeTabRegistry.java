@@ -37,6 +37,14 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.WAXED_EXPOSED_MECHANICAL_PUMP.get());
                         output.accept(BlockRegistry.WAXED_WEATHERED_MECHANICAL_PUMP.get());
                         output.accept(BlockRegistry.WAXED_OXIDIZED_MECHANICAL_PUMP.get());
+                        output.accept(AllBlocks.FLUID_PIPE.get());
+                        output.accept(BlockRegistry.EXPOSED_FLUID_PIPE.get());
+                        output.accept(BlockRegistry.WEATHERED_FLUID_PIPE.get());
+                        output.accept(BlockRegistry.OXIDIZED_FLUID_PIPE.get());
+                        output.accept(BlockRegistry.WAXED_FLUID_PIPE.get());
+                        output.accept(BlockRegistry.WAXED_EXPOSED_FLUID_PIPE.get());
+                        output.accept(BlockRegistry.WAXED_WEATHERED_FLUID_PIPE.get());
+                        output.accept(BlockRegistry.WAXED_OXIDIZED_FLUID_PIPE.get());
                     })
                     .build()
     );

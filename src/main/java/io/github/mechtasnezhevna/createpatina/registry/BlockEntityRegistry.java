@@ -3,6 +3,7 @@ package io.github.mechtasnezhevna.createpatina.registry;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
+import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
@@ -41,6 +42,19 @@ public class BlockEntityRegistry {
                     BlockRegistry.WAXED_OXIDIZED_MECHANICAL_PUMP
             )
             .renderer(() -> PumpRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<FluidPipeBlockEntity> WEATHERING_FLUID_PIPE = REGISTRATE
+            .blockEntity("fluid_pipe", FluidPipeBlockEntity::new)
+            .validBlocks(
+                    BlockRegistry.EXPOSED_FLUID_PIPE,
+                    BlockRegistry.WEATHERED_FLUID_PIPE,
+                    BlockRegistry.OXIDIZED_FLUID_PIPE,
+                    BlockRegistry.WAXED_FLUID_PIPE,
+                    BlockRegistry.WAXED_EXPOSED_FLUID_PIPE,
+                    BlockRegistry.WAXED_WEATHERED_FLUID_PIPE,
+                    BlockRegistry.WAXED_OXIDIZED_FLUID_PIPE
+            )
             .register();
 
     public static void register() {

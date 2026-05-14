@@ -17,6 +17,15 @@
     },
     "createpatina:weathered_mechanical_pump": {
       "next_oxidation_stage": "createpatina:oxidized_mechanical_pump"
+    },
+    "create:fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_fluid_pipe"
+    },
+    "createpatina:exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_fluid_pipe"
+    },
+    "createpatina:weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_fluid_pipe"
     }
   }
 }

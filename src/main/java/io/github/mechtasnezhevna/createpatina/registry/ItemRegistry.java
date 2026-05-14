@@ -53,6 +53,27 @@ public class ItemRegistry
     public static final DeferredItem<BlockItem> WAXED_OXIDIZED_MECHANICAL_PUMP = ITEMS.registerSimpleBlockItem("waxed_oxidized_mechanical_pump",
             BlockRegistry.WAXED_OXIDIZED_MECHANICAL_PUMP);
 
+    public static final DeferredItem<BlockItem> EXPOSED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("exposed_fluid_pipe",
+            BlockRegistry.EXPOSED_FLUID_PIPE);
+
+    public static final DeferredItem<BlockItem> WEATHERED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("weathered_fluid_pipe",
+            BlockRegistry.WEATHERED_FLUID_PIPE);
+
+    public static final DeferredItem<BlockItem> OXIDIZED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("oxidized_fluid_pipe",
+            BlockRegistry.OXIDIZED_FLUID_PIPE);
+
+    public static final DeferredItem<BlockItem> WAXED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("waxed_fluid_pipe",
+            BlockRegistry.WAXED_FLUID_PIPE);
+
+    public static final DeferredItem<BlockItem> WAXED_EXPOSED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("waxed_exposed_fluid_pipe",
+            BlockRegistry.WAXED_EXPOSED_FLUID_PIPE);
+
+    public static final DeferredItem<BlockItem> WAXED_WEATHERED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("waxed_weathered_fluid_pipe",
+            BlockRegistry.WAXED_WEATHERED_FLUID_PIPE);
+
+    public static final DeferredItem<BlockItem> WAXED_OXIDIZED_FLUID_PIPE = ITEMS.registerSimpleBlockItem("waxed_oxidized_fluid_pipe",
+            BlockRegistry.WAXED_OXIDIZED_FLUID_PIPE);
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }
