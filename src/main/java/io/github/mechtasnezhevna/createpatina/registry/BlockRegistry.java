@@ -203,7 +203,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> EXPOSED_FLUID_PIPE = REGISTRATE
-            .block("exposed_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.EXPOSED, properties))
+            .block("exposed_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.EXPOSED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())
@@ -212,7 +212,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> WEATHERED_FLUID_PIPE = REGISTRATE
-            .block("weathered_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.WEATHERED, properties))
+            .block("weathered_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.WEATHERED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())
@@ -221,7 +221,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> OXIDIZED_FLUID_PIPE = REGISTRATE
-            .block("oxidized_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.OXIDIZED, properties))
+            .block("oxidized_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.OXIDIZED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())
@@ -230,7 +230,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> WAXED_FLUID_PIPE = REGISTRATE
-            .block("waxed_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.UNAFFECTED, properties))
+            .block("waxed_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.WAXED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())
@@ -239,7 +239,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> WAXED_EXPOSED_FLUID_PIPE = REGISTRATE
-            .block("waxed_exposed_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.EXPOSED, properties))
+            .block("waxed_exposed_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.WAXED_EXPOSED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())
@@ -248,7 +248,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> WAXED_WEATHERED_FLUID_PIPE = REGISTRATE
-            .block("waxed_weathered_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.WEATHERED, properties))
+            .block("waxed_weathered_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.WAXED_WEATHERED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())
@@ -257,7 +257,7 @@ public class BlockRegistry {
             .register();
 
     public static final BlockEntry<WeatheringFluidPipeBlock> WAXED_OXIDIZED_FLUID_PIPE = REGISTRATE
-            .block("waxed_oxidized_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.WeatherState.OXIDIZED, properties))
+            .block("waxed_oxidized_fluid_pipe", (properties) -> new WeatheringFluidPipeBlock(WeatheringFluidPipeBlock.Type.WAXED_OXIDIZED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.forceSolidOff())
             .transform(pickaxeOnly())

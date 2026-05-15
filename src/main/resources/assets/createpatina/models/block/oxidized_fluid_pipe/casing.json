@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "createpatina:block/exposed_pipes",
+		"0": "createpatina:block/oxidized_pipes",
 		"particle": "block/exposed_copper_block"
 	},
 	"elements": [

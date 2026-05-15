@@ -6,6 +6,7 @@
     "ItemDrainBlockEntityAccessor",
     "ItemDrainOxidizationMixin",
     "LightningBoltMixin",
+    "PipeAttachmentModelMixin",
     "PumpOxidizationMixin"
   ],
   "client": [

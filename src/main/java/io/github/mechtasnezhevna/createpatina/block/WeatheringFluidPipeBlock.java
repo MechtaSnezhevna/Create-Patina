@@ -20,14 +20,21 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
 
     private final WeatherState weatherState;
 
-    public WeatheringFluidPipeBlock(WeatherState weatherState, Properties properties) {
+    private final Type type;
+
+    public WeatheringFluidPipeBlock(Type type, Properties properties) {
         super(properties);
-        this.weatherState = weatherState;
+        this.type = type;
+        this.weatherState = type.getWeatherState();
     }
 
     @Override
     public @NotNull WeatherState getAge() {
         return this.weatherState;
+    }
+
+    public Type getType() {
+        return this.type;
     }
 
     @Override
@@ -68,6 +75,26 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
             if (neighborBE instanceof PumpBlockEntity pumpBE) {
                 pumpBE.updatePressureChange();
             }
+        }
+    }
+
+    public enum Type {
+        EXPOSED, WEATHERED, OXIDIZED, WAXED, WAXED_EXPOSED, WAXED_WEATHERED, WAXED_OXIDIZED;
+
+        WeatherState getWeatherState() {
+            return switch (this) {
+                case EXPOSED, WAXED_EXPOSED -> WeatherState.EXPOSED;
+                case WEATHERED, WAXED_WEATHERED -> WeatherState.WEATHERED;
+                case OXIDIZED, WAXED_OXIDIZED -> WeatherState.OXIDIZED;
+                case WAXED -> WeatherState.UNAFFECTED;
+            };
+        }
+
+        Boolean isWaxed() {
+            return switch (this) {
+                case EXPOSED, WEATHERED, OXIDIZED -> false;
+                case WAXED, WAXED_EXPOSED, WAXED_WEATHERED, WAXED_OXIDIZED -> true;
+            };
         }
     }
 }

@@ -6,6 +6,7 @@ import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.CreativeModeTabRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.ItemRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -42,5 +43,9 @@ public class CreatePatina {
 
     public static CreateRegistrate registrate() {
         return REGISTRATE;
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }
