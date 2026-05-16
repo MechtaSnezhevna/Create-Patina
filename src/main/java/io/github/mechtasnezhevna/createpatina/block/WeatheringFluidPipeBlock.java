@@ -6,6 +6,8 @@ import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
+import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,26 +16,22 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBlock {
 
-    private final WeatherState weatherState;
+    private final WeatheringType type;
 
-    private final Type type;
-
-    public WeatheringFluidPipeBlock(Type type, Properties properties) {
+    public WeatheringFluidPipeBlock(WeatheringType type, Properties properties) {
         super(properties);
         this.type = type;
-        this.weatherState = type.getWeatherState();
     }
 
     @Override
-    public @NotNull WeatherState getAge() {
-        return this.weatherState;
-    }
-
-    public Type getType() {
+    public WeatheringType getType() {
         return this.type;
     }
 
@@ -75,26 +73,6 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
             if (neighborBE instanceof PumpBlockEntity pumpBE) {
                 pumpBE.updatePressureChange();
             }
-        }
-    }
-
-    public enum Type {
-        EXPOSED, WEATHERED, OXIDIZED, WAXED, WAXED_EXPOSED, WAXED_WEATHERED, WAXED_OXIDIZED;
-
-        WeatherState getWeatherState() {
-            return switch (this) {
-                case EXPOSED, WAXED_EXPOSED -> WeatherState.EXPOSED;
-                case WEATHERED, WAXED_WEATHERED -> WeatherState.WEATHERED;
-                case OXIDIZED, WAXED_OXIDIZED -> WeatherState.OXIDIZED;
-                case WAXED -> WeatherState.UNAFFECTED;
-            };
-        }
-
-        Boolean isWaxed() {
-            return switch (this) {
-                case EXPOSED, WEATHERED, OXIDIZED -> false;
-                case WAXED, WAXED_EXPOSED, WAXED_WEATHERED, WAXED_OXIDIZED -> true;
-            };
         }
     }
 }

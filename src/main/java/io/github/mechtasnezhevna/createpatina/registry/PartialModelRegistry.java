@@ -3,7 +3,7 @@ package io.github.mechtasnezhevna.createpatina.registry;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
+import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.createmod.catnip.data.Iterate;
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.Direction;
@@ -17,15 +17,15 @@ import java.util.Map;
 
 public class PartialModelRegistry {
 
-    public static final Map<WeatheringFluidPipeBlock.Type,
+    public static final Map<WeatheringType,
             Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials,
                     Map<Direction, PartialModel>>> WEATHERING_PIPE_ATTACHMENTS =
-            new EnumMap<>(WeatheringFluidPipeBlock.Type.class);
+            new EnumMap<>(WeatheringType.class);
     private static final Logger log = LoggerFactory.getLogger(PartialModelRegistry.class);
 
     static {
 
-        for (WeatheringFluidPipeBlock.Type type : WeatheringFluidPipeBlock.Type.values()) {
+        for (WeatheringType type : WeatheringType.values()) {
             Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials,
                     Map<Direction, PartialModel>> attachmentMap = new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
             String typeId = Lang.asId(type.name());

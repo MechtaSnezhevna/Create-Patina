@@ -2,9 +2,8 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.holder.HolderEnum;
-import io.github.mechtasnezhevna.createpatina.util.WaxUtil;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChangeOverTimeBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +18,7 @@ public interface ChangeOverTimeBlockMixin {
             )
     )
     private static Enum<?> skipWaxedNeighbors(ChangeOverTimeBlock<?> instance, Operation<Enum<?>> original) {
-        if (instance instanceof Block block && WaxUtil.getWaxed(block).isEmpty()) {
+        if (instance instanceof PatinaBlock patinaBlock && patinaBlock.getType().isWaxed()) {
             return HolderEnum.NONE;
         }
         return original.call(instance);

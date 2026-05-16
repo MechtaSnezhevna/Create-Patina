@@ -6,6 +6,8 @@ import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
+import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,20 +16,23 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class WeatheringItemDrainBlock extends ItemDrainBlock implements PatinaBlock {
 
-    private final WeatherState weatherState;
+    private final WeatheringType type;
 
-    public WeatheringItemDrainBlock(WeatherState weatherState, Properties properties) {
+    public WeatheringItemDrainBlock(WeatheringType type, Properties properties) {
         super(properties);
-        this.weatherState = weatherState;
+        this.type = type;
     }
 
     @Override
-    public @NotNull WeatherState getAge() {
-        return this.weatherState;
+    public WeatheringType getType() {
+        return this.type;
     }
 
     @Override
