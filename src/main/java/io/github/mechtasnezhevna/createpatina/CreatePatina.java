@@ -2,11 +2,9 @@ package io.github.mechtasnezhevna.createpatina;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.mechtasnezhevna.createpatina.event.CommonEvents;
-import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
-import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
-import io.github.mechtasnezhevna.createpatina.registry.CreativeModeTabRegistry;
-import io.github.mechtasnezhevna.createpatina.registry.ItemRegistry;
+import io.github.mechtasnezhevna.createpatina.registry.*;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -38,6 +36,7 @@ public class CreatePatina {
         BlockRegistry.register();
 
         modEventBus.addListener(CreativeModeTabRegistry::putOriginalItemsBefore);
+        modEventBus.addListener(EventPriority.LOWEST, PatinaDataGen::gatherData);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);
     }

@@ -1,0 +1,31 @@
+{
+  "values": {
+    "create:fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_fluid_pipe"
+    },
+    "create:item_drain": {
+      "next_oxidation_stage": "createpatina:exposed_item_drain"
+    },
+    "create:mechanical_pump": {
+      "next_oxidation_stage": "createpatina:exposed_mechanical_pump"
+    },
+    "createpatina:exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_fluid_pipe"
+    },
+    "createpatina:exposed_item_drain": {
+      "next_oxidation_stage": "createpatina:weathered_item_drain"
+    },
+    "createpatina:exposed_mechanical_pump": {
+      "next_oxidation_stage": "createpatina:weathered_mechanical_pump"
+    },
+    "createpatina:weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_fluid_pipe"
+    },
+    "createpatina:weathered_item_drain": {
+      "next_oxidation_stage": "createpatina:oxidized_item_drain"
+    },
+    "createpatina:weathered_mechanical_pump": {
+      "next_oxidation_stage": "createpatina:oxidized_mechanical_pump"
+    }
+  }
+}

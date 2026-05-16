@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry.builder;
+package io.github.mechtasnezhevna.createpatina.registry.chain;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;

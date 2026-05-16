@@ -10,8 +10,8 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
-import io.github.mechtasnezhevna.createpatina.registry.builder.CopperChain;
-import io.github.mechtasnezhevna.createpatina.registry.builder.CopperChainBuilder;
+import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChain;
+import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChainBuilder;
 import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringItemDrainBlock;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringPumpBlock;
@@ -19,8 +19,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -44,15 +42,6 @@ public class BlockRegistry {
             ).unaffected(AllBlocks.ITEM_DRAIN)
             .register();
 
-    private static <T extends Block> NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> pumpBlockState() {
-        return (c, p) ->
-                BlockStateGen.directionalBlockIgnoresWaterlogged(c, p, $ ->
-                        p.models().getExistingFile(
-                                p.modLoc("block/mechanical_pump/" + c.getName() + "/block")
-                        )
-                );
-    }
-
     public static final CopperChain<WeatheringPumpBlock> MECHANICAL_PUMPS = new CopperChainBuilder<>(
             REGISTRATE, "mechanical_pump", WeatheringPumpBlock::new)
             .configure(b -> b
@@ -60,7 +49,12 @@ public class BlockRegistry {
                     .properties(p -> p.mapColor(MapColor.STONE))
                     .properties(BlockBehaviour.Properties::randomTicks)
                     .transform(pickaxeOnly())
-                    .blockstate(pumpBlockState())
+                    .blockstate((c, p) ->
+                            BlockStateGen.directionalBlockIgnoresWaterlogged(c, p, $ ->
+                                    p.models().getExistingFile(
+                                            p.modLoc("block/mechanical_pump/" + c.getName() + "/block")
+                                    )
+                            ))
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .transform(PatinaStress.setImpact(4.0d))
                     .item()
@@ -68,17 +62,6 @@ public class BlockRegistry {
             ).unaffected(AllBlocks.MECHANICAL_PUMP)
             .register();
 
-    private static <P extends FluidPipeBlock> NonNullBiConsumer<DataGenContext<Block, P>, RegistrateBlockstateProvider> pipeBlockState(String prefix) {
-        return (c, p) -> {
-            DataGenContext<Block, P> proxy = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                    prefix + c.getName(), c.getId());
-
-            @SuppressWarnings("unchecked")
-            DataGenContext<Block, FluidPipeBlock> cast = (DataGenContext<Block, FluidPipeBlock>) proxy;
-
-            BlockStateGen.pipe().accept(cast, p);
-        };
-    }
 
     public static final CopperChain<WeatheringFluidPipeBlock> FLUID_PIPES = new CopperChainBuilder<>(
             REGISTRATE, "fluid_pipe", WeatheringFluidPipeBlock::new)
@@ -86,7 +69,11 @@ public class BlockRegistry {
                     .initialProperties(SharedProperties::copperMetal)
                     .properties(BlockBehaviour.Properties::forceSolidOff)
                     .transform(pickaxeOnly())
-                    .blockstate(pipeBlockState("fluid_pipe/"))
+                    .blockstate((c, p) -> {
+                        DataGenContext<Block, FluidPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
+                                "fluid_pipe/" + c.getName(), c.getId());
+                        BlockStateGen.pipe().accept(cast, p);
+                    })
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .item()
                     .transform(customItemModel("fluid_pipe", "_", "item"))

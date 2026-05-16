@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry.builder;
+package io.github.mechtasnezhevna.createpatina.registry.chain;
 
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.BlockBuilder;
@@ -43,6 +43,18 @@ public class CopperChainBuilder<B extends Block & PatinaBlock, R extends Abstrac
     public CopperChain<B> register() {
         Map<WeatheringType, BlockEntry<B>> res = new EnumMap<>(WeatheringType.class);
         builders.forEach((type, b) -> res.put(type, b.register()));
+        registerWeatheringAndWaxable(res);
         return new CopperChain<>(res, unaffected);
+    }
+
+    private void registerWeatheringAndWaxable(Map<WeatheringType, BlockEntry<B>> res) {
+        if (unaffected != null) CopperRegistries.addWeathering(unaffected, res.get(WeatheringType.EXPOSED));
+        CopperRegistries.addWeathering(res.get(WeatheringType.EXPOSED), res.get(WeatheringType.WEATHERED));
+        CopperRegistries.addWeathering(res.get(WeatheringType.WEATHERED), res.get(WeatheringType.OXIDIZED));
+
+        if (unaffected != null) CopperRegistries.addWaxable(unaffected, res.get(WeatheringType.WAXED));
+        CopperRegistries.addWaxable(res.get(WeatheringType.EXPOSED), res.get(WeatheringType.WAXED_EXPOSED));
+        CopperRegistries.addWaxable(res.get(WeatheringType.WEATHERED), res.get(WeatheringType.WAXED_WEATHERED));
+        CopperRegistries.addWaxable(res.get(WeatheringType.OXIDIZED), res.get(WeatheringType.WAXED_OXIDIZED));
     }
 }
