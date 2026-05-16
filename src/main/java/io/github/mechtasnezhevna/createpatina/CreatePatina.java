@@ -22,7 +22,11 @@ public class CreatePatina {
 
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
+
+    static {
+        REGISTRATE.defaultCreativeTab(CreativeModeTabRegistry.CREATEPATINA_TAB, "createpatina_tab");
+    }
 
     public CreatePatina(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
@@ -33,6 +37,7 @@ public class CreatePatina {
         BlockEntityRegistry.register();
         BlockRegistry.register();
 
+        modEventBus.addListener(CreativeModeTabRegistry::putOriginalItemsBefore);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);
     }

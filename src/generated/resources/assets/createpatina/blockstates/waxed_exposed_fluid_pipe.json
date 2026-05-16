@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/lu_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/lu_x"
       },
       "when": {
         "down": "false",
@@ -13,7 +13,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ru_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ru_x"
       },
       "when": {
         "down": "false",
@@ -24,7 +24,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ld_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ld_x"
       },
       "when": {
         "down": "true",
@@ -35,7 +35,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/rd_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/rd_x"
       },
       "when": {
         "down": "true",
@@ -46,7 +46,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ud_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ud_x"
       },
       "when": {
         "down": "true",
@@ -57,7 +57,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/u_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/u_x"
       },
       "when": {
         "down": "false",
@@ -68,7 +68,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/d_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/d_x"
       },
       "when": {
         "down": "true",
@@ -79,7 +79,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/lr_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/lr_x"
       },
       "when": {
         "down": "false",
@@ -90,7 +90,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/l_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/l_x"
       },
       "when": {
         "down": "false",
@@ -101,7 +101,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/r_x"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/r_x"
       },
       "when": {
         "down": "false",
@@ -112,7 +112,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/lu_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/lu_y"
       },
       "when": {
         "east": "true",
@@ -123,7 +123,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ru_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ru_y"
       },
       "when": {
         "east": "false",
@@ -134,7 +134,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ld_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ld_y"
       },
       "when": {
         "east": "true",
@@ -145,7 +145,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/rd_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/rd_y"
       },
       "when": {
         "east": "false",
@@ -156,7 +156,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ud_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ud_y"
       },
       "when": {
         "east": "false",
@@ -167,7 +167,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/u_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/u_y"
       },
       "when": {
         "east": "false",
@@ -178,7 +178,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/d_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/d_y"
       },
       "when": {
         "east": "false",
@@ -189,7 +189,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/lr_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/lr_y"
       },
       "when": {
         "east": "true",
@@ -200,7 +200,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/l_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/l_y"
       },
       "when": {
         "east": "true",
@@ -211,7 +211,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/r_y"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/r_y"
       },
       "when": {
         "east": "false",
@@ -222,7 +222,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/lu_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/lu_z"
       },
       "when": {
         "down": "false",
@@ -233,7 +233,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ru_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ru_z"
       },
       "when": {
         "down": "false",
@@ -244,7 +244,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ld_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ld_z"
       },
       "when": {
         "down": "true",
@@ -255,7 +255,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/rd_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/rd_z"
       },
       "when": {
         "down": "true",
@@ -266,7 +266,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/ud_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/ud_z"
       },
       "when": {
         "down": "true",
@@ -277,7 +277,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/u_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/u_z"
       },
       "when": {
         "down": "false",
@@ -288,7 +288,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/d_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/d_z"
       },
       "when": {
         "down": "true",
@@ -299,7 +299,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/lr_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/lr_z"
       },
       "when": {
         "down": "false",
@@ -310,7 +310,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/l_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/l_z"
       },
       "when": {
         "down": "false",
@@ -321,7 +321,7 @@
     },
     {
       "apply": {
-        "model": "createpatina:block/waxed_exposed_fluid_pipe/r_z"
+        "model": "createpatina:block/fluid_pipe/waxed_exposed_fluid_pipe/r_z"
       },
       "when": {
         "down": "false",

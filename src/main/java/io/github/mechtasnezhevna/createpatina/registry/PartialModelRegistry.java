@@ -23,6 +23,8 @@ public class PartialModelRegistry {
     static {
 
         for (WeatheringType type : WeatheringType.values()) {
+            if (type == WeatheringType.UNAFFECTED) // The base type should be defined in Create.
+                continue;
             Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials,
                     Map<Direction, PartialModel>> attachmentMap = new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
             String typeId = Lang.asId(type.name());
@@ -30,7 +32,7 @@ public class PartialModelRegistry {
                 Map<Direction, PartialModel> map = new HashMap<>();
                 for (Direction d : Iterate.directions) {
                     String asId = Lang.asId(partial.name());
-                    map.put(d, block(typeId + "_fluid_pipe/" + asId + "/" + Lang.asId(d.getSerializedName())));
+                    map.put(d, block("fluid_pipe/" + typeId + "_fluid_pipe/" + asId + "/" + Lang.asId(d.getSerializedName())));
                 }
                 attachmentMap.put(partial, map);
             }
