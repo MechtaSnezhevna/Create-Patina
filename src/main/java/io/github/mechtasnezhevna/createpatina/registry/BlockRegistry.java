@@ -15,6 +15,7 @@ import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringItemDrainBlock;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringPumpBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -311,6 +312,7 @@ public class BlockRegistry {
             .block("exposed_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.EXPOSED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())
@@ -333,6 +335,7 @@ public class BlockRegistry {
             .block("weathered_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WEATHERED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())
@@ -355,6 +358,7 @@ public class BlockRegistry {
             .block("oxidized_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.OXIDIZED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())
@@ -377,6 +381,7 @@ public class BlockRegistry {
             .block("waxed_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())
@@ -399,6 +404,7 @@ public class BlockRegistry {
             .block("waxed_exposed_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED_EXPOSED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())
@@ -421,6 +427,7 @@ public class BlockRegistry {
             .block("waxed_weathered_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED_WEATHERED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())
@@ -443,6 +450,7 @@ public class BlockRegistry {
             .block("waxed_oxidized_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED_OXIDIZED, properties))
             .initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate((c, p) -> {
                 p.getVariantBuilder(c.getEntry())

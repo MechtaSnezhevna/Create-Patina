@@ -4,6 +4,7 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
+import com.simibubi.create.content.fluids.pipes.GlassPipeVisual;
 import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
@@ -60,6 +61,7 @@ public class BlockEntityRegistry {
 
     public static final BlockEntityEntry<StraightPipeBlockEntity> WEATHERING_GLASS_FLUID_PIPE = REGISTRATE
             .blockEntity("glass_fluid_pipe", StraightPipeBlockEntity::new)
+            .visual(() -> GlassPipeVisual::new, false)
             .validBlocks(
                     BlockRegistry.EXPOSED_GLASS_FLUID_PIPE,
                     BlockRegistry.WEATHERED_GLASS_FLUID_PIPE,
