@@ -7,8 +7,6 @@ import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.createmod.catnip.data.Iterate;
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.Direction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -21,7 +19,6 @@ public class PartialModelRegistry {
             Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials,
                     Map<Direction, PartialModel>>> WEATHERING_PIPE_ATTACHMENTS =
             new EnumMap<>(WeatheringType.class);
-    private static final Logger log = LoggerFactory.getLogger(PartialModelRegistry.class);
 
     static {
 
@@ -34,7 +31,6 @@ public class PartialModelRegistry {
                 for (Direction d : Iterate.directions) {
                     String asId = Lang.asId(partial.name());
                     map.put(d, block(typeId + "_fluid_pipe/" + asId + "/" + Lang.asId(d.getSerializedName())));
-                    log.info("{}_fluid_pipe/{}/{}", typeId, asId, Lang.asId(d.getSerializedName()));
                 }
                 attachmentMap.put(partial, map);
             }

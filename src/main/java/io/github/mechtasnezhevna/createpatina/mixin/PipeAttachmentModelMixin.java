@@ -8,6 +8,7 @@ import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.registry.PartialModelRegistry;
+import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -37,8 +38,8 @@ public class PipeAttachmentModelMixin {
             @Local(name = "partial") FluidTransportBehaviour.AttachmentTypes.ComponentPartials partial,
             @Local(name = "d") Direction d
     ) {
-        if (blockState.getBlock() instanceof PatinaBlock patinaBlock) {
-            return PartialModelRegistry.WEATHERING_PIPE_ATTACHMENTS.get(patinaBlock.getType())
+        if (blockState.getBlock() instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED) {
+            return PartialModelRegistry.WEATHERING_PIPE_ATTACHMENTS.get(patina.getType())
                     .get(partial).get(d).get().getRenderTypes(blockState, rand, data);
         } else {
             return original.call(instance, blockState, rand, data);
@@ -60,7 +61,7 @@ public class PipeAttachmentModelMixin {
             @Local(name = "d") Direction d,
             @Local(name = "state") BlockState blockState
     ) {
-        if (blockState.getBlock() instanceof PatinaBlock patina) {
+        if (blockState.getBlock() instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED) {
             return PartialModelRegistry.WEATHERING_PIPE_ATTACHMENTS.get(patina.getType())
                     .get(partial).get(d).get();
         } else {
