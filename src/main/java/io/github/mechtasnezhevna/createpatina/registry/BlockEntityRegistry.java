@@ -17,44 +17,20 @@ public class BlockEntityRegistry {
 
     public static final BlockEntityEntry<ItemDrainBlockEntity> WEATHERING_ITEM_DRAIN = REGISTRATE
             .blockEntity("item_drain", ItemDrainBlockEntity::new)
-            .validBlocks(
-                    BlockRegistry.EXPOSED_ITEM_DRAIN,
-                    BlockRegistry.WEATHERED_ITEM_DRAIN,
-                    BlockRegistry.OXIDIZED_ITEM_DRAIN,
-                    BlockRegistry.WAXED_ITEM_DRAIN,
-                    BlockRegistry.WAXED_EXPOSED_ITEM_DRAIN,
-                    BlockRegistry.WAXED_WEATHERED_ITEM_DRAIN,
-                    BlockRegistry.WAXED_OXIDIZED_ITEM_DRAIN
-            )
+            .validBlocks(BlockRegistry.ITEM_DRAINS.getAllEntries())
             .renderer(() -> ItemDrainRenderer::new)
             .register();
 
     public static final BlockEntityEntry<PumpBlockEntity> WEATHERING_PUMP = REGISTRATE
             .blockEntity("pump", PumpBlockEntity::new)
             .visual(() -> SingleAxisRotatingVisual.ofZ(AllPartialModels.MECHANICAL_PUMP_COG))
-            .validBlocks(
-                    BlockRegistry.EXPOSED_MECHANICAL_PUMP,
-                    BlockRegistry.WEATHERED_MECHANICAL_PUMP,
-                    BlockRegistry.OXIDIZED_MECHANICAL_PUMP,
-                    BlockRegistry.WAXED_MECHANICAL_PUMP,
-                    BlockRegistry.WAXED_EXPOSED_MECHANICAL_PUMP,
-                    BlockRegistry.WAXED_WEATHERED_MECHANICAL_PUMP,
-                    BlockRegistry.WAXED_OXIDIZED_MECHANICAL_PUMP
-            )
+            .validBlocks(BlockRegistry.MECHANICAL_PUMPS.getAllEntries())
             .renderer(() -> PumpRenderer::new)
             .register();
 
     public static final BlockEntityEntry<FluidPipeBlockEntity> WEATHERING_FLUID_PIPE = REGISTRATE
             .blockEntity("fluid_pipe", FluidPipeBlockEntity::new)
-            .validBlocks(
-                    BlockRegistry.EXPOSED_FLUID_PIPE,
-                    BlockRegistry.WEATHERED_FLUID_PIPE,
-                    BlockRegistry.OXIDIZED_FLUID_PIPE,
-                    BlockRegistry.WAXED_FLUID_PIPE,
-                    BlockRegistry.WAXED_EXPOSED_FLUID_PIPE,
-                    BlockRegistry.WAXED_WEATHERED_FLUID_PIPE,
-                    BlockRegistry.WAXED_OXIDIZED_FLUID_PIPE
-            )
+            .validBlocks(BlockRegistry.FLUID_PIPES.getAllEntries())
             .register();
 
     public static void register() {
