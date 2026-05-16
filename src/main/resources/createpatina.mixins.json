@@ -4,6 +4,7 @@
   "mixins": [
     "ChangeOverTimeBlockMixin",
     "FluidPipeOxidizationMixin",
+    "GlassFluidPipeOxidizationMixin",
     "ItemDrainBlockEntityAccessor",
     "ItemDrainOxidizationMixin",
     "LightningBoltMixin",

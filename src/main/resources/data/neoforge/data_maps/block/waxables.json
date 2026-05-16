@@ -35,6 +35,18 @@
     },
     "createpatina:oxidized_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_fluid_pipe"
+    },
+    "create:glass_fluid_pipe": {
+      "waxed": "createpatina:waxed_glass_fluid_pipe"
+    },
+    "createpatina:exposed_glass_fluid_pipe": {
+      "waxed": "createpatina:waxed_exposed_glass_fluid_pipe"
+    },
+    "createpatina:weathered_glass_fluid_pipe": {
+      "waxed": "createpatina:waxed_weathered_glass_fluid_pipe"
+    },
+    "createpatina:oxidized_glass_fluid_pipe": {
+      "waxed": "createpatina:waxed_oxidized_glass_fluid_pipe"
     }
   }
 }

@@ -14,5 +14,19 @@
   "block.createpatina.waxed_mechanical_pump": "Waxed Mechanical Pump",
   "block.createpatina.waxed_exposed_mechanical_pump": "Waxed Exposed Mechanical Pump",
   "block.createpatina.waxed_weathered_mechanical_pump": "Waxed Weathered Mechanical Pump",
-  "block.createpatina.waxed_oxidized_mechanical_pump": "Waxed Oxidized Mechanical Pump"
+  "block.createpatina.waxed_oxidized_mechanical_pump": "Waxed Oxidized Mechanical Pump",
+  "block.createpatina.exposed_fluid_pipe": "Exposed Fluid Pipe",
+  "block.createpatina.weathered_fluid_pipe": "Weathered Fluid Pipe",
+  "block.createpatina.oxidized_fluid_pipe": "Oxidized Fluid Pipe",
+  "block.createpatina.waxed_fluid_pipe": "Waxed Fluid Pipe",
+  "block.createpatina.waxed_exposed_fluid_pipe": "Waxed Exposed Fluid Pipe",
+  "block.createpatina.waxed_weathered_fluid_pipe": "Waxed Weathered Fluid Pipe",
+  "block.createpatina.waxed_oxidized_fluid_pipe": "Waxed Oxidized Fluid Pipe",
+  "block.createpatina.exposed_glass_fluid_pipe": "Exposed Glass Fluid Pipe",
+  "block.createpatina.weathered_glass_fluid_pipe": "Weathered Glass Fluid Pipe",
+  "block.createpatina.oxidized_glass_fluid_pipe": "Oxidized Glass Fluid Pipe",
+  "block.createpatina.waxed_glass_fluid_pipe": "Waxed Glass Fluid Pipe",
+  "block.createpatina.waxed_exposed_glass_fluid_pipe": "Waxed Exposed Glass Fluid Pipe",
+  "block.createpatina.waxed_weathered_glass_fluid_pipe": "Waxed Weathered Glass Fluid Pipe",
+  "block.createpatina.waxed_oxidized_glass_fluid_pipe": "Waxed Oxidized Glass Fluid Pipe"
 }

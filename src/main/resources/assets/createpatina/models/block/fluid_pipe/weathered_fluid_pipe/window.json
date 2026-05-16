@@ -1,8 +1,9 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout_mipped",
 	"parent": "block/block",
 	"textures": {
-		"0": "createpatina:block/exposed_glass_fluid_pipe",
+		"0": "createpatina:block/weathered_glass_fluid_pipe",
 		"particle": "block/weathered_copper"
 	},
 	"elements": [

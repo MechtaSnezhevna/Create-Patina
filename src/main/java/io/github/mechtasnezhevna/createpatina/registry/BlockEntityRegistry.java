@@ -4,6 +4,7 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
+import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
@@ -54,6 +55,19 @@ public class BlockEntityRegistry {
                     BlockRegistry.WAXED_EXPOSED_FLUID_PIPE,
                     BlockRegistry.WAXED_WEATHERED_FLUID_PIPE,
                     BlockRegistry.WAXED_OXIDIZED_FLUID_PIPE
+            )
+            .register();
+
+    public static final BlockEntityEntry<StraightPipeBlockEntity> WEATHERING_GLASS_FLUID_PIPE = REGISTRATE
+            .blockEntity("glass_fluid_pipe", StraightPipeBlockEntity::new)
+            .validBlocks(
+                    BlockRegistry.EXPOSED_GLASS_FLUID_PIPE,
+                    BlockRegistry.WEATHERED_GLASS_FLUID_PIPE,
+                    BlockRegistry.OXIDIZED_GLASS_FLUID_PIPE,
+                    BlockRegistry.WAXED_GLASS_FLUID_PIPE,
+                    BlockRegistry.WAXED_EXPOSED_GLASS_FLUID_PIPE,
+                    BlockRegistry.WAXED_WEATHERED_GLASS_FLUID_PIPE,
+                    BlockRegistry.WAXED_OXIDIZED_GLASS_FLUID_PIPE
             )
             .register();
 

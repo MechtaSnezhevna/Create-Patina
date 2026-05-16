@@ -14,5 +14,19 @@
   "block.createpatina.waxed_mechanical_pump": "涂蜡的动力泵",
   "block.createpatina.waxed_exposed_mechanical_pump": "涂蜡的斑驳动力泵",
   "block.createpatina.waxed_weathered_mechanical_pump": "涂蜡的锈蚀动力泵",
-  "block.createpatina.waxed_oxidized_mechanical_pump": "涂蜡的氧化动力泵"
+  "block.createpatina.waxed_oxidized_mechanical_pump": "涂蜡的氧化动力泵",
+  "block.createpatina.exposed_fluid_pipe": "斑驳的流体管道",
+  "block.createpatina.weathered_fluid_pipe": "锈蚀的流体管道",
+  "block.createpatina.oxidized_fluid_pipe": "氧化的流体管道",
+  "block.createpatina.waxed_fluid_pipe": "涂蜡的流体管道",
+  "block.createpatina.waxed_exposed_fluid_pipe": "涂蜡的斑驳流体管道",
+  "block.createpatina.waxed_weathered_fluid_pipe": "涂蜡的锈蚀流体管道",
+  "block.createpatina.waxed_oxidized_fluid_pipe": "涂蜡的氧化流体管道",
+  "block.createpatina.exposed_glass_fluid_pipe": "斑驳的玻璃流体管道",
+  "block.createpatina.weathered_glass_fluid_pipe": "锈蚀的玻璃流体管道",
+  "block.createpatina.oxidized_glass_fluid_pipe": "氧化的玻璃流体管道",
+  "block.createpatina.waxed_glass_fluid_pipe": "涂蜡的玻璃流体管道",
+  "block.createpatina.waxed_exposed_glass_fluid_pipe": "涂蜡的斑驳玻璃流体管道",
+  "block.createpatina.waxed_weathered_glass_fluid_pipe": "涂蜡的锈蚀玻璃流体管道",
+  "block.createpatina.waxed_oxidized_glass_fluid_pipe": "涂蜡的氧化玻璃流体管道"
 }

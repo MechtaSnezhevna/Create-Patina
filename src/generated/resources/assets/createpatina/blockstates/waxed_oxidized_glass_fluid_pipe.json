@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "alt=false,axis=x": {
+      "model": "createpatina:block/fluid_pipe/waxed_oxidized_fluid_pipe/window",
+      "x": 90,
+      "y": 90
+    },
+    "alt=false,axis=y": {
+      "model": "createpatina:block/fluid_pipe/waxed_oxidized_fluid_pipe/window"
+    },
+    "alt=false,axis=z": {
+      "model": "createpatina:block/fluid_pipe/waxed_oxidized_fluid_pipe/window",
+      "x": 90
+    },
+    "alt=true,axis=x": {
+      "model": "createpatina:block/fluid_pipe/waxed_oxidized_fluid_pipe/window",
+      "x": 90,
+      "y": 90
+    },
+    "alt=true,axis=y": {
+      "model": "createpatina:block/fluid_pipe/waxed_oxidized_fluid_pipe/window"
+    },
+    "alt=true,axis=z": {
+      "model": "createpatina:block/fluid_pipe/waxed_oxidized_fluid_pipe/window",
+      "x": 90
+    }
+  }
+}
