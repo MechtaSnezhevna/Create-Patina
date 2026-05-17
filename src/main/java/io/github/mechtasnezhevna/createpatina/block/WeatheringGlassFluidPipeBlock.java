@@ -1,6 +1,5 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
@@ -17,19 +16,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.HitResult;
 
@@ -95,15 +89,8 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
     }
 
     private BlockEntry<WeatheringFluidPipeBlock> getOriginal() {
-        return switch (this.getAge()) {
-            case EXPOSED -> this.getType().isWaxed() ? BlockRegistry.WAXED_EXPOSED_FLUID_PIPE
-                    : BlockRegistry.EXPOSED_FLUID_PIPE;
-            case WEATHERED -> this.getType().isWaxed() ? BlockRegistry.WAXED_WEATHERED_FLUID_PIPE
-                    : BlockRegistry.WEATHERED_FLUID_PIPE;
-            case OXIDIZED -> this.getType().isWaxed() ? BlockRegistry.WAXED_OXIDIZED_FLUID_PIPE
-                    : BlockRegistry.OXIDIZED_FLUID_PIPE;
-            case UNAFFECTED -> BlockRegistry.WAXED_FLUID_PIPE;
-        };
+        assert type != WeatheringType.UNAFFECTED; // The base type should be defined in Create, so this should never happen.
+        return BlockRegistry.FLUID_PIPES.getEntries().get(type);
     }
 
     public static void reconnect(ServerLevel level, BlockPos pos) {

@@ -1,6 +1,5 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
@@ -88,15 +87,8 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
     }
 
     private BlockEntry<WeatheringGlassFluidPipeBlock> getGlassVariant() {
-        return switch (this.getAge()) {
-            case EXPOSED -> this.getType().isWaxed() ? BlockRegistry.WAXED_EXPOSED_GLASS_FLUID_PIPE
-                                                     : BlockRegistry.EXPOSED_GLASS_FLUID_PIPE;
-            case WEATHERED -> this.getType().isWaxed() ? BlockRegistry.WAXED_WEATHERED_GLASS_FLUID_PIPE
-                                                     : BlockRegistry.WEATHERED_GLASS_FLUID_PIPE;
-            case OXIDIZED -> this.getType().isWaxed() ? BlockRegistry.WAXED_OXIDIZED_GLASS_FLUID_PIPE
-                                                     : BlockRegistry.OXIDIZED_GLASS_FLUID_PIPE;
-            case UNAFFECTED -> BlockRegistry.WAXED_GLASS_FLUID_PIPE;
-        };
+        assert type != WeatheringType.UNAFFECTED : "Unaffected blocks should not have a glass variant";
+        return BlockRegistry.GLASS_FLUID_PIPES.getEntries().get(type);
     }
 
     @Override

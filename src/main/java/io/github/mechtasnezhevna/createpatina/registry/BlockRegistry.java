@@ -16,7 +16,6 @@ import io.github.mechtasnezhevna.createpatina.block.WeatheringGlassFluidPipeBloc
 import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringItemDrainBlock;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringPumpBlock;
-import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
@@ -29,7 +28,7 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "removal"})
 public class BlockRegistry {
 
     public static CreateRegistrate REGISTRATE = CreatePatina.registrate();
@@ -86,165 +85,31 @@ public class BlockRegistry {
             ).unaffected(AllBlocks.FLUID_PIPE)
             .register();
 
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> EXPOSED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("exposed_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.EXPOSED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/exposed_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
+
+
+    public static final CopperChain<WeatheringGlassFluidPipeBlock> GLASS_FLUID_PIPES = new CopperChainBuilder<>(
+            REGISTRATE, "glass_fluid_pipe", WeatheringGlassFluidPipeBlock::new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .properties(p -> p.noOcclusion())
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(pickaxeOnly())
+                    .blockstate((c, p) -> {
+                        p.getVariantBuilder(c.getEntry())
+                                .forAllStatesExcept(state -> {
+                                    Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
+                                    return ConfiguredModel.builder()
+                                            .modelFile(p.models()
+                                                    .getExistingFile(p.modLoc("block/fluid_pipe/" + c.get().getType().getPrefix() + "fluid_pipe/window")))
+                                            .uvLock(false)
+                                            .rotationX(axis == Direction.Axis.Y ? 0 : 90)
+                                            .rotationY(axis == Direction.Axis.X ? 90 : 0)
+                                            .build();
+                                }, BlockStateProperties.WATERLOGGED);
+                    })
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-                    .loot((p, b) -> p.dropOther(b, EXPOSED_FLUID_PIPE.get()))
-                    .register();
-
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> WEATHERED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("weathered_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WEATHERED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/weathered_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
-            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-            .loot((p, b) -> p.dropOther(b, WEATHERED_FLUID_PIPE.get()))
-            .register();
-
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> OXIDIZED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("oxidized_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.OXIDIZED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/oxidized_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
-            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-            .loot((p, b) -> p.dropOther(b, OXIDIZED_FLUID_PIPE.get()))
-            .register();
-
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> WAXED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("waxed_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/waxed_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
-            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-            .loot((p, b) -> p.dropOther(b, WAXED_FLUID_PIPE.get()))
-            .register();
-
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> WAXED_EXPOSED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("waxed_exposed_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED_EXPOSED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/waxed_exposed_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
-            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-            .loot((p, b) -> p.dropOther(b, WAXED_EXPOSED_FLUID_PIPE.get()))
-            .register();
-
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> WAXED_WEATHERED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("waxed_weathered_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED_WEATHERED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/waxed_weathered_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
-            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-            .loot((p, b) -> p.dropOther(b, WAXED_WEATHERED_FLUID_PIPE.get()))
-            .register();
-
-    public static final BlockEntry<WeatheringGlassFluidPipeBlock> WAXED_OXIDIZED_GLASS_FLUID_PIPE = REGISTRATE
-            .block("waxed_oxidized_glass_fluid_pipe", (properties) -> new WeatheringGlassFluidPipeBlock(WeatheringType.WAXED_OXIDIZED, properties))
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(p -> p.noOcclusion())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .transform(pickaxeOnly())
-            .blockstate((c, p) -> {
-                p.getVariantBuilder(c.getEntry())
-                        .forAllStatesExcept(state -> {
-                            Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
-                            return ConfiguredModel.builder()
-                                    .modelFile(p.models()
-                                            .getExistingFile(p.modLoc("block/fluid_pipe/waxed_oxidized_fluid_pipe/window")))
-                                    .uvLock(false)
-                                    .rotationX(axis == Direction.Axis.Y ? 0 : 90)
-                                    .rotationY(axis == Direction.Axis.X ? 90 : 0)
-                                    .build();
-                        }, BlockStateProperties.WATERLOGGED);
-            })
-            .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
-            .loot((p, b) -> p.dropOther(b, WAXED_OXIDIZED_FLUID_PIPE.get()))
+                    .loot((p, block) -> p.dropOther(block, FLUID_PIPES.get(block.getType())))
+            ).unaffected(AllBlocks.GLASS_FLUID_PIPE)
             .register();
 
     public static void register() {

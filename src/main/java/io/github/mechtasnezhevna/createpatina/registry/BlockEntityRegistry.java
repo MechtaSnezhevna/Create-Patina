@@ -38,15 +38,7 @@ public class BlockEntityRegistry {
     public static final BlockEntityEntry<StraightPipeBlockEntity> WEATHERING_GLASS_FLUID_PIPE = REGISTRATE
             .blockEntity("glass_fluid_pipe", StraightPipeBlockEntity::new)
             .visual(() -> GlassPipeVisual::new, false)
-            .validBlocks(
-                    BlockRegistry.EXPOSED_GLASS_FLUID_PIPE,
-                    BlockRegistry.WEATHERED_GLASS_FLUID_PIPE,
-                    BlockRegistry.OXIDIZED_GLASS_FLUID_PIPE,
-                    BlockRegistry.WAXED_GLASS_FLUID_PIPE,
-                    BlockRegistry.WAXED_EXPOSED_GLASS_FLUID_PIPE,
-                    BlockRegistry.WAXED_WEATHERED_GLASS_FLUID_PIPE,
-                    BlockRegistry.WAXED_OXIDIZED_GLASS_FLUID_PIPE
-            )
+            .validBlocks(BlockRegistry.GLASS_FLUID_PIPES.getAllEntries())
             .register();
 
     public static void register() {

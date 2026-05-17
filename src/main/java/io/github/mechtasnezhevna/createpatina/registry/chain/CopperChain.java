@@ -36,4 +36,8 @@ public class CopperChain<B extends Block & PatinaBlock> {
                 .map(entry -> (NonNullSupplier<? extends Block>) entry)
                 .toArray(size -> (NonNullSupplier<? extends Block>[]) new NonNullSupplier[size]);
     }
+
+    public Map<WeatheringType, BlockEntry<B>> getEntries() {
+        return entries;
+    }
 }

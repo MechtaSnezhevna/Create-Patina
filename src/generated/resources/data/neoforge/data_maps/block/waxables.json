@@ -1,52 +1,52 @@
 {
   "values": {
-    "create:item_drain": {
-        "waxed": "createpatina:waxed_item_drain"
-    },
-    "createpatina:exposed_item_drain": {
-      "waxed": "createpatina:waxed_exposed_item_drain"
-    },
-    "createpatina:weathered_item_drain": {
-      "waxed": "createpatina:waxed_weathered_item_drain"
-    },
-    "createpatina:oxidized_item_drain": {
-      "waxed": "createpatina:waxed_oxidized_item_drain"
-    },
-    "create:mechanical_pump": {
-      "waxed": "createpatina:waxed_mechanical_pump"
-    },
-    "createpatina:exposed_mechanical_pump": {
-      "waxed": "createpatina:waxed_exposed_mechanical_pump"
-    },
-    "createpatina:weathered_mechanical_pump": {
-      "waxed": "createpatina:waxed_weathered_mechanical_pump"
-    },
-    "createpatina:oxidized_mechanical_pump": {
-      "waxed": "createpatina:waxed_oxidized_mechanical_pump"
-    },
     "create:fluid_pipe": {
       "waxed": "createpatina:waxed_fluid_pipe"
-    },
-    "createpatina:exposed_fluid_pipe": {
-      "waxed": "createpatina:waxed_exposed_fluid_pipe"
-    },
-    "createpatina:weathered_fluid_pipe": {
-      "waxed": "createpatina:waxed_weathered_fluid_pipe"
-    },
-    "createpatina:oxidized_fluid_pipe": {
-      "waxed": "createpatina:waxed_oxidized_fluid_pipe"
     },
     "create:glass_fluid_pipe": {
       "waxed": "createpatina:waxed_glass_fluid_pipe"
     },
+    "create:item_drain": {
+      "waxed": "createpatina:waxed_item_drain"
+    },
+    "create:mechanical_pump": {
+      "waxed": "createpatina:waxed_mechanical_pump"
+    },
+    "createpatina:exposed_fluid_pipe": {
+      "waxed": "createpatina:waxed_exposed_fluid_pipe"
+    },
     "createpatina:exposed_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_glass_fluid_pipe"
+    },
+    "createpatina:exposed_item_drain": {
+      "waxed": "createpatina:waxed_exposed_item_drain"
+    },
+    "createpatina:exposed_mechanical_pump": {
+      "waxed": "createpatina:waxed_exposed_mechanical_pump"
+    },
+    "createpatina:oxidized_fluid_pipe": {
+      "waxed": "createpatina:waxed_oxidized_fluid_pipe"
+    },
+    "createpatina:oxidized_glass_fluid_pipe": {
+      "waxed": "createpatina:waxed_oxidized_glass_fluid_pipe"
+    },
+    "createpatina:oxidized_item_drain": {
+      "waxed": "createpatina:waxed_oxidized_item_drain"
+    },
+    "createpatina:oxidized_mechanical_pump": {
+      "waxed": "createpatina:waxed_oxidized_mechanical_pump"
+    },
+    "createpatina:weathered_fluid_pipe": {
+      "waxed": "createpatina:waxed_weathered_fluid_pipe"
     },
     "createpatina:weathered_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_glass_fluid_pipe"
     },
-    "createpatina:oxidized_glass_fluid_pipe": {
-      "waxed": "createpatina:waxed_oxidized_glass_fluid_pipe"
+    "createpatina:weathered_item_drain": {
+      "waxed": "createpatina:waxed_weathered_item_drain"
+    },
+    "createpatina:weathered_mechanical_pump": {
+      "waxed": "createpatina:waxed_weathered_mechanical_pump"
     }
   }
 }
