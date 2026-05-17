@@ -15,6 +15,9 @@ import java.util.Map;
 
 public class PartialModelRegistry {
 
+    public static final Map<WeatheringType, PartialModel> WEATHERING_FLUID_PIPE_CASINGS =
+            new EnumMap<>(WeatheringType.class);
+
     public static final Map<WeatheringType,
             Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials,
                     Map<Direction, PartialModel>>> WEATHERING_PIPE_ATTACHMENTS =
@@ -25,14 +28,16 @@ public class PartialModelRegistry {
         for (WeatheringType type : WeatheringType.values()) {
             if (type == WeatheringType.UNAFFECTED) // The base type should be defined in Create.
                 continue;
+
+            WEATHERING_FLUID_PIPE_CASINGS.put(type, block("fluid_pipe/" + type.getPrefix() + "fluid_pipe/casing"));
+
             Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials,
                     Map<Direction, PartialModel>> attachmentMap = new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
-            String typeId = Lang.asId(type.name());
             for (FluidTransportBehaviour.AttachmentTypes.ComponentPartials partial : FluidTransportBehaviour.AttachmentTypes.ComponentPartials.values()) {
                 Map<Direction, PartialModel> map = new HashMap<>();
                 for (Direction d : Iterate.directions) {
                     String asId = Lang.asId(partial.name());
-                    map.put(d, block("fluid_pipe/" + typeId + "_fluid_pipe/" + asId + "/" + Lang.asId(d.getSerializedName())));
+                    map.put(d, block("fluid_pipe/" + type.getPrefix() + "fluid_pipe/" + asId + "/" + Lang.asId(d.getSerializedName())));
                 }
                 attachmentMap.put(partial, map);
             }

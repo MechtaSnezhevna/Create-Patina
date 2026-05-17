@@ -6,6 +6,7 @@ import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
 import com.simibubi.create.content.fluids.pipes.GlassPipeVisual;
 import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
+import com.simibubi.create.content.fluids.pipes.TransparentStraightPipeRenderer;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
@@ -39,6 +40,7 @@ public class BlockEntityRegistry {
             .blockEntity("glass_fluid_pipe", StraightPipeBlockEntity::new)
             .visual(() -> GlassPipeVisual::new, false)
             .validBlocks(BlockRegistry.GLASS_FLUID_PIPES.getAllEntries())
+            .renderer(() -> TransparentStraightPipeRenderer::new)
             .register();
 
     public static void register() {

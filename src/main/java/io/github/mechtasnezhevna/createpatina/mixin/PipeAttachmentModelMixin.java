@@ -26,10 +26,33 @@ public class PipeAttachmentModelMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;Lnet/neoforged/neoforge/client/model/data/ModelData;)Lnet/neoforged/neoforge/client/ChunkRenderTypeSet;",
+                    ordinal = 0
+            )
+    )
+    private ChunkRenderTypeSet wrapGetRenderTypes_casing(
+            BakedModel instance,
+            BlockState blockState,
+            RandomSource rand,
+            ModelData data,
+            Operation<ChunkRenderTypeSet> original
+    ) {
+        if (blockState.getBlock() instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED) {
+            return PartialModelRegistry.WEATHERING_FLUID_PIPE_CASINGS.get(patina.getType())
+                    .get().getRenderTypes(blockState, rand, data);
+        } else {
+            return original.call(instance, blockState, rand, data);
+        }
+    }
+
+    @WrapOperation(
+            method = "getRenderTypes",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;Lnet/neoforged/neoforge/client/model/data/ModelData;)Lnet/neoforged/neoforge/client/ChunkRenderTypeSet;",
                     ordinal = 1
             )
     )
-    private ChunkRenderTypeSet wrapGetRenderTypes(
+    private ChunkRenderTypeSet wrapGetRenderTypes_normal(
             BakedModel instance,
             BlockState blockState,
             RandomSource rand,
@@ -54,7 +77,7 @@ public class PipeAttachmentModelMixin {
                     ordinal = 0
             )
     )
-    private BakedModel wrapAddQuads(
+    private BakedModel wrapAddQuads_normal(
             PartialModel instance,
             Operation<BakedModel> original,
             @Local(name = "partial") FluidTransportBehaviour.AttachmentTypes.ComponentPartials partial,
@@ -64,6 +87,26 @@ public class PipeAttachmentModelMixin {
         if (blockState.getBlock() instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED) {
             return PartialModelRegistry.WEATHERING_PIPE_ATTACHMENTS.get(patina.getType())
                     .get(partial).get(d).get();
+        } else {
+            return original.call(instance);
+        }
+    }
+
+    @WrapOperation(
+            method = "addQuads",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Ldev/engine_room/flywheel/lib/model/baked/PartialModel;get()Lnet/minecraft/client/resources/model/BakedModel;",
+                    ordinal = 1
+            )
+    )
+    private BakedModel wrapAddQuads_casing(
+            PartialModel instance,
+            Operation<BakedModel> original,
+            @Local(name = "state") BlockState blockState
+    ) {
+        if (blockState.getBlock() instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED) {
+            return PartialModelRegistry.WEATHERING_FLUID_PIPE_CASINGS.get(patina.getType()).get();
         } else {
             return original.call(instance);
         }
