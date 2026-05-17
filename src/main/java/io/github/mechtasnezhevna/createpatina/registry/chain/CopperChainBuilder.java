@@ -18,10 +18,12 @@ public class CopperChainBuilder<B extends Block & PatinaBlock, R extends Abstrac
     private final Map<WeatheringType, BlockBuilder<B, R>> builders = new EnumMap<>(WeatheringType.class);
 
     private BlockEntry<? extends Block> unaffected = null;
+    private final boolean registerUnaffected;
 
-    public CopperChainBuilder(R owner, String name, BiFunction<WeatheringType, BlockBehaviour.Properties, B> factory) {
+    public CopperChainBuilder(R owner, String name, BiFunction<WeatheringType, BlockBehaviour.Properties, B> factory, boolean registerUnaffected) {
+        this.registerUnaffected = registerUnaffected;
         for (WeatheringType type : WeatheringType.values()) {
-            if (type == WeatheringType.UNAFFECTED) {
+            if (!registerUnaffected && type == WeatheringType.UNAFFECTED) {
                 continue;
             }
             String registryName = type.getPrefix() + name;
@@ -30,12 +32,19 @@ public class CopperChainBuilder<B extends Block & PatinaBlock, R extends Abstrac
         }
     }
 
+    public CopperChainBuilder(R owner, String name, BiFunction<WeatheringType, BlockBehaviour.Properties, B> factory) {
+        this(owner, name, factory, true);
+    }
+
     public CopperChainBuilder<B, R> configure(Consumer<BlockBuilder<B, R>> consumer) {
         builders.values().forEach(consumer);
         return this;
     }
 
     public CopperChainBuilder<B, R> unaffected(BlockEntry<? extends Block> unaffected) {
+        if (registerUnaffected) {
+            throw new IllegalStateException("This CopperChainBuilder is configured to auto register an unaffected block.");
+        }
         this.unaffected = unaffected;
         return this;
     }
@@ -43,6 +52,9 @@ public class CopperChainBuilder<B extends Block & PatinaBlock, R extends Abstrac
     public CopperChain<B> register() {
         Map<WeatheringType, BlockEntry<B>> res = new EnumMap<>(WeatheringType.class);
         builders.forEach((type, b) -> res.put(type, b.register()));
+        if (registerUnaffected) {
+            unaffected = res.get(WeatheringType.UNAFFECTED);
+        }
         registerWeatheringAndWaxable(res);
         return new CopperChain<>(res, unaffected);
     }
