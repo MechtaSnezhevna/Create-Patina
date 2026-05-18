@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
@@ -20,7 +21,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -86,8 +86,9 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
         return InteractionResult.SUCCESS;
     }
 
-    private BlockEntry<WeatheringGlassFluidPipeBlock> getGlassVariant() {
-        assert type != WeatheringType.UNAFFECTED : "Unaffected blocks should not have a glass variant";
+    private BlockEntry<? extends GlassFluidPipeBlock> getGlassVariant() {
+        if (type == WeatheringType.UNAFFECTED)
+            return AllBlocks.GLASS_FLUID_PIPE;
         return BlockRegistry.GLASS_FLUID_PIPES.getEntries().get(type);
     }
 
@@ -98,7 +99,8 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return WeatheringCopper.getNext(state.getBlock()).isPresent();
+        return super.isRandomlyTicking(state) ||
+                (isWeatheringEnabled() && type != WeatheringType.OXIDIZED);
     }
 
     @Override

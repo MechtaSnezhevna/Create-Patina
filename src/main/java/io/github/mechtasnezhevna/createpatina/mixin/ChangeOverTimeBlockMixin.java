@@ -18,7 +18,7 @@ public interface ChangeOverTimeBlockMixin {
             )
     )
     private static Enum<?> skipWaxedNeighbors(ChangeOverTimeBlock<?> instance, Operation<Enum<?>> original) {
-        if (instance instanceof PatinaBlock patinaBlock && patinaBlock.getType().isWaxed()) {
+        if (instance instanceof PatinaBlock patina && !patina.isWeatheringEnabled()) {
             return HolderEnum.NONE;
         }
         return original.call(instance);

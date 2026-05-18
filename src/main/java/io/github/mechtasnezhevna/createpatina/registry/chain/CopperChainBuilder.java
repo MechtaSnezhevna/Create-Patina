@@ -33,7 +33,7 @@ public class CopperChainBuilder<B extends Block & PatinaBlock, R extends Abstrac
     }
 
     public CopperChainBuilder(R owner, String name, BiFunction<WeatheringType, BlockBehaviour.Properties, B> factory) {
-        this(owner, name, factory, true);
+        this(owner, name, factory, false);
     }
 
     public CopperChainBuilder<B, R> configure(Consumer<BlockBuilder<B, R>> consumer) {

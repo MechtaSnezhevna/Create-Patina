@@ -1,11 +1,9 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
-import com.simibubi.create.content.fluids.FluidPropagator;
-import com.simibubi.create.content.fluids.FluidTransportBehaviour;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
-import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
@@ -20,7 +18,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -48,7 +45,8 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return WeatheringCopper.getNext(state.getBlock()).isPresent();
+        return super.isRandomlyTicking(state) ||
+                (isWeatheringEnabled() && type != WeatheringType.OXIDIZED);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        reconnect(level, pos);
+        WeatheringFluidPipeBlock.reconnect(level, pos);
     }
 
     @Override
@@ -70,9 +68,9 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
     public BlockState toRegularPipe(LevelAccessor world, BlockPos pos, BlockState state) {
         Direction side = Direction.get(Direction.AxisDirection.POSITIVE, state.getValue(AXIS));
         Map<Direction, BooleanProperty> facingToPropertyMap = FluidPipeBlock.PROPERTY_BY_DIRECTION;
-        BlockEntry<WeatheringFluidPipeBlock> originalBlockEntry = getOriginal();
+        BlockEntry<? extends FluidPipeBlock> originalBlockEntry = getOriginal();
         return originalBlockEntry.get()
-                .updateBlockState(originalBlockEntry.getDefaultState()
+                .updateBlockState(getOriginal().getDefaultState()
                         .setValue(facingToPropertyMap.get(side), true)
                         .setValue(facingToPropertyMap.get(side.getOpposite()), true), side, null, world, pos);
     }
@@ -88,29 +86,9 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
         return getOriginal().asStack();
     }
 
-    private BlockEntry<WeatheringFluidPipeBlock> getOriginal() {
-        assert type != WeatheringType.UNAFFECTED; // The base type should be defined in Create, so this should never happen.
+    private BlockEntry<? extends FluidPipeBlock> getOriginal() {
+        if (type == WeatheringType.UNAFFECTED)
+            return AllBlocks.FLUID_PIPE;
         return BlockRegistry.FLUID_PIPES.getEntries().get(type);
-    }
-
-    public static void reconnect(ServerLevel level, BlockPos pos) {
-        for (Direction d : Direction.values()) {
-            BlockPos neighborPos = pos.relative(d);
-            BlockState neighborState = level.getBlockState(neighborPos);
-            FluidTransportBehaviour pipe = FluidPropagator.getPipe(level, neighborPos);
-            if (pipe != null) {
-                if (pipe.interfaces != null) {
-                    // Force remove the old connections
-                    pipe.interfaces.remove(d.getOpposite());
-                }
-                FluidPropagator.propagateChangedPipe(level, neighborPos, neighborState);
-                FluidPropagator.resetAffectedFluidNetworks(level, neighborPos, d.getOpposite());
-            }
-
-            BlockEntity neighborBE = level.getBlockEntity(neighborPos);
-            if (neighborBE instanceof PumpBlockEntity pumpBE) {
-                pumpBE.updatePressureChange();
-            }
-        }
     }
 }
