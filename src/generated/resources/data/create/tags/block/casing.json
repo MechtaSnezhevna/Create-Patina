@@ -1,0 +1,11 @@
+{
+  "values": [
+    "createpatina:exposed_copper_casing",
+    "createpatina:weathered_copper_casing",
+    "createpatina:oxidized_copper_casing",
+    "createpatina:waxed_copper_casing",
+    "createpatina:waxed_exposed_copper_casing",
+    "createpatina:waxed_weathered_copper_casing",
+    "createpatina:waxed_oxidized_copper_casing"
+  ]
+}

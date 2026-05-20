@@ -43,6 +43,18 @@ public class BlockEntityRegistry {
             .renderer(() -> TransparentStraightPipeRenderer::new)
             .register();
 
+    public static final BlockEntityEntry<FluidPipeBlockEntity> WEATHERING_ENCASED_FLUID_PIPE = REGISTRATE
+            .blockEntity("encased_fluid_pipe", FluidPipeBlockEntity::new)
+            .validBlocks(BlockRegistry.ENCASED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_EXPOSED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_OXIDIZED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WEATHERED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_EXPOSED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_OXIDIZED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_WEATHERED_FLUID_PIPES.getAllEntries())
+            .register();
+
     public static void register() {
     }
 }

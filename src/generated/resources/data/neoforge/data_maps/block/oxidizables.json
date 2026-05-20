@@ -1,5 +1,11 @@
 {
   "values": {
+    "create:copper_casing": {
+      "next_oxidation_stage": "createpatina:exposed_copper_casing"
+    },
+    "create:encased_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_fluid_pipe"
+    },
     "create:fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_fluid_pipe"
     },
@@ -12,6 +18,54 @@
     "create:mechanical_pump": {
       "next_oxidation_stage": "createpatina:exposed_mechanical_pump"
     },
+    "createpatina:encased_exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_exposed_fluid_pipe"
+    },
+    "createpatina:encased_oxidized_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_oxidized_fluid_pipe"
+    },
+    "createpatina:encased_waxed_exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_waxed_exposed_fluid_pipe"
+    },
+    "createpatina:encased_waxed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_waxed_fluid_pipe"
+    },
+    "createpatina:encased_waxed_oxidized_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_waxed_oxidized_fluid_pipe"
+    },
+    "createpatina:encased_waxed_weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_waxed_weathered_fluid_pipe"
+    },
+    "createpatina:encased_weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_encased_weathered_fluid_pipe"
+    },
+    "createpatina:exposed_copper_casing": {
+      "next_oxidation_stage": "createpatina:weathered_copper_casing"
+    },
+    "createpatina:exposed_encased_exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_exposed_fluid_pipe"
+    },
+    "createpatina:exposed_encased_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_fluid_pipe"
+    },
+    "createpatina:exposed_encased_oxidized_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_oxidized_fluid_pipe"
+    },
+    "createpatina:exposed_encased_waxed_exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_waxed_exposed_fluid_pipe"
+    },
+    "createpatina:exposed_encased_waxed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_waxed_fluid_pipe"
+    },
+    "createpatina:exposed_encased_waxed_oxidized_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_waxed_oxidized_fluid_pipe"
+    },
+    "createpatina:exposed_encased_waxed_weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_waxed_weathered_fluid_pipe"
+    },
+    "createpatina:exposed_encased_weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_encased_weathered_fluid_pipe"
+    },
     "createpatina:exposed_fluid_pipe": {
       "next_oxidation_stage": "createpatina:weathered_fluid_pipe"
     },
@@ -23,6 +77,33 @@
     },
     "createpatina:exposed_mechanical_pump": {
       "next_oxidation_stage": "createpatina:weathered_mechanical_pump"
+    },
+    "createpatina:weathered_copper_casing": {
+      "next_oxidation_stage": "createpatina:oxidized_copper_casing"
+    },
+    "createpatina:weathered_encased_exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_exposed_fluid_pipe"
+    },
+    "createpatina:weathered_encased_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_fluid_pipe"
+    },
+    "createpatina:weathered_encased_oxidized_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_oxidized_fluid_pipe"
+    },
+    "createpatina:weathered_encased_waxed_exposed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_waxed_exposed_fluid_pipe"
+    },
+    "createpatina:weathered_encased_waxed_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_waxed_fluid_pipe"
+    },
+    "createpatina:weathered_encased_waxed_oxidized_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_waxed_oxidized_fluid_pipe"
+    },
+    "createpatina:weathered_encased_waxed_weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_waxed_weathered_fluid_pipe"
+    },
+    "createpatina:weathered_encased_weathered_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_encased_weathered_fluid_pipe"
     },
     "createpatina:weathered_fluid_pipe": {
       "next_oxidation_stage": "createpatina:oxidized_fluid_pipe"

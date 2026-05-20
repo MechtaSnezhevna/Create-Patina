@@ -3,6 +3,8 @@
   "package": "io.github.mechtasnezhevna.createpatina.mixin",
   "mixins": [
     "ChangeOverTimeBlockMixin",
+    "CopperCasingOxidizationMixin",
+    "EncasedPipeOxidizationMixin",
     "FluidPipeOxidizationMixin",
     "GlassFluidPipeOxidizationMixin",
     "ItemDrainBlockEntityAccessor",
