@@ -28,6 +28,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -297,6 +299,19 @@ public class BlockRegistry {
                     .transform(EncasingRegistry.addVariantTo((BlockEntry<? extends FluidPipeBlock>) BlockRegistry.FLUID_PIPES.getEntry(WeatheringType.WAXED_WEATHERED)))
             )
             .register();
+
+    @Contract(pure = true)
+    public static @Nullable CopperChain<WeatheringEncasedPipeBlock> ENCASED_WHAT_FLUID_PIPE(WeatheringType pipeType) {
+        if (pipeType == WeatheringType.UNAFFECTED) return ENCASED_FLUID_PIPES;
+        if (pipeType == WeatheringType.EXPOSED) return  ENCASED_EXPOSED_FLUID_PIPES;
+        if (pipeType == WeatheringType.WEATHERED) return ENCASED_WEATHERED_FLUID_PIPES;
+        if (pipeType == WeatheringType.OXIDIZED) return ENCASED_OXIDIZED_FLUID_PIPES;
+        if (pipeType == WeatheringType.WAXED) return ENCASED_WAXED_FLUID_PIPES;
+        if (pipeType == WeatheringType.WAXED_EXPOSED) return ENCASED_WAXED_EXPOSED_FLUID_PIPES;
+        if (pipeType == WeatheringType.WAXED_WEATHERED) return ENCASED_WAXED_WEATHERED_FLUID_PIPES;
+        if (pipeType == WeatheringType.WAXED_OXIDIZED) return ENCASED_WAXED_OXIDIZED_FLUID_PIPES;
+        return null;
+    }
 
     public static void register() {
     }

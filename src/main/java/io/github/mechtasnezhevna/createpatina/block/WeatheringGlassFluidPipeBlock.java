@@ -1,6 +1,8 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.content.fluids.FluidTransportBehaviour;
+import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
@@ -9,19 +11,25 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.createmod.catnip.data.Iterate;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -90,5 +98,38 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
         if (type == WeatheringType.UNAFFECTED)
             return AllBlocks.FLUID_PIPE;
         return BlockRegistry.FLUID_PIPES.getEntries().get(type);
+    }
+    
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        boolean isValidCasing = AllBlocks.COPPER_CASING.isIn(stack);
+        WeatheringType CasingType = WeatheringType.UNAFFECTED;
+        for(WeatheringType t : WeatheringType.values()) {
+            if (isValidCasing)
+                break;
+            if (t == WeatheringType.UNAFFECTED)
+                continue;
+            if (BlockRegistry.COPPER_CASINGS.getEntry(t).isIn(stack)) {
+                isValidCasing = true;
+                CasingType = t;
+            }
+        }
+        if (!isValidCasing)
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+        if (level.isClientSide)
+            return ItemInteractionResult.SUCCESS;
+
+        BlockState newState;
+        if (type == WeatheringType.UNAFFECTED && CasingType == WeatheringType.UNAFFECTED)
+            newState = AllBlocks.ENCASED_FLUID_PIPE.getDefaultState();
+        else newState = BlockRegistry.ENCASED_WHAT_FLUID_PIPE(type).getEntry(CasingType).getDefaultState();
+
+        for (Direction d : Iterate.directionsInAxis(getAxis(state)))
+            newState = newState.setValue(EncasedPipeBlock.FACING_TO_PROPERTY_MAP.get(d), true);
+        FluidTransportBehaviour.cacheFlows(level, pos);
+        level.setBlockAndUpdate(pos, newState);
+        FluidTransportBehaviour.loadFlows(level, pos);
+        return ItemInteractionResult.SUCCESS;
     }
 }
