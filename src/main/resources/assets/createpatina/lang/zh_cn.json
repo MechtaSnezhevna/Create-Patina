@@ -98,5 +98,12 @@
   "block.createpatina.waxed_encased_waxed_oxidized_fluid_pipe": "涂蜡的铜涂蜡氧化流体管道箱",
   "block.createpatina.waxed_exposed_encased_waxed_oxidized_fluid_pipe": "涂蜡的斑驳的铜涂蜡氧化流体管道箱",
   "block.createpatina.waxed_weathered_encased_waxed_oxidized_fluid_pipe": "涂蜡的锈蚀的铜涂蜡氧化流体管道箱",
-  "block.createpatina.waxed_oxidized_encased_waxed_oxidized_fluid_pipe": "涂蜡的氧化的铜涂蜡氧化流体管道箱"
+  "block.createpatina.waxed_oxidized_encased_waxed_oxidized_fluid_pipe": "涂蜡的氧化的铜涂蜡氧化流体管道箱",
+  "block.createpatina.exposed_copper_ladder": "斑驳的铜梯子",
+  "block.createpatina.weathered_copper_ladder": "锈蚀的铜梯子",
+  "block.createpatina.oxidized_copper_ladder": "氧化的铜梯子",
+  "block.createpatina.waxed_copper_ladder": "涂蜡的铜梯子",
+  "block.createpatina.waxed_exposed_copper_ladder": "涂蜡的斑驳铜梯子",
+  "block.createpatina.waxed_weathered_copper_ladder": "涂蜡的锈蚀铜梯子",
+  "block.createpatina.waxed_oxidized_copper_ladder": "涂蜡的氧化铜梯子"
 }

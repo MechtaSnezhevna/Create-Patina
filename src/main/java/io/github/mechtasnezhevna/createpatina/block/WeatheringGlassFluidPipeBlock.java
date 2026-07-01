@@ -24,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -123,7 +122,7 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
         BlockState newState;
         if (type == WeatheringType.UNAFFECTED && CasingType == WeatheringType.UNAFFECTED)
             newState = AllBlocks.ENCASED_FLUID_PIPE.getDefaultState();
-        else newState = BlockRegistry.ENCASED_WHAT_FLUID_PIPE(type).getEntry(CasingType).getDefaultState();
+        else newState = BlockRegistry.ENCASED_WHAT_FLUID_PIPES(type).getEntry(CasingType).getDefaultState();
 
         for (Direction d : Iterate.directionsInAxis(getAxis(state)))
             newState = newState.setValue(EncasedPipeBlock.FACING_TO_PROPERTY_MAP.get(d), true);

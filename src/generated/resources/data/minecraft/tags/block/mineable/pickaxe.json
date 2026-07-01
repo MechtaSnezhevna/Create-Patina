@@ -97,6 +97,13 @@
     "createpatina:waxed_encased_waxed_weathered_fluid_pipe",
     "createpatina:waxed_exposed_encased_waxed_weathered_fluid_pipe",
     "createpatina:waxed_weathered_encased_waxed_weathered_fluid_pipe",
-    "createpatina:waxed_oxidized_encased_waxed_weathered_fluid_pipe"
+    "createpatina:waxed_oxidized_encased_waxed_weathered_fluid_pipe",
+    "createpatina:exposed_copper_ladder",
+    "createpatina:weathered_copper_ladder",
+    "createpatina:oxidized_copper_ladder",
+    "createpatina:waxed_copper_ladder",
+    "createpatina:waxed_exposed_copper_ladder",
+    "createpatina:waxed_weathered_copper_ladder",
+    "createpatina:waxed_oxidized_copper_ladder"
   ]
 }

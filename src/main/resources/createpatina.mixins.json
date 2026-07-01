@@ -4,6 +4,7 @@
   "mixins": [
     "ChangeOverTimeBlockMixin",
     "CopperCasingOxidizationMixin",
+    "CopperLadderOxidizationMixin",
     "EncasedPipeOxidizationMixin",
     "FluidPipeOxidizationMixin",
     "GlassFluidPipeOxidizationMixin",

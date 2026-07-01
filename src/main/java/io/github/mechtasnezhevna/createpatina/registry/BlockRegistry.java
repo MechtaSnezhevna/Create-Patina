@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
@@ -17,10 +18,12 @@ import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
 import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChain;
 import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChainBuilder;
+import io.github.mechtasnezhevna.createpatina.util.PatinaMapColor;
 import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -36,6 +39,7 @@ import java.util.function.Supplier;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
 @SuppressWarnings({"deprecation", "removal"})
 public class BlockRegistry {
@@ -301,7 +305,7 @@ public class BlockRegistry {
             .register();
 
     @Contract(pure = true)
-    public static @Nullable CopperChain<WeatheringEncasedPipeBlock> ENCASED_WHAT_FLUID_PIPE(WeatheringType pipeType) {
+    public static @Nullable CopperChain<WeatheringEncasedPipeBlock> ENCASED_WHAT_FLUID_PIPES(WeatheringType pipeType) {
         if (pipeType == WeatheringType.UNAFFECTED) return ENCASED_FLUID_PIPES;
         if (pipeType == WeatheringType.EXPOSED) return  ENCASED_EXPOSED_FLUID_PIPES;
         if (pipeType == WeatheringType.WEATHERED) return ENCASED_WEATHERED_FLUID_PIPES;
@@ -312,6 +316,25 @@ public class BlockRegistry {
         if (pipeType == WeatheringType.WAXED_OXIDIZED) return ENCASED_WAXED_OXIDIZED_FLUID_PIPES;
         return null;
     }
+
+    public static final CopperChain<WeatheringMetalLadderBlock> COPPER_LADDERS = new CopperChainBuilder<>(
+            REGISTRATE, "copper_ladder", WeatheringMetalLadderBlock:: new)
+            .configure(b -> b
+                    .properties(p -> p.mapColor(PatinaMapColor.getMapColorByName(b.getName())))
+                    .addLayer(() -> RenderType::cutout)
+                    .blockstate((c, p) -> p.horizontalBlock(c.get(), p.models()
+                            .withExistingParent(c.getName(), p.modLoc("block/copper_ladder"))
+                            .texture("0", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))
+                            .texture("1", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))
+                            .texture("particle", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))))
+                    .properties(p -> p.sound(SoundType.COPPER))
+                    .transform(pickaxeOnly())
+                    .tag(BlockTags.CLIMBABLE)
+                    .item()
+                    .transform(customItemModel("copper_ladder"))
+                    .build()
+            ).unaffected(AllBlocks.COPPER_LADDER)
+            .register();
 
     public static void register() {
     }

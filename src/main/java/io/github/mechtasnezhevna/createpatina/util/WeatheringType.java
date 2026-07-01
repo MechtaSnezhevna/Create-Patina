@@ -31,6 +31,11 @@ public enum WeatheringType {
         return this.prefix + "_";
     }
 
+    public String getPrefixWithoutWaxed(){
+        if (this == WAXED) return "";
+        return this.prefix.replace("waxed_","") + "_";
+    }
+
     public WeatheringCopper.WeatherState getWeatherState() {
         return switch (this) {
             case EXPOSED, WAXED_EXPOSED -> WeatheringCopper.WeatherState.EXPOSED;

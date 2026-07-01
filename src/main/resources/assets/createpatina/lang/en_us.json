@@ -42,7 +42,7 @@
   "block.createpatina.waxed_encased_fluid_pipe": "Waxed Encased Fluid Pipe",
   "block.createpatina.waxed_exposed_encased_fluid_pipe": "Waxed Exposed Encased Fluid Pipe",
   "block.createpatina.waxed_weathered_encased_fluid_pipe": "Waxed Weathered Encased Fluid Pipe",
-  "block.createpatina.waxed_oxidized_encased_fluid_pipe": "Waxed Oxidized Encased Fluid Pipe"
+  "block.createpatina.waxed_oxidized_encased_fluid_pipe": "Waxed Oxidized Encased Fluid Pipe",
   "block.createpatina.encased_exposed_fluid_pipe": "Encased Exposed Fluid Pipe",
   "block.createpatina.exposed_encased_exposed_fluid_pipe": "Exposed Encased Exposed Fluid Pipe",
   "block.createpatina.weathered_encased_exposed_fluid_pipe": "Weathered Encased Exposed Fluid Pipe",
@@ -98,5 +98,12 @@
   "block.createpatina.waxed_encased_waxed_oxidized_fluid_pipe": "Waxed Encased Waxed Oxidized Fluid Pipe",
   "block.createpatina.waxed_exposed_encased_waxed_oxidized_fluid_pipe": "Waxed Exposed Encased Waxed Oxidized Fluid Pipe",
   "block.createpatina.waxed_weathered_encased_waxed_oxidized_fluid_pipe": "Waxed Weathered Encased Waxed Oxidized Fluid Pipe",
-  "block.createpatina.waxed_oxidized_encased_waxed_oxidized_fluid_pipe": "Waxed Oxidized Encased Waxed Oxidized Fluid Pipe"
+  "block.createpatina.waxed_oxidized_encased_waxed_oxidized_fluid_pipe": "Waxed Oxidized Encased Waxed Oxidized Fluid Pipe",
+  "block.createpatina.exposed_copper_ladder": "Exposed Copper Ladder",
+  "block.createpatina.weathered_copper_ladder": "Weathered Copper Ladder",
+  "block.createpatina.oxidized_copper_ladder": "Oxidized Copper Ladder",
+  "block.createpatina.waxed_copper_ladder": "Waxed Copper Ladder",
+  "block.createpatina.waxed_exposed_copper_ladder": "Waxed Exposed Copper Ladder",
+  "block.createpatina.waxed_weathered_copper_ladder": "Waxed Weathered Copper Ladder",
+  "block.createpatina.waxed_oxidized_copper_ladder": "Waxed Oxidized Copper Ladder"
 }
