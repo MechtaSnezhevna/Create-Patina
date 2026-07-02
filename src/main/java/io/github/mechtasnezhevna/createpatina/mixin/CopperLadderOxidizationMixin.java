@@ -34,11 +34,6 @@ public abstract class CopperLadderOxidizationMixin extends Block implements Pati
     }
 
     @Override
-    public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringFluidPipeBlock.reconnect(level, pos);
-    }
-
-    @Override
     public WeatheringType getType() {
         return WeatheringType.UNAFFECTED;
     }
