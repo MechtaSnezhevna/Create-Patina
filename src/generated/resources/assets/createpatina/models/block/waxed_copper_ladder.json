@@ -1,7 +1,7 @@
 {
   "parent": "createpatina:block/copper_ladder",
   "textures": {
-    "0": "createpatina:block/ladder_copper",
+    "0": "createpatina:block/ladder_copper_hoop",
     "1": "createpatina:block/ladder_copper",
     "particle": "createpatina:block/ladder_copper"
   }

@@ -26,13 +26,7 @@ public class PatinaMapColor {
     }
 
     @Contract(pure = true)
-    public static MapColor getMapColorByName(String name){
-        String[] prefixes = {"exposed","weathered","oxidized","waxed_", "waxed_exposed_","waxed_weathered_","waxed_oxidized_"};
-        for (String prefix : prefixes) {
-            if (name.startsWith(prefix)) {
-                return getMapColorByPrefix(prefix);
-            }
-        }
-        return getMapColorByPrefix("");
+    public static MapColor getMapColorByName(String name) {
+        return getMapColorByPrefix(WeatheringType.getPrefixByName(name));
     }
 }

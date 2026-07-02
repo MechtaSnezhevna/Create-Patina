@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.util;
 
 import net.minecraft.world.level.block.WeatheringCopper;
+import org.jetbrains.annotations.Contract;
 
 public enum WeatheringType {
     UNAFFECTED,
@@ -43,6 +44,22 @@ public enum WeatheringType {
             case OXIDIZED, WAXED_OXIDIZED -> WeatheringCopper.WeatherState.OXIDIZED;
             case UNAFFECTED, WAXED -> WeatheringCopper.WeatherState.UNAFFECTED;
         };
+    }
+
+    @Contract(pure = true)
+    public static String getPrefixByName(String name){
+        String[] prefixes = {"exposed_","weathered_","oxidized_","waxed_", "waxed_exposed_","waxed_weathered_","waxed_oxidized_"};
+        for (String prefix : prefixes) {
+            if (name.startsWith(prefix)) {
+                return prefix;
+            }
+        }
+        return "";
+    }
+
+    @Contract(pure = true)
+    public static String getPrefixWithoutWaxedByName(String name){
+        return getPrefixByName(name.replace("waxed_",""));
     }
 
     public WeatheringType getNext() {

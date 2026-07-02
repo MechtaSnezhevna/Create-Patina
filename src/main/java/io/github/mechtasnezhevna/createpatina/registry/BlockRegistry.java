@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
@@ -39,7 +38,6 @@ import java.util.function.Supplier;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
-import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
 @SuppressWarnings({"deprecation", "removal"})
 public class BlockRegistry {
@@ -324,14 +322,14 @@ public class BlockRegistry {
                     .addLayer(() -> RenderType::cutout)
                     .blockstate((c, p) -> p.horizontalBlock(c.get(), p.models()
                             .withExistingParent(c.getName(), p.modLoc("block/copper_ladder"))
-                            .texture("0", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))
+                            .texture("0", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper_hoop"))
                             .texture("1", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))
                             .texture("particle", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))))
                     .properties(p -> p.sound(SoundType.COPPER))
                     .transform(pickaxeOnly())
                     .tag(BlockTags.CLIMBABLE)
                     .item()
-                    .transform(customItemModel("copper_ladder"))
+                    .model((c, p) -> p.blockSprite(c::get, p.modLoc("block/"+WeatheringType.getPrefixWithoutWaxedByName(b.getName())+"ladder_copper")))
                     .build()
             ).unaffected(AllBlocks.COPPER_LADDER)
             .register();
