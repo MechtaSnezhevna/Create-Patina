@@ -27,28 +27,11 @@ public class CopperBarsOxidizationMixin extends Block implements PatinaBlock {
         super(p_54345_);
     }
 
-    @Unique
-    private static Block copperBarsCache = null;
-
-    @Unique
-    private static Block getCopperBarsSafely() {
-        if (copperBarsCache == null) {
-            if (AllBlocks.COPPER_BARS.isBound()) {
-                copperBarsCache = AllBlocks.COPPER_BARS.get();
-            } else {
-                ResourceLocation loc = ResourceLocation.fromNamespaceAndPath("create", "copper_bars");
-                copperBarsCache = BuiltInRegistries.BLOCK.get(loc);
-            }
-        }
-        return copperBarsCache;
-    }
-
     @Override
     public boolean isRandomlyTicking(BlockState state) {
         // Copper bars use a different register way
-        // that causes mixin NPE if we use simple AllBlocks.COPPER_BARS.get() here
-        Block target = getCopperBarsSafely();
-        return target != null && state.getBlock() == target;
+        // that causes mixin NPE if we use AllBlocks.COPPER_BARS.get() here
+        return state.getBlock().getDescriptionId().equals("block.create.copper_bars");
     }
 
     @Override
