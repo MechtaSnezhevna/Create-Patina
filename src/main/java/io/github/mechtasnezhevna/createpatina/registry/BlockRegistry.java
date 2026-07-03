@@ -320,25 +320,6 @@ public class BlockRegistry {
         return null;
     }
 
-    public static final CopperChain<WeatheringMetalLadderBlock> COPPER_LADDERS = new CopperChainBuilder<>(
-            REGISTRATE, "copper_ladder", WeatheringMetalLadderBlock:: new)
-            .configure(b -> b
-                    .properties(p -> p.mapColor(PatinaMapColor.getMapColorByName(b.getName())))
-                    .addLayer(() -> RenderType::cutout)
-                    .blockstate((c, p) -> p.horizontalBlock(c.get(), p.models()
-                            .withExistingParent(c.getName(), p.modLoc("block/copper_ladder"))
-                            .texture("0", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper_hoop"))
-                            .texture("1", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))
-                            .texture("particle", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))))
-                    .properties(p -> p.sound(SoundType.COPPER))
-                    .transform(pickaxeOnly())
-                    .tag(BlockTags.CLIMBABLE)
-                    .item()
-                    .model((c, p) -> p.blockSprite(c::get, p.modLoc("block/"+WeatheringType.getPrefixWithoutWaxedByName(b.getName())+"ladder_copper")))
-                    .build()
-            ).unaffected(AllBlocks.COPPER_LADDER)
-            .register();
-
     public static final CopperChain<WeatheringMetalScaffoldingBlock> COPPER_SCAFFOLDS = new CopperChainBuilder<>(
             REGISTRATE, "copper_scaffolding", WeatheringMetalScaffoldingBlock:: new)
             .configure(b -> b
@@ -370,6 +351,25 @@ public class BlockRegistry {
                     .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + c.getName())))
                     .build()
             ).unaffected(AllBlocks.COPPER_SCAFFOLD)
+            .register();
+
+    public static final CopperChain<WeatheringMetalLadderBlock> COPPER_LADDERS = new CopperChainBuilder<>(
+            REGISTRATE, "copper_ladder", WeatheringMetalLadderBlock:: new)
+            .configure(b -> b
+                    .properties(p -> p.mapColor(PatinaMapColor.getMapColorByName(b.getName())))
+                    .addLayer(() -> RenderType::cutout)
+                    .blockstate((c, p) -> p.horizontalBlock(c.get(), p.models()
+                            .withExistingParent(c.getName(), p.modLoc("block/copper_ladder"))
+                            .texture("0", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper_hoop"))
+                            .texture("1", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))
+                            .texture("particle", p.modLoc("block/"+c.get().getType().getPrefixWithoutWaxed()+"ladder_copper"))))
+                    .properties(p -> p.sound(SoundType.COPPER))
+                    .transform(pickaxeOnly())
+                    .tag(BlockTags.CLIMBABLE)
+                    .item()
+                    .model((c, p) -> p.blockSprite(c::get, p.modLoc("block/"+WeatheringType.getPrefixWithoutWaxedByName(b.getName())+"ladder_copper")))
+                    .build()
+            ).unaffected(AllBlocks.COPPER_LADDER)
             .register();
 
     public static void register() {
