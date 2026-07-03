@@ -112,5 +112,13 @@
   "block.createpatina.waxed_copper_scaffolding": "Waxed Copper Scaffolding",
   "block.createpatina.waxed_exposed_copper_scaffolding": "Waxed Exposed Copper Scaffolding",
   "block.createpatina.waxed_weathered_copper_scaffolding": "Waxed Weathered Copper Scaffolding",
-  "block.createpatina.waxed_oxidized_copper_scaffolding": "Waxed Oxidized Copper Scaffolding"
+  "block.createpatina.waxed_oxidized_copper_scaffolding": "Waxed Oxidized Copper Scaffolding",
+  "block.createpatina.exposed_copper_bars": "Exposed Copper Bars",
+  "block.createpatina.weathered_copper_bars": "Weathered Copper Bars",
+  "block.createpatina.oxidized_copper_bars": "Oxidized Copper Bars",
+  "block.createpatina.waxed_copper_bars": "Waxed Copper Bars",
+  "block.createpatina.waxed_exposed_copper_bars": "Waxed Exposed Copper Bars",
+  "block.createpatina.waxed_weathered_copper_bars": "Waxed Weathered Copper Bars",
+  "block.createpatina.waxed_oxidized_copper_bars": "Waxed Oxidized Copper Bars"
+
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "createpatina:block/bars/waxed_weathered_copper_bars"
+  }
+}

@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
@@ -9,10 +10,7 @@ import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
-import com.simibubi.create.foundation.data.BlockStateGen;
-import com.simibubi.create.foundation.data.BuilderTransformers;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.data.SharedProperties;
+import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -25,6 +23,8 @@ import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -40,6 +40,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
+import static com.simibubi.create.foundation.data.MetalBarsGen.barsBlockState;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -370,6 +371,26 @@ public class BlockRegistry {
                     .model((c, p) -> p.blockSprite(c::get, p.modLoc("block/"+WeatheringType.getPrefixWithoutWaxedByName(b.getName())+"ladder_copper")))
                     .build()
             ).unaffected(AllBlocks.COPPER_LADDER)
+            .register();
+
+    public static final CopperChain<WeatheringBarsBlock> COPPER_BARS_SET = new CopperChainBuilder<>(
+            REGISTRATE, "copper_bars", WeatheringBarsBlock:: new)
+            .configure(b -> b
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .initialProperties(() -> Blocks.IRON_BARS)
+                    .properties(p -> p.sound(SoundType.COPPER)
+                            .mapColor(PatinaMapColor.getMapColorByName(b.getName())))
+                    .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+                    .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+                    .transform(TagGen.pickaxeOnly())
+                    .blockstate(barsBlockState(WeatheringType.getPrefixByName(b.getName()) + "copper", true))
+                    .item()
+                    .model((c, p) -> {
+                        ResourceLocation barsTexture = p.modLoc("block/bars/" + b.getName());
+                        p.generated(c, barsTexture);
+                    })
+                    .build()
+            ).unaffected(AllBlocks.COPPER_BARS)
             .register();
 
     public static void register() {

@@ -1,18 +1,18 @@
 {
   "values": [
-    "createpatina:exposed_copper_ladder",
-    "createpatina:weathered_copper_ladder",
-    "createpatina:oxidized_copper_ladder",
-    "createpatina:waxed_copper_ladder",
-    "createpatina:waxed_exposed_copper_ladder",
-    "createpatina:waxed_weathered_copper_ladder",
-    "createpatina:waxed_oxidized_copper_ladder",
     "createpatina:exposed_copper_scaffolding",
     "createpatina:weathered_copper_scaffolding",
     "createpatina:oxidized_copper_scaffolding",
     "createpatina:waxed_copper_scaffolding",
     "createpatina:waxed_exposed_copper_scaffolding",
     "createpatina:waxed_weathered_copper_scaffolding",
-    "createpatina:waxed_oxidized_copper_scaffolding"
+    "createpatina:waxed_oxidized_copper_scaffolding",
+    "createpatina:exposed_copper_ladder",
+    "createpatina:weathered_copper_ladder",
+    "createpatina:oxidized_copper_ladder",
+    "createpatina:waxed_copper_ladder",
+    "createpatina:waxed_exposed_copper_ladder",
+    "createpatina:waxed_weathered_copper_ladder",
+    "createpatina:waxed_oxidized_copper_ladder"
   ]
 }

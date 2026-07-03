@@ -38,6 +38,7 @@ public class CreativeModeTabRegistry {
             insertBefore(e, BlockRegistry.COPPER_CASINGS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_CASING);
             insertBefore(e, BlockRegistry.COPPER_LADDERS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_LADDER);
             insertBefore(e, BlockRegistry.COPPER_SCAFFOLDS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_SCAFFOLD);
+            insertBefore(e, BlockRegistry.COPPER_BARS_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_BARS);
         }
     }
 

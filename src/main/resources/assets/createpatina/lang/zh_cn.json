@@ -112,5 +112,12 @@
   "block.createpatina.waxed_copper_scaffolding": "涂蜡的铜脚手架",
   "block.createpatina.waxed_exposed_copper_scaffolding": "涂蜡的斑驳铜脚手架",
   "block.createpatina.waxed_weathered_copper_scaffolding": "涂蜡的锈蚀铜脚手架",
-  "block.createpatina.waxed_oxidized_copper_scaffolding": "涂蜡的氧化铜脚手架"
+  "block.createpatina.waxed_oxidized_copper_scaffolding": "涂蜡的氧化铜脚手架",
+  "block.createpatina.exposed_copper_bars": "斑驳的铜栏杆",
+  "block.createpatina.weathered_copper_bars": "锈蚀的铜栏杆",
+  "block.createpatina.oxidized_copper_bars": "氧化的铜栏杆",
+  "block.createpatina.waxed_copper_bars": "涂蜡的铜栏杆",
+  "block.createpatina.waxed_exposed_copper_bars": "涂蜡的斑驳铜栏杆",
+  "block.createpatina.waxed_weathered_copper_bars": "涂蜡的锈蚀铜栏杆",
+  "block.createpatina.waxed_oxidized_copper_bars": "涂蜡的氧化铜栏杆"
 }
