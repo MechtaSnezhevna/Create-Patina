@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=false": {
+      "model": "createpatina:block/exposed_copper_scaffolding"
+    },
+    "bottom=true": {
+      "model": "createpatina:block/exposed_copper_scaffolding_horizontal"
+    }
+  }
+}

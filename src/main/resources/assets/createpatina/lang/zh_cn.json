@@ -105,5 +105,12 @@
   "block.createpatina.waxed_copper_ladder": "涂蜡的铜梯子",
   "block.createpatina.waxed_exposed_copper_ladder": "涂蜡的斑驳铜梯子",
   "block.createpatina.waxed_weathered_copper_ladder": "涂蜡的锈蚀铜梯子",
-  "block.createpatina.waxed_oxidized_copper_ladder": "涂蜡的氧化铜梯子"
+  "block.createpatina.waxed_oxidized_copper_ladder": "涂蜡的氧化铜梯子",
+  "block.createpatina.exposed_copper_scaffolding": "斑驳的铜脚手架",
+  "block.createpatina.weathered_copper_scaffolding": "锈蚀的铜脚手架",
+  "block.createpatina.oxidized_copper_scaffolding": "氧化的铜脚手架",
+  "block.createpatina.waxed_copper_scaffolding": "涂蜡的铜脚手架",
+  "block.createpatina.waxed_exposed_copper_scaffolding": "涂蜡的斑驳铜脚手架",
+  "block.createpatina.waxed_weathered_copper_scaffolding": "涂蜡的锈蚀铜脚手架",
+  "block.createpatina.waxed_oxidized_copper_scaffolding": "涂蜡的氧化铜脚手架"
 }

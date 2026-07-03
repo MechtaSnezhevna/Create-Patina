@@ -1,0 +1,10 @@
+{
+  "parent": "createpatina:block/copper_scaffold/block_horizontal",
+  "textures": {
+    "casing": "createpatina:block/copper_casing",
+    "inside": "createpatina:block/copper_scaffold_inside",
+    "particle": "createpatina:block/copper_scaffold",
+    "side": "createpatina:block/copper_scaffold",
+    "top": "createpatina:block/copper_funnel_frame"
+  }
+}

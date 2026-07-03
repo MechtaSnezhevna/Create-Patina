@@ -105,5 +105,12 @@
   "block.createpatina.waxed_copper_ladder": "Waxed Copper Ladder",
   "block.createpatina.waxed_exposed_copper_ladder": "Waxed Exposed Copper Ladder",
   "block.createpatina.waxed_weathered_copper_ladder": "Waxed Weathered Copper Ladder",
-  "block.createpatina.waxed_oxidized_copper_ladder": "Waxed Oxidized Copper Ladder"
+  "block.createpatina.waxed_oxidized_copper_ladder": "Waxed Oxidized Copper Ladder",
+  "block.createpatina.exposed_copper_scaffolding": "Exposed Copper Scaffolding",
+  "block.createpatina.weathered_copper_scaffolding": "Weathered Copper Scaffolding",
+  "block.createpatina.oxidized_copper_scaffolding": "Oxidized Copper Scaffolding",
+  "block.createpatina.waxed_copper_scaffolding": "Waxed Copper Scaffolding",
+  "block.createpatina.waxed_exposed_copper_scaffolding": "Waxed Exposed Copper Scaffolding",
+  "block.createpatina.waxed_weathered_copper_scaffolding": "Waxed Weathered Copper Scaffolding",
+  "block.createpatina.waxed_oxidized_copper_scaffolding": "Waxed Oxidized Copper Scaffolding"
 }

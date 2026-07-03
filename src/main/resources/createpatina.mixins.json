@@ -5,6 +5,7 @@
     "ChangeOverTimeBlockMixin",
     "CopperCasingOxidizationMixin",
     "CopperLadderOxidizationMixin",
+    "CopperScaffoldOxidizationMixin",
     "EncasedPipeOxidizationMixin",
     "FluidPipeOxidizationMixin",
     "GlassFluidPipeOxidizationMixin",

@@ -1,6 +1,9 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
+import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
+import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
@@ -24,6 +27,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -35,6 +39,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -332,6 +337,39 @@ public class BlockRegistry {
                     .model((c, p) -> p.blockSprite(c::get, p.modLoc("block/"+WeatheringType.getPrefixWithoutWaxedByName(b.getName())+"ladder_copper")))
                     .build()
             ).unaffected(AllBlocks.COPPER_LADDER)
+            .register();
+
+    public static final CopperChain<WeatheringMetalScaffoldingBlock> COPPER_SCAFFOLDS = new CopperChainBuilder<>(
+            REGISTRATE, "copper_scaffolding", WeatheringMetalScaffoldingBlock:: new)
+            .configure(b -> b
+                    .initialProperties(() -> Blocks.SCAFFOLDING)
+                    .properties(p -> p.sound(SoundType.COPPER)
+                            .mapColor(PatinaMapColor.getMapColorByName(b.getName())))
+                    .addLayer(() -> RenderType::cutout)
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStatesExcept(s -> {
+                                String suffix = s.getValue(MetalScaffoldingBlock.BOTTOM) ? "_horizontal" : "";
+                                return ConfiguredModel.builder()
+                                        .modelFile(p.models()
+                                                .withExistingParent(c.getName() + suffix, p.modLoc("block/copper_scaffold/block" + suffix))
+                                                .texture("top", p.modLoc("block/" + c.get().getType().getPrefixWithoutWaxed() + "copper_funnel_frame"))
+                                                .texture("inside", p.modLoc("block/" + c.get().getType().getPrefixWithoutWaxed() + "copper_scaffold_inside"))
+                                                .texture("side", p.modLoc("block/" + c.get().getType().getPrefixWithoutWaxed() + "copper_scaffold"))
+                                                .texture("casing", p.modLoc("block/" + c.get().getType().getPrefixWithoutWaxed() + "copper_casing"))
+                                                .texture("particle", p.modLoc("block/" + c.get().getType().getPrefixWithoutWaxed() + "copper_scaffold")))
+                                        .build();
+                            }, MetalScaffoldingBlock.WATERLOGGED, MetalScaffoldingBlock.DISTANCE))
+                    .onRegister(connectedTextures(
+                            () -> new MetalScaffoldingCTBehaviour(
+                                    SpriteShiftRegistry.WEATHERING_COPPER_SCAFFOLDS.get(b.get().get().getType()),
+                                    SpriteShiftRegistry.WEATHERING_COPPER_SCAFFOLD_INSIDES.get(b.get().get().getType()),
+                                    SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(b.get().get().getType()))))
+                    .transform(pickaxeOnly())
+                    .tag(BlockTags.CLIMBABLE)
+                    .item(MetalScaffoldingBlockItem::new)
+                    .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + c.getName())))
+                    .build()
+            ).unaffected(AllBlocks.COPPER_SCAFFOLD)
             .register();
 
     public static void register() {

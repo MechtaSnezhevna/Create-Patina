@@ -4,6 +4,7 @@ import com.simibubi.create.AllSpriteShifts;
 import com.simibubi.create.foundation.block.connected.AllCTTypes;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import com.simibubi.create.foundation.block.connected.CTSpriteShifter;
+import com.simibubi.create.foundation.block.connected.CTType;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 
@@ -13,23 +14,29 @@ import java.util.Map;
 public class SpriteShiftRegistry {
 
     public static final Map<WeatheringType, CTSpriteShiftEntry> WEATHERING_COPPER_CASINGS = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, CTSpriteShiftEntry> WEATHERING_COPPER_SCAFFOLDS = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, CTSpriteShiftEntry> WEATHERING_COPPER_SCAFFOLD_INSIDES = new EnumMap<>(WeatheringType.class);
 
     static {
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.UNAFFECTED,      AllSpriteShifts.COPPER_CASING);
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.WAXED,           AllSpriteShifts.COPPER_CASING);
-
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.EXPOSED,         create("exposed_copper_casing"));
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.WEATHERED,       create("weathered_copper_casing"));
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.OXIDIZED,        create("oxidized_copper_casing"));
-
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.WAXED_EXPOSED,   create("waxed_exposed_copper_casing"));
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.WAXED_WEATHERED, create("waxed_weathered_copper_casing"));
-        WEATHERING_COPPER_CASINGS.put(WeatheringType.WAXED_OXIDIZED,  create("waxed_oxidized_copper_casing"));
+        register(WEATHERING_COPPER_CASINGS, AllCTTypes.OMNIDIRECTIONAL, "copper_casing", AllSpriteShifts.COPPER_CASING);
+        register(WEATHERING_COPPER_SCAFFOLDS, AllCTTypes.HORIZONTAL, "copper_scaffold", AllSpriteShifts.COPPER_SCAFFOLD);
+        register(WEATHERING_COPPER_SCAFFOLD_INSIDES, AllCTTypes.HORIZONTAL, "copper_scaffold_inside", AllSpriteShifts.COPPER_SCAFFOLD_INSIDE);
     }
 
-    private static CTSpriteShiftEntry create(String name) {
+    private static void register(Map<WeatheringType, CTSpriteShiftEntry> map, CTType ctType, String baseName, CTSpriteShiftEntry defaultEntry) {
+        for (WeatheringType type : WeatheringType.values()) {
+            if (type == WeatheringType.UNAFFECTED || type == WeatheringType.WAXED) {
+                map.put(type, defaultEntry);
+            }
+            else{
+                map.put(type, create(ctType, type.getPrefixWithoutWaxed() + baseName));
+            }
+        }
+    }
+
+    private static CTSpriteShiftEntry create(CTType ctType, String name) {
         return CTSpriteShifter.getCT(
-                AllCTTypes.OMNIDIRECTIONAL,
+                ctType,
                 CreatePatina.asResource("block/" + name),
                 CreatePatina.asResource("block/" + name + "_connected")
         );
