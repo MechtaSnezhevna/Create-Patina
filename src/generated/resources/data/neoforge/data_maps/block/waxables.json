@@ -1,0 +1,16 @@
+{
+  "values": {
+    "create:item_drain": {
+      "waxed": "createpatina:waxed_item_drain"
+    },
+    "createpatina:exposed_item_drain": {
+      "waxed": "createpatina:waxed_exposed_item_drain"
+    },
+    "createpatina:oxidized_item_drain": {
+      "waxed": "createpatina:waxed_oxidized_item_drain"
+    },
+    "createpatina:weathered_item_drain": {
+      "waxed": "createpatina:waxed_weathered_item_drain"
+    }
+  }
+}
