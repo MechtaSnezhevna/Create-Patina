@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
-import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.registries.Registries;
@@ -39,6 +38,7 @@ public class CreativeModeTabRegistry {
             insertBefore(e, BlockRegistry.COPPER_LADDERS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_LADDER);
             insertBefore(e, BlockRegistry.COPPER_SCAFFOLDS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_SCAFFOLD);
             insertBefore(e, BlockRegistry.COPPER_BARS_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_BARS);
+            insertBefore(e, BlockRegistry.COPPER_VALVE_HANDLES.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_VALVE_HANDLE);
         }
     }
 

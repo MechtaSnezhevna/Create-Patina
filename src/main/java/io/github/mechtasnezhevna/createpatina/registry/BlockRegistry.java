@@ -2,6 +2,7 @@ package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
@@ -10,6 +11,7 @@ import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
+import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -23,7 +25,6 @@ import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -320,6 +321,27 @@ public class BlockRegistry {
         if (pipeType == WeatheringType.WAXED_OXIDIZED) return ENCASED_WAXED_OXIDIZED_FLUID_PIPES;
         return null;
     }
+
+    public static final CopperChain<WeatheringValveHandleBlock> COPPER_VALVE_HANDLES = new CopperChainBuilder<>(
+            REGISTRATE, "copper_valve_handle", WeatheringValveHandleBlock:: new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .transform(pickaxeOnly())
+                    .blockstate((c, p) -> {
+                        p.directionalBlock(c.get(), p.models()
+                                .withExistingParent(c.getName(), p.modLoc("block/copper_valve_handle"))
+                                .texture("3", p.modLoc("block/" + WeatheringType.getPrefixWithoutWaxedByName(c.getName()) + "valve_handle_copper")));
+                    })
+                    .tag(AllTags.AllBlockTags.BRITTLE.tag, AllTags.AllBlockTags.VALVE_HANDLES.tag)
+                    .onRegister(BlockStressValues.setGeneratorSpeed(32))
+                    .onRegister(ItemUseOverrides::addBlock)
+                    .transform(PatinaStress.setCapacity(8.0))
+                    .item()
+                    //.tag(AllTags.AllItemTags.VALVE_HANDLES.tag)
+                    //this tag is removed to prevent recipe of an unaffected handle
+                    .build()
+            ).unaffected(AllBlocks.COPPER_VALVE_HANDLE)
+            .register();
 
     public static final CopperChain<WeatheringMetalScaffoldingBlock> COPPER_SCAFFOLDS = new CopperChainBuilder<>(
             REGISTRATE, "copper_scaffolding", WeatheringMetalScaffoldingBlock:: new)

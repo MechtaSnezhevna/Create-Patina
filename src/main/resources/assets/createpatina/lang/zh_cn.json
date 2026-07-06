@@ -119,5 +119,12 @@
   "block.createpatina.waxed_copper_bars": "涂蜡的铜栏杆",
   "block.createpatina.waxed_exposed_copper_bars": "涂蜡的斑驳铜栏杆",
   "block.createpatina.waxed_weathered_copper_bars": "涂蜡的锈蚀铜栏杆",
-  "block.createpatina.waxed_oxidized_copper_bars": "涂蜡的氧化铜栏杆"
+  "block.createpatina.waxed_oxidized_copper_bars": "涂蜡的氧化铜栏杆",
+  "block.createpatina.exposed_copper_valve_handle": "斑驳的铜阀门手轮",
+  "block.createpatina.weathered_copper_valve_handle": "锈蚀的铜阀门手轮",
+  "block.createpatina.oxidized_copper_valve_handle": "氧化的铜阀门手轮",
+  "block.createpatina.waxed_copper_valve_handle": "涂蜡的铜阀门手轮",
+  "block.createpatina.waxed_exposed_copper_valve_handle": "涂蜡的斑驳铜阀门手轮",
+  "block.createpatina.waxed_weathered_copper_valve_handle": "涂蜡的锈蚀铜阀门手轮",
+  "block.createpatina.waxed_oxidized_copper_valve_handle": "涂蜡的氧化铜阀门手轮"
 }

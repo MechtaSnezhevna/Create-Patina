@@ -12,6 +12,9 @@
     "create:copper_scaffolding": {
       "next_oxidation_stage": "createpatina:exposed_copper_scaffolding"
     },
+    "create:copper_valve_handle": {
+      "next_oxidation_stage": "createpatina:exposed_copper_valve_handle"
+    },
     "create:encased_fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_encased_fluid_pipe"
     },
@@ -60,6 +63,9 @@
     "createpatina:exposed_copper_scaffolding": {
       "next_oxidation_stage": "createpatina:weathered_copper_scaffolding"
     },
+    "createpatina:exposed_copper_valve_handle": {
+      "next_oxidation_stage": "createpatina:weathered_copper_valve_handle"
+    },
     "createpatina:exposed_encased_exposed_fluid_pipe": {
       "next_oxidation_stage": "createpatina:weathered_encased_exposed_fluid_pipe"
     },
@@ -107,6 +113,9 @@
     },
     "createpatina:weathered_copper_scaffolding": {
       "next_oxidation_stage": "createpatina:oxidized_copper_scaffolding"
+    },
+    "createpatina:weathered_copper_valve_handle": {
+      "next_oxidation_stage": "createpatina:oxidized_copper_valve_handle"
     },
     "createpatina:weathered_encased_exposed_fluid_pipe": {
       "next_oxidation_stage": "createpatina:oxidized_encased_exposed_fluid_pipe"

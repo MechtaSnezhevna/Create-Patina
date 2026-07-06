@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.mixin;
 
+import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -7,25 +8,22 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(IronBarsBlock.class)
+@Mixin(ValveHandleBlock.class)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class CopperBarsOxidizationMixin extends Block implements PatinaBlock {
-    public CopperBarsOxidizationMixin(Properties p_54345_) {
-        super(p_54345_);
+public class CopperValveHandleOxidizationMixin extends Block implements PatinaBlock{
+    public CopperValveHandleOxidizationMixin(Properties properties) {
+        super(properties);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        // Copper bars use a different register way
-        // that causes mixin NPE if we use AllBlocks.COPPER_BARS.get() here
-        return state.getBlock().getDescriptionId().equals("block.create.copper_bars");
+        return state.getBlock().getDescriptionId().equals("block.create.copper_valve_handle");
     }
 
     @Override

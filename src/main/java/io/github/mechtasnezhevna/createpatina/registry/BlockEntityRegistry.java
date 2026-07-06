@@ -10,6 +10,9 @@ import com.simibubi.create.content.fluids.pipes.TransparentStraightPipeRenderer;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
+import com.simibubi.create.content.kinetics.crank.HandCrankRenderer;
+import com.simibubi.create.content.kinetics.crank.ValveHandleBlockEntity;
+import com.simibubi.create.content.kinetics.crank.ValveHandleVisual;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
@@ -53,6 +56,13 @@ public class BlockEntityRegistry {
             .validBlocks(BlockRegistry.ENCASED_WAXED_EXPOSED_FLUID_PIPES.getAllEntries())
             .validBlocks(BlockRegistry.ENCASED_WAXED_OXIDIZED_FLUID_PIPES.getAllEntries())
             .validBlocks(BlockRegistry.ENCASED_WAXED_WEATHERED_FLUID_PIPES.getAllEntries())
+            .register();
+
+    public static final BlockEntityEntry<ValveHandleBlockEntity> WEATHEING_VALVE_HANDLE = REGISTRATE
+            .blockEntity("copper_valve_handle", ValveHandleBlockEntity::new)
+            .visual(() -> ValveHandleVisual::new)
+            .validBlocks(BlockRegistry.COPPER_VALVE_HANDLES.getAllEntries())
+            .renderer(() -> HandCrankRenderer::new)
             .register();
 
     public static void register() {

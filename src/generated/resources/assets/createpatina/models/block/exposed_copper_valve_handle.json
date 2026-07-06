@@ -1,0 +1,6 @@
+{
+  "parent": "createpatina:block/copper_valve_handle",
+  "textures": {
+    "3": "createpatina:block/exposed_valve_handle_copper"
+  }
+}

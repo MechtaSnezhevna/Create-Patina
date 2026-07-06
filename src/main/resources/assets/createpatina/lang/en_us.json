@@ -119,6 +119,13 @@
   "block.createpatina.waxed_copper_bars": "Waxed Copper Bars",
   "block.createpatina.waxed_exposed_copper_bars": "Waxed Exposed Copper Bars",
   "block.createpatina.waxed_weathered_copper_bars": "Waxed Weathered Copper Bars",
-  "block.createpatina.waxed_oxidized_copper_bars": "Waxed Oxidized Copper Bars"
+  "block.createpatina.waxed_oxidized_copper_bars": "Waxed Oxidized Copper Bars",
+  "block.createpatina.exposed_copper_valve_handle": "Exposed Copper Valve Handle",
+  "block.createpatina.weathered_copper_valve_handle": "Weathered Copper Valve Handle",
+  "block.createpatina.oxidized_copper_valve_handle": "Oxidized Copper Valve Handle",
+  "block.createpatina.waxed_copper_valve_handle": "Waxed Copper Valve Handle",
+  "block.createpatina.waxed_exposed_copper_valve_handle": "Waxed Exposed Copper Valve Handle",
+  "block.createpatina.waxed_weathered_copper_valve_handle": "Waxed Weathered Copper Valve Handle",
+  "block.createpatina.waxed_oxidized_copper_valve_handle": "Waxed Oxidized Copper Valve Handle"
 
 }
