@@ -3,6 +3,7 @@ package io.github.mechtasnezhevna.createpatina;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.mechtasnezhevna.createpatina.event.CommonEvents;
 import io.github.mechtasnezhevna.createpatina.registry.*;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaDataGen;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
