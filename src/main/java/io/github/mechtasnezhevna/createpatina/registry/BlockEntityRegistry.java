@@ -4,10 +4,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
-import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
-import com.simibubi.create.content.fluids.pipes.GlassPipeVisual;
-import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
-import com.simibubi.create.content.fluids.pipes.TransparentStraightPipeRenderer;
+import com.simibubi.create.content.fluids.pipes.*;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveVisual;
@@ -17,6 +14,7 @@ import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.crank.HandCrankRenderer;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlockEntity;
 import com.simibubi.create.content.kinetics.crank.ValveHandleVisual;
+import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
@@ -74,6 +72,12 @@ public class BlockEntityRegistry {
             .visual(() -> FluidValveVisual::new)
             .validBlocks(BlockRegistry.FLUID_VALVES.getAllEntries())
             .renderer(() -> FluidValveRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SmartFluidPipeBlockEntity> WEATHERING_SMART_FLUID_PIPE = REGISTRATE
+            .blockEntity("smart_fluid_pipe", SmartFluidPipeBlockEntity::new)
+            .validBlocks(BlockRegistry.SMART_FLUID_PIPES.getAllEntries())
+            .renderer(() -> SmartBlockEntityRenderer::new)
             .register();
 
     public static void register() {

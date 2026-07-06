@@ -1,0 +1,10 @@
+{
+  "parent": "createpatina:block/smart_fluid_pipe/block",
+  "textures": {
+    "2": "createpatina:block/oxidized_smart_pipe_1",
+    "3": "createpatina:block/oxidized_smart_pipe_2",
+    "4": "createpatina:block/oxidized_pipes",
+    "5": "createpatina:block/oxidized_smart_pipe_3",
+    "particle": "minecraft:block/oxidized_copper"
+  }
+}

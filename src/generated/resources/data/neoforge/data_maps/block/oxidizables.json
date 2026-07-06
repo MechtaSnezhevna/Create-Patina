@@ -33,6 +33,9 @@
     "create:mechanical_pump": {
       "next_oxidation_stage": "createpatina:exposed_mechanical_pump"
     },
+    "create:smart_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:exposed_smart_fluid_pipe"
+    },
     "createpatina:encased_exposed_fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_encased_exposed_fluid_pipe"
     },
@@ -108,6 +111,9 @@
     "createpatina:exposed_mechanical_pump": {
       "next_oxidation_stage": "createpatina:weathered_mechanical_pump"
     },
+    "createpatina:exposed_smart_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:weathered_smart_fluid_pipe"
+    },
     "createpatina:weathered_copper_bars": {
       "next_oxidation_stage": "createpatina:oxidized_copper_bars"
     },
@@ -161,6 +167,9 @@
     },
     "createpatina:weathered_mechanical_pump": {
       "next_oxidation_stage": "createpatina:oxidized_mechanical_pump"
+    },
+    "createpatina:weathered_smart_fluid_pipe": {
+      "next_oxidation_stage": "createpatina:oxidized_smart_fluid_pipe"
     }
   }
 }

@@ -24,6 +24,7 @@
   "block.createpatina.exposed_glass_fluid_pipe": "Exposed Glass Fluid Pipe",
   "block.createpatina.exposed_item_drain": "Exposed Item Drain",
   "block.createpatina.exposed_mechanical_pump": "Exposed Mechanical Pump",
+  "block.createpatina.exposed_smart_fluid_pipe": "Exposed Smart Fluid Pipe",
   "block.createpatina.oxidized_copper_bars": "Oxidized Copper Bars",
   "block.createpatina.oxidized_copper_casing": "Oxidized Copper Casing",
   "block.createpatina.oxidized_copper_ladder": "Oxidized Copper Ladder",
@@ -42,6 +43,7 @@
   "block.createpatina.oxidized_glass_fluid_pipe": "Oxidized Glass Fluid Pipe",
   "block.createpatina.oxidized_item_drain": "Oxidized Item Drain",
   "block.createpatina.oxidized_mechanical_pump": "Oxidized Mechanical Pump",
+  "block.createpatina.oxidized_smart_fluid_pipe": "Oxidized Smart Fluid Pipe",
   "block.createpatina.waxed_copper_bars": "Waxed Copper Bars",
   "block.createpatina.waxed_copper_casing": "Waxed Copper Casing",
   "block.createpatina.waxed_copper_ladder": "Waxed Copper Ladder",
@@ -73,6 +75,7 @@
   "block.createpatina.waxed_exposed_glass_fluid_pipe": "Waxed Exposed Glass Fluid Pipe",
   "block.createpatina.waxed_exposed_item_drain": "Waxed Exposed Item Drain",
   "block.createpatina.waxed_exposed_mechanical_pump": "Waxed Exposed Mechanical Pump",
+  "block.createpatina.waxed_exposed_smart_fluid_pipe": "Waxed Exposed Smart Fluid Pipe",
   "block.createpatina.waxed_fluid_pipe": "Waxed Fluid Pipe",
   "block.createpatina.waxed_fluid_valve": "Waxed Fluid Valve",
   "block.createpatina.waxed_glass_fluid_pipe": "Waxed Glass Fluid Pipe",
@@ -96,6 +99,8 @@
   "block.createpatina.waxed_oxidized_glass_fluid_pipe": "Waxed Oxidized Glass Fluid Pipe",
   "block.createpatina.waxed_oxidized_item_drain": "Waxed Oxidized Item Drain",
   "block.createpatina.waxed_oxidized_mechanical_pump": "Waxed Oxidized Mechanical Pump",
+  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "Waxed Oxidized Smart Fluid Pipe",
+  "block.createpatina.waxed_smart_fluid_pipe": "Waxed Smart Fluid Pipe",
   "block.createpatina.waxed_weathered_copper_bars": "Waxed Weathered Copper Bars",
   "block.createpatina.waxed_weathered_copper_casing": "Waxed Weathered Copper Casing",
   "block.createpatina.waxed_weathered_copper_ladder": "Waxed Weathered Copper Ladder",
@@ -114,6 +119,7 @@
   "block.createpatina.waxed_weathered_glass_fluid_pipe": "Waxed Weathered Glass Fluid Pipe",
   "block.createpatina.waxed_weathered_item_drain": "Waxed Weathered Item Drain",
   "block.createpatina.waxed_weathered_mechanical_pump": "Waxed Weathered Mechanical Pump",
+  "block.createpatina.waxed_weathered_smart_fluid_pipe": "Waxed Weathered Smart Fluid Pipe",
   "block.createpatina.weathered_copper_bars": "Weathered Copper Bars",
   "block.createpatina.weathered_copper_casing": "Weathered Copper Casing",
   "block.createpatina.weathered_copper_ladder": "Weathered Copper Ladder",
@@ -131,5 +137,6 @@
   "block.createpatina.weathered_fluid_valve": "Weathered Fluid Valve",
   "block.createpatina.weathered_glass_fluid_pipe": "Weathered Glass Fluid Pipe",
   "block.createpatina.weathered_item_drain": "Weathered Item Drain",
-  "block.createpatina.weathered_mechanical_pump": "Weathered Mechanical Pump"
+  "block.createpatina.weathered_mechanical_pump": "Weathered Mechanical Pump",
+  "block.createpatina.weathered_smart_fluid_pipe": "Weathered Smart Fluid Pipe"
 }

@@ -19,6 +19,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFluidPipeGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChain;
 import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChainBuilder;
 import io.github.mechtasnezhevna.createpatina.util.PatinaMapColor;
@@ -324,6 +325,29 @@ public class BlockRegistry {
         if (pipeType == WeatheringType.WAXED_OXIDIZED) return ENCASED_WAXED_OXIDIZED_FLUID_PIPES;
         return null;
     }
+
+    public static final CopperChain<WeatheringSmartFluidPipeBlock> SMART_FLUID_PIPES = new CopperChainBuilder<>(
+            REGISTRATE, "smart_fluid_pipe", WeatheringSmartFluidPipeBlock::new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW))
+                    .transform(pickaxeOnly())
+                    .blockstate(new WeatheringSmartFluidPipeGenerator(WeatheringType.getPrefixWithoutWaxedByName(b.getName()))::generate)
+                    .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+                    .item()
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.withExistingParent(name, p.modLoc("block/smart_fluid_pipe/item"))
+                                .texture("2", p.modLoc("block/" + prefix + "smart_pipe_1"))
+                                .texture("3", p.modLoc("block/" + prefix + "smart_pipe_2"))
+                                .texture("1", p.modLoc("block/" + prefix + "pipes"))
+                                .texture("4", p.modLoc("block/" + prefix + "smart_pipe_3"))
+                                .texture("particle", p.modLoc("block/" + prefix + "smart_pipe_3"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.SMART_FLUID_PIPE)
+            .register();
 
     public static final CopperChain<WeatheringFluidValveBlock> FLUID_VALVES = new CopperChainBuilder<>(
             REGISTRATE, "fluid_valve", WeatheringFluidValveBlock::new)

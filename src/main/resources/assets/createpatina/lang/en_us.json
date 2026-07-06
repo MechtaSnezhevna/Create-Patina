@@ -133,6 +133,13 @@
   "block.createpatina.waxed_fluid_valve": "Waxed Fluid Valve",
   "block.createpatina.waxed_exposed_fluid_valve": "Waxed Exposed Fluid Valve",
   "block.createpatina.waxed_weathered_fluid_valve": "Waxed Weathered Fluid Valve",
-  "block.createpatina.waxed_oxidized_fluid_valve": "Waxed Oxidized Fluid Valve"
+  "block.createpatina.waxed_oxidized_fluid_valve": "Waxed Oxidized Fluid Valve",
+  "block.createpatina.exposed_smart_fluid_pipe": "Exposed Smart Fluid Pipe",
+  "block.createpatina.weathered_smart_fluid_pipe": "Weathered Smart Fluid Pipe",
+  "block.createpatina.oxidized_smart_fluid_pipe": "Oxidized Smart Fluid Pipe",
+  "block.createpatina.waxed_smart_fluid_pipe": "Waxed Smart Fluid Pipe",
+  "block.createpatina.waxed_exposed_smart_fluid_pipe": "Waxed Exposed Smart Fluid Pipe",
+  "block.createpatina.waxed_weathered_smart_fluid_pipe": "Waxed Weathered Smart Fluid Pipe",
+  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "Waxed Oxidized Smart Fluid Pipe"
 
 }

@@ -33,6 +33,9 @@
     "create:mechanical_pump": {
       "waxed": "createpatina:waxed_mechanical_pump"
     },
+    "create:smart_fluid_pipe": {
+      "waxed": "createpatina:waxed_smart_fluid_pipe"
+    },
     "createpatina:encased_exposed_fluid_pipe": {
       "waxed": "createpatina:waxed_encased_exposed_fluid_pipe"
     },
@@ -108,6 +111,9 @@
     "createpatina:exposed_mechanical_pump": {
       "waxed": "createpatina:waxed_exposed_mechanical_pump"
     },
+    "createpatina:exposed_smart_fluid_pipe": {
+      "waxed": "createpatina:waxed_exposed_smart_fluid_pipe"
+    },
     "createpatina:oxidized_copper_bars": {
       "waxed": "createpatina:waxed_oxidized_copper_bars"
     },
@@ -162,6 +168,9 @@
     "createpatina:oxidized_mechanical_pump": {
       "waxed": "createpatina:waxed_oxidized_mechanical_pump"
     },
+    "createpatina:oxidized_smart_fluid_pipe": {
+      "waxed": "createpatina:waxed_oxidized_smart_fluid_pipe"
+    },
     "createpatina:weathered_copper_bars": {
       "waxed": "createpatina:waxed_weathered_copper_bars"
     },
@@ -215,6 +224,9 @@
     },
     "createpatina:weathered_mechanical_pump": {
       "waxed": "createpatina:waxed_weathered_mechanical_pump"
+    },
+    "createpatina:weathered_smart_fluid_pipe": {
+      "waxed": "createpatina:waxed_weathered_smart_fluid_pipe"
     }
   }
 }

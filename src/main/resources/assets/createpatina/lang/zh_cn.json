@@ -133,5 +133,12 @@
   "block.createpatina.waxed_fluid_valve": "涂蜡的流体阀门",
   "block.createpatina.waxed_exposed_fluid_valve": "涂蜡的斑驳流体阀门",
   "block.createpatina.waxed_weathered_fluid_valve": "涂蜡的锈蚀流体阀门",
-  "block.createpatina.waxed_oxidized_fluid_valve": "涂蜡的氧化流体阀门"
+  "block.createpatina.waxed_oxidized_fluid_valve": "涂蜡的氧化流体阀门",
+  "block.createpatina.exposed_smart_fluid_pipe": "斑驳的智能流体管道",
+  "block.createpatina.weathered_smart_fluid_pipe": "锈蚀的智能流体管道",
+  "block.createpatina.oxidized_smart_fluid_pipe": "氧化的智能流体管道",
+  "block.createpatina.waxed_smart_fluid_pipe": "涂蜡的智能流体管道",
+  "block.createpatina.waxed_exposed_smart_fluid_pipe": "涂蜡的斑驳智能流体管道",
+  "block.createpatina.waxed_weathered_smart_fluid_pipe": "涂蜡的锈蚀智能流体管道",
+  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "涂蜡的氧化智能流体管道"
 }
