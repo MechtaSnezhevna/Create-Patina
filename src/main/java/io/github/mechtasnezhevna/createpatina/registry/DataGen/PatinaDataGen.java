@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry;
+package io.github.mechtasnezhevna.createpatina.registry.DataGen;
 
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.registry.chain.PatinaDataMapProvider;
