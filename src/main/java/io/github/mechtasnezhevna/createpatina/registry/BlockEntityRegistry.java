@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
@@ -7,6 +8,9 @@ import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
 import com.simibubi.create.content.fluids.pipes.GlassPipeVisual;
 import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
 import com.simibubi.create.content.fluids.pipes.TransparentStraightPipeRenderer;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveVisual;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
@@ -63,6 +67,13 @@ public class BlockEntityRegistry {
             .visual(() -> ValveHandleVisual::new)
             .validBlocks(BlockRegistry.COPPER_VALVE_HANDLES.getAllEntries())
             .renderer(() -> HandCrankRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<FluidValveBlockEntity> WEATHERING_FLUID_VALVE = REGISTRATE
+            .blockEntity("fluid_valve", FluidValveBlockEntity::new)
+            .visual(() -> FluidValveVisual::new)
+            .validBlocks(BlockRegistry.FLUID_VALVES.getAllEntries())
+            .renderer(() -> FluidValveRenderer::new)
             .register();
 
     public static void register() {

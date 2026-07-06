@@ -1,0 +1,9 @@
+{
+  "parent": "createpatina:block/fluid_valve/item",
+  "textures": {
+    "2": "createpatina:block/fluid_valve",
+    "3": "createpatina:block/valve_closed",
+    "4": "createpatina:block/valve_open",
+    "particle": "createpatina:block/valve_closed"
+  }
+}

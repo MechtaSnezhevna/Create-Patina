@@ -1,0 +1,9 @@
+{
+  "parent": "createpatina:block/fluid_valve/block_horizontal_open",
+  "textures": {
+    "2": "createpatina:block/weathered_fluid_valve",
+    "3": "createpatina:block/weathered_valve_open",
+    "4": "createpatina:block/weathered_valve_open",
+    "particle": "createpatina:block/weathered_copper_underside"
+  }
+}

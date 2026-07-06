@@ -10,6 +10,7 @@
     "CopperValveHandleOxidizationMixin",
     "EncasedPipeOxidizationMixin",
     "FluidPipeOxidizationMixin",
+    "FluidValveOxidizationMixin",
     "GlassFluidPipeOxidizationMixin",
     "ItemDrainBlockEntityAccessor",
     "ItemDrainOxidizationMixin",

@@ -21,6 +21,9 @@
     "create:fluid_pipe": {
       "waxed": "createpatina:waxed_fluid_pipe"
     },
+    "create:fluid_valve": {
+      "waxed": "createpatina:waxed_fluid_valve"
+    },
     "create:glass_fluid_pipe": {
       "waxed": "createpatina:waxed_glass_fluid_pipe"
     },
@@ -93,6 +96,9 @@
     "createpatina:exposed_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_fluid_pipe"
     },
+    "createpatina:exposed_fluid_valve": {
+      "waxed": "createpatina:waxed_exposed_fluid_valve"
+    },
     "createpatina:exposed_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_glass_fluid_pipe"
     },
@@ -144,6 +150,9 @@
     "createpatina:oxidized_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_fluid_pipe"
     },
+    "createpatina:oxidized_fluid_valve": {
+      "waxed": "createpatina:waxed_oxidized_fluid_valve"
+    },
     "createpatina:oxidized_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_glass_fluid_pipe"
     },
@@ -194,6 +203,9 @@
     },
     "createpatina:weathered_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_fluid_pipe"
+    },
+    "createpatina:weathered_fluid_valve": {
+      "waxed": "createpatina:waxed_weathered_fluid_valve"
     },
     "createpatina:weathered_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_glass_fluid_pipe"

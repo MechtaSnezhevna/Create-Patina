@@ -21,6 +21,9 @@
     "create:fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_fluid_pipe"
     },
+    "create:fluid_valve": {
+      "next_oxidation_stage": "createpatina:exposed_fluid_valve"
+    },
     "create:glass_fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_glass_fluid_pipe"
     },
@@ -93,6 +96,9 @@
     "createpatina:exposed_fluid_pipe": {
       "next_oxidation_stage": "createpatina:weathered_fluid_pipe"
     },
+    "createpatina:exposed_fluid_valve": {
+      "next_oxidation_stage": "createpatina:weathered_fluid_valve"
+    },
     "createpatina:exposed_glass_fluid_pipe": {
       "next_oxidation_stage": "createpatina:weathered_glass_fluid_pipe"
     },
@@ -143,6 +149,9 @@
     },
     "createpatina:weathered_fluid_pipe": {
       "next_oxidation_stage": "createpatina:oxidized_fluid_pipe"
+    },
+    "createpatina:weathered_fluid_valve": {
+      "next_oxidation_stage": "createpatina:oxidized_fluid_valve"
     },
     "createpatina:weathered_glass_fluid_pipe": {
       "next_oxidation_stage": "createpatina:oxidized_glass_fluid_pipe"

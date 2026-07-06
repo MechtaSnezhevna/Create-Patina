@@ -126,6 +126,13 @@
   "block.createpatina.waxed_copper_valve_handle": "Waxed Copper Valve Handle",
   "block.createpatina.waxed_exposed_copper_valve_handle": "Waxed Exposed Copper Valve Handle",
   "block.createpatina.waxed_weathered_copper_valve_handle": "Waxed Weathered Copper Valve Handle",
-  "block.createpatina.waxed_oxidized_copper_valve_handle": "Waxed Oxidized Copper Valve Handle"
+  "block.createpatina.waxed_oxidized_copper_valve_handle": "Waxed Oxidized Copper Valve Handle",
+  "block.createpatina.exposed_fluid_valve": "Exposed Fluid Valve",
+  "block.createpatina.weathered_fluid_valve": "Weathered Fluid Valve",
+  "block.createpatina.oxidized_fluid_valve": "Oxidized Fluid Valve",
+  "block.createpatina.waxed_fluid_valve": "Waxed Fluid Valve",
+  "block.createpatina.waxed_exposed_fluid_valve": "Waxed Exposed Fluid Valve",
+  "block.createpatina.waxed_weathered_fluid_valve": "Waxed Weathered Fluid Valve",
+  "block.createpatina.waxed_oxidized_fluid_valve": "Waxed Oxidized Fluid Valve"
 
 }

@@ -126,5 +126,12 @@
   "block.createpatina.waxed_copper_valve_handle": "涂蜡的铜阀门手轮",
   "block.createpatina.waxed_exposed_copper_valve_handle": "涂蜡的斑驳铜阀门手轮",
   "block.createpatina.waxed_weathered_copper_valve_handle": "涂蜡的锈蚀铜阀门手轮",
-  "block.createpatina.waxed_oxidized_copper_valve_handle": "涂蜡的氧化铜阀门手轮"
+  "block.createpatina.waxed_oxidized_copper_valve_handle": "涂蜡的氧化铜阀门手轮",
+  "block.createpatina.exposed_fluid_valve": "斑驳的流体阀门",
+  "block.createpatina.weathered_fluid_valve": "锈蚀的流体阀门",
+  "block.createpatina.oxidized_fluid_valve": "氧化的流体阀门",
+  "block.createpatina.waxed_fluid_valve": "涂蜡的流体阀门",
+  "block.createpatina.waxed_exposed_fluid_valve": "涂蜡的斑驳流体阀门",
+  "block.createpatina.waxed_weathered_fluid_valve": "涂蜡的锈蚀流体阀门",
+  "block.createpatina.waxed_oxidized_fluid_valve": "涂蜡的氧化流体阀门"
 }

@@ -11,6 +11,7 @@ import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -38,6 +39,8 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
@@ -321,6 +324,48 @@ public class BlockRegistry {
         if (pipeType == WeatheringType.WAXED_OXIDIZED) return ENCASED_WAXED_OXIDIZED_FLUID_PIPES;
         return null;
     }
+
+    public static final CopperChain<WeatheringFluidValveBlock> FLUID_VALVES = new CopperChainBuilder<>(
+            REGISTRATE, "fluid_valve", WeatheringFluidValveBlock::new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .transform(pickaxeOnly())
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .blockstate((c, p) -> {
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(c.getName());
+                        Map<String, ModelFile> modelMap = new HashMap<>();
+                        for (String dir : new String[]{"vertical", "horizontal"}) {
+                            for (String state : new String[]{"open", "closed"}) {
+                                String modelName = c.getName() + "_" + dir + "_" + state;
+                                ModelFile model = p.models().withExistingParent(modelName,
+                                                p.modLoc("block/fluid_valve/block_" + dir + "_" + state))
+                                        .texture("2", p.modLoc("block/" + prefix + "fluid_valve"))
+                                        .texture("4", p.modLoc("block/" + prefix + "valve_" + state))
+                                        .texture("3", p.modLoc("block/" + prefix + "valve_" + state))
+                                        .texture("particle", p.modLoc("block/" + prefix + "copper_underside"));
+                                modelMap.put(modelName, model);
+                            }
+                        }
+                        BlockStateGen.directionalAxisBlock(c, p, (state, vertical) -> {
+                            boolean enabled = state.getValue(FluidValveBlock.ENABLED);
+                            String dir = vertical ? "vertical" : "horizontal";
+                            return modelMap.get(c.getName() + "_" + dir + "_" + (enabled ? "open" : "closed"));
+                        });
+                    })
+                    .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
+                    .item()
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.withExistingParent(name, p.modLoc("block/fluid_valve/item"))
+                                .texture("2", p.modLoc("block/" + prefix + "fluid_valve"))
+                                .texture("4", p.modLoc("block/" + prefix + "valve_open"))
+                                .texture("3", p.modLoc("block/" + prefix + "valve_closed"))
+                                .texture("particle", p.modLoc("block/" + prefix + "valve_closed"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.FLUID_VALVE)
+            .register();
 
     public static final CopperChain<WeatheringValveHandleBlock> COPPER_VALVE_HANDLES = new CopperChainBuilder<>(
             REGISTRATE, "copper_valve_handle", WeatheringValveHandleBlock:: new)
