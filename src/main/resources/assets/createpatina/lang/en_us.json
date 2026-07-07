@@ -140,6 +140,13 @@
   "block.createpatina.waxed_smart_fluid_pipe": "Waxed Smart Fluid Pipe",
   "block.createpatina.waxed_exposed_smart_fluid_pipe": "Waxed Exposed Smart Fluid Pipe",
   "block.createpatina.waxed_weathered_smart_fluid_pipe": "Waxed Weathered Smart Fluid Pipe",
-  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "Waxed Oxidized Smart Fluid Pipe"
+  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "Waxed Oxidized Smart Fluid Pipe",
+  "block.createpatina.exposed_copper_table_cloth": "Exposed Copper Table Cover",
+  "block.createpatina.weathered_copper_table_cloth": "Weathered Copper Table Cover",
+  "block.createpatina.oxidized_copper_table_cloth": "Oxidized Copper Table Cover",
+  "block.createpatina.waxed_copper_table_cloth": "Waxed Copper Table Cover",
+  "block.createpatina.waxed_exposed_copper_table_cloth": "Waxed Exposed Copper Table Cover",
+  "block.createpatina.waxed_weathered_copper_table_cloth": "Waxed Weathered Copper Table Cover",
+  "block.createpatina.waxed_oxidized_copper_table_cloth": "Waxed Oxidized Copper Table Cover"
 
 }

@@ -12,6 +12,9 @@
     "create:copper_scaffolding": {
       "next_oxidation_stage": "createpatina:exposed_copper_scaffolding"
     },
+    "create:copper_table_cloth": {
+      "next_oxidation_stage": "createpatina:exposed_copper_table_cloth"
+    },
     "create:copper_valve_handle": {
       "next_oxidation_stage": "createpatina:exposed_copper_valve_handle"
     },
@@ -69,6 +72,9 @@
     "createpatina:exposed_copper_scaffolding": {
       "next_oxidation_stage": "createpatina:weathered_copper_scaffolding"
     },
+    "createpatina:exposed_copper_table_cloth": {
+      "next_oxidation_stage": "createpatina:weathered_copper_table_cloth"
+    },
     "createpatina:exposed_copper_valve_handle": {
       "next_oxidation_stage": "createpatina:weathered_copper_valve_handle"
     },
@@ -125,6 +131,9 @@
     },
     "createpatina:weathered_copper_scaffolding": {
       "next_oxidation_stage": "createpatina:oxidized_copper_scaffolding"
+    },
+    "createpatina:weathered_copper_table_cloth": {
+      "next_oxidation_stage": "createpatina:oxidized_copper_table_cloth"
     },
     "createpatina:weathered_copper_valve_handle": {
       "next_oxidation_stage": "createpatina:oxidized_copper_valve_handle"

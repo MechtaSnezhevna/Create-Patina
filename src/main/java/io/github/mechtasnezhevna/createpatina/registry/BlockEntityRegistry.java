@@ -1,6 +1,5 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
@@ -14,6 +13,8 @@ import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.crank.HandCrankRenderer;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlockEntity;
 import com.simibubi.create.content.kinetics.crank.ValveHandleVisual;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
+import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -78,6 +79,12 @@ public class BlockEntityRegistry {
             .blockEntity("smart_fluid_pipe", SmartFluidPipeBlockEntity::new)
             .validBlocks(BlockRegistry.SMART_FLUID_PIPES.getAllEntries())
             .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<TableClothBlockEntity> WEATHERING_TABLE_CLOTH = REGISTRATE
+            .blockEntity("table_cloth", TableClothBlockEntity::new)
+            .validBlocks(BlockRegistry.COPPER_TABLE_CLOTHS.getAllEntries())
+            .renderer(() -> TableClothRenderer::new)
             .register();
 
     public static void register() {

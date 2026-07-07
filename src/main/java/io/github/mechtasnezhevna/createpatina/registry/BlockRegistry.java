@@ -12,8 +12,11 @@ import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
+import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
+import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -27,6 +30,7 @@ import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -407,9 +411,39 @@ public class BlockRegistry {
                     .transform(PatinaStress.setCapacity(8.0))
                     .item()
                     //.tag(AllTags.AllItemTags.VALVE_HANDLES.tag)
-                    //this tag is removed to prevent recipe of an unaffected handle
+                    // removed to prevent recipe to an unaffected handle
                     .build()
             ).unaffected(AllBlocks.COPPER_VALVE_HANDLE)
+            .register();
+
+    public static final CopperChain<WeatheringTableClothBlock> COPPER_TABLE_CLOTHS = new CopperChainBuilder<>(
+            REGISTRATE, "copper_table_cloth", WeatheringTableClothBlock:: new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .properties(p -> p.requiresCorrectToolForDrops())
+                    .transform(pickaxeOnly())
+                    //.lang("Copper Table Cover")
+                    // removed so that DataGen lang file uses 'Cloth' in name
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        p.simpleBlock(c.get(), p.models()
+                         .withExistingParent("block/copper_table_cloth/" + name, p.modLoc("block/table_cloth/block"))
+                         .texture("0", p.modLoc("block/table_cloth/" + WeatheringType.getPrefixWithoutWaxedByName(name) + "copper")));
+                    })
+                    .onRegister(CreateRegistrate.blockModel(() -> TableClothModel::new))
+                    .tag(AllTags.AllBlockTags.TABLE_CLOTHS.tag, BlockTags.INSIDE_STEP_SOUND_BLOCKS)
+                    //.onRegisterAfter(Registries.ITEM, v -> ItemDescription.useKey(v, "block.create.table_cloth"))
+                    // removed as temporarily no special description needed
+                    .item(TableClothBlockItem::new)
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        p.withExistingParent(name, p.modLoc("block/table_cloth/item"))
+                         .texture("0", p.modLoc("block/table_cloth/" + WeatheringType.getPrefixWithoutWaxedByName(name) + "copper"));
+                    })
+                    .tag(AllTags.AllItemTags.TABLE_CLOTHS.tag)
+                    .build()
+            ).unaffected(AllBlocks.COPPER_TABLE_CLOTH)
             .register();
 
     public static final CopperChain<WeatheringMetalScaffoldingBlock> COPPER_SCAFFOLDS = new CopperChainBuilder<>(

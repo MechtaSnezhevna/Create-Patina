@@ -1,0 +1,6 @@
+{
+  "parent": "createpatina:block/table_cloth/item",
+  "textures": {
+    "0": "createpatina:block/table_cloth/copper"
+  }
+}

@@ -140,5 +140,13 @@
   "block.createpatina.waxed_smart_fluid_pipe": "涂蜡的智能流体管道",
   "block.createpatina.waxed_exposed_smart_fluid_pipe": "涂蜡的斑驳智能流体管道",
   "block.createpatina.waxed_weathered_smart_fluid_pipe": "涂蜡的锈蚀智能流体管道",
-  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "涂蜡的氧化智能流体管道"
+  "block.createpatina.waxed_oxidized_smart_fluid_pipe": "涂蜡的氧化智能流体管道",
+  "block.createpatina.exposed_copper_table_cloth": "斑驳的铜桌面",
+  "block.createpatina.weathered_copper_table_cloth": "锈蚀的铜桌面",
+  "block.createpatina.oxidized_copper_table_cloth": "氧化的铜桌面",
+  "block.createpatina.waxed_copper_table_cloth": "涂蜡的铜桌面",
+  "block.createpatina.waxed_exposed_copper_table_cloth": "涂蜡的斑驳铜桌面",
+  "block.createpatina.waxed_weathered_copper_table_cloth": "涂蜡的锈蚀铜桌面",
+  "block.createpatina.waxed_oxidized_copper_table_cloth": "涂蜡的氧化铜桌面"
+
 }

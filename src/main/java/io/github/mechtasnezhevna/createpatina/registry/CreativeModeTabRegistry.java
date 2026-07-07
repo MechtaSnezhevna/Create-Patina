@@ -41,6 +41,7 @@ public class CreativeModeTabRegistry {
             insertBefore(e, BlockRegistry.COPPER_VALVE_HANDLES.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_VALVE_HANDLE);
             insertBefore(e, BlockRegistry.FLUID_VALVES.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_VALVE);
             insertBefore(e, BlockRegistry.SMART_FLUID_PIPES.getEntry(WeatheringType.EXPOSED), AllBlocks.SMART_FLUID_PIPE);
+            insertBefore(e, BlockRegistry.COPPER_TABLE_CLOTHS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_TABLE_CLOTH);
         }
     }
 
