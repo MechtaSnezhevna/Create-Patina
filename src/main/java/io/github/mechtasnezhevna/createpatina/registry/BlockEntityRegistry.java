@@ -60,7 +60,7 @@ public class BlockEntityRegistry {
             .validBlocks(BlockRegistry.ENCASED_WAXED_WEATHERED_FLUID_PIPES.getAllEntries())
             .register();
 
-    public static final BlockEntityEntry<ValveHandleBlockEntity> WEATHEING_VALVE_HANDLE = REGISTRATE
+    public static final BlockEntityEntry<ValveHandleBlockEntity> WEATHERING_VALVE_HANDLE = REGISTRATE
             .blockEntity("copper_valve_handle", ValveHandleBlockEntity::new)
             .visual(() -> ValveHandleVisual::new)
             .validBlocks(BlockRegistry.COPPER_VALVE_HANDLES.getAllEntries())

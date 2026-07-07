@@ -67,7 +67,7 @@ public class WeatheringValveHandleBlock extends HandCrankBlock implements Patina
 
     @Override
     public BlockEntityType<? extends HandCrankBlockEntity> getBlockEntityType() {
-        return BlockEntityRegistry.WEATHEING_VALVE_HANDLE.get();
+        return BlockEntityRegistry.WEATHERING_VALVE_HANDLE.get();
     }
 
     @Override
