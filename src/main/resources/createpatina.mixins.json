@@ -5,6 +5,7 @@
     "ChangeOverTimeBlockMixin",
     "CopperBarsOxidizationMixin",
     "CopperCasingOxidizationMixin",
+    "CopperDoorOxidizationMixin",
     "CopperLadderOxidizationMixin",
     "CopperScaffoldOxidizationMixin",
     "CopperTableClothOxidizationMixin",
@@ -18,6 +19,7 @@
     "LightningBoltMixin",
     "PipeAttachmentModelMixin",
     "PumpOxidizationMixin",
+    "SlidingDoorRendererMixin",
     "SmartFluidPipeOxidizationMixin",
     "ValveHandleVisualMixin"
   ],

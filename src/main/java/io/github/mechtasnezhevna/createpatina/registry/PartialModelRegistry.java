@@ -25,6 +25,9 @@ public class PartialModelRegistry {
 
     public static final Map<WeatheringType, PartialModel> WEATHERING_VALVE_HANDLES = new EnumMap<>(WeatheringType.class);
 
+    public static final Map<WeatheringType, PartialModel> WEATHERING_DOOR_LEFT = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, PartialModel> WEATHERING_DOOR_RIGHT = new EnumMap<>(WeatheringType.class);
+
     static {
 
         for (WeatheringType type : WeatheringType.values()) {
@@ -51,6 +54,14 @@ public class PartialModelRegistry {
                 continue;
             }
             WEATHERING_VALVE_HANDLES.put(type, block(type.getPrefix() + "copper_valve_handle"));
+        }
+
+        for (WeatheringType type : WeatheringType.values()) {
+            if (type == WeatheringType.UNAFFECTED) {
+                continue;
+            }
+            WEATHERING_DOOR_LEFT.put(type, block("copper_door/" + type.getPrefix() + "copper_door/fold_left"));
+            WEATHERING_DOOR_RIGHT.put(type, block("copper_door/" + type.getPrefix() + "copper_door/fold_right"));
         }
     }
 

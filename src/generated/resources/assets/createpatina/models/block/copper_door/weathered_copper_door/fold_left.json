@@ -1,0 +1,9 @@
+{
+  "parent": "createpatina:block/copper_door/fold_left",
+  "textures": {
+    "0": "createpatina:block/copper_door/weathered_copper_door_side",
+    "2": "createpatina:block/copper_door/weathered_copper_door_top",
+    "3": "createpatina:block/copper_door/weathered_copper_door_bottom",
+    "particle": "createpatina:block/weathered_copper_casing"
+  }
+}

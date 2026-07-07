@@ -6,6 +6,9 @@
     "create:copper_casing": {
       "waxed": "createpatina:waxed_copper_casing"
     },
+    "create:copper_door": {
+      "waxed": "createpatina:waxed_copper_door"
+    },
     "create:copper_ladder": {
       "waxed": "createpatina:waxed_copper_ladder"
     },
@@ -65,6 +68,9 @@
     },
     "createpatina:exposed_copper_casing": {
       "waxed": "createpatina:waxed_exposed_copper_casing"
+    },
+    "createpatina:exposed_copper_door": {
+      "waxed": "createpatina:waxed_exposed_copper_door"
     },
     "createpatina:exposed_copper_ladder": {
       "waxed": "createpatina:waxed_exposed_copper_ladder"
@@ -126,6 +132,9 @@
     "createpatina:oxidized_copper_casing": {
       "waxed": "createpatina:waxed_oxidized_copper_casing"
     },
+    "createpatina:oxidized_copper_door": {
+      "waxed": "createpatina:waxed_oxidized_copper_door"
+    },
     "createpatina:oxidized_copper_ladder": {
       "waxed": "createpatina:waxed_oxidized_copper_ladder"
     },
@@ -185,6 +194,9 @@
     },
     "createpatina:weathered_copper_casing": {
       "waxed": "createpatina:waxed_weathered_copper_casing"
+    },
+    "createpatina:weathered_copper_door": {
+      "waxed": "createpatina:waxed_weathered_copper_door"
     },
     "createpatina:weathered_copper_ladder": {
       "waxed": "createpatina:waxed_weathered_copper_ladder"

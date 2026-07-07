@@ -147,6 +147,13 @@
   "block.createpatina.waxed_copper_table_cloth": "Waxed Copper Table Cover",
   "block.createpatina.waxed_exposed_copper_table_cloth": "Waxed Exposed Copper Table Cover",
   "block.createpatina.waxed_weathered_copper_table_cloth": "Waxed Weathered Copper Table Cover",
-  "block.createpatina.waxed_oxidized_copper_table_cloth": "Waxed Oxidized Copper Table Cover"
+  "block.createpatina.waxed_oxidized_copper_table_cloth": "Waxed Oxidized Copper Table Cover",
+  "block.createpatina.exposed_copper_door": "Exposed Copper Door",
+  "block.createpatina.weathered_copper_door": "Weathered Copper Door",
+  "block.createpatina.oxidized_copper_door": "Oxidized Copper Door",
+  "block.createpatina.waxed_copper_door": "Waxed Copper Door",
+  "block.createpatina.waxed_exposed_copper_door": "Waxed Exposed Copper Door",
+  "block.createpatina.waxed_weathered_copper_door": "Waxed Weathered Copper Door",
+  "block.createpatina.waxed_oxidized_copper_door": "Waxed Oxidized Copper Door"
 
 }

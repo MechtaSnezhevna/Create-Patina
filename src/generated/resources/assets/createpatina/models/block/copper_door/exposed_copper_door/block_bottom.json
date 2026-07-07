@@ -1,0 +1,8 @@
+{
+  "parent": "createpatina:block/copper_door/block_bottom",
+  "textures": {
+    "0": "createpatina:block/copper_door/exposed_copper_door_side",
+    "2": "createpatina:block/copper_door/exposed_copper_door_bottom",
+    "particle": "createpatina:block/exposed_copper_casing"
+  }
+}

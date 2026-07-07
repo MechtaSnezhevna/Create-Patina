@@ -1,6 +1,8 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
 import com.simibubi.create.content.fluids.pipes.*;
@@ -85,6 +87,12 @@ public class BlockEntityRegistry {
             .blockEntity("table_cloth", TableClothBlockEntity::new)
             .validBlocks(BlockRegistry.COPPER_TABLE_CLOTHS.getAllEntries())
             .renderer(() -> TableClothRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SlidingDoorBlockEntity> WEATHERING_COPPER_DOOR = REGISTRATE
+            .blockEntity("copper_door", SlidingDoorBlockEntity::new)
+            .renderer(() -> SlidingDoorRenderer::new)
+            .validBlocks(BlockRegistry.COPPER_DOORS.getAllEntries())
             .register();
 
     public static void register() {

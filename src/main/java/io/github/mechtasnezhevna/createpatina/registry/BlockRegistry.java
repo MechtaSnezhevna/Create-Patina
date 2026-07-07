@@ -3,11 +3,13 @@ package io.github.mechtasnezhevna.createpatina.registry;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.api.stress.BlockStressValues;
+import com.simibubi.create.content.contraptions.behaviour.DoorMovingInteraction;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorMovementBehaviour;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
@@ -16,7 +18,6 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
-import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -30,9 +31,9 @@ import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -48,6 +49,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import static com.simibubi.create.api.behaviour.interaction.MovingInteractionBehaviour.interactionBehaviour;
+import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.MetalBarsGen.barsBlockState;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -444,6 +447,59 @@ public class BlockRegistry {
                     .tag(AllTags.AllItemTags.TABLE_CLOTHS.tag)
                     .build()
             ).unaffected(AllBlocks.COPPER_TABLE_CLOTH)
+            .register();
+
+    public static final CopperChain<WeatheringSlidingDoorBlock> COPPER_DOORS = new CopperChainBuilder<>(
+            REGISTRATE, "copper_door", WeatheringSlidingDoorBlock:: new)
+            .configure(b -> b
+                    .initialProperties(() -> Blocks.IRON_DOOR)
+                    .properties(p -> p.requiresCorrectToolForDrops()
+                            .mapColor(PatinaMapColor.getMapColorByName(b.getName()))
+                            .noOcclusion()
+                            .strength(3.0F, 6.0F))
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        ModelFile bottom = p.models().withExistingParent("block/copper_door/" + name + "/block_bottom",
+                                        p.modLoc("block/copper_door/block_bottom"))
+                                .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
+                                .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                        ModelFile top = p.models().withExistingParent("block/copper_door/" + name + "/block_top",
+                                        p.modLoc("block/copper_door/block_top"))
+                                .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
+                                .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                        p.doorBlock(c.get(), bottom, bottom, bottom, bottom, top, top, top, top);
+
+                        p.models().withExistingParent("block/copper_door/" + name + "/fold_left",
+                                        p.modLoc("block/copper_door/fold_left"))
+                                .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
+                                .texture("3", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
+                                .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/copper_door/" + name + "/fold_right",
+                                        p.modLoc("block/copper_door/fold_right"))
+                                .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
+                                .texture("3", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
+                                .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                    })
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(pickaxeOnly())
+                    .onRegister(interactionBehaviour(new DoorMovingInteraction()))
+                    .onRegister(movementBehaviour(new SlidingDoorMovementBehaviour()))
+                    .tag(BlockTags.DOORS)
+                    .tag(BlockTags.WOODEN_DOORS) // for villager AI
+                    .tag(AllTags.AllBlockTags.NON_DOUBLE_DOOR.tag)
+                    .loot((lr, block) -> lr.add(block, lr.createDoorTable(block)))
+                    .item()
+                    .tag(ItemTags.DOORS)
+                    .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+                    .model((c, p) ->
+                            p.blockSprite(c, p.modLoc("item/copper_door/" + WeatheringType.getPrefixWithoutWaxedByName(b.getName()) + "copper_door")))
+                    .build()
+            ).unaffected(AllBlocks.COPPER_DOOR)
             .register();
 
     public static final CopperChain<WeatheringMetalScaffoldingBlock> COPPER_SCAFFOLDS = new CopperChainBuilder<>(

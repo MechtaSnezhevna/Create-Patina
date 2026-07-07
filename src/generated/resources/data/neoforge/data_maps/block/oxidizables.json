@@ -6,6 +6,9 @@
     "create:copper_casing": {
       "next_oxidation_stage": "createpatina:exposed_copper_casing"
     },
+    "create:copper_door": {
+      "next_oxidation_stage": "createpatina:exposed_copper_door"
+    },
     "create:copper_ladder": {
       "next_oxidation_stage": "createpatina:exposed_copper_ladder"
     },
@@ -66,6 +69,9 @@
     "createpatina:exposed_copper_casing": {
       "next_oxidation_stage": "createpatina:weathered_copper_casing"
     },
+    "createpatina:exposed_copper_door": {
+      "next_oxidation_stage": "createpatina:weathered_copper_door"
+    },
     "createpatina:exposed_copper_ladder": {
       "next_oxidation_stage": "createpatina:weathered_copper_ladder"
     },
@@ -125,6 +131,9 @@
     },
     "createpatina:weathered_copper_casing": {
       "next_oxidation_stage": "createpatina:oxidized_copper_casing"
+    },
+    "createpatina:weathered_copper_door": {
+      "next_oxidation_stage": "createpatina:oxidized_copper_door"
     },
     "createpatina:weathered_copper_ladder": {
       "next_oxidation_stage": "createpatina:oxidized_copper_ladder"

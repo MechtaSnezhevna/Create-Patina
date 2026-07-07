@@ -1,0 +1,11 @@
+{
+  "values": [
+    "createpatina:exposed_copper_door",
+    "createpatina:weathered_copper_door",
+    "createpatina:oxidized_copper_door",
+    "createpatina:waxed_copper_door",
+    "createpatina:waxed_exposed_copper_door",
+    "createpatina:waxed_weathered_copper_door",
+    "createpatina:waxed_oxidized_copper_door"
+  ]
+}

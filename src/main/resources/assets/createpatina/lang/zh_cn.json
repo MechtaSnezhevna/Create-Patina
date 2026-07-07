@@ -147,6 +147,13 @@
   "block.createpatina.waxed_copper_table_cloth": "涂蜡的铜桌面",
   "block.createpatina.waxed_exposed_copper_table_cloth": "涂蜡的斑驳铜桌面",
   "block.createpatina.waxed_weathered_copper_table_cloth": "涂蜡的锈蚀铜桌面",
-  "block.createpatina.waxed_oxidized_copper_table_cloth": "涂蜡的氧化铜桌面"
+  "block.createpatina.waxed_oxidized_copper_table_cloth": "涂蜡的氧化铜桌面",
+  "block.createpatina.exposed_copper_door": "斑驳的铜门",
+  "block.createpatina.weathered_copper_door": "锈蚀的铜门",
+  "block.createpatina.oxidized_copper_door": "氧化的铜门",
+  "block.createpatina.waxed_copper_door": "涂蜡的铜门",
+  "block.createpatina.waxed_exposed_copper_door": "涂蜡的斑驳铜门",
+  "block.createpatina.waxed_weathered_copper_door": "涂蜡的锈蚀铜门",
+  "block.createpatina.waxed_oxidized_copper_door": "涂蜡的氧化铜门"
 
 }
