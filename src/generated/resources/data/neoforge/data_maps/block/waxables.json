@@ -45,6 +45,9 @@
     "create:smart_fluid_pipe": {
       "waxed": "createpatina:waxed_smart_fluid_pipe"
     },
+    "create:steam_engine": {
+      "waxed": "createpatina:waxed_steam_engine"
+    },
     "createpatina:encased_exposed_fluid_pipe": {
       "waxed": "createpatina:waxed_encased_exposed_fluid_pipe"
     },
@@ -132,6 +135,9 @@
     "createpatina:exposed_smart_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_smart_fluid_pipe"
     },
+    "createpatina:exposed_steam_engine": {
+      "waxed": "createpatina:waxed_exposed_steam_engine"
+    },
     "createpatina:oxidized_copper_backtank": {
       "waxed": "createpatina:waxed_oxidized_copper_backtank"
     },
@@ -198,6 +204,9 @@
     "createpatina:oxidized_smart_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_smart_fluid_pipe"
     },
+    "createpatina:oxidized_steam_engine": {
+      "waxed": "createpatina:waxed_oxidized_steam_engine"
+    },
     "createpatina:weathered_copper_backtank": {
       "waxed": "createpatina:waxed_weathered_copper_backtank"
     },
@@ -263,6 +272,9 @@
     },
     "createpatina:weathered_smart_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_smart_fluid_pipe"
+    },
+    "createpatina:weathered_steam_engine": {
+      "waxed": "createpatina:waxed_weathered_steam_engine"
     }
   }
 }

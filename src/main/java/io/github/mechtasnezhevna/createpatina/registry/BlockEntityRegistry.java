@@ -17,6 +17,9 @@ import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.crank.HandCrankRenderer;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlockEntity;
 import com.simibubi.create.content.kinetics.crank.ValveHandleVisual;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineRenderer;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
@@ -102,6 +105,13 @@ public class BlockEntityRegistry {
             .visual(() -> SingleAxisRotatingVisual::backtank)
             .validBlocks(BlockRegistry.COPPER_BACKTANKS.getAllEntries())
             .renderer(() -> BacktankRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SteamEngineBlockEntity> WEATHERING_STEAM_ENGINE = REGISTRATE
+            .blockEntity("steam_engine", SteamEngineBlockEntity::new)
+            .visual(() -> SteamEngineVisual::new, false)
+            .validBlocks(BlockRegistry.STEAM_ENGINES.getAllEntries())
+            .renderer(() -> SteamEngineRenderer::new)
             .register();
 
     public static void register() {

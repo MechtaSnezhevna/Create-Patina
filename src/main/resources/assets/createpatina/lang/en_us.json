@@ -162,6 +162,13 @@
   "block.createpatina.waxed_exposed_copper_backtank": "Waxed Exposed Copper Backtank",
   "block.createpatina.waxed_weathered_copper_backtank": "Waxed Weathered Copper Backtank",
   "block.createpatina.waxed_oxidized_copper_backtank": "Waxed Oxidized Copper Backtank",
+  "block.createpatina.exposed_steam_engine": "Exposed Steam Engine",
+  "block.createpatina.weathered_steam_engine": "Weathered Steam Engine",
+  "block.createpatina.oxidized_steam_engine": "Oxidized Steam Engine",
+  "block.createpatina.waxed_steam_engine": "Waxed Steam Engine",
+  "block.createpatina.waxed_exposed_steam_engine": "Waxed Exposed Steam Engine",
+  "block.createpatina.waxed_weathered_steam_engine": "Waxed Weathered Steam Engine",
+  "block.createpatina.waxed_oxidized_steam_engine": "Waxed Oxidized Steam Engine",
 
   "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
   "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",

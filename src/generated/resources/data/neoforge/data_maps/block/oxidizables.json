@@ -45,6 +45,9 @@
     "create:smart_fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_smart_fluid_pipe"
     },
+    "create:steam_engine": {
+      "next_oxidation_stage": "createpatina:exposed_steam_engine"
+    },
     "createpatina:encased_exposed_fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_encased_exposed_fluid_pipe"
     },
@@ -132,6 +135,9 @@
     "createpatina:exposed_smart_fluid_pipe": {
       "next_oxidation_stage": "createpatina:weathered_smart_fluid_pipe"
     },
+    "createpatina:exposed_steam_engine": {
+      "next_oxidation_stage": "createpatina:weathered_steam_engine"
+    },
     "createpatina:weathered_copper_backtank": {
       "next_oxidation_stage": "createpatina:oxidized_copper_backtank"
     },
@@ -197,6 +203,9 @@
     },
     "createpatina:weathered_smart_fluid_pipe": {
       "next_oxidation_stage": "createpatina:oxidized_smart_fluid_pipe"
+    },
+    "createpatina:weathered_steam_engine": {
+      "next_oxidation_stage": "createpatina:oxidized_steam_engine"
     }
   }
 }

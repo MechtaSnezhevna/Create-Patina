@@ -1,0 +1,7 @@
+{
+  "parent": "createpatina:block/steam_engine/item",
+  "textures": {
+    "1": "createpatina:block/steam_engine/weathered_engine",
+    "particle": "createpatina:block/weathered_copper_underside"
+  }
+}

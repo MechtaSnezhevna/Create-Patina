@@ -341,6 +341,33 @@ public class BlockRegistry {
         return null;
     }
 
+    public static final CopperChain<WeatheringSteamEngineBlock> STEAM_ENGINES = new CopperChainBuilder<>(
+            REGISTRATE, "steam_engine", WeatheringSteamEngineBlock::new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .transform(pickaxeOnly())
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        ModelFile baseModel = p.models()
+                                .withExistingParent("block/steam_engine/" + name + "/block", p.modLoc("block/steam_engine/block"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
+                        p.horizontalFaceBlock(c.get(), baseModel);
+                    }).transform(PatinaStress.setCapacity(1024.0))
+                    .onRegister(BlockStressValues.setGeneratorSpeed(64, true))
+                    .item()
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.withExistingParent(name, p.modLoc("block/steam_engine/item"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.STEAM_ENGINE)
+            .register();
+
     public static final CopperChain<WeatheringSmartFluidPipeBlock> SMART_FLUID_PIPES = new CopperChainBuilder<>(
             REGISTRATE, "smart_fluid_pipe", WeatheringSmartFluidPipeBlock::new)
             .configure(b -> b
