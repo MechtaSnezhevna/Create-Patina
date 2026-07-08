@@ -1,32 +1,35 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.content.equipment.armor.BacktankBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(BacktankBlock.class)
-public abstract class CopperBacktankOxidizationMixin extends Block implements PatinaBlock {
+import javax.annotation.ParametersAreNonnullByDefault;
 
-    public CopperBacktankOxidizationMixin(Properties properties) {
-        super(properties);
+@Mixin(IronBarsBlock.class)
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public abstract class CopperBarsOxidizationMixin extends Block implements PatinaBlock {
+    public CopperBarsOxidizationMixin(Properties p_54345_) {
+        super(p_54345_);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        if(state.getBlock().getDescriptionId().equals("block.create.copper_backtank"))
-            return true;
-        return super.isRandomlyTicking(state);
+        // Copper bars use a different register way
+        // that causes mixin NPE if we use AllBlocks.COPPER_BARS.get() here
+        return state.getBlock().getDescriptionId().equals("block.create.copper_bars");
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }
 

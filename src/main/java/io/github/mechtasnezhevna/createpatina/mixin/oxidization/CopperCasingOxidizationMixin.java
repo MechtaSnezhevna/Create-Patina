@@ -1,8 +1,8 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringItemDrainBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -14,27 +14,22 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(ItemDrainBlock.class)
+@Mixin(CasingBlock.class)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class ItemDrainOxidizationMixin extends Block implements PatinaBlock {
-    public ItemDrainOxidizationMixin(Properties properties) {
+public abstract class CopperCasingOxidizationMixin extends Block implements PatinaBlock {
+    public CopperCasingOxidizationMixin(Properties properties) {
         super(properties);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return true;
+        return state.getBlock() == AllBlocks.COPPER_CASING.get();
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
-    }
-
-    @Override
-    public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringItemDrainBlock.reconnect(level, pos);
     }
 
     @Override

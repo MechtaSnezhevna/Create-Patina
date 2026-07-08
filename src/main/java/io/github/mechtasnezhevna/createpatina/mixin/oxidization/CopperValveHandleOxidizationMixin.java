@@ -1,8 +1,9 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
+import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -10,22 +11,23 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(SteamEngineBlock.class)
-public class SteamEngineOxidizationMixin extends Block implements PatinaBlock {
-    public SteamEngineOxidizationMixin(Properties properties) {
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@Mixin(ValveHandleBlock.class)
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class CopperValveHandleOxidizationMixin extends Block implements PatinaBlock{
+    public CopperValveHandleOxidizationMixin(Properties properties) {
         super(properties);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        if(state.getBlock().getDescriptionId().equals("block.create.steam_engine"))
-            return true;
-        return super.isRandomlyTicking(state);
+        return state.getBlock().getDescriptionId().equals("block.create.copper_valve_handle");
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }
 

@@ -1,8 +1,7 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
+import com.simibubi.create.content.equipment.armor.BacktankBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -11,26 +10,24 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(TableClothBlock.class)
-public abstract class CopperTableClothOxidizationMixin extends Block implements PatinaBlock {
+@Mixin(BacktankBlock.class)
+public abstract class CopperBacktankOxidizationMixin extends Block implements PatinaBlock {
 
-    public CopperTableClothOxidizationMixin(Properties properties) {
+    public CopperBacktankOxidizationMixin(Properties properties) {
         super(properties);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getBlock().getDescriptionId().equals("block.create.copper_table_cloth");
+        if(state.getBlock().getDescriptionId().equals("block.create.copper_backtank"))
+            return true;
+        return super.isRandomlyTicking(state);
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
-    }
-
-    @Override
-    public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringFluidPipeBlock.reconnect(level, pos);
     }
 
     @Override

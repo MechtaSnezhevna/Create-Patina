@@ -1,6 +1,6 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
+import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(EncasedPipeBlock.class)
+@Mixin(GlassFluidPipeBlock.class)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class EncasedPipeOxidizationMixin extends Block implements PatinaBlock {
-    public EncasedPipeOxidizationMixin(Properties properties) {
+public abstract class GlassFluidPipeOxidizationMixin extends Block implements PatinaBlock {
+    public GlassFluidPipeOxidizationMixin(Properties properties) {
         super(properties);
     }
 

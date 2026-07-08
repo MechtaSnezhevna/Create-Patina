@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.render;
 
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;

@@ -1,9 +1,8 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
+import com.simibubi.create.content.decoration.MetalLadderBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -15,17 +14,17 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(MetalScaffoldingBlock.class)
+@Mixin(MetalLadderBlock.class)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class CopperScaffoldOxidizationMixin extends Block implements PatinaBlock {
-    public CopperScaffoldOxidizationMixin(Properties p_54345_) {
+public abstract class CopperLadderOxidizationMixin extends Block implements PatinaBlock {
+    public CopperLadderOxidizationMixin(Properties p_54345_) {
         super(p_54345_);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getBlock() == AllBlocks.COPPER_SCAFFOLD.get();
+        return state.getBlock() == AllBlocks.COPPER_LADDER.get();
     }
 
     @Override

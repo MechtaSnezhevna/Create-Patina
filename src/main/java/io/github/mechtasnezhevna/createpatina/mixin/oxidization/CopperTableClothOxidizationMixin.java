@@ -1,10 +1,9 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.content.fluids.pump.PumpBlock;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringPumpBlock;
+import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -12,19 +11,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+@Mixin(TableClothBlock.class)
+public abstract class CopperTableClothOxidizationMixin extends Block implements PatinaBlock {
 
-@Mixin(PumpBlock.class)
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
-public abstract class PumpOxidizationMixin extends Block implements PatinaBlock {
-    public PumpOxidizationMixin(Properties properties) {
+    public CopperTableClothOxidizationMixin(Properties properties) {
         super(properties);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return true;
+        return state.getBlock().getDescriptionId().equals("block.create.copper_table_cloth");
     }
 
     @Override
@@ -34,7 +30,7 @@ public abstract class PumpOxidizationMixin extends Block implements PatinaBlock 
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringPumpBlock.reconnect(level, pos);
+        WeatheringFluidPipeBlock.reconnect(level, pos);
     }
 
     @Override

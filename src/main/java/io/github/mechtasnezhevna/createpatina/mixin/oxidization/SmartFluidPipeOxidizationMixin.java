@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
