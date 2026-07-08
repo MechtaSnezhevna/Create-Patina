@@ -1,5 +1,8 @@
 {
   "values": {
+    "create:copper_backtank": {
+      "next_oxidation_stage": "createpatina:exposed_copper_backtank"
+    },
     "create:copper_bars": {
       "next_oxidation_stage": "createpatina:exposed_copper_bars"
     },
@@ -63,6 +66,9 @@
     "createpatina:encased_weathered_fluid_pipe": {
       "next_oxidation_stage": "createpatina:exposed_encased_weathered_fluid_pipe"
     },
+    "createpatina:exposed_copper_backtank": {
+      "next_oxidation_stage": "createpatina:weathered_copper_backtank"
+    },
     "createpatina:exposed_copper_bars": {
       "next_oxidation_stage": "createpatina:weathered_copper_bars"
     },
@@ -125,6 +131,9 @@
     },
     "createpatina:exposed_smart_fluid_pipe": {
       "next_oxidation_stage": "createpatina:weathered_smart_fluid_pipe"
+    },
+    "createpatina:weathered_copper_backtank": {
+      "next_oxidation_stage": "createpatina:oxidized_copper_backtank"
     },
     "createpatina:weathered_copper_bars": {
       "next_oxidation_stage": "createpatina:oxidized_copper_bars"

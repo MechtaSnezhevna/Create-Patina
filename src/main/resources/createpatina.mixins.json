@@ -3,6 +3,7 @@
   "package": "io.github.mechtasnezhevna.createpatina.mixin",
   "mixins": [
     "ChangeOverTimeBlockMixin",
+    "CopperBacktankOxidizationMixin",
     "CopperBarsOxidizationMixin",
     "CopperCasingOxidizationMixin",
     "CopperDoorOxidizationMixin",

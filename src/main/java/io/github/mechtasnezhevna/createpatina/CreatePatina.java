@@ -36,7 +36,7 @@ public class CreatePatina {
         BlockEntityRegistry.register();
         BlockRegistry.register();
 
-        modEventBus.addListener(CreativeModeTabRegistry::putOriginalItemsBefore);
+        modEventBus.addListener(CreativeModeTabRegistry::editPatinaTab);
         modEventBus.addListener(EventPriority.LOWEST, PatinaDataGen::gatherData);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);

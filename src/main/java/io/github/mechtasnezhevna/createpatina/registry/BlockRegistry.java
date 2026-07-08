@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.contraptions.behaviour.DoorMovingInteraction;
@@ -40,6 +41,13 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import org.jetbrains.annotations.Contract;
@@ -417,6 +425,33 @@ public class BlockRegistry {
                     // removed to prevent recipe to an unaffected handle
                     .build()
             ).unaffected(AllBlocks.COPPER_VALVE_HANDLE)
+            .register();
+
+    public static final CopperChain<WeatheringBacktankBlock> COPPER_BACKTANKS = new CopperChainBuilder<>(
+            REGISTRATE, "copper_backtank", WeatheringBacktankBlock:: new)
+            .configure(builder -> {
+                String baseName = builder.getName();
+                String prefix = WeatheringType.getPrefixWithoutWaxedByName(baseName);
+                builder.initialProperties(SharedProperties::copperMetal)
+                        .blockstate((c, p) -> p.horizontalBlock(c.get(),
+                                p.models().withExistingParent("block/copper_backtank/" + c.getName(), p.modLoc("block/copper_backtank/block"))
+                                        .texture("0", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
+                                        .texture("particle", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
+                        ))
+                        .transform(pickaxeOnly())
+                        .addLayer(() -> RenderType::cutoutMipped)
+                        .transform(PatinaStress.setImpact(4.0))
+                        .loot((lt, block) -> {
+                            LootTable.Builder lb = LootTable.lootTable();
+                            LootItemCondition.Builder survivesExplosion = ExplosionCondition.survivesExplosion();
+                            lt.add(block, lb.withPool(LootPool.lootPool()
+                                .when(survivesExplosion)
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(ItemRegistry.ARMOR_BACKTANKS.get(builder.get().get().getType()).get())
+                                    .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                        .include(AllDataComponents.BACKTANK_AIR)))));
+                        });
+            }).unaffected(AllBlocks.COPPER_BACKTANK)
             .register();
 
     public static final CopperChain<WeatheringTableClothBlock> COPPER_TABLE_CLOTHS = new CopperChainBuilder<>(

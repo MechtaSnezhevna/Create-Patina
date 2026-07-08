@@ -1,0 +1,7 @@
+{
+  "parent": "createpatina:block/copper_backtank/item",
+  "textures": {
+    "0": "createpatina:block/copper_backtank/weathered_copper_backtank",
+    "particle": "createpatina:block/copper_backtank/weathered_copper_backtank"
+  }
+}

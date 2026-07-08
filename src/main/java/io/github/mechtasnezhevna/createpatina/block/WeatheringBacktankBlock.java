@@ -1,7 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
+import com.simibubi.create.content.equipment.armor.BacktankBlock;
+import com.simibubi.create.content.equipment.armor.BacktankBlockEntity;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
@@ -9,14 +9,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
-public class WeatheringSlidingDoorBlock extends SlidingDoorBlock implements PatinaBlock{
+public class WeatheringBacktankBlock extends BacktankBlock implements PatinaBlock {
 
     private final WeatheringType type;
 
-    public WeatheringSlidingDoorBlock(WeatheringType type, Properties properties) {
-        super(properties, STONE_SET_TYPE.get(), true);
+    public WeatheringBacktankBlock(WeatheringType type, Properties properties) {
+        super(properties);
         this.type = type;
     }
 
@@ -33,13 +32,13 @@ public class WeatheringSlidingDoorBlock extends SlidingDoorBlock implements Pati
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            this.changeOverTime(state, level, pos, random);
-        }
+        super.randomTick(state, level, pos, random);
+        this.changeOverTime(state, level, pos, random);
     }
 
     @Override
-    public BlockEntityType<? extends SlidingDoorBlockEntity> getBlockEntityType() {
-        return BlockEntityRegistry.WEATHERING_COPPER_DOOR.get();
+    public BlockEntityType<? extends BacktankBlockEntity> getBlockEntityType() {
+        return BlockEntityRegistry.WEATHERING_COPPER_BACKTANK.get();
     }
+
 }

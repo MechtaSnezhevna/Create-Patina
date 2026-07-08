@@ -154,6 +154,27 @@
   "block.createpatina.waxed_copper_door": "Waxed Copper Door",
   "block.createpatina.waxed_exposed_copper_door": "Waxed Exposed Copper Door",
   "block.createpatina.waxed_weathered_copper_door": "Waxed Weathered Copper Door",
-  "block.createpatina.waxed_oxidized_copper_door": "Waxed Oxidized Copper Door"
+  "block.createpatina.waxed_oxidized_copper_door": "Waxed Oxidized Copper Door",
+  "block.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
+  "block.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",
+  "block.createpatina.oxidized_copper_backtank": "Oxidized Copper Backtank",
+  "block.createpatina.waxed_copper_backtank": "Waxed Copper Backtank",
+  "block.createpatina.waxed_exposed_copper_backtank": "Waxed Exposed Copper Backtank",
+  "block.createpatina.waxed_weathered_copper_backtank": "Waxed Weathered Copper Backtank",
+  "block.createpatina.waxed_oxidized_copper_backtank": "Waxed Oxidized Copper Backtank",
 
+  "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
+  "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",
+  "item.createpatina.oxidized_copper_backtank": "Oxidized Copper Backtank",
+  "item.createpatina.waxed_copper_backtank": "Waxed Copper Backtank",
+  "item.createpatina.waxed_exposed_copper_backtank": "Waxed Exposed Copper Backtank",
+  "item.createpatina.waxed_weathered_copper_backtank": "Waxed Weathered Copper Backtank",
+  "item.createpatina.waxed_oxidized_copper_backtank": "Waxed Oxidized Copper Backtank",
+  "item.createpatina.exposed_copper_backtank_placeable": "Exposed Copper Backtank Placeable",
+  "item.createpatina.weathered_copper_backtank_placeable": "Weathered Copper Backtank Placeable",
+  "item.createpatina.oxidized_copper_backtank_placeable": "Oxidized Copper Backtank Placeable",
+  "item.createpatina.waxed_copper_backtank_placeable": "Waxed Copper Backtank Placeable",
+  "item.createpatina.waxed_exposed_copper_backtank_placeable": "Waxed Exposed Copper Backtank Placeable",
+  "item.createpatina.waxed_weathered_copper_backtank_placeable": "Waxed Weathered Copper Backtank Placeable",
+  "item.createpatina.waxed_oxidized_copper_backtank_placeable": "Waxed Oxidized Copper Backtank Placeable"
 }

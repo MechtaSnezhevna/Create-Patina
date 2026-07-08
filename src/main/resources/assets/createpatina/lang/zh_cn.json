@@ -154,6 +154,27 @@
   "block.createpatina.waxed_copper_door": "涂蜡的铜门",
   "block.createpatina.waxed_exposed_copper_door": "涂蜡的斑驳铜门",
   "block.createpatina.waxed_weathered_copper_door": "涂蜡的锈蚀铜门",
-  "block.createpatina.waxed_oxidized_copper_door": "涂蜡的氧化铜门"
+  "block.createpatina.waxed_oxidized_copper_door": "涂蜡的氧化铜门",
+  "block.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
+  "block.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",
+  "block.createpatina.oxidized_copper_backtank": "氧化的铜背罐",
+  "block.createpatina.waxed_copper_backtank": "涂蜡的铜背罐",
+  "block.createpatina.waxed_exposed_copper_backtank": "涂蜡的斑驳铜背罐",
+  "block.createpatina.waxed_weathered_copper_backtank": "涂蜡的锈蚀铜背罐",
+  "block.createpatina.waxed_oxidized_copper_backtank": "涂蜡的氧化铜背罐",
 
+  "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
+  "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",
+  "item.createpatina.oxidized_copper_backtank": "氧化的铜背罐",
+  "item.createpatina.waxed_copper_backtank": "涂蜡的铜背罐",
+  "item.createpatina.waxed_exposed_copper_backtank": "涂蜡的斑驳铜背罐",
+  "item.createpatina.waxed_weathered_copper_backtank": "涂蜡的锈蚀铜背罐",
+  "item.createpatina.waxed_oxidized_copper_backtank": "涂蜡的氧化铜背罐",
+  "item.createpatina.exposed_copper_backtank_placeable": "可放置的斑驳铜背罐",
+  "item.createpatina.weathered_copper_backtank_placeable": "可放置的锈蚀铜背罐",
+  "item.createpatina.oxidized_copper_backtank_placeable": "可放置的氧化铜背罐",
+  "item.createpatina.waxed_copper_backtank_placeable": "可放置的涂蜡铜背罐",
+  "item.createpatina.waxed_exposed_copper_backtank_placeable": "可放置的涂蜡斑驳铜背罐",
+  "item.createpatina.waxed_weathered_copper_backtank_placeable": "可放置的涂蜡锈蚀铜背罐",
+  "item.createpatina.waxed_oxidized_copper_backtank_placeable": "可放置的涂蜡氧化铜背罐"
 }

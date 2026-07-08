@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "create:banktank_air"
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "createpatina:exposed_copper_backtank"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "createpatina:blocks/exposed_copper_backtank"
+}

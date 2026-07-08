@@ -1,11 +1,15 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllDataComponents;
+import com.simibubi.create.AllItems;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -29,8 +33,23 @@ public class CreativeModeTabRegistry {
         CREATIVE_MODE_TABS.register(bus);
     }
 
-    public static void putOriginalItemsBefore(BuildCreativeModeTabContentsEvent e) {
+    public static void editPatinaTab(BuildCreativeModeTabContentsEvent e) {
         if (e.getTab() == CREATEPATINA_TAB.get()) {
+
+            for (WeatheringType type : WeatheringType.values()) {
+                if (type == WeatheringType.UNAFFECTED) {
+                    ItemStack fullBacktank = new ItemStack(AllItems.COPPER_BACKTANK.asItem());
+                    fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
+                    e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    continue;
+                }
+                e.remove(new ItemStack(ItemRegistry.PLACEABLE_BACKTANKS.get(type).asItem()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                e.remove(new ItemStack(ItemRegistry.ARMOR_BACKTANKS.get(type).asItem()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                ItemStack fullBacktank = new ItemStack(ItemRegistry.ARMOR_BACKTANKS.get(type).asItem());
+                fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
+                e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            }
+
             insertBefore(e, BlockRegistry.ITEM_DRAINS.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
             insertBefore(e, BlockRegistry.MECHANICAL_PUMPS.getEntry(WeatheringType.EXPOSED), AllBlocks.MECHANICAL_PUMP);
             insertBefore(e, BlockRegistry.FLUID_PIPES.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_PIPE);

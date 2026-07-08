@@ -3,6 +3,8 @@ package io.github.mechtasnezhevna.createpatina.registry;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
+import com.simibubi.create.content.equipment.armor.BacktankBlockEntity;
+import com.simibubi.create.content.equipment.armor.BacktankRenderer;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
 import com.simibubi.create.content.fluids.pipes.*;
@@ -93,6 +95,13 @@ public class BlockEntityRegistry {
             .blockEntity("copper_door", SlidingDoorBlockEntity::new)
             .renderer(() -> SlidingDoorRenderer::new)
             .validBlocks(BlockRegistry.COPPER_DOORS.getAllEntries())
+            .register();
+
+    public static final BlockEntityEntry<BacktankBlockEntity> WEATHERING_COPPER_BACKTANK = REGISTRATE
+            .blockEntity("copper_backtank", BacktankBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual::backtank)
+            .validBlocks(BlockRegistry.COPPER_BACKTANKS.getAllEntries())
+            .renderer(() -> BacktankRenderer::new)
             .register();
 
     public static void register() {
