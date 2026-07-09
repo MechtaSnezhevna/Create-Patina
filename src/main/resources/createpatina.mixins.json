@@ -2,7 +2,10 @@
   "required": true,
   "package": "io.github.mechtasnezhevna.createpatina.mixin",
   "mixins": [
+    "BoilerDataMixin",
     "ChangeOverTimeBlockMixin",
+    "ItemDrainBlockEntityAccessor",
+    "LightningBoltMixin",
     "oxidization.CopperBacktankOxidizationMixin",
     "oxidization.CopperBarsOxidizationMixin",
     "oxidization.CopperCasingOxidizationMixin",
@@ -15,14 +18,12 @@
     "oxidization.FluidPipeOxidizationMixin",
     "oxidization.FluidValveOxidizationMixin",
     "oxidization.GlassFluidPipeOxidizationMixin",
-    "ItemDrainBlockEntityAccessor",
     "oxidization.ItemDrainOxidizationMixin",
-    "LightningBoltMixin",
-    "render.PipeAttachmentModelMixin",
     "oxidization.PumpOxidizationMixin",
-    "render.SlidingDoorRendererMixin",
     "oxidization.SmartFluidPipeOxidizationMixin",
     "oxidization.SteamEngineOxidizationMixin",
+    "render.PipeAttachmentModelMixin",
+    "render.SlidingDoorRendererMixin",
     "render.ValveHandleVisualMixin"
   ],
   "client": [
