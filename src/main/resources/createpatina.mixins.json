@@ -6,6 +6,7 @@
     "ChangeOverTimeBlockMixin",
     "ItemDrainBlockEntityAccessor",
     "LightningBoltMixin",
+    "SteamEngineBlockEntityMixin",
     "oxidization.CopperBacktankOxidizationMixin",
     "oxidization.CopperBarsOxidizationMixin",
     "oxidization.CopperCasingOxidizationMixin",

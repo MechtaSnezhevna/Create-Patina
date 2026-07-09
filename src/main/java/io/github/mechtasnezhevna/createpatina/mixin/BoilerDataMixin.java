@@ -22,7 +22,7 @@ public abstract class BoilerDataMixin {
     )
     private boolean redirectHas(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_ENGINE) {
-            return state.getBlock() instanceof SteamEngineBlock;
+            return state.getBlock() == AllBlocks.STEAM_ENGINE.get() || state.getBlock() instanceof SteamEngineBlock;
         }
         return entry.has(state);
     }
