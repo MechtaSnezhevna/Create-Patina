@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.mixin;
 
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.mechtasnezhevna.createpatina.block.WeatheringSteamEngineBlock;
@@ -23,7 +22,8 @@ public class SteamEngineBlockEntityMixin {
     )
     private boolean redirectHasInGetTargetAngle(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_ENGINE) {
-            return state.getBlock() == AllBlocks.STEAM_ENGINE.get() || state.getBlock() instanceof WeatheringSteamEngineBlock;
+            return state.getBlock() == AllBlocks.STEAM_ENGINE.get()
+                    || state.getBlock() instanceof WeatheringSteamEngineBlock;
         }
         return entry.has(state);
     }
@@ -38,7 +38,8 @@ public class SteamEngineBlockEntityMixin {
     )
     private boolean redirectHasInTick(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_ENGINE) {
-            return state.getBlock() == AllBlocks.STEAM_ENGINE.get() || state.getBlock() instanceof SteamEngineBlock;
+            return state.getBlock() == AllBlocks.STEAM_ENGINE.get()
+                    || state.getBlock() instanceof WeatheringSteamEngineBlock;
         }
         return entry.has(state);
     }

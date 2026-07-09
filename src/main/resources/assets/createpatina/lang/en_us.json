@@ -169,6 +169,13 @@
   "block.createpatina.waxed_exposed_steam_engine": "Waxed Exposed Steam Engine",
   "block.createpatina.waxed_weathered_steam_engine": "Waxed Weathered Steam Engine",
   "block.createpatina.waxed_oxidized_steam_engine": "Waxed Oxidized Steam Engine",
+  "block.createpatina.exposed_steam_whistle": "Exposed Steam Whistle",
+  "block.createpatina.weathered_steam_whistle": "Weathered Steam Whistle",
+  "block.createpatina.oxidized_steam_whistle": "Oxidized Steam Whistle",
+  "block.createpatina.waxed_steam_whistle": "Waxed Steam Whistle",
+  "block.createpatina.waxed_exposed_steam_whistle": "Waxed Exposed Steam Whistle",
+  "block.createpatina.waxed_weathered_steam_whistle": "Waxed Weathered Steam Whistle",
+  "block.createpatina.waxed_oxidized_steam_whistle": "Waxed Oxidized Steam Whistle",
 
   "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
   "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",

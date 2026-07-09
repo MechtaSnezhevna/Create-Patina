@@ -35,7 +35,6 @@ public class CreativeModeTabRegistry {
 
     public static void editPatinaTab(BuildCreativeModeTabContentsEvent e) {
         if (e.getTab() == CREATEPATINA_TAB.get()) {
-
             for (WeatheringType type : WeatheringType.values()) {
                 if (type == WeatheringType.UNAFFECTED) {
                     ItemStack fullBacktank = new ItemStack(AllItems.COPPER_BACKTANK.asItem());
@@ -49,7 +48,6 @@ public class CreativeModeTabRegistry {
                 fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
                 e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
-
             insertBefore(e, BlockRegistry.ITEM_DRAINS.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
             insertBefore(e, BlockRegistry.MECHANICAL_PUMPS.getEntry(WeatheringType.EXPOSED), AllBlocks.MECHANICAL_PUMP);
             insertBefore(e, BlockRegistry.FLUID_PIPES.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_PIPE);
@@ -63,6 +61,7 @@ public class CreativeModeTabRegistry {
             insertBefore(e, BlockRegistry.COPPER_TABLE_CLOTHS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_TABLE_CLOTH);
             insertBefore(e, BlockRegistry.COPPER_DOORS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_DOOR);
             insertBefore(e, BlockRegistry.STEAM_ENGINES.getEntry(WeatheringType.EXPOSED), AllBlocks.STEAM_ENGINE);
+            insertBefore(e, BlockRegistry.STEAM_WHISTLES.getEntry(WeatheringType.EXPOSED), AllBlocks.STEAM_WHISTLE);
         }
     }
 

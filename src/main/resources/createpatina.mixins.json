@@ -7,6 +7,8 @@
     "ItemDrainBlockEntityAccessor",
     "LightningBoltMixin",
     "SteamEngineBlockEntityMixin",
+    "WhistleBlockUsageMixin",
+    "WhistleExtenderBlockMixin",
     "oxidization.CopperBacktankOxidizationMixin",
     "oxidization.CopperBarsOxidizationMixin",
     "oxidization.CopperCasingOxidizationMixin",
@@ -23,6 +25,7 @@
     "oxidization.PumpOxidizationMixin",
     "oxidization.SmartFluidPipeOxidizationMixin",
     "oxidization.SteamEngineOxidizationMixin",
+    "oxidization.SteamWhistleOxidizationMixin",
     "render.PipeAttachmentModelMixin",
     "render.SlidingDoorRendererMixin",
     "render.ValveHandleVisualMixin"

@@ -3,6 +3,8 @@ package io.github.mechtasnezhevna.createpatina.registry;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
+import com.simibubi.create.content.decoration.steamWhistle.WhistleBlockEntity;
+import com.simibubi.create.content.decoration.steamWhistle.WhistleRenderer;
 import com.simibubi.create.content.equipment.armor.BacktankBlockEntity;
 import com.simibubi.create.content.equipment.armor.BacktankRenderer;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
@@ -112,6 +114,12 @@ public class BlockEntityRegistry {
             .visual(() -> SteamEngineVisual::new, false)
             .validBlocks(BlockRegistry.STEAM_ENGINES.getAllEntries())
             .renderer(() -> SteamEngineRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<WhistleBlockEntity> WEATHERING_STEAM_WHISTLE = REGISTRATE
+            .blockEntity("steam_whistle", WhistleBlockEntity::new)
+            .validBlocks(BlockRegistry.STEAM_WHISTLES.getAllEntries())
+            .renderer(() -> WhistleRenderer::new)
             .register();
 
     public static void register() {

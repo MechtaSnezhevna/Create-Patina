@@ -169,6 +169,13 @@
   "block.createpatina.waxed_exposed_steam_engine": "涂蜡的斑驳蒸汽引擎",
   "block.createpatina.waxed_weathered_steam_engine": "涂蜡的锈蚀蒸汽引擎",
   "block.createpatina.waxed_oxidized_steam_engine": "涂蜡的氧化蒸汽引擎",
+  "block.createpatina.exposed_steam_whistle": "斑驳的蒸汽笛",
+  "block.createpatina.weathered_steam_whistle": "锈蚀的蒸汽笛",
+  "block.createpatina.oxidized_steam_whistle": "氧化的蒸汽笛",
+  "block.createpatina.waxed_steam_whistle": "涂蜡的蒸汽笛",
+  "block.createpatina.waxed_exposed_steam_whistle": "涂蜡的斑驳蒸汽笛",
+  "block.createpatina.waxed_weathered_steam_whistle": "涂蜡的锈蚀蒸汽笛",
+  "block.createpatina.waxed_oxidized_steam_whistle": "涂蜡的氧化蒸汽笛",
 
   "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
   "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",

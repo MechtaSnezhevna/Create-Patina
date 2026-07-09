@@ -25,6 +25,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFluidPipeGenerator;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringWhistleGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChain;
 import io.github.mechtasnezhevna.createpatina.registry.chain.CopperChainBuilder;
 import io.github.mechtasnezhevna.createpatina.util.PatinaMapColor;
@@ -368,13 +369,32 @@ public class BlockRegistry {
             ).unaffected(AllBlocks.STEAM_ENGINE)
             .register();
 
+    public static final CopperChain<WeatheringWhistleBlock> STEAM_WHISTLES = new CopperChainBuilder<>(
+            REGISTRATE, "steam_whistle", WeatheringWhistleBlock::new)
+            .configure(b ->b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .properties(p -> p.mapColor(MapColor.GOLD))
+                    .transform(pickaxeOnly())
+                    .blockstate(new WeatheringWhistleGenerator()::generate)
+                    .item()
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.withExistingParent(name, p.modLoc("block/steam_whistle/item"))
+                                .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"))
+                                .texture("2", p.modLoc("block/" + prefix + "copper_redstone_plate"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.STEAM_WHISTLE)
+            .register();
+
     public static final CopperChain<WeatheringSmartFluidPipeBlock> SMART_FLUID_PIPES = new CopperChainBuilder<>(
             REGISTRATE, "smart_fluid_pipe", WeatheringSmartFluidPipeBlock::new)
             .configure(b -> b
                     .initialProperties(SharedProperties::copperMetal)
                     .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW))
                     .transform(pickaxeOnly())
-                    .blockstate(new WeatheringSmartFluidPipeGenerator(WeatheringType.getPrefixWithoutWaxedByName(b.getName()))::generate)
+                    .blockstate(new WeatheringSmartFluidPipeGenerator()::generate)
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .item()
                     .model((c, p) -> {

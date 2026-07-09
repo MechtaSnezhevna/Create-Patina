@@ -1,0 +1,7 @@
+{
+  "parent": "createpatina:block/steam_whistle/block_medium_floor",
+  "textures": {
+    "1": "createpatina:block/steam_engine/weathered_engine",
+    "2": "createpatina:block/weathered_copper_redstone_plate"
+  }
+}

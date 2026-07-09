@@ -1,0 +1,6 @@
+{
+  "parent": "createpatina:block/steam_whistle/waxed_oxidized_steam_whistle/block_small_wall",
+  "textures": {
+    "2": "createpatina:block/oxidized_copper_redstone_plate_powered"
+  }
+}

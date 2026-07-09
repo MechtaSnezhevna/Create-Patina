@@ -1,0 +1,7 @@
+{
+  "parent": "createpatina:block/steam_whistle/block_large_wall",
+  "textures": {
+    "1": "createpatina:block/steam_engine/exposed_engine",
+    "2": "createpatina:block/exposed_copper_redstone_plate"
+  }
+}
