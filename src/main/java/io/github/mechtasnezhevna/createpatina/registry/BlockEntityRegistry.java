@@ -15,6 +15,8 @@ import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveVisual;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
+import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
+import com.simibubi.create.content.fluids.spout.SpoutRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.crank.HandCrankRenderer;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlockEntity;
@@ -120,6 +122,12 @@ public class BlockEntityRegistry {
             .blockEntity("steam_whistle", WhistleBlockEntity::new)
             .validBlocks(BlockRegistry.STEAM_WHISTLES.getAllEntries())
             .renderer(() -> WhistleRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SpoutBlockEntity> WEATHERING_SPOUT = REGISTRATE
+            .blockEntity("spout", SpoutBlockEntity::new)
+            .validBlocks(BlockRegistry.SPOUTS.getAllEntries())
+            .renderer(() -> SpoutRenderer::new)
             .register();
 
     public static void register() {

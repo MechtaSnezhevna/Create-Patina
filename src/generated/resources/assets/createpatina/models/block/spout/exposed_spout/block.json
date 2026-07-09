@@ -1,0 +1,8 @@
+{
+  "parent": "createpatina:block/spout/block",
+  "textures": {
+    "0": "createpatina:block/spout/exposed_spout",
+    "3": "createpatina:block/exposed_encased_pipe",
+    "particle": "createpatina:block/exposed_copper_underside"
+  }
+}

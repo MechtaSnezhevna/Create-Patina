@@ -17,6 +17,7 @@ import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
+import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -342,6 +343,36 @@ public class BlockRegistry {
         return null;
     }
 
+    public static final CopperChain<WeatheringSpoutBlock> SPOUTS = new CopperChainBuilder<>(
+        REGISTRATE, "spout", WeatheringSpoutBlock::new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .transform(pickaxeOnly())
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        ModelFile baseModel = p.models()
+                                .withExistingParent("block/spout/" + name + "/block", p.modLoc("block/spout/block"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
+                                .texture("3", p.modLoc("block/" + prefix + "encased_pipe"));
+                        p.simpleBlock(c.get(), baseModel);
+                    })
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .item(AssemblyOperatorBlockItem::new)
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.withExistingParent(name, p.modLoc("block/spout/item"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
+                                .texture("4", p.modLoc("block/" + prefix + "encased_pipe"))
+                                .texture("3", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.SPOUT)
+            .register();
+
     public static final CopperChain<WeatheringSteamEngineBlock> STEAM_ENGINES = new CopperChainBuilder<>(
             REGISTRATE, "steam_engine", WeatheringSteamEngineBlock::new)
             .configure(b -> b
@@ -355,7 +386,8 @@ public class BlockRegistry {
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
                         p.horizontalFaceBlock(c.get(), baseModel);
-                    }).transform(PatinaStress.setCapacity(1024.0))
+                    })
+                    .transform(PatinaStress.setCapacity(1024.0))
                     .onRegister(BlockStressValues.setGeneratorSpeed(64, true))
                     .item()
                     .model((c, p) -> {

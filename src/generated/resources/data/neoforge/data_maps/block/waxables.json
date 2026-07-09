@@ -45,6 +45,9 @@
     "create:smart_fluid_pipe": {
       "waxed": "createpatina:waxed_smart_fluid_pipe"
     },
+    "create:spout": {
+      "waxed": "createpatina:waxed_spout"
+    },
     "create:steam_engine": {
       "waxed": "createpatina:waxed_steam_engine"
     },
@@ -138,6 +141,9 @@
     "createpatina:exposed_smart_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_smart_fluid_pipe"
     },
+    "createpatina:exposed_spout": {
+      "waxed": "createpatina:waxed_exposed_spout"
+    },
     "createpatina:exposed_steam_engine": {
       "waxed": "createpatina:waxed_exposed_steam_engine"
     },
@@ -210,6 +216,9 @@
     "createpatina:oxidized_smart_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_smart_fluid_pipe"
     },
+    "createpatina:oxidized_spout": {
+      "waxed": "createpatina:waxed_oxidized_spout"
+    },
     "createpatina:oxidized_steam_engine": {
       "waxed": "createpatina:waxed_oxidized_steam_engine"
     },
@@ -281,6 +290,9 @@
     },
     "createpatina:weathered_smart_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_smart_fluid_pipe"
+    },
+    "createpatina:weathered_spout": {
+      "waxed": "createpatina:waxed_weathered_spout"
     },
     "createpatina:weathered_steam_engine": {
       "waxed": "createpatina:waxed_weathered_steam_engine"

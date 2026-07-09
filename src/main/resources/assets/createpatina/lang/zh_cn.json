@@ -176,6 +176,13 @@
   "block.createpatina.waxed_exposed_steam_whistle": "涂蜡的斑驳蒸汽笛",
   "block.createpatina.waxed_weathered_steam_whistle": "涂蜡的锈蚀蒸汽笛",
   "block.createpatina.waxed_oxidized_steam_whistle": "涂蜡的氧化蒸汽笛",
+  "block.createpatina.exposed_spout": "斑驳的注液器",
+  "block.createpatina.weathered_spout": "锈蚀的注液器",
+  "block.createpatina.oxidized_spout": "氧化的注液器",
+  "block.createpatina.waxed_spout": "涂蜡的注液器",
+  "block.createpatina.waxed_exposed_spout": "涂蜡的斑驳注液器",
+  "block.createpatina.waxed_weathered_spout": "涂蜡的锈蚀注液器",
+  "block.createpatina.waxed_oxidized_spout": "涂蜡的氧化注液器",
 
   "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
   "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createpatina:block/spout/exposed_spout/block"
+    }
+  }
+}
