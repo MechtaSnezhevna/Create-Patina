@@ -1,6 +1,9 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.content.contraptions.actors.psi.PSIVisual;
+import com.simibubi.create.content.contraptions.actors.psi.PortableFluidInterfaceBlockEntity;
+import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceRenderer;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlockEntity;
@@ -128,6 +131,13 @@ public class BlockEntityRegistry {
             .blockEntity("spout", SpoutBlockEntity::new)
             .validBlocks(BlockRegistry.SPOUTS.getAllEntries())
             .renderer(() -> SpoutRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<PortableFluidInterfaceBlockEntity> WEATHERING_PORTABLE_FLUID_INTERFACE = REGISTRATE
+            .blockEntity("portable_fluid_interface", PortableFluidInterfaceBlockEntity::new)
+            .visual(() -> PSIVisual::new)
+            .validBlocks(BlockRegistry.PORTABLE_FLUID_INTERFACES.getAllEntries())
+            .renderer(() -> PortableStorageInterfaceRenderer::new)
             .register();
 
     public static void register() {

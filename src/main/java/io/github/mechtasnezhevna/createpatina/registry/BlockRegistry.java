@@ -4,6 +4,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.api.stress.BlockStressValues;
+import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceMovement;
 import com.simibubi.create.content.contraptions.behaviour.DoorMovingInteraction;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
@@ -504,6 +505,50 @@ public class BlockRegistry {
                     // removed to prevent recipe to an unaffected handle
                     .build()
             ).unaffected(AllBlocks.COPPER_VALVE_HANDLE)
+            .register();
+
+    public static final CopperChain<WeatheringPortableStorageInterfaceBlock> PORTABLE_FLUID_INTERFACES = new CopperChainBuilder<>(
+            REGISTRATE, "portable_fluid_interface", WeatheringPortableStorageInterfaceBlock::new)
+            .configure(b -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .properties(p -> p.mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
+                    .transform(axeOrPickaxe())
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.directionalBlock(c.get(), p.models()
+                                .withExistingParent("block/portable_fluid_interface/" + name + "/block",
+                                        p.modLoc("block/portable_fluid_interface/block"))
+                                .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
+                                .texture("2", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"))
+                        );
+                        p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_top",
+                                        p.modLoc("block/portable_fluid_interface/block_top"))
+                                .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_middle",
+                                        p.modLoc("block/portable_fluid_interface/block_middle"))
+                                .texture("2", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_middle_powered",
+                                        p.modLoc("block/portable_fluid_interface/block_middle_powered"))
+                                .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                    })
+                    .onRegister(movementBehaviour(new PortableStorageInterfaceMovement()))
+                    .item()
+                    .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        p.withExistingParent(name, p.modLoc("block/portable_fluid_interface/item"))
+                                .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
+                                .texture("2", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.PORTABLE_FLUID_INTERFACE)
             .register();
 
     public static final CopperChain<WeatheringBacktankBlock> COPPER_BACKTANKS = new CopperChainBuilder<>(
