@@ -38,7 +38,6 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
-import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaModelGen;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFluidPipeGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringWhistleGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
@@ -485,6 +484,9 @@ public class BlockRegistry {
                             String dir = vertical ? "vertical" : "horizontal";
                             return modelMap.get(c.getName() + "_" + dir + "_" + (enabled ? "open" : "closed"));
                         });
+                        p.models().withExistingParent(c.getName() + "_pointer", createLoc("block/fluid_valve/pointer"))
+                                .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("2", p.modLoc("block/" + prefix + "fluid_valve"));
                     })
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .item()

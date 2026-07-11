@@ -28,6 +28,7 @@
     "oxidization.SpoutOxidizationMixin",
     "oxidization.SteamEngineOxidizationMixin",
     "oxidization.SteamWhistleOxidizationMixin",
+    "render.FluidValvaVisualMixin",
     "render.PipeAttachmentModelMixin",
     "render.PortableStorageInterfaceRendererMixin",
     "render.SlidingDoorRendererMixin",

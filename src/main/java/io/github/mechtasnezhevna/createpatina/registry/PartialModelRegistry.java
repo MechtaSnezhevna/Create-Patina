@@ -23,6 +23,7 @@ public class PartialModelRegistry {
             new EnumMap<>(WeatheringType.class);
 
     public static final Map<WeatheringType, PartialModel> WEATHERING_VALVE_HANDLES = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, PartialModel> WEATHERING_VALVE_POINTER = new EnumMap<>(WeatheringType.class);
 
     public static final Map<WeatheringType, PartialModel> WEATHERING_DOOR_LEFT = new EnumMap<>(WeatheringType.class);
     public static final Map<WeatheringType, PartialModel> WEATHERING_DOOR_RIGHT = new EnumMap<>(WeatheringType.class);
@@ -53,6 +54,7 @@ public class PartialModelRegistry {
             }
             WEATHERING_PIPE_ATTACHMENTS.put(type, attachmentMap);
             WEATHERING_VALVE_HANDLES.put(type, block(prefix + "copper_valve_handle"));
+            WEATHERING_VALVE_POINTER.put(type, block(prefix + "fluid_valve_pointer"));
             WEATHERING_DOOR_LEFT.put(type, block("copper_door/" + prefix + "copper_door/fold_left"));
             WEATHERING_DOOR_RIGHT.put(type, block("copper_door/" + prefix + "copper_door/fold_right"));
             WEATHERING_PORTABLE_FLUID_INTERFACE_TOP.put(type, block("portable_fluid_interface/" + prefix + "portable_fluid_interface/block_top"));
