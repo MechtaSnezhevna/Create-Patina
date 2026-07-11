@@ -1,10 +1,8 @@
 package io.github.mechtasnezhevna.createpatina.event;
 
-import com.simibubi.create.AllBlockEntityTypes;
 import io.github.mechtasnezhevna.createpatina.mixin.ItemDrainBlockEntityAccessor;
 import io.github.mechtasnezhevna.createpatina.mixin.SpoutBlockEntityAccessor;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
-import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.core.Direction;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

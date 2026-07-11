@@ -27,6 +27,13 @@ public class PartialModelRegistry {
     public static final Map<WeatheringType, PartialModel> WEATHERING_DOOR_LEFT = new EnumMap<>(WeatheringType.class);
     public static final Map<WeatheringType, PartialModel> WEATHERING_DOOR_RIGHT = new EnumMap<>(WeatheringType.class);
 
+    public static final Map<WeatheringType, PartialModel>
+            WEATHERING_PORTABLE_FLUID_INTERFACE_TOP = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, PartialModel>
+            WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, PartialModel>
+            WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE_POWERED = new EnumMap<>(WeatheringType.class);
+
     static {
         for (WeatheringType type : WeatheringType.values()) {
             if (type == WeatheringType.UNAFFECTED) // The base type should be defined in Create.
@@ -48,6 +55,9 @@ public class PartialModelRegistry {
             WEATHERING_VALVE_HANDLES.put(type, block(prefix + "copper_valve_handle"));
             WEATHERING_DOOR_LEFT.put(type, block("copper_door/" + prefix + "copper_door/fold_left"));
             WEATHERING_DOOR_RIGHT.put(type, block("copper_door/" + prefix + "copper_door/fold_right"));
+            WEATHERING_PORTABLE_FLUID_INTERFACE_TOP.put(type, block("portable_fluid_interface/" + prefix + "portable_fluid_interface/block_top"));
+            WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE.put(type, block("portable_fluid_interface/" + prefix + "portable_fluid_interface/block_middle"));
+            WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE_POWERED.put(type, block("portable_fluid_interface/" + prefix + "portable_fluid_interface/block_middle_powered"));
         }
     }
 

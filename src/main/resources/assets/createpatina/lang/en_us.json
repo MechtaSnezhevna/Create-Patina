@@ -183,6 +183,13 @@
   "block.createpatina.waxed_exposed_spout": "Waxed Exposed Spout",
   "block.createpatina.waxed_weathered_spout": "Waxed Weathered Spout",
   "block.createpatina.waxed_oxidized_spout": "Waxed Oxidized Spout",
+  "block.createpatina.exposed_portable_fluid_interface": "Exposed Portable Fluid Interface",
+  "block.createpatina.weathered_portable_fluid_interface": "Weathered Portable Fluid Interface",
+  "block.createpatina.oxidized_portable_fluid_interface": "Oxidized Portable Fluid Interface",
+  "block.createpatina.waxed_portable_fluid_interface": "Waxed Portable Fluid Interface",
+  "block.createpatina.waxed_exposed_portable_fluid_interface": "Waxed Exposed Portable Fluid Interface",
+  "block.createpatina.waxed_weathered_portable_fluid_interface": "Waxed Weathered Portable Fluid Interface",
+  "block.createpatina.waxed_oxidized_portable_fluid_interface": "Waxed Oxidized Portable Fluid Interface",
 
   "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
   "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",

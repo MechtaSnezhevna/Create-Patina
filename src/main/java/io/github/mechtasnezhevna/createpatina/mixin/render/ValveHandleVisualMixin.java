@@ -37,12 +37,10 @@ public class ValveHandleVisualMixin {
             color = vhb.color;
         }
 
-        // 染色手轮：保持原逻辑
         if (color != null) {
             return original.call(originalPartial);
         }
 
-        // 氧化手轮：替换为自定义模型
         if (state != null && state.getBlock() instanceof PatinaBlock patina) {
             WeatheringType type = patina.getType();
             if (type != WeatheringType.UNAFFECTED) {

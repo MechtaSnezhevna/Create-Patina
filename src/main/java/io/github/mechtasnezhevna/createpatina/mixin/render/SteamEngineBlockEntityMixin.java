@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.render;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;

@@ -1,6 +1,5 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;

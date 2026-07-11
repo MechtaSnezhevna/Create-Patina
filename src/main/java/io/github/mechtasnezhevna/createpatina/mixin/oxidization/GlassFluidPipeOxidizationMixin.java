@@ -2,7 +2,6 @@ package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;

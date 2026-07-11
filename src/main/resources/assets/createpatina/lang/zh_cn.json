@@ -183,6 +183,13 @@
   "block.createpatina.waxed_exposed_spout": "涂蜡的斑驳注液器",
   "block.createpatina.waxed_weathered_spout": "涂蜡的锈蚀注液器",
   "block.createpatina.waxed_oxidized_spout": "涂蜡的氧化注液器",
+  "block.createpatina.exposed_portable_fluid_interface": "斑驳的移动式流体接口",
+  "block.createpatina.weathered_portable_fluid_interface": "锈蚀的移动式流体接口",
+  "block.createpatina.oxidized_portable_fluid_interface": "氧化的移动式流体接口",
+  "block.createpatina.waxed_portable_fluid_interface": "涂蜡的移动式流体接口",
+  "block.createpatina.waxed_exposed_portable_fluid_interface": "涂蜡的斑驳移动式流体接口",
+  "block.createpatina.waxed_weathered_portable_fluid_interface": "涂蜡的锈蚀移动式流体接口",
+  "block.createpatina.waxed_oxidized_portable_fluid_interface": "涂蜡的氧化移动式流体接口",
 
   "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
   "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",

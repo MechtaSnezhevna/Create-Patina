@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
