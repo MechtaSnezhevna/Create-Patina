@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry.chain;
+package io.github.mechtasnezhevna.createpatina.registry.util;
 
 import com.google.common.collect.HashBiMap;
 import net.minecraft.core.Holder;

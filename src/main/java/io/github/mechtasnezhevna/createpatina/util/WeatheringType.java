@@ -1,5 +1,9 @@
 package io.github.mechtasnezhevna.createpatina.util;
 
+import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import org.jetbrains.annotations.Contract;
 
@@ -60,6 +64,43 @@ public enum WeatheringType {
     @Contract(pure = true)
     public static String getPrefixWithoutWaxedByName(String name){
         return getPrefixByName(name.replace("waxed_",""));
+    }
+
+
+    public static WeatheringType getFromPrefix(String name) {
+        return switch (name) {
+            case "exposed_" -> EXPOSED;
+            case "weathered_" -> WEATHERED;
+            case "oxidized_" -> OXIDIZED;
+            case "waxed_" -> WAXED;
+            case "waxed_exposed_" -> WAXED_EXPOSED;
+            case "waxed_weathered_" -> WAXED_WEATHERED;
+            case "waxed_oxidized_" -> WAXED_OXIDIZED;
+            default -> UNAFFECTED;
+        };
+    }
+
+    public static WeatheringType fromBlock(Block block) {
+        return fromId(BuiltInRegistries.BLOCK.getKey(block));
+    }
+
+    public static WeatheringType fromBlockEntry(BlockEntry<?> entry) {
+        return fromId(entry.getId());
+    }
+
+    public static WeatheringType fromId(ResourceLocation id) {
+        return fromIdString(id.getPath());
+    }
+
+    public static WeatheringType fromIdString(String id) {
+        if (id.startsWith("waxed_exposed_")) return WAXED_EXPOSED;
+        else if (id.startsWith("waxed_weathered_")) return WAXED_WEATHERED;
+        else if (id.startsWith("waxed_oxidized_")) return WAXED_OXIDIZED;
+        else if (id.startsWith("exposed_")) return EXPOSED;
+        else if (id.startsWith("weathered_")) return WEATHERED;
+        else if (id.startsWith("oxidized_")) return OXIDIZED;
+        else if (id.startsWith("waxed_")) return WAXED;
+        else return UNAFFECTED;
     }
 
     public WeatheringType getNext() {

@@ -3,9 +3,8 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringWhistleBlock;
+import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -23,9 +22,7 @@ public class WhistleBlockUsageMixin {
     )
     private boolean redirectWhistleIsIn(BlockEntry<?> entry, ItemStack stack) {
         if (entry == AllBlocks.STEAM_WHISTLE) {
-            Block block = Block.byItem(stack.getItem());
-            return block == AllBlocks.STEAM_WHISTLE.get()
-                    || block instanceof WeatheringWhistleBlock;
+            return BlockRegistry.STEAM_WHISTLE_SET.isIn(stack);
         }
         return entry.isIn(stack);
     }

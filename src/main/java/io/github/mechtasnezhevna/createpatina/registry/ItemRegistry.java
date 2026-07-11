@@ -33,7 +33,7 @@ public class ItemRegistry
             String baseName = type.getPrefix() + "copper_backtank";
             PLACEABLE_BACKTANKS.put(type, REGISTRATE
                     .item(baseName + "_placeable", p -> new BacktankItem.BacktankBlockItem(
-                            BlockRegistry.COPPER_BACKTANKS.get(type),
+                            BlockRegistry.COPPER_BACKTANK_SET.get(type),
                             () -> ARMOR_BACKTANKS.get(type).get(), p))
                     .model((c, p) -> p.withExistingParent(c.getName(), p.mcLoc("item/barrier")))
                     .register());

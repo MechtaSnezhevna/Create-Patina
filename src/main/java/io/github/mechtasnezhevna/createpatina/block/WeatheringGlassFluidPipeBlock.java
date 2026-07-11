@@ -10,6 +10,7 @@ import com.simibubi.create.content.schematics.requirement.ItemRequirement;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
+import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.createmod.catnip.data.Iterate;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -63,7 +64,7 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringFluidPipeBlock.reconnect(level, pos);
+        ConnectFuncs.reconnect(level, pos);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
     private BlockEntry<? extends FluidPipeBlock> getOriginal() {
         if (type == WeatheringType.UNAFFECTED)
             return AllBlocks.FLUID_PIPE;
-        return BlockRegistry.FLUID_PIPES.getEntries().get(type);
+        return BlockRegistry.FLUID_PIPE_SET.getEntry(type, FluidPipeBlock.class);
     }
     
     @Override
@@ -108,7 +109,7 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
                 break;
             if (t == WeatheringType.UNAFFECTED)
                 continue;
-            if (BlockRegistry.COPPER_CASINGS.getEntry(t).isIn(stack)) {
+            if (BlockRegistry.COPPER_CASING_SET.getEntry(t).isIn(stack)) {
                 isValidCasing = true;
                 CasingType = t;
             }

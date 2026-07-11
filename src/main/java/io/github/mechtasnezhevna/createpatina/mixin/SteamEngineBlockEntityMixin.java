@@ -3,7 +3,7 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringSteamEngineBlock;
+import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,8 +22,7 @@ public class SteamEngineBlockEntityMixin {
     )
     private boolean redirectHasInGetTargetAngle(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_ENGINE) {
-            return state.getBlock() == AllBlocks.STEAM_ENGINE.get()
-                    || state.getBlock() instanceof WeatheringSteamEngineBlock;
+            return BlockRegistry.STEAM_ENGINE_SET.has(state);
         }
         return entry.has(state);
     }
@@ -38,8 +37,7 @@ public class SteamEngineBlockEntityMixin {
     )
     private boolean redirectHasInTick(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_ENGINE) {
-            return state.getBlock() == AllBlocks.STEAM_ENGINE.get()
-                    || state.getBlock() instanceof WeatheringSteamEngineBlock;
+            return BlockRegistry.STEAM_ENGINE_SET.has(state);
         }
         return entry.has(state);
     }

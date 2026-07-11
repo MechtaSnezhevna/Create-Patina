@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry.chain;
+package io.github.mechtasnezhevna.createpatina.registry.util;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;

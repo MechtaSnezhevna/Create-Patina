@@ -37,96 +37,96 @@ public class BlockEntityRegistry {
 
     public static final BlockEntityEntry<ItemDrainBlockEntity> WEATHERING_ITEM_DRAIN = REGISTRATE
             .blockEntity("item_drain", ItemDrainBlockEntity::new)
-            .validBlocks(BlockRegistry.ITEM_DRAINS.getAllEntries())
+            .validBlocks(BlockRegistry.ITEM_DRAIN_SET.getAllEntries())
             .renderer(() -> ItemDrainRenderer::new)
             .register();
 
     public static final BlockEntityEntry<PumpBlockEntity> WEATHERING_PUMP = REGISTRATE
             .blockEntity("pump", PumpBlockEntity::new)
             .visual(() -> SingleAxisRotatingVisual.ofZ(AllPartialModels.MECHANICAL_PUMP_COG))
-            .validBlocks(BlockRegistry.MECHANICAL_PUMPS.getAllEntries())
+            .validBlocks(BlockRegistry.MECHANICAL_PUMP_SET.getAllEntries())
             .renderer(() -> PumpRenderer::new)
             .register();
 
     public static final BlockEntityEntry<FluidPipeBlockEntity> WEATHERING_FLUID_PIPE = REGISTRATE
             .blockEntity("fluid_pipe", FluidPipeBlockEntity::new)
-            .validBlocks(BlockRegistry.FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.FLUID_PIPE_SET.getAllEntries())
             .register();
 
     public static final BlockEntityEntry<StraightPipeBlockEntity> WEATHERING_GLASS_FLUID_PIPE = REGISTRATE
             .blockEntity("glass_fluid_pipe", StraightPipeBlockEntity::new)
             .visual(() -> GlassPipeVisual::new, false)
-            .validBlocks(BlockRegistry.GLASS_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.GLASS_FLUID_PIPE_SET.getAllEntries())
             .renderer(() -> TransparentStraightPipeRenderer::new)
             .register();
 
     public static final BlockEntityEntry<FluidPipeBlockEntity> WEATHERING_ENCASED_FLUID_PIPE = REGISTRATE
             .blockEntity("encased_fluid_pipe", FluidPipeBlockEntity::new)
-            .validBlocks(BlockRegistry.ENCASED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_EXPOSED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_OXIDIZED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_WEATHERED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_WAXED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_WAXED_EXPOSED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_WAXED_OXIDIZED_FLUID_PIPES.getAllEntries())
-            .validBlocks(BlockRegistry.ENCASED_WAXED_WEATHERED_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_EXPOSED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_OXIDIZED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WEATHERED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_EXPOSED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_OXIDIZED_FLUID_PIPE_SET.getAllEntries())
+            .validBlocks(BlockRegistry.ENCASED_WAXED_WEATHERED_FLUID_PIPE_SET.getAllEntries())
             .register();
 
     public static final BlockEntityEntry<ValveHandleBlockEntity> WEATHERING_VALVE_HANDLE = REGISTRATE
             .blockEntity("copper_valve_handle", ValveHandleBlockEntity::new)
             .visual(() -> ValveHandleVisual::new)
-            .validBlocks(BlockRegistry.COPPER_VALVE_HANDLES.getAllEntries())
+            .validBlocks(BlockRegistry.COPPER_VALVE_HANDLE_SET.getAllEntries())
             .renderer(() -> HandCrankRenderer::new)
             .register();
 
     public static final BlockEntityEntry<FluidValveBlockEntity> WEATHERING_FLUID_VALVE = REGISTRATE
             .blockEntity("fluid_valve", FluidValveBlockEntity::new)
             .visual(() -> FluidValveVisual::new)
-            .validBlocks(BlockRegistry.FLUID_VALVES.getAllEntries())
+            .validBlocks(BlockRegistry.FLUID_VALVE_SET.getAllEntries())
             .renderer(() -> FluidValveRenderer::new)
             .register();
 
     public static final BlockEntityEntry<SmartFluidPipeBlockEntity> WEATHERING_SMART_FLUID_PIPE = REGISTRATE
             .blockEntity("smart_fluid_pipe", SmartFluidPipeBlockEntity::new)
-            .validBlocks(BlockRegistry.SMART_FLUID_PIPES.getAllEntries())
+            .validBlocks(BlockRegistry.SMART_FLUID_PIPE_SET.getAllEntries())
             .renderer(() -> SmartBlockEntityRenderer::new)
             .register();
 
     public static final BlockEntityEntry<TableClothBlockEntity> WEATHERING_TABLE_CLOTH = REGISTRATE
             .blockEntity("table_cloth", TableClothBlockEntity::new)
-            .validBlocks(BlockRegistry.COPPER_TABLE_CLOTHS.getAllEntries())
+            .validBlocks(BlockRegistry.COPPER_TABLE_CLOTH_SET.getAllEntries())
             .renderer(() -> TableClothRenderer::new)
             .register();
 
     public static final BlockEntityEntry<SlidingDoorBlockEntity> WEATHERING_COPPER_DOOR = REGISTRATE
             .blockEntity("copper_door", SlidingDoorBlockEntity::new)
             .renderer(() -> SlidingDoorRenderer::new)
-            .validBlocks(BlockRegistry.COPPER_DOORS.getAllEntries())
+            .validBlocks(BlockRegistry.COPPER_DOOR_SET.getAllEntries())
             .register();
 
     public static final BlockEntityEntry<BacktankBlockEntity> WEATHERING_COPPER_BACKTANK = REGISTRATE
             .blockEntity("copper_backtank", BacktankBlockEntity::new)
             .visual(() -> SingleAxisRotatingVisual::backtank)
-            .validBlocks(BlockRegistry.COPPER_BACKTANKS.getAllEntries())
+            .validBlocks(BlockRegistry.COPPER_BACKTANK_SET.getAllEntries())
             .renderer(() -> BacktankRenderer::new)
             .register();
 
     public static final BlockEntityEntry<SteamEngineBlockEntity> WEATHERING_STEAM_ENGINE = REGISTRATE
             .blockEntity("steam_engine", SteamEngineBlockEntity::new)
             .visual(() -> SteamEngineVisual::new, false)
-            .validBlocks(BlockRegistry.STEAM_ENGINES.getAllEntries())
+            .validBlocks(BlockRegistry.STEAM_ENGINE_SET.getAllEntries())
             .renderer(() -> SteamEngineRenderer::new)
             .register();
 
     public static final BlockEntityEntry<WhistleBlockEntity> WEATHERING_STEAM_WHISTLE = REGISTRATE
             .blockEntity("steam_whistle", WhistleBlockEntity::new)
-            .validBlocks(BlockRegistry.STEAM_WHISTLES.getAllEntries())
+            .validBlocks(BlockRegistry.STEAM_WHISTLE_SET.getAllEntries())
             .renderer(() -> WhistleRenderer::new)
             .register();
 
     public static final BlockEntityEntry<SpoutBlockEntity> WEATHERING_SPOUT = REGISTRATE
             .blockEntity("spout", SpoutBlockEntity::new)
-            .validBlocks(BlockRegistry.SPOUTS.getAllEntries())
+            .validBlocks(BlockRegistry.SPOUT_SET.getAllEntries())
             .renderer(() -> SpoutRenderer::new)
             .register();
 

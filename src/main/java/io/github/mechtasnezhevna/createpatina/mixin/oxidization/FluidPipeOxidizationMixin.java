@@ -2,7 +2,7 @@ package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
+import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -34,7 +34,7 @@ public abstract class FluidPipeOxidizationMixin extends Block implements PatinaB
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringFluidPipeBlock.reconnect(level, pos);
+        ConnectFuncs.reconnect(level, pos);
     }
 
     @Override

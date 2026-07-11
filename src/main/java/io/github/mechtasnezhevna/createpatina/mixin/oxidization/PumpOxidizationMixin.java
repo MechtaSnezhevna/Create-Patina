@@ -1,16 +1,22 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
+import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringPumpBlock;
+import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
+import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -22,23 +28,36 @@ public abstract class PumpOxidizationMixin extends Block implements PatinaBlock 
         super(properties);
     }
 
+    @Unique
+    private WeatheringType patina$type;
+
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return true;
+        return super.isRandomlyTicking(state) ||
+                (this.isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringPumpBlock.reconnect(level, pos);
+        ConnectFuncs.reconnect(level, pos);
     }
 
     @Override
     public WeatheringType getType() {
-        return WeatheringType.UNAFFECTED;
+        if (patina$type == null) {
+            patina$type = WeatheringType.fromBlock(this);
+        }
+        return patina$type;
+    }
+
+    @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
+    public BlockEntityType<? extends PumpBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        return BlockEntityRegistry.WEATHERING_PUMP.get();
     }
 }

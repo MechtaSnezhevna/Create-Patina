@@ -3,8 +3,7 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.tank.BoilerData;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringSteamEngineBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringWhistleBlock;
+import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,12 +22,10 @@ public abstract class BoilerDataMixin {
     )
     private boolean redirectHas(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_ENGINE) {
-            return state.getBlock() == AllBlocks.STEAM_ENGINE.get()
-                    || state.getBlock() instanceof WeatheringSteamEngineBlock;
+            return BlockRegistry.STEAM_ENGINE_SET.has(state);
         }
         if (entry == AllBlocks.STEAM_WHISTLE) {
-            return state.getBlock() == AllBlocks.STEAM_WHISTLE.get()
-                    || state.getBlock() instanceof WeatheringWhistleBlock;
+            return BlockRegistry.STEAM_WHISTLE_SET.has(state);
         }
         return entry.has(state);
     }

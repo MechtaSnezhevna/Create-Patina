@@ -1,7 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.registry.DataGen;
 
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
-import io.github.mechtasnezhevna.createpatina.registry.chain.PatinaDataMapProvider;
+import io.github.mechtasnezhevna.createpatina.registry.util.PatinaDataMapProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

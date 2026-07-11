@@ -1,16 +1,15 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
 import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
-import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
+import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.createmod.catnip.data.Iterate;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -21,7 +20,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -87,9 +85,7 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
     }
 
     private BlockEntry<? extends GlassFluidPipeBlock> getGlassVariant() {
-        if (type == WeatheringType.UNAFFECTED)
-            return AllBlocks.GLASS_FLUID_PIPE;
-        return BlockRegistry.GLASS_FLUID_PIPES.getEntries().get(type);
+        return BlockRegistry.GLASS_FLUID_PIPE_SET.getEntry(type, GlassFluidPipeBlock.class);
     }
 
     @Override
@@ -110,32 +106,11 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        reconnect(level, pos);
+        ConnectFuncs.reconnect(level, pos);
     }
 
     @Override
     public BlockEntityType<? extends FluidPipeBlockEntity> getBlockEntityType() {
         return BlockEntityRegistry.WEATHERING_FLUID_PIPE.get();
-    }
-
-    public static void reconnect(ServerLevel level, BlockPos pos) {
-        for (Direction d : Direction.values()) {
-            BlockPos neighborPos = pos.relative(d);
-            BlockState neighborState = level.getBlockState(neighborPos);
-            FluidTransportBehaviour pipe = FluidPropagator.getPipe(level, neighborPos);
-            if (pipe != null) {
-                if (pipe.interfaces != null) {
-                    // Force remove the old connections
-                    pipe.interfaces.remove(d.getOpposite());
-                }
-                FluidPropagator.propagateChangedPipe(level, neighborPos, neighborState);
-                FluidPropagator.resetAffectedFluidNetworks(level, neighborPos, d.getOpposite());
-            }
-
-            BlockEntity neighborBE = level.getBlockEntity(neighborPos);
-            if (neighborBE instanceof PumpBlockEntity pumpBE) {
-                pumpBE.updatePressureChange();
-            }
-        }
     }
 }

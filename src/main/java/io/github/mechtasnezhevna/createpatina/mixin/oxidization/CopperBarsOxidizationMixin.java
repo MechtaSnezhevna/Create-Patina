@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -21,11 +22,28 @@ public abstract class CopperBarsOxidizationMixin extends Block implements Patina
         super(p_54345_);
     }
 
+    @Unique
+    private WeatheringType patina$type;
+    @Unique
+    private Boolean patina$isCopperBars;
+
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        // Copper bars use a different register way
-        // that causes mixin NPE if we use AllBlocks.COPPER_BARS.get() here
-        return state.getBlock().getDescriptionId().equals("block.create.copper_bars");
+        if (patina$isCopperBars == null) {
+            patina$isCopperBars = state.getBlock().getDescriptionId()
+                    .contains("copper_bars");
+        }
+        return super.isRandomlyTicking(state) ||
+                (patina$isCopperBars && this.isWeatheringEnabled()
+                        && getType() != WeatheringType.OXIDIZED);
+    }
+
+    @Override
+    public boolean isWeatheringEnabled() {
+        if (patina$isCopperBars == null) {
+            return false;
+        }
+        return patina$isCopperBars && !getType().isWaxed();
     }
 
     @Override
@@ -35,6 +53,9 @@ public abstract class CopperBarsOxidizationMixin extends Block implements Patina
 
     @Override
     public WeatheringType getType() {
-        return WeatheringType.UNAFFECTED;
+        if (patina$type == null) {
+            patina$type = WeatheringType.fromBlock(this);
+        }
+        return patina$type;
     }
 }

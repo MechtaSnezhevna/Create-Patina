@@ -3,13 +3,12 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleExtenderBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringWhistleBlock;
+import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,8 +29,7 @@ public class WhistleExtenderBlockMixin {
     )
     private boolean redirectHasCanSurvive(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_WHISTLE) {
-            return state.getBlock() == AllBlocks.STEAM_WHISTLE.get()
-                    || state.getBlock() instanceof WeatheringWhistleBlock;
+            return BlockRegistry.STEAM_WHISTLE_SET.has(state);
         }
         return entry.has(state);
     }
@@ -46,9 +44,7 @@ public class WhistleExtenderBlockMixin {
     )
     private boolean redirectIsIn(BlockEntry<?> entry, ItemStack stack) {
         if (entry == AllBlocks.STEAM_WHISTLE) {
-            Block block = Block.byItem(stack.getItem());
-            return block == AllBlocks.STEAM_WHISTLE.get()
-                    || block instanceof WeatheringWhistleBlock;
+            return BlockRegistry.STEAM_WHISTLE_SET.isIn(stack);
         }
         return entry.isIn(stack);
     }
@@ -63,8 +59,7 @@ public class WhistleExtenderBlockMixin {
     )
     private boolean redirectHidesNeighborFace(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_WHISTLE) {
-            return state.getBlock() == AllBlocks.STEAM_WHISTLE.get()
-                    || state.getBlock() instanceof WeatheringWhistleBlock;
+            return BlockRegistry.STEAM_WHISTLE_SET.has(state);
         }
         return entry.has(state);
     }

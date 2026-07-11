@@ -11,6 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -22,18 +23,41 @@ public abstract class CopperScaffoldOxidizationMixin extends Block implements Pa
         super(p_54345_);
     }
 
+    @Unique
+    private WeatheringType patina$type;
+    @Unique
+    private Boolean patina$isCopperScaffold;
+
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getBlock() == AllBlocks.COPPER_SCAFFOLD.get();
+        if (patina$isCopperScaffold == null) {
+            patina$isCopperScaffold = state.getBlock().getDescriptionId()
+                    .contains("copper_scaffold");
+        }
+        return super.isRandomlyTicking(state) ||
+                (patina$isCopperScaffold && this.isWeatheringEnabled()
+                        && getType() != WeatheringType.OXIDIZED);
+    }
+
+    @Override
+    public boolean isWeatheringEnabled() {
+        if (patina$isCopperScaffold == null) {
+            return false;
+        }
+        return patina$isCopperScaffold && !getType().isWaxed();
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }
 
     @Override
     public WeatheringType getType() {
-        return WeatheringType.UNAFFECTED;
+        if (patina$type == null) {
+            patina$type = WeatheringType.fromBlock(this);
+        }
+        return patina$type;
     }
 }

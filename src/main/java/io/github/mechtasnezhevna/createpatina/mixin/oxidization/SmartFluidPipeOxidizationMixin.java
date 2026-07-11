@@ -1,15 +1,21 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlock;
+import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.block.WeatheringFluidPipeBlock;
+import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
+import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SmartFluidPipeBlock.class)
 public abstract class SmartFluidPipeOxidizationMixin extends Block implements PatinaBlock {
@@ -17,23 +23,36 @@ public abstract class SmartFluidPipeOxidizationMixin extends Block implements Pa
         super(properties);
     }
 
+    @Unique
+    private WeatheringType patina$type;
+
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return true;
+        return super.isRandomlyTicking(state) ||
+                (isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }
 
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        WeatheringFluidPipeBlock.reconnect(level, pos);
+        ConnectFuncs.reconnect(level, pos);
     }
 
     @Override
     public WeatheringType getType() {
-        return WeatheringType.UNAFFECTED;
+        if (patina$type == null) {
+            patina$type = WeatheringType.fromBlock(this);
+        }
+        return patina$type;
+    }
+
+    @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
+    public BlockEntityType<? extends SmartFluidPipeBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        return BlockEntityRegistry.WEATHERING_SMART_FLUID_PIPE.get();
     }
 }

@@ -1,18 +1,23 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
+import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SlidingDoorBlock.class)
 public abstract class CopperDoorOxidizationMixin extends Block implements PatinaBlock {
@@ -20,12 +25,28 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
         super(properties);
     }
 
+    @Unique
+    private WeatheringType patina$type;
+    @Unique
+    private Boolean patina$isCopperDoor;
+
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        if (state.getBlock().getDescriptionId().equals("block.create.copper_door")) {
-            return true;
+        if (patina$isCopperDoor == null) {
+            patina$isCopperDoor = state.getBlock().getDescriptionId()
+                    .contains("copper_door");
         }
-        return super.isRandomlyTicking(state);
+        return super.isRandomlyTicking(state) ||
+                (patina$isCopperDoor && this.isWeatheringEnabled()
+                        && getType() != WeatheringType.OXIDIZED);
+    }
+
+    @Override
+    public boolean isWeatheringEnabled() {
+        if (patina$isCopperDoor == null) {
+            return false;
+        }
+        return patina$isCopperDoor && !getType().isWaxed();
     }
 
     @Override
@@ -77,6 +98,14 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
 
     @Override
     public WeatheringType getType() {
-        return WeatheringType.UNAFFECTED;
+        if (patina$type == null) {
+            patina$type = WeatheringType.fromBlock(this);
+        }
+        return patina$type;
+    }
+
+    @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
+    public BlockEntityType<? extends SlidingDoorBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        return BlockEntityRegistry.WEATHERING_COPPER_DOOR.get();
     }
 }

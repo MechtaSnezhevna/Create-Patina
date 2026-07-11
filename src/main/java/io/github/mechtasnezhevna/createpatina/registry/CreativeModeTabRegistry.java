@@ -25,7 +25,7 @@ public class CreativeModeTabRegistry {
     public static final Supplier<CreativeModeTab> CREATEPATINA_TAB = CREATIVE_MODE_TABS.register("createpatina_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.createpatina"))
-                    .icon(BlockRegistry.ITEM_DRAINS.getEntry(WeatheringType.WEATHERED)::asStack)
+                    .icon(BlockRegistry.ITEM_DRAIN_SET.getEntry(WeatheringType.WEATHERED)::asStack)
                     .build()
     );
 
@@ -48,21 +48,21 @@ public class CreativeModeTabRegistry {
                 fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
                 e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
-            insertBefore(e, BlockRegistry.ITEM_DRAINS.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
-            insertBefore(e, BlockRegistry.MECHANICAL_PUMPS.getEntry(WeatheringType.EXPOSED), AllBlocks.MECHANICAL_PUMP);
-            insertBefore(e, BlockRegistry.FLUID_PIPES.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_PIPE);
-            insertBefore(e, BlockRegistry.COPPER_CASINGS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_CASING);
-            insertBefore(e, BlockRegistry.COPPER_LADDERS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_LADDER);
-            insertBefore(e, BlockRegistry.COPPER_SCAFFOLDS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_SCAFFOLD);
+            insertBefore(e, BlockRegistry.ITEM_DRAIN_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
+            insertBefore(e, BlockRegistry.MECHANICAL_PUMP_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.MECHANICAL_PUMP);
+            insertBefore(e, BlockRegistry.FLUID_PIPE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_PIPE);
+            insertBefore(e, BlockRegistry.COPPER_CASING_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_CASING);
+            insertBefore(e, BlockRegistry.COPPER_LADDER_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_LADDER);
+            insertBefore(e, BlockRegistry.COPPER_SCAFFOLD_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_SCAFFOLD);
             insertBefore(e, BlockRegistry.COPPER_BARS_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_BARS);
-            insertBefore(e, BlockRegistry.COPPER_VALVE_HANDLES.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_VALVE_HANDLE);
-            insertBefore(e, BlockRegistry.FLUID_VALVES.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_VALVE);
-            insertBefore(e, BlockRegistry.SMART_FLUID_PIPES.getEntry(WeatheringType.EXPOSED), AllBlocks.SMART_FLUID_PIPE);
-            insertBefore(e, BlockRegistry.COPPER_TABLE_CLOTHS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_TABLE_CLOTH);
-            insertBefore(e, BlockRegistry.COPPER_DOORS.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_DOOR);
-            insertBefore(e, BlockRegistry.STEAM_ENGINES.getEntry(WeatheringType.EXPOSED), AllBlocks.STEAM_ENGINE);
-            insertBefore(e, BlockRegistry.STEAM_WHISTLES.getEntry(WeatheringType.EXPOSED), AllBlocks.STEAM_WHISTLE);
-            insertBefore(e, BlockRegistry.SPOUTS.getEntry(WeatheringType.EXPOSED), AllBlocks.SPOUT);
+            insertBefore(e, BlockRegistry.COPPER_VALVE_HANDLE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_VALVE_HANDLE);
+            insertBefore(e, BlockRegistry.FLUID_VALVE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_VALVE);
+            insertBefore(e, BlockRegistry.SMART_FLUID_PIPE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.SMART_FLUID_PIPE);
+            insertBefore(e, BlockRegistry.COPPER_TABLE_CLOTH_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_TABLE_CLOTH);
+            insertBefore(e, BlockRegistry.COPPER_DOOR_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.COPPER_DOOR);
+            insertBefore(e, BlockRegistry.STEAM_ENGINE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.STEAM_ENGINE);
+            insertBefore(e, BlockRegistry.STEAM_WHISTLE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.STEAM_WHISTLE);
+            insertBefore(e, BlockRegistry.SPOUT_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.SPOUT);
         }
     }
 
