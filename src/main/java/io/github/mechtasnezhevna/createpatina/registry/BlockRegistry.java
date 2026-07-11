@@ -3,6 +3,7 @@ package io.github.mechtasnezhevna.createpatina.registry;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.Create;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceMovement;
 import com.simibubi.create.content.contraptions.behaviour.DoorMovingInteraction;
@@ -37,6 +38,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaModelGen;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFluidPipeGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringWhistleGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
@@ -366,7 +368,7 @@ public class BlockRegistry {
                         String name = c.getName();
                         String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
                         ModelFile baseModel = p.models()
-                                .withExistingParent("block/spout/" + name + "/block", p.modLoc("block/spout/block"))
+                                .withExistingParent("block/spout/" + name + "/block", createLoc("block/spout/block"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
                                 .texture("3", p.modLoc("block/" + prefix + "encased_pipe"));
@@ -745,5 +747,9 @@ public class BlockRegistry {
             .register();
 
     public static void register() {
+    }
+
+    private static ResourceLocation createLoc(String name) {
+        return ResourceLocation.fromNamespaceAndPath(Create.ID, name);
     }
 }
