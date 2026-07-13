@@ -5,6 +5,7 @@
     "BoilerDataMixin",
     "ChangeOverTimeBlockMixin",
     "LightningBoltMixin",
+    "PortableStorageInterfaceMovementMixin",
     "WhistleBlockUsageMixin",
     "WhistleExtenderBlockMixin",
     "accessor.HosePulleyBlockEntityAccessor",
