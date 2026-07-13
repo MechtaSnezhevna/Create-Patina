@@ -2,6 +2,7 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceMovement;
+import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,9 +22,12 @@ public class PortableStorageInterfaceMovementMixin {
             )
     )
     private Block redirectTargetBlock(BlockState instance) {
-        if (BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.has(instance)) {
-            return AllBlocks.PORTABLE_FLUID_INTERFACE.get();
+        if (PatinaConfig.CONFIG.ENABLE_FLUID_INTERFACE_CROSS_MATCHING.get()) {
+            if (BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.has(instance)) {
+                return AllBlocks.PORTABLE_FLUID_INTERFACE.get();
+            }
         }
+
         return instance.getBlock();
     }
 
@@ -36,9 +40,12 @@ public class PortableStorageInterfaceMovementMixin {
             )
     )
     private Block redirectOriginalBlock(BlockState instance) {
-        if (BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.has(instance)) {
-            return AllBlocks.PORTABLE_FLUID_INTERFACE.get();
+        if (PatinaConfig.CONFIG.ENABLE_FLUID_INTERFACE_CROSS_MATCHING.get()) {
+            if (BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.has(instance)) {
+                return AllBlocks.PORTABLE_FLUID_INTERFACE.get();
+            }
         }
+
         return instance.getBlock();
     }
 
