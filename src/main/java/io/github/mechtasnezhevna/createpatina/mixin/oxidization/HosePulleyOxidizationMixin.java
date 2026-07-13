@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -47,6 +48,9 @@ public class HosePulleyOxidizationMixin extends Block implements PatinaBlock {
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends HosePulleyBlockEntity> getBlockEntityType(BlockEntityType<?> type) {
+        if(patina$type == WeatheringType.UNAFFECTED) {
+            return AllBlockEntityTypes.HOSE_PULLEY.get();
+        }
         return BlockEntityRegistry.WEATHERING_HOSE_PULLEY.get();
     }
 }

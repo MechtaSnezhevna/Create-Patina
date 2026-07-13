@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -48,6 +49,9 @@ public class SteamWhistleOxidizationMixin extends Block implements PatinaBlock {
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends WhistleBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED){
+            return AllBlockEntityTypes.STEAM_WHISTLE.get();
+        }
         return BlockEntityRegistry.WEATHERING_STEAM_WHISTLE.get();
     }
 }

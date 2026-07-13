@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.equipment.armor.BacktankBlock;
 import com.simibubi.create.content.equipment.armor.BacktankBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -63,6 +64,9 @@ public abstract class CopperBacktankOxidizationMixin extends Block implements Pa
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends BacktankBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED) {
+            return AllBlockEntityTypes.BACKTANK.get();
+        }
         return BlockEntityRegistry.WEATHERING_COPPER_BACKTANK.get();
     }
 }

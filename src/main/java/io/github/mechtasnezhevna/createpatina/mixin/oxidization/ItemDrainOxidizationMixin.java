@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -58,6 +59,9 @@ public abstract class ItemDrainOxidizationMixin extends Block implements PatinaB
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     private BlockEntityType<? extends ItemDrainBlockEntity> modifyBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED){
+            return AllBlockEntityTypes.ITEM_DRAIN.get();
+        }
         return BlockEntityRegistry.WEATHERING_ITEM_DRAIN.get();
     }
 }

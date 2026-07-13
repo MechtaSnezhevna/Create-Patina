@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -54,6 +55,9 @@ public class SteamEngineOxidizationMixin extends Block implements PatinaBlock {
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends SteamEngineBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED){
+            return AllBlockEntityTypes.STEAM_ENGINE.get();
+        }
         return BlockEntityRegistry.WEATHERING_STEAM_ENGINE.get();
     }
 }

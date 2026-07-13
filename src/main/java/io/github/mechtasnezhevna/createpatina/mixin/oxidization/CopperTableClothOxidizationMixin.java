@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -69,6 +70,9 @@ public abstract class CopperTableClothOxidizationMixin extends Block implements 
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends TableClothBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED){
+            return AllBlockEntityTypes.TABLE_CLOTH.get();
+        }
         return BlockEntityRegistry.WEATHERING_TABLE_CLOTH.get();
     }
 }

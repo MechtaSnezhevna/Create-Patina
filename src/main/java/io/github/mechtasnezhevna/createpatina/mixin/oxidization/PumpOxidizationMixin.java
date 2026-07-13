@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -58,6 +59,9 @@ public abstract class PumpOxidizationMixin extends Block implements PatinaBlock 
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends PumpBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED){
+            return AllBlockEntityTypes.MECHANICAL_PUMP.get();
+        }
         return BlockEntityRegistry.WEATHERING_PUMP.get();
     }
 }

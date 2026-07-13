@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -106,6 +107,9 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends SlidingDoorBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
+        if(patina$type == WeatheringType.UNAFFECTED){
+            return AllBlockEntityTypes.SLIDING_DOOR.get();
+        }
         return BlockEntityRegistry.WEATHERING_COPPER_DOOR.get();
     }
 }
