@@ -1,0 +1,8 @@
+{
+  "parent": "create:block/hose_pulley/block",
+  "textures": {
+    "1": "createpatina:block/hose_pulley/weathered_hose_pulley",
+    "3": "createpatina:block/weathered_pump",
+    "partical": "createpatina:block/weathered_fluid_tank_inner"
+  }
+}

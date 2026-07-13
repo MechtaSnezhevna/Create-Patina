@@ -20,6 +20,7 @@ import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.equipment.armor.BacktankBlock;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlock;
@@ -520,6 +521,38 @@ public class BlockRegistry {
                     // removed to prevent recipe to an unaffected handle
                     .build()
             ).unaffected(AllBlocks.COPPER_VALVE_HANDLE)
+            .register();
+
+    public static final PatinaSet HOSE_PULLEY_SET = new PatinaSetBuilder<>(
+            REGISTRATE, "hose_pulley", HosePulleyBlock:: new)
+            .configure((type, b) -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(pickaxeOnly())
+                    .blockstate((c,p) -> {
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.horizontalBlock(c.get(), p.models()
+                                .withExistingParent("block/hose_pulley/" + name + "/block",
+                                        createLoc("block/hose_pulley/block"))
+                                .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
+                                .texture("3", p.modLoc("block/" + prefix + "pump"))
+                                .texture("partical", p.modLoc("block/" + prefix + "fluid_tank_inner"))
+                        );
+                    })
+                    .transform(PatinaStress.setImpact(4.0))
+                    .item()
+                    .model((c, p) -> {
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent(name, createLoc("block/hose_pulley/item"))
+                                .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
+                                .texture("3", p.modLoc("block/" + prefix + "pump"))
+                                .texture("partical", p.modLoc("block/" + prefix + "fluid_tank_inner"));
+                    })
+                    .build()
+            ).unaffected(AllBlocks.HOSE_PULLEY)
             .register();
 
     public static final PatinaSet PORTABLE_FLUID_INTERFACE_SET = new PatinaSetBuilder<>(

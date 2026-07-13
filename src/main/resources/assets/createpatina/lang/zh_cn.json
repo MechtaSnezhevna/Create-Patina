@@ -190,6 +190,13 @@
   "block.createpatina.waxed_exposed_portable_fluid_interface": "涂蜡的斑驳移动式流体接口",
   "block.createpatina.waxed_weathered_portable_fluid_interface": "涂蜡的锈蚀移动式流体接口",
   "block.createpatina.waxed_oxidized_portable_fluid_interface": "涂蜡的氧化移动式流体接口",
+  "block.createpatina.exposed_hose_pulley": "斑驳的软管滑轮",
+  "block.createpatina.weathered_hose_pulley": "锈蚀的软管滑轮",
+  "block.createpatina.oxidized_hose_pulley": "氧化的软管滑轮",
+  "block.createpatina.waxed_hose_pulley": "涂蜡的软管滑轮",
+  "block.createpatina.waxed_exposed_hose_pulley": "涂蜡的斑驳软管滑轮",
+  "block.createpatina.waxed_weathered_hose_pulley": "涂蜡的锈蚀软管滑轮",
+  "block.createpatina.waxed_oxidized_hose_pulley": "涂蜡的氧化软管滑轮",
 
   "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
   "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",

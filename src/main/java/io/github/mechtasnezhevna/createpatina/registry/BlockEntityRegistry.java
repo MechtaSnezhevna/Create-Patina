@@ -4,6 +4,7 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.contraptions.actors.psi.PSIVisual;
 import com.simibubi.create.content.contraptions.actors.psi.PortableFluidInterfaceBlockEntity;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceRenderer;
+import com.simibubi.create.content.contraptions.pulley.HosePulleyVisual;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlockEntity;
@@ -12,6 +13,8 @@ import com.simibubi.create.content.equipment.armor.BacktankBlockEntity;
 import com.simibubi.create.content.equipment.armor.BacktankRenderer;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyRenderer;
 import com.simibubi.create.content.fluids.pipes.*;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
@@ -138,6 +141,13 @@ public class BlockEntityRegistry {
             .visual(() -> PSIVisual::new)
             .validBlocks(BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.getAllEntries())
             .renderer(() -> PortableStorageInterfaceRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<HosePulleyBlockEntity> WEATHERING_HOSE_PULLEY = REGISTRATE
+            .blockEntity("hose_pulley", HosePulleyBlockEntity::new)
+            .visual(() -> HosePulleyVisual::new)
+            .validBlocks(BlockRegistry.HOSE_PULLEY_SET.getAllEntries())
+            .renderer(() -> HosePulleyRenderer::new)
             .register();
 
     public static void register() {

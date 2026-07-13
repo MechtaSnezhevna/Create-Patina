@@ -190,6 +190,13 @@
   "block.createpatina.waxed_exposed_portable_fluid_interface": "Waxed Exposed Portable Fluid Interface",
   "block.createpatina.waxed_weathered_portable_fluid_interface": "Waxed Weathered Portable Fluid Interface",
   "block.createpatina.waxed_oxidized_portable_fluid_interface": "Waxed Oxidized Portable Fluid Interface",
+  "block.createpatina.exposed_hose_pulley": "Exposed Hose Pulley",
+  "block.createpatina.weathered_hose_pulley": "Weathered Hose Pulley",
+  "block.createpatina.oxidized_hose_pulley": "Oxidized Hose Pulley",
+  "block.createpatina.waxed_hose_pulley": "Waxed Hose Pulley",
+  "block.createpatina.waxed_exposed_hose_pulley": "Waxed Exposed Hose Pulley",
+  "block.createpatina.waxed_weathered_hose_pulley": "Waxed Weathered Hose Pulley",
+  "block.createpatina.waxed_oxidized_hose_pulley": "Waxed Oxidized Hose Pulley",
 
   "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
   "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",

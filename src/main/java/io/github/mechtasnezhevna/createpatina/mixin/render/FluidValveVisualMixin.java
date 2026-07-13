@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(FluidValveVisual.class)
-public abstract class FluidValvaVisualMixin {
+public abstract class FluidValveVisualMixin {
 
 
     @WrapOperation(method = "<init>",

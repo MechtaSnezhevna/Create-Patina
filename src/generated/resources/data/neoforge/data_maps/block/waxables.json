@@ -36,6 +36,9 @@
     "create:glass_fluid_pipe": {
       "waxed": "createpatina:waxed_glass_fluid_pipe"
     },
+    "create:hose_pulley": {
+      "waxed": "createpatina:waxed_hose_pulley"
+    },
     "create:item_drain": {
       "waxed": "createpatina:waxed_item_drain"
     },
@@ -135,6 +138,9 @@
     "createpatina:exposed_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_glass_fluid_pipe"
     },
+    "createpatina:exposed_hose_pulley": {
+      "waxed": "createpatina:waxed_exposed_hose_pulley"
+    },
     "createpatina:exposed_item_drain": {
       "waxed": "createpatina:waxed_exposed_item_drain"
     },
@@ -213,6 +219,9 @@
     "createpatina:oxidized_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_glass_fluid_pipe"
     },
+    "createpatina:oxidized_hose_pulley": {
+      "waxed": "createpatina:waxed_oxidized_hose_pulley"
+    },
     "createpatina:oxidized_item_drain": {
       "waxed": "createpatina:waxed_oxidized_item_drain"
     },
@@ -290,6 +299,9 @@
     },
     "createpatina:weathered_glass_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_glass_fluid_pipe"
+    },
+    "createpatina:weathered_hose_pulley": {
+      "waxed": "createpatina:waxed_weathered_hose_pulley"
     },
     "createpatina:weathered_item_drain": {
       "waxed": "createpatina:waxed_weathered_item_drain"
