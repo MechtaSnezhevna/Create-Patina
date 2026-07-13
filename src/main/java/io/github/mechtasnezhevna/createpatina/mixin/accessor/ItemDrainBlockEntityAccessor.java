@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.accessor;
 
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainItemHandler;

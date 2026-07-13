@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.accessor;
 
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
