@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry.DataGen;
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleGenerator;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -20,7 +21,7 @@ public class WeatheringWhistleGenerator extends WhistleGenerator {
         boolean powered = state.getValue(WhistleBlock.POWERED);
         ModelFile baseModel = prov.models()
                 .withExistingParent("block/steam_whistle/" + name + "/block_" + size + "_" + wall,
-                        prov.modLoc("block/steam_whistle/block_" + size + "_" + wall))
+                        Create.asResource("block/steam_whistle/block_" + size + "_" + wall))
                 .texture("1", prov.modLoc("block/steam_engine/" + prefix + "engine"))
                 .texture("2", prov.modLoc("block/" + prefix + "copper_redstone_plate"));
         if (!powered) {

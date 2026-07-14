@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/fluid_valve/item",
+  "parent": "create:block/fluid_valve/item",
   "textures": {
     "2": "createpatina:block/weathered_fluid_valve",
     "3": "createpatina:block/weathered_valve_closed",

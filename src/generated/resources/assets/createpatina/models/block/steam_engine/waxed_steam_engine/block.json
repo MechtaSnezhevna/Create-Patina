@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/steam_engine/block",
+  "parent": "create:block/steam_engine/block",
   "textures": {
     "1": "createpatina:block/steam_engine/engine",
     "particle": "createpatina:block/copper_underside"

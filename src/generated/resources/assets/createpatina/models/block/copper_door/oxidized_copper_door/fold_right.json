@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/copper_door/fold_right",
+  "parent": "create:block/copper_door/fold_right",
   "textures": {
     "0": "createpatina:block/copper_door/oxidized_copper_door_side",
     "2": "createpatina:block/copper_door/oxidized_copper_door_top",

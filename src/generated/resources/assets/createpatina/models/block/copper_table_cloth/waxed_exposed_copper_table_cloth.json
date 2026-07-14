@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/table_cloth/block",
+  "parent": "create:block/table_cloth/block",
   "textures": {
     "0": "createpatina:block/table_cloth/exposed_copper"
   }

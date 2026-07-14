@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/smart_fluid_pipe/block",
+  "parent": "create:block/smart_fluid_pipe/block",
   "textures": {
     "2": "createpatina:block/smart_pipe_1",
     "3": "createpatina:block/smart_pipe_2",

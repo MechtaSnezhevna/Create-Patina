@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/copper_door/block_bottom",
+  "parent": "create:block/copper_door/block_bottom",
   "textures": {
     "0": "createpatina:block/copper_door/copper_door_side",
     "2": "createpatina:block/copper_door/copper_door_bottom",

@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry.DataGen;
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.pipes.SmartFluidPipeGenerator;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
@@ -12,9 +13,11 @@ public class WeatheringSmartFluidPipeGenerator extends SmartFluidPipeGenerator {
 
     @Override
     public <T extends Block> ModelFile getModel(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov, BlockState state) {
-        String prefix = WeatheringType.getPrefixWithoutWaxedByName(ctx.getName());
+        String name = ctx.getName();
+        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
         return prov.models()
-                .withExistingParent("block/smart_fluid_pipe/" + ctx.getName(), prov.modLoc("block/smart_fluid_pipe/block"))
+                .withExistingParent("block/smart_fluid_pipe/" + name,
+                        Create.asResource("block/smart_fluid_pipe/block"))
                 .texture("2", prov.modLoc("block/" + prefix + "smart_pipe_1"))
                 .texture("3", prov.modLoc("block/" + prefix + "smart_pipe_2"))
                 .texture("4", prov.modLoc("block/" + prefix + "pipes"))

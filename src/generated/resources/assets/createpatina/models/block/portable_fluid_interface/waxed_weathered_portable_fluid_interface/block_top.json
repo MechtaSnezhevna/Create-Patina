@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/portable_fluid_interface/block_top",
+  "parent": "create:block/portable_fluid_interface/block_top",
   "textures": {
     "0": "createpatina:block/portable_fluid_interface/weathered_portable_fluid_interface",
     "particle": "createpatina:block/weathered_copper_casing"

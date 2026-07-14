@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/fluid_valve/block_horizontal_closed",
+  "parent": "create:block/fluid_valve/block_horizontal_closed",
   "textures": {
     "2": "createpatina:block/exposed_fluid_valve",
     "3": "createpatina:block/exposed_valve_closed",

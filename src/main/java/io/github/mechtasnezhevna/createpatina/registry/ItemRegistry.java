@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllTags;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
 import com.simibubi.create.content.equipment.armor.BacktankItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -43,7 +44,7 @@ public class ItemRegistry
                             ResourceLocation.fromNamespaceAndPath(MODID,prefix + "copper_diving"),
                             PLACEABLE_BACKTANKS.get(type)))
                     .model((c, p) ->
-                            p.withExistingParent(baseName, p.modLoc("block/copper_backtank/item"))
+                            p.withExistingParent(baseName, Create.asResource("block/copper_backtank/item"))
                              .texture("0", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
                              .texture("particle", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank")))
                     .tag(AllTags.AllItemTags.PRESSURIZED_AIR_SOURCES.tag)

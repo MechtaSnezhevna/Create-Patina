@@ -388,12 +388,12 @@ public class BlockRegistry {
                         String name = c.getName();
                         String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
                         ModelFile baseModel = p.models()
-                                .withExistingParent("block/spout/" + name + "/block", createLoc("block/spout/block"))
+                                .withExistingParent("block/spout/" + name + "/block", Create.asResource("block/spout/block"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
                                 .texture("3", p.modLoc("block/" + prefix + "encased_pipe"));
                         p.simpleBlock(c.get(), baseModel);
-                        p.models().withExistingParent("block/spout/" + name + "/bottom", createLoc("block/spout/bottom"))
+                        p.models().withExistingParent("block/spout/" + name + "/bottom", Create.asResource("block/spout/bottom"))
                                 .texture("2", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
                     })
                     .addLayer(() -> RenderType::cutoutMipped)
@@ -401,7 +401,7 @@ public class BlockRegistry {
                     .model((c, p) -> {
                         String name = c.getName();
                         String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, createLoc("block/spout/item"))
+                        p.withExistingParent(name, Create.asResource("block/spout/item"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
                                 .texture("4", p.modLoc("block/" + prefix + "encased_pipe"))
@@ -418,9 +418,10 @@ public class BlockRegistry {
                     .transform(pickaxeOnly())
                     .blockstate((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        String prefix = type.getPrefixWithoutWaxed();
                         ModelFile baseModel = p.models()
-                                .withExistingParent("block/steam_engine/" + name + "/block", p.modLoc("block/steam_engine/block"))
+                                .withExistingParent("block/steam_engine/" + name + "/block",
+                                        Create.asResource("block/steam_engine/block"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
                         p.horizontalFaceBlock(c.get(), baseModel);
@@ -430,8 +431,8 @@ public class BlockRegistry {
                     .item()
                     .model((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, p.modLoc("block/steam_engine/item"))
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent(name, Create.asResource("block/steam_engine/item"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
                     })
@@ -441,7 +442,7 @@ public class BlockRegistry {
 
     public static final PatinaSet STEAM_WHISTLE_SET = new PatinaSetBuilder<>(
             REGISTRATE, "steam_whistle", WhistleBlock::new)
-            .configure(b ->b
+            .configure((type,b) ->b
                     .initialProperties(SharedProperties::copperMetal)
                     .properties(p -> p.mapColor(MapColor.GOLD))
                     .transform(pickaxeOnly())
@@ -449,8 +450,8 @@ public class BlockRegistry {
                     .item()
                     .model((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, p.modLoc("block/steam_whistle/item"))
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent(name, Create.asResource("block/steam_whistle/item"))
                                 .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"))
                                 .texture("2", p.modLoc("block/" + prefix + "copper_redstone_plate"));
                     })
@@ -469,8 +470,8 @@ public class BlockRegistry {
                     .item()
                     .model((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, p.modLoc("block/smart_fluid_pipe/item"))
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent(name, Create.asResource("block/smart_fluid_pipe/item"))
                                 .texture("2", p.modLoc("block/" + prefix + "smart_pipe_1"))
                                 .texture("3", p.modLoc("block/" + prefix + "smart_pipe_2"))
                                 .texture("1", p.modLoc("block/" + prefix + "pipes"))
@@ -488,13 +489,13 @@ public class BlockRegistry {
                     .transform(pickaxeOnly())
                     .addLayer(() -> RenderType::cutoutMipped)
                     .blockstate((c, p) -> {
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(c.getName());
+                        String prefix = type.getPrefixWithoutWaxed();
                         Map<String, ModelFile> modelMap = new HashMap<>();
                         for (String dir : new String[]{"vertical", "horizontal"}) {
                             for (String state : new String[]{"open", "closed"}) {
                                 String modelName = c.getName() + "_" + dir + "_" + state;
                                 ModelFile model = p.models().withExistingParent(modelName,
-                                                p.modLoc("block/fluid_valve/block_" + dir + "_" + state))
+                                                Create.asResource("block/fluid_valve/block_" + dir + "_" + state))
                                         .texture("2", p.modLoc("block/" + prefix + "fluid_valve"))
                                         .texture("4", p.modLoc("block/" + prefix + "valve_" + state))
                                         .texture("3", p.modLoc("block/" + prefix + "valve_" + state))
@@ -507,7 +508,7 @@ public class BlockRegistry {
                             String dir = vertical ? "vertical" : "horizontal";
                             return modelMap.get(c.getName() + "_" + dir + "_" + (enabled ? "open" : "closed"));
                         });
-                        p.models().withExistingParent(c.getName() + "_pointer", createLoc("block/fluid_valve/pointer"))
+                        p.models().withExistingParent(c.getName() + "_pointer", Create.asResource("block/fluid_valve/pointer"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("2", p.modLoc("block/" + prefix + "fluid_valve"));
                     })
@@ -515,8 +516,8 @@ public class BlockRegistry {
                     .item()
                     .model((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, p.modLoc("block/fluid_valve/item"))
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent(name, Create.asResource("block/fluid_valve/item"))
                                 .texture("2", p.modLoc("block/" + prefix + "fluid_valve"))
                                 .texture("4", p.modLoc("block/" + prefix + "valve_open"))
                                 .texture("3", p.modLoc("block/" + prefix + "valve_closed"))
@@ -532,7 +533,8 @@ public class BlockRegistry {
                     .initialProperties(SharedProperties::copperMetal)
                     .transform(pickaxeOnly())
                     .blockstate((c, p) -> p.directionalBlock(c.get(), p.models()
-                            .withExistingParent(c.getName(), p.modLoc("block/copper_valve_handle"))
+                            .withExistingParent(c.getName(),
+                                    Create.asResource("block/copper_valve_handle"))
                             .texture("3", p.modLoc("block/" + WeatheringType.getPrefixWithoutWaxedByName(c.getName()) + "valve_handle_copper"))))
                     .tag(AllTags.AllBlockTags.BRITTLE.tag, AllTags.AllBlockTags.VALVE_HANDLES.tag)
                     .onRegister(BlockStressValues.setGeneratorSpeed(32))
@@ -557,7 +559,7 @@ public class BlockRegistry {
                         String prefix = type.getPrefixWithoutWaxed();
                         p.horizontalBlock(c.get(), p.models()
                                 .withExistingParent("block/hose_pulley/" + name + "/block",
-                                        createLoc("block/hose_pulley/block"))
+                                        Create.asResource("block/hose_pulley/block"))
                                 .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
                                 .texture("3", p.modLoc("block/" + prefix + "pump"))
                                 .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"))
@@ -568,7 +570,7 @@ public class BlockRegistry {
                     .model((c, p) -> {
                         String name = c.getName();
                         String prefix = type.getPrefixWithoutWaxed();
-                        p.withExistingParent(name, createLoc("block/hose_pulley/item"))
+                        p.withExistingParent(name, Create.asResource("block/hose_pulley/item"))
                                 .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
                                 .texture("3", p.modLoc("block/" + prefix + "pump"))
                                 .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"));
@@ -585,24 +587,24 @@ public class BlockRegistry {
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        String prefix = type.getPrefixWithoutWaxed();
                         p.directionalBlock(c.get(), p.models()
                                 .withExistingParent("block/portable_fluid_interface/" + name + "/block",
-                                        p.modLoc("block/portable_fluid_interface/block"))
+                                        Create.asResource("block/portable_fluid_interface/block"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("2", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"))
                         );
                         p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_top",
-                                        p.modLoc("block/portable_fluid_interface/block_top"))
+                                        Create.asResource("block/portable_fluid_interface/block_top"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
                         p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_middle",
-                                        p.modLoc("block/portable_fluid_interface/block_middle"))
+                                        Create.asResource("block/portable_fluid_interface/block_middle"))
                                 .texture("2", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
                         p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_middle_powered",
-                                        p.modLoc("block/portable_fluid_interface/block_middle_powered"))
+                                        Create.asResource("block/portable_fluid_interface/block_middle_powered"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
                     })
@@ -611,8 +613,8 @@ public class BlockRegistry {
                     .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
                     .model((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, p.modLoc("block/portable_fluid_interface/item"))
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent(name, Create.asResource("block/portable_fluid_interface/item"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("2", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
@@ -624,11 +626,10 @@ public class BlockRegistry {
     public static final PatinaSet COPPER_BACKTANK_SET = new PatinaSetBuilder<>(
             REGISTRATE, "copper_backtank", BacktankBlock:: new)
             .configure((type, builder) -> {
-                String baseName = builder.getName();
-                String prefix = WeatheringType.getPrefixWithoutWaxedByName(baseName);
+                String prefix = type.getPrefixWithoutWaxed();
                 builder.initialProperties(SharedProperties::copperMetal)
                         .blockstate((c, p) -> p.horizontalBlock(c.get(),
-                                p.models().withExistingParent("block/copper_backtank/" + c.getName(), p.modLoc("block/copper_backtank/block"))
+                                p.models().withExistingParent("block/copper_backtank/" + c.getName(), Create.asResource("block/copper_backtank/block"))
                                         .texture("0", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
                                         .texture("particle", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
                         ))
@@ -660,8 +661,9 @@ public class BlockRegistry {
                     .blockstate((c, p) -> {
                         String name = c.getName();
                         p.simpleBlock(c.get(), p.models()
-                         .withExistingParent("block/copper_table_cloth/" + name, p.modLoc("block/table_cloth/block"))
-                         .texture("0", p.modLoc("block/table_cloth/" + WeatheringType.getPrefixWithoutWaxedByName(name) + "copper")));
+                         .withExistingParent("block/copper_table_cloth/" + name,
+                                 Create.asResource("block/table_cloth/block"))
+                         .texture("0", p.modLoc("block/table_cloth/" + type.getPrefixWithoutWaxed() + "copper")));
                     })
                     .onRegister(CreateRegistrate.blockModel(() -> TableClothModel::new))
                     .tag(AllTags.AllBlockTags.TABLE_CLOTHS.tag, BlockTags.INSIDE_STEP_SOUND_BLOCKS)
@@ -670,8 +672,8 @@ public class BlockRegistry {
                     .item(TableClothBlockItem::new)
                     .model((c, p) -> {
                         String name = c.getName();
-                        p.withExistingParent(name, p.modLoc("block/table_cloth/item"))
-                         .texture("0", p.modLoc("block/table_cloth/" + WeatheringType.getPrefixWithoutWaxedByName(name) + "copper"));
+                        p.withExistingParent(name, Create.asResource("block/table_cloth/item"))
+                         .texture("0", p.modLoc("block/table_cloth/" + type.getPrefixWithoutWaxed() + "copper"));
                     })
                     .tag(AllTags.AllItemTags.TABLE_CLOTHS.tag)
                     .build()
@@ -688,27 +690,27 @@ public class BlockRegistry {
                             .strength(3.0F, 6.0F))
                     .blockstate((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        String prefix = type.getPrefixWithoutWaxed();
                         ModelFile bottom = p.models().withExistingParent("block/copper_door/" + name + "/block_bottom",
-                                        p.modLoc("block/copper_door/block_bottom"))
+                                        Create.asResource("block/copper_door/block_bottom"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
                         ModelFile top = p.models().withExistingParent("block/copper_door/" + name + "/block_top",
-                                        p.modLoc("block/copper_door/block_top"))
+                                        Create.asResource("block/copper_door/block_top"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
                         p.doorBlock(c.get(), bottom, bottom, bottom, bottom, top, top, top, top);
 
                         p.models().withExistingParent("block/copper_door/" + name + "/fold_left",
-                                        p.modLoc("block/copper_door/fold_left"))
+                                        Create.asResource("block/copper_door/fold_left"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("3", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
                         p.models().withExistingParent("block/copper_door/" + name + "/fold_right",
-                                        p.modLoc("block/copper_door/fold_right"))
+                                        Create.asResource("block/copper_door/fold_right"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("3", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
@@ -726,7 +728,7 @@ public class BlockRegistry {
                     .tag(ItemTags.DOORS)
                     .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
                     .model((c, p) ->
-                            p.blockSprite(c, p.modLoc("item/copper_door/" + WeatheringType.getPrefixWithoutWaxedByName(b.getName()) + "copper_door")))
+                            p.blockSprite(c, p.modLoc("item/copper_door/" + type.getPrefixWithoutWaxed() + "copper_door")))
                     .build()
             ).unaffected(AllBlocks.COPPER_DOOR)
             .register();
@@ -743,7 +745,7 @@ public class BlockRegistry {
                                 String suffix = s.getValue(MetalScaffoldingBlock.BOTTOM) ? "_horizontal" : "";
                                 return ConfiguredModel.builder()
                                         .modelFile(p.models()
-                                                .withExistingParent(c.getName() + suffix, p.modLoc("block/copper_scaffold/block" + suffix))
+                                                .withExistingParent(c.getName() + suffix, Create.asResource("block/scaffold/block" + suffix))
                                                 .texture("top", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_funnel_frame"))
                                                 .texture("inside", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_scaffold_inside"))
                                                 .texture("side", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_scaffold"))
@@ -770,7 +772,7 @@ public class BlockRegistry {
                     .properties(p -> p.mapColor(PatinaMapColor.getMapColorByName(b.getName())))
                     .addLayer(() -> RenderType::cutout)
                     .blockstate((c, p) -> p.horizontalBlock(c.get(), p.models()
-                            .withExistingParent(c.getName(), p.modLoc("block/copper_ladder"))
+                            .withExistingParent(c.getName(), Create.asResource("block/copper_ladder"))
                             .texture("0", p.modLoc("block/"+type.getPrefixWithoutWaxed()+"ladder_copper_hoop"))
                             .texture("1", p.modLoc("block/"+type.getPrefixWithoutWaxed()+"ladder_copper"))
                             .texture("particle", p.modLoc("block/"+type.getPrefixWithoutWaxed()+"ladder_copper"))))
@@ -804,9 +806,5 @@ public class BlockRegistry {
             .register();
 
     public static void register() {
-    }
-
-    private static ResourceLocation createLoc(String name) {
-        return ResourceLocation.fromNamespaceAndPath(Create.ID, name);
     }
 }

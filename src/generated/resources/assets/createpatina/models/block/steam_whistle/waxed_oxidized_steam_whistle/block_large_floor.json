@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/steam_whistle/block_large_floor",
+  "parent": "create:block/steam_whistle/block_large_floor",
   "textures": {
     "1": "createpatina:block/steam_engine/oxidized_engine",
     "2": "createpatina:block/oxidized_copper_redstone_plate"

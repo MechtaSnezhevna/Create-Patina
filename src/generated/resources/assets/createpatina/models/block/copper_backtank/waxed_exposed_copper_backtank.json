@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/copper_backtank/block",
+  "parent": "create:block/copper_backtank/block",
   "textures": {
     "0": "createpatina:block/copper_backtank/exposed_copper_backtank",
     "particle": "createpatina:block/copper_backtank/exposed_copper_backtank"

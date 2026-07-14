@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/portable_fluid_interface/block",
+  "parent": "create:block/portable_fluid_interface/block",
   "textures": {
     "0": "createpatina:block/portable_fluid_interface/portable_fluid_interface",
     "2": "createpatina:block/copper_underside",

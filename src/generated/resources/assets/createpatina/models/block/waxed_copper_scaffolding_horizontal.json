@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/copper_scaffold/block_horizontal",
+  "parent": "create:block/scaffold/block_horizontal",
   "textures": {
     "casing": "createpatina:block/copper_casing",
     "inside": "createpatina:block/copper_scaffold_inside",
