@@ -2,7 +2,7 @@
   "parent": "create:block/hose_pulley/item",
   "textures": {
     "1": "createpatina:block/hose_pulley/hose_pulley",
-    "3": "createpatina:block/pump",
+    "3": "createpatina:block/pump/pump",
     "partical": "createpatina:block/fluid_tank/fluid_tank_inner"
   }
 }

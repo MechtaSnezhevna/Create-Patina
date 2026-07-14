@@ -95,8 +95,15 @@ public class BlockRegistry {
                     .properties(BlockBehaviour.Properties::randomTicks)
                     .transform(pickaxeOnly())
                     .blockstate((c, p) -> {
-                        var modelPath = p.modLoc("block/item_drain/" + c.getName());
-                        p.simpleBlock(c.get(), new ModelFile.UncheckedModelFile(modelPath));
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        ModelFile modelFile = p.models().withExistingParent("block/item_drain/" + name,
+                                Create.asResource("block/item_drain"))
+                                .texture("0", p.modLoc("block/item_drain/" + prefix + "item_drain_side"))
+                                .texture("3", p.modLoc("block/pump/" + prefix + "pump"))
+                                .texture("4", p.modLoc("block/" + prefix + "copper_underside"))
+                                .texture("particle", p.modLoc("block/item_drain/" + prefix + "item_drain_side"));
+                        p.simpleBlock(c.get(), modelFile);
                     })
                     .simpleItem()
             ).unaffected(AllBlocks.ITEM_DRAIN)
@@ -109,16 +116,28 @@ public class BlockRegistry {
                     .properties(p -> p.mapColor(MapColor.STONE))
                     .properties(BlockBehaviour.Properties::randomTicks)
                     .transform(pickaxeOnly())
-                    .blockstate((c, p) ->
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
                             BlockStateGen.directionalBlockIgnoresWaterlogged(c, p, $ ->
-                                    p.models().getExistingFile(
-                                            p.modLoc("block/mechanical_pump/" + c.getName() + "/block")
-                                    )
-                            ))
+                                p.models().withExistingParent("block/pump/" + name + "/block",
+                                    Create.asResource("block/mechanical_pump/block"))
+                                        .texture("4", p.modLoc("block/pump/" + prefix + "pump"))
+                                        .texture("particle", p.modLoc("block/pump/" + prefix + "pump"))
+                            );
+                    })
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .transform(PatinaStress.setImpact(4.0d))
                     .item()
-                    .transform(customItemModel("mechanical_pump", "_", "item"))
+                    .model((c,p) -> {
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.withExistingParent("block/pump/" + name + "/item",
+                            Create.asResource("block/mechanical_pump/item"))
+                            .texture("4", p.modLoc("block/pump/" + prefix + "pump"))
+                            .texture("particle", p.modLoc("block/pump/" + prefix + "pump"));
+                    })
+                    .build()
             ).unaffected(AllBlocks.MECHANICAL_PUMP)
             .register();
 
@@ -561,7 +580,7 @@ public class BlockRegistry {
                                 .withExistingParent("block/hose_pulley/" + name + "/block",
                                         Create.asResource("block/hose_pulley/block"))
                                 .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
-                                .texture("3", p.modLoc("block/" + prefix + "pump"))
+                                .texture("3", p.modLoc("block/pump/" + prefix + "pump"))
                                 .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"))
                         );
                     })
@@ -572,7 +591,7 @@ public class BlockRegistry {
                         String prefix = type.getPrefixWithoutWaxed();
                         p.withExistingParent(name, Create.asResource("block/hose_pulley/item"))
                                 .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
-                                .texture("3", p.modLoc("block/" + prefix + "pump"))
+                                .texture("3", p.modLoc("block/pump/" + prefix + "pump"))
                                 .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"));
                     })
                     .build()

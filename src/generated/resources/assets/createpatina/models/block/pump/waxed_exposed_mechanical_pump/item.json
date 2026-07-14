@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/mechanical_pump/item",
+  "textures": {
+    "4": "createpatina:block/pump/exposed_pump",
+    "particle": "createpatina:block/pump/exposed_pump"
+  }
+}

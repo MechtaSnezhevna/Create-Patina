@@ -1,0 +1,9 @@
+{
+  "parent": "create:block/item_drain",
+  "textures": {
+    "0": "createpatina:block/item_drain/item_drain_side",
+    "3": "createpatina:block/pump/pump",
+    "4": "createpatina:block/copper_underside",
+    "particle": "createpatina:block/item_drain/item_drain_side"
+  }
+}
