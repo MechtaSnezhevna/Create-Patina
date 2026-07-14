@@ -59,7 +59,7 @@ public abstract class PumpOxidizationMixin extends Block implements PatinaBlock 
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends PumpBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.MECHANICAL_PUMP.get();
         }
         return BlockEntityRegistry.WEATHERING_PUMP.get();

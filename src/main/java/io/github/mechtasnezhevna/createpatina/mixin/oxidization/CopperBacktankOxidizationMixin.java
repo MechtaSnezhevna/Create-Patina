@@ -64,7 +64,7 @@ public abstract class CopperBacktankOxidizationMixin extends Block implements Pa
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends BacktankBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED) {
+        if(getType() == WeatheringType.UNAFFECTED) {
             return AllBlockEntityTypes.BACKTANK.get();
         }
         return BlockEntityRegistry.WEATHERING_COPPER_BACKTANK.get();

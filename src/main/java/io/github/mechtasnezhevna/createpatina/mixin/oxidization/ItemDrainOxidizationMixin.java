@@ -59,7 +59,7 @@ public abstract class ItemDrainOxidizationMixin extends Block implements PatinaB
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     private BlockEntityType<? extends ItemDrainBlockEntity> modifyBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.ITEM_DRAIN.get();
         }
         return BlockEntityRegistry.WEATHERING_ITEM_DRAIN.get();

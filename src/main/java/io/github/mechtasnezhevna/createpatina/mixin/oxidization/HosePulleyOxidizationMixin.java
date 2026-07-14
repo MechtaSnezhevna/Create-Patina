@@ -48,7 +48,7 @@ public class HosePulleyOxidizationMixin extends Block implements PatinaBlock {
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends HosePulleyBlockEntity> getBlockEntityType(BlockEntityType<?> type) {
-        if(patina$type == WeatheringType.UNAFFECTED) {
+        if(getType() == WeatheringType.UNAFFECTED) {
             return AllBlockEntityTypes.HOSE_PULLEY.get();
         }
         return BlockEntityRegistry.WEATHERING_HOSE_PULLEY.get();

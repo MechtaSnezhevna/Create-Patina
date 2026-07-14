@@ -49,7 +49,7 @@ public class SteamWhistleOxidizationMixin extends Block implements PatinaBlock {
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends WhistleBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.STEAM_WHISTLE.get();
         }
         return BlockEntityRegistry.WEATHERING_STEAM_WHISTLE.get();

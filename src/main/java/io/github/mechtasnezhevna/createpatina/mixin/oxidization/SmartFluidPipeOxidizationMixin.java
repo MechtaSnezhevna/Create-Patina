@@ -54,7 +54,7 @@ public abstract class SmartFluidPipeOxidizationMixin extends Block implements Pa
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends SmartFluidPipeBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.SMART_FLUID_PIPE.get();
         }
         return BlockEntityRegistry.WEATHERING_SMART_FLUID_PIPE.get();

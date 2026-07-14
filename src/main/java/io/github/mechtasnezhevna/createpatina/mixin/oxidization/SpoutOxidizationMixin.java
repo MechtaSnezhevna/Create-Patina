@@ -47,7 +47,7 @@ public class SpoutOxidizationMixin extends Block implements PatinaBlock {
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends SpoutBlockEntity> getBlockEntityType(BlockEntityType<?> type) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return BlockEntityRegistry.WEATHERING_SPOUT.get();
         }
         return BlockEntityRegistry.WEATHERING_SPOUT.get();

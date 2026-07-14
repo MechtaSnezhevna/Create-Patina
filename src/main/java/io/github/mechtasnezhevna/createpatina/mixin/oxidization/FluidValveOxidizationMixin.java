@@ -49,7 +49,7 @@ public abstract class FluidValveOxidizationMixin extends Block implements Patina
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     private BlockEntityType<? extends FluidValveBlockEntity> modifyBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.FLUID_VALVE.get();
         }
         return BlockEntityRegistry.WEATHERING_FLUID_VALVE.get();

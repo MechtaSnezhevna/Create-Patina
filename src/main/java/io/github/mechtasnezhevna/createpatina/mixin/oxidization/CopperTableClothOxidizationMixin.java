@@ -70,7 +70,7 @@ public abstract class CopperTableClothOxidizationMixin extends Block implements 
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends TableClothBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.TABLE_CLOTH.get();
         }
         return BlockEntityRegistry.WEATHERING_TABLE_CLOTH.get();

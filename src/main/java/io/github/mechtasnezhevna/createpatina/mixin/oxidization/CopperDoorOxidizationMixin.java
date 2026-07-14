@@ -107,7 +107,7 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     public BlockEntityType<? extends SlidingDoorBlockEntity> getBlockEntityType(BlockEntityType<?> original) {
-        if(patina$type == WeatheringType.UNAFFECTED){
+        if(getType() == WeatheringType.UNAFFECTED){
             return AllBlockEntityTypes.SLIDING_DOOR.get();
         }
         return BlockEntityRegistry.WEATHERING_COPPER_DOOR.get();
