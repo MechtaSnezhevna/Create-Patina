@@ -36,6 +36,7 @@
     "render.PipeAttachmentModelMixin",
     "render.PortableStorageInterfaceRendererMixin",
     "render.SlidingDoorRendererMixin",
+    "render.SpoutRendererMixin",
     "render.SteamEngineBlockEntityMixin",
     "render.ValveHandleVisualMixin"
   ],

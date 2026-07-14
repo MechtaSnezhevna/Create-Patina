@@ -373,13 +373,15 @@ public class BlockRegistry {
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
                                 .texture("3", p.modLoc("block/" + prefix + "encased_pipe"));
                         p.simpleBlock(c.get(), baseModel);
+                        p.models().withExistingParent("block/spout/" + name + "/bottom", createLoc("block/spout/bottom"))
+                                .texture("2", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
                     })
                     .addLayer(() -> RenderType::cutoutMipped)
                     .item(AssemblyOperatorBlockItem::new)
                     .model((c, p) -> {
                         String name = c.getName();
                         String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
-                        p.withExistingParent(name, p.modLoc("block/spout/item"))
+                        p.withExistingParent(name, createLoc("block/spout/item"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
                                 .texture("4", p.modLoc("block/" + prefix + "encased_pipe"))
