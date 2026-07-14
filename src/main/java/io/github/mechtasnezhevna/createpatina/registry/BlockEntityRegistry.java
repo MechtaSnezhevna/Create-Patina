@@ -23,6 +23,8 @@ import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.fluids.spout.SpoutRenderer;
+import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
+import com.simibubi.create.content.fluids.tank.FluidTankRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.crank.HandCrankRenderer;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlockEntity;
@@ -148,6 +150,12 @@ public class BlockEntityRegistry {
             .visual(() -> HosePulleyVisual::new)
             .validBlocks(BlockRegistry.HOSE_PULLEY_SET.getAllEntries())
             .renderer(() -> HosePulleyRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<FluidTankBlockEntity> WEATHERING_FLUID_TANK = REGISTRATE
+            .blockEntity("fluid_tank", FluidTankBlockEntity::new)
+            .validBlocks(BlockRegistry.FLUID_TANK_SET.getAllEntries())
+            .renderer(() -> FluidTankRenderer::new)
             .register();
 
     public static void register() {

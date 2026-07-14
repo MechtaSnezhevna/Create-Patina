@@ -1,9 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllDataComponents;
-import com.simibubi.create.AllTags;
-import com.simibubi.create.Create;
+import com.simibubi.create.*;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceMovement;
 import com.simibubi.create.content.contraptions.behaviour.DoorMovingInteraction;
@@ -27,6 +24,7 @@ import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
+import com.simibubi.create.content.fluids.tank.*;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
@@ -39,6 +37,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringFluidTankGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFluidPipeGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringWhistleGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
@@ -74,8 +73,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import static com.simibubi.create.api.behaviour.display.DisplaySource.displaySource;
 import static com.simibubi.create.api.behaviour.interaction.MovingInteractionBehaviour.interactionBehaviour;
 import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
+import static com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType.mountedFluidStorage;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.MetalBarsGen.barsBlockState;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -359,6 +360,25 @@ public class BlockRegistry {
         };
     }
 
+    public static final PatinaSet FLUID_TANK_SET = new PatinaSetBuilder<>(
+            REGISTRATE, "fluid_tank", FluidTankBlock::regular)
+            .configure((type, b) -> b
+                    .initialProperties(SharedProperties::copperMetal)
+                    .properties(p -> p.noOcclusion()
+                            .isRedstoneConductor((p1, p2, p3) -> true))
+                    .transform(pickaxeOnly())
+                    .blockstate(new WeatheringFluidTankGenerator()::generate)
+                    .onRegister(CreateRegistrate.blockModel(() -> FluidTankModel::standard))
+                    .transform(displaySource(AllDisplaySources.BOILER))
+                    .transform(mountedFluidStorage(AllMountedStorageTypes.FLUID_TANK))
+                    .onRegister(movementBehaviour(new FluidTankMovementBehavior()))
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .item(FluidTankItem::new)
+                    .model(AssetLookup.customBlockItemModel("fluid_tank", "_", "block_single_window"))
+                    .build()
+            ).unaffected(AllBlocks.FLUID_TANK)
+            .register();
+
     public static final PatinaSet SPOUT_SET = new PatinaSetBuilder<>(
         REGISTRATE, "spout", SpoutBlock::new)
             .configure((type, b) -> b
@@ -540,7 +560,7 @@ public class BlockRegistry {
                                         createLoc("block/hose_pulley/block"))
                                 .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
                                 .texture("3", p.modLoc("block/" + prefix + "pump"))
-                                .texture("partical", p.modLoc("block/" + prefix + "fluid_tank_inner"))
+                                .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"))
                         );
                     })
                     .transform(PatinaStress.setImpact(4.0))
@@ -551,7 +571,7 @@ public class BlockRegistry {
                         p.withExistingParent(name, createLoc("block/hose_pulley/item"))
                                 .texture("1", p.modLoc("block/hose_pulley/" + prefix + "hose_pulley"))
                                 .texture("3", p.modLoc("block/" + prefix + "pump"))
-                                .texture("partical", p.modLoc("block/" + prefix + "fluid_tank_inner"));
+                                .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"));
                     })
                     .build()
             ).unaffected(AllBlocks.HOSE_PULLEY)

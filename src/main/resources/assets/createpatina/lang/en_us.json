@@ -197,6 +197,13 @@
   "block.createpatina.waxed_exposed_hose_pulley": "Waxed Exposed Hose Pulley",
   "block.createpatina.waxed_weathered_hose_pulley": "Waxed Weathered Hose Pulley",
   "block.createpatina.waxed_oxidized_hose_pulley": "Waxed Oxidized Hose Pulley",
+  "block.createpatina.exposed_fluid_tank": "Exposed Fluid Tank",
+  "block.createpatina.weathered_fluid_tank": "Weathered Fluid Tank",
+  "block.createpatina.oxidized_fluid_tank": "Oxidized Fluid Tank",
+  "block.createpatina.waxed_fluid_tank": "Waxed Fluid Tank",
+  "block.createpatina.waxed_exposed_fluid_tank": "Waxed Exposed Fluid Tank",
+  "block.createpatina.waxed_weathered_fluid_tank": "Waxed Weathered Fluid Tank",
+  "block.createpatina.waxed_oxidized_fluid_tank": "Waxed Oxidized Fluid Tank",
 
   "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
   "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",

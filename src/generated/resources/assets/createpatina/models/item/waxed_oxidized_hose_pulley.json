@@ -3,6 +3,6 @@
   "textures": {
     "1": "createpatina:block/hose_pulley/oxidized_hose_pulley",
     "3": "createpatina:block/oxidized_pump",
-    "partical": "createpatina:block/oxidized_fluid_tank_inner"
+    "partical": "createpatina:block/fluid_tank/oxidized_fluid_tank_inner"
   }
 }

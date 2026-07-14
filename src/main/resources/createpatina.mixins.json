@@ -22,6 +22,7 @@
     "oxidization.CopperValveHandleOxidizationMixin",
     "oxidization.EncasedPipeOxidizationMixin",
     "oxidization.FluidPipeOxidizationMixin",
+    "oxidization.FluidTankOxidizationMixin",
     "oxidization.FluidValveOxidizationMixin",
     "oxidization.GlassFluidPipeOxidizationMixin",
     "oxidization.HosePulleyOxidizationMixin",
