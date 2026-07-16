@@ -1,5 +1,5 @@
 {
-  "parent": "createpatina:block/spout/item",
+  "parent": "create:block/spout/item",
   "textures": {
     "0": "createpatina:block/spout/weathered_spout",
     "3": "createpatina:block/spout/weathered_spout_nozzle",
