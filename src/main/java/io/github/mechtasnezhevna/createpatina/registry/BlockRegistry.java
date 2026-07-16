@@ -120,7 +120,7 @@ public class BlockRegistry {
                         String name = c.getName();
                         String prefix = type.getPrefixWithoutWaxed();
                             BlockStateGen.directionalBlockIgnoresWaterlogged(c, p, $ ->
-                                p.models().withExistingParent("block/pump/" + name + "/block",
+                                p.models().withExistingParent("block/pump/" + name,
                                     Create.asResource("block/mechanical_pump/block"))
                                         .texture("4", p.modLoc("block/pump/" + prefix + "pump"))
                                         .texture("particle", p.modLoc("block/pump/" + prefix + "pump"))
@@ -132,8 +132,7 @@ public class BlockRegistry {
                     .model((c,p) -> {
                         String name = c.getName();
                         String prefix = type.getPrefixWithoutWaxed();
-                        p.withExistingParent("block/pump/" + name + "/item",
-                            Create.asResource("block/mechanical_pump/item"))
+                        p.withExistingParent(name, Create.asResource("block/mechanical_pump/item"))
                             .texture("4", p.modLoc("block/pump/" + prefix + "pump"))
                             .texture("particle", p.modLoc("block/pump/" + prefix + "pump"));
                     })
@@ -405,7 +404,7 @@ public class BlockRegistry {
                     .transform(pickaxeOnly())
                     .blockstate((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        String prefix = type.getPrefixWithoutWaxed();
                         ModelFile baseModel = p.models()
                                 .withExistingParent("block/spout/" + name + "/block", Create.asResource("block/spout/block"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
@@ -419,7 +418,7 @@ public class BlockRegistry {
                     .item(AssemblyOperatorBlockItem::new)
                     .model((c, p) -> {
                         String name = c.getName();
-                        String prefix = WeatheringType.getPrefixWithoutWaxedByName(name);
+                        String prefix = type.getPrefixWithoutWaxed();
                         p.withExistingParent(name, Create.asResource("block/spout/item"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))

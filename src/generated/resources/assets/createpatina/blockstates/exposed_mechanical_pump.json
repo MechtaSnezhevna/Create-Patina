@@ -1,28 +1,28 @@
 {
   "variants": {
     "facing=down": {
-      "model": "createpatina:block/pump/exposed_mechanical_pump/block",
+      "model": "createpatina:block/pump/exposed_mechanical_pump",
       "x": 180
     },
     "facing=east": {
-      "model": "createpatina:block/pump/exposed_mechanical_pump/block",
+      "model": "createpatina:block/pump/exposed_mechanical_pump",
       "x": 90,
       "y": 90
     },
     "facing=north": {
-      "model": "createpatina:block/pump/exposed_mechanical_pump/block",
+      "model": "createpatina:block/pump/exposed_mechanical_pump",
       "x": 90
     },
     "facing=south": {
-      "model": "createpatina:block/pump/exposed_mechanical_pump/block",
+      "model": "createpatina:block/pump/exposed_mechanical_pump",
       "x": 90,
       "y": 180
     },
     "facing=up": {
-      "model": "createpatina:block/pump/exposed_mechanical_pump/block"
+      "model": "createpatina:block/pump/exposed_mechanical_pump"
     },
     "facing=west": {
-      "model": "createpatina:block/pump/exposed_mechanical_pump/block",
+      "model": "createpatina:block/pump/exposed_mechanical_pump",
       "x": 90,
       "y": 270
     }
