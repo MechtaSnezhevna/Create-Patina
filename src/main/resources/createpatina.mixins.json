@@ -8,6 +8,8 @@
     "PortableStorageInterfaceMovementMixin",
     "WhistleBlockUsageMixin",
     "WhistleExtenderBlockMixin",
+    "accessor.FluidTankBlockEntityAccessor",
+    "accessor.FluidTankBlockEntityInvoker",
     "accessor.HosePulleyBlockEntityAccessor",
     "accessor.ItemDrainBlockEntityAccessor",
     "accessor.PortableFluidInterfaceBlockEntityAccessor",

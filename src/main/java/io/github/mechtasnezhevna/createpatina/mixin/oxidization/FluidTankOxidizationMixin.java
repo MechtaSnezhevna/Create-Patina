@@ -8,6 +8,8 @@ import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
@@ -23,28 +25,25 @@ public class FluidTankOxidizationMixin extends Block implements PatinaBlock {
         super(properties);
     }
 
-    @Unique
-    private WeatheringType patina$type;
-    @Unique
-    private Boolean patina$isRegular;
+    private Boolean isRegularTank() {
+        ResourceLocation id = BuiltInRegistries.BLOCK.getKey(this);
+        return "create".equals(id.getNamespace()) && "fluid_tank".equals(id.getPath());
+    }
+
+    private Boolean isPatinaTank() {
+        ResourceLocation id = BuiltInRegistries.BLOCK.getKey(this);
+        return "createpatina".equals(id.getNamespace());
+    }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        if (patina$isRegular == null) {
-            patina$isRegular = state.getBlock().getDescriptionId()
-                    .equals("create.block.fluid_tank");
-        }
         return super.isRandomlyTicking(state) ||
-                (patina$isRegular && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+                (this.isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
     }
 
     @Override
     public boolean isWeatheringEnabled() {
-        if (patina$isRegular == null) {
-            return false;
-        }
-        return patina$isRegular && !getType().isWaxed();
+        return !getType().isWaxed() && (isRegularTank() || isPatinaTank());
     }
 
     @Override
@@ -55,16 +54,13 @@ public class FluidTankOxidizationMixin extends Block implements PatinaBlock {
 
     @Override
     public WeatheringType getType() {
-        if (patina$type == null) {
-            patina$type = WeatheringType.fromBlock(this);
-        }
-        return patina$type;
+        return WeatheringType.fromBlock(this);
     }
 
     @ModifyReturnValue(method = "getBlockEntityType", at = @At("RETURN"))
     private BlockEntityType<? extends FluidTankBlockEntity> patina$getBlockEntityType(BlockEntityType<? extends FluidTankBlockEntity> original) {
         if (original == AllBlockEntityTypes.FLUID_TANK.get()) {
-            if(patina$isRegular) {
+            if(isRegularTank()) {
                 return AllBlockEntityTypes.FLUID_TANK.get();
             }
             return BlockEntityRegistry.WEATHERING_FLUID_TANK.get();

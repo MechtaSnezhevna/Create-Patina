@@ -1,16 +1,14 @@
 package io.github.mechtasnezhevna.createpatina.event;
 
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
-import io.github.mechtasnezhevna.createpatina.mixin.accessor.HosePulleyBlockEntityAccessor;
-import io.github.mechtasnezhevna.createpatina.mixin.accessor.ItemDrainBlockEntityAccessor;
-import io.github.mechtasnezhevna.createpatina.mixin.accessor.PortableFluidInterfaceBlockEntityAccessor;
-import io.github.mechtasnezhevna.createpatina.mixin.accessor.SpoutBlockEntityAccessor;
+import io.github.mechtasnezhevna.createpatina.mixin.accessor.*;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import net.minecraft.core.Direction;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import static io.github.mechtasnezhevna.createpatina.CreatePatina.MODID;
 
@@ -66,6 +64,17 @@ public class CapabilityEvents {
                 BlockEntityRegistry.WEATHERING_PORTABLE_FLUID_INTERFACE.get(),
                 (be, context) ->
                         ((PortableFluidInterfaceBlockEntityAccessor) be).getCapability()
+        );
+
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                BlockEntityRegistry.WEATHERING_FLUID_TANK.get(),
+                (be, context) -> {
+                    IFluidHandler cap = ((FluidTankBlockEntityAccessor) be).getFluidCapability();
+                    if (cap == null)
+                        ((FluidTankBlockEntityInvoker) be).createpatina$callRefreshCapability();
+                    return cap;
+                }
         );
     }
 }
