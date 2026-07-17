@@ -1,10 +1,10 @@
 {
   "variants": {
     "bottom=false": {
-      "model": "createpatina:block/waxed_copper_scaffolding"
+      "model": "createpatina:block/copper_scaffold/waxed_copper_scaffolding"
     },
     "bottom=true": {
-      "model": "createpatina:block/waxed_copper_scaffolding_horizontal"
+      "model": "createpatina:block/copper_scaffold/waxed_copper_scaffolding_horizontal"
     }
   }
 }

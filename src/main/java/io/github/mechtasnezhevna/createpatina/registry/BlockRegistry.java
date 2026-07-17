@@ -512,7 +512,7 @@ public class BlockRegistry {
                         for (String dir : new String[]{"vertical", "horizontal"}) {
                             for (String state : new String[]{"open", "closed"}) {
                                 String modelName = c.getName() + "_" + dir + "_" + state;
-                                ModelFile model = p.models().withExistingParent(modelName,
+                                ModelFile model = p.models().withExistingParent("block/fluid_valve/" + modelName,
                                                 Create.asResource("block/fluid_valve/block_" + dir + "_" + state))
                                         .texture("2", p.modLoc("block/" + prefix + "fluid_valve"))
                                         .texture("4", p.modLoc("block/" + prefix + "valve_" + state))
@@ -526,7 +526,8 @@ public class BlockRegistry {
                             String dir = vertical ? "vertical" : "horizontal";
                             return modelMap.get(c.getName() + "_" + dir + "_" + (enabled ? "open" : "closed"));
                         });
-                        p.models().withExistingParent(c.getName() + "_pointer", Create.asResource("block/fluid_valve/pointer"))
+                        p.models().withExistingParent("block/fluid_valve/" + c.getName() + "_pointer",
+                                        Create.asResource("block/fluid_valve/pointer"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("2", p.modLoc("block/" + prefix + "fluid_valve"));
                     })
@@ -551,14 +552,18 @@ public class BlockRegistry {
                     .initialProperties(SharedProperties::copperMetal)
                     .transform(pickaxeOnly())
                     .blockstate((c, p) -> p.directionalBlock(c.get(), p.models()
-                            .withExistingParent(c.getName(),
+                            .withExistingParent("block/copper_valve_handle/" + c.getName(),
                                     Create.asResource("block/copper_valve_handle"))
-                            .texture("3", p.modLoc("block/" + WeatheringType.getPrefixWithoutWaxedByName(c.getName()) + "valve_handle_copper"))))
+                            .texture("3", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "valve_handle_copper"))))
                     .tag(AllTags.AllBlockTags.BRITTLE.tag, AllTags.AllBlockTags.VALVE_HANDLES.tag)
                     .onRegister(BlockStressValues.setGeneratorSpeed(32))
                     .onRegister(ItemUseOverrides::addBlock)
                     .transform(PatinaStress.setCapacity(8.0))
                     .item()
+                    .model((c,p) -> {
+                        String name = c.getName();
+                        p.withExistingParent(name, p.modLoc("block/copper_valve_handle/" + name));
+                    })
                     //.tag(AllTags.AllItemTags.VALVE_HANDLES.tag)
                     // removed to prevent recipe to an unaffected handle
                     .build()
@@ -760,15 +765,18 @@ public class BlockRegistry {
                     .addLayer(() -> RenderType::cutout)
                     .blockstate((c, p) -> p.getVariantBuilder(c.get())
                             .forAllStatesExcept(s -> {
+                                String name = c.getName();
+                                String prefix = type.getPrefixWithoutWaxed();
                                 String suffix = s.getValue(MetalScaffoldingBlock.BOTTOM) ? "_horizontal" : "";
                                 return ConfiguredModel.builder()
                                         .modelFile(p.models()
-                                                .withExistingParent(c.getName() + suffix, Create.asResource("block/scaffold/block" + suffix))
-                                                .texture("top", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_funnel_frame"))
-                                                .texture("inside", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_scaffold_inside"))
-                                                .texture("side", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_scaffold"))
-                                                .texture("casing", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_casing"))
-                                                .texture("particle", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "copper_scaffold")))
+                                                .withExistingParent("block/copper_scaffold/" + name + suffix,
+                                                        Create.asResource("block/scaffold/block" + suffix))
+                                                .texture("top", p.modLoc("block/" + prefix + "copper_funnel_frame"))
+                                                .texture("inside", p.modLoc("block/" + prefix + "copper_scaffold_inside"))
+                                                .texture("side", p.modLoc("block/" + prefix + "copper_scaffold"))
+                                                .texture("casing", p.modLoc("block/" + prefix + "copper_casing"))
+                                                .texture("particle", p.modLoc("block/" + prefix + "copper_scaffold")))
                                         .build();
                             }, MetalScaffoldingBlock.WATERLOGGED, MetalScaffoldingBlock.DISTANCE))
                     .onRegister(connectedTextures(
@@ -779,7 +787,10 @@ public class BlockRegistry {
                     .transform(pickaxeOnly())
                     .tag(BlockTags.CLIMBABLE)
                     .item(MetalScaffoldingBlockItem::new)
-                    .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/" + c.getName())))
+                    .model((c, p) ->{
+                        String name = c.getName();
+                        p.withExistingParent(name, p.modLoc("block/copper_scaffold/" + name));
+                    })
                     .build()
             ).unaffected(AllBlocks.COPPER_SCAFFOLD)
             .register();
@@ -789,11 +800,16 @@ public class BlockRegistry {
             .configure((type, b) -> b
                     .properties(p -> p.mapColor(PatinaMapColor.getMapColorByName(b.getName())))
                     .addLayer(() -> RenderType::cutout)
-                    .blockstate((c, p) -> p.horizontalBlock(c.get(), p.models()
-                            .withExistingParent(c.getName(), Create.asResource("block/copper_ladder"))
-                            .texture("0", p.modLoc("block/"+type.getPrefixWithoutWaxed()+"ladder_copper_hoop"))
-                            .texture("1", p.modLoc("block/"+type.getPrefixWithoutWaxed()+"ladder_copper"))
-                            .texture("particle", p.modLoc("block/"+type.getPrefixWithoutWaxed()+"ladder_copper"))))
+                    .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.horizontalBlock(c.get(), p.models()
+                            .withExistingParent("block/copper_ladder/" + name, Create.asResource("block/copper_ladder"))
+                            .texture("0", p.modLoc("block/" + prefix + "ladder_copper_hoop"))
+                            .texture("1", p.modLoc("block/" + prefix + "ladder_copper"))
+                            .texture("particle", p.modLoc("block/" + prefix + "ladder_copper"))
+                            );
+                    })
                     .properties(p -> p.sound(SoundType.COPPER))
                     .transform(pickaxeOnly())
                     .tag(BlockTags.CLIMBABLE)
