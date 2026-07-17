@@ -2,7 +2,7 @@
   "parent": "create:block/spout/block",
   "textures": {
     "0": "createpatina:block/spout/oxidized_spout",
-    "3": "createpatina:block/oxidized_encased_pipe",
+    "3": "createpatina:block/oxidized_encased_oxidized_pipe",
     "particle": "createpatina:block/oxidized_copper_underside"
   }
 }

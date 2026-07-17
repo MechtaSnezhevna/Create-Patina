@@ -3,7 +3,7 @@
   "textures": {
     "0": "createpatina:block/spout/exposed_spout",
     "3": "createpatina:block/spout/exposed_spout_nozzle",
-    "4": "createpatina:block/exposed_encased_pipe",
+    "4": "createpatina:block/exposed_encased_exposed_pipe",
     "particle": "createpatina:block/exposed_copper_underside"
   }
 }

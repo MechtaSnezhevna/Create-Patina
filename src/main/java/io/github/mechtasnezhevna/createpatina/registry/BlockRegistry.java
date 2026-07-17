@@ -409,7 +409,7 @@ public class BlockRegistry {
                                 .withExistingParent("block/spout/" + name + "/block", Create.asResource("block/spout/block"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
-                                .texture("3", p.modLoc("block/" + prefix + "encased_pipe"));
+                                .texture("3", p.modLoc("block/" + prefix + "encased_" + prefix + "pipe"));
                         p.simpleBlock(c.get(), baseModel);
                         p.models().withExistingParent("block/spout/" + name + "/bottom", Create.asResource("block/spout/bottom"))
                                 .texture("2", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
@@ -422,7 +422,7 @@ public class BlockRegistry {
                         p.withExistingParent(name, Create.asResource("block/spout/item"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
-                                .texture("4", p.modLoc("block/" + prefix + "encased_pipe"))
+                                .texture("4", p.modLoc("block/"+ prefix +"encased_" + prefix + "pipe"))
                                 .texture("3", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
                     })
                     .build()
