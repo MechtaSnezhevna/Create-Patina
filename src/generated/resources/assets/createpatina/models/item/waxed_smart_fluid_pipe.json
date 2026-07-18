@@ -2,9 +2,9 @@
   "parent": "create:block/smart_fluid_pipe/item",
   "textures": {
     "1": "createpatina:block/pipes",
-    "2": "createpatina:block/smart_pipe_1",
-    "3": "createpatina:block/smart_pipe_2",
-    "4": "createpatina:block/smart_pipe_3",
-    "particle": "createpatina:block/smart_pipe_3"
+    "2": "createpatina:block/smart_pipe/smart_pipe_1",
+    "3": "createpatina:block/smart_pipe/smart_pipe_2",
+    "4": "createpatina:block/smart_pipe/smart_pipe_3",
+    "particle": "createpatina:block/smart_pipe/smart_pipe_3"
   }
 }

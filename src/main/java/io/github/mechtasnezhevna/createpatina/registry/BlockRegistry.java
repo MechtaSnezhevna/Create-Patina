@@ -579,11 +579,11 @@ public class BlockRegistry {
                         String name = c.getName();
                         String prefix = type.getPrefixWithoutWaxed();
                         p.withExistingParent(name, Create.asResource("block/smart_fluid_pipe/item"))
-                                .texture("2", p.modLoc("block/" + prefix + "smart_pipe_1"))
-                                .texture("3", p.modLoc("block/" + prefix + "smart_pipe_2"))
+                                .texture("2", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_1"))
+                                .texture("3", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_2"))
                                 .texture("1", p.modLoc("block/" + prefix + "pipes"))
-                                .texture("4", p.modLoc("block/" + prefix + "smart_pipe_3"))
-                                .texture("particle", p.modLoc("block/" + prefix + "smart_pipe_3"));
+                                .texture("4", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_3"))
+                                .texture("particle", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_3"));
                     })
                     .build()
             ).unaffected(AllBlocks.SMART_FLUID_PIPE)
