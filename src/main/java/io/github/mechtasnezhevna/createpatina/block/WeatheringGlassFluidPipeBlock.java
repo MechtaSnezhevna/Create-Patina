@@ -31,75 +31,61 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
-
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implements PatinaBlock {
 
     private final WeatheringType type;
+    private final BlockEntry<? extends FluidPipeBlock> originalEntry;
 
-    public WeatheringGlassFluidPipeBlock(WeatheringType type, Properties properties) {
+    public WeatheringGlassFluidPipeBlock(WeatheringType type, Properties properties, BlockEntry<? extends FluidPipeBlock> originalEntry) {
         super(properties);
         this.type = type;
+        this.originalEntry = originalEntry;
     }
-
     @Override
     public WeatheringType getType() {
         return this.type;
     }
-
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
         return super.isRandomlyTicking(state) ||
                 (isWeatheringEnabled() && type != WeatheringType.OXIDIZED);
     }
-
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
     }
-
     @Override
     public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
         ConnectFuncs.reconnect(level, pos);
     }
-
     @Override
     public BlockEntityType<? extends StraightPipeBlockEntity> getBlockEntityType() {
         return BlockEntityRegistry.WEATHERING_GLASS_FLUID_PIPE.get();
     }
-
     @Override
     public BlockState toRegularPipe(LevelAccessor world, BlockPos pos, BlockState state) {
         Direction side = Direction.get(Direction.AxisDirection.POSITIVE, state.getValue(AXIS));
         Map<Direction, BooleanProperty> facingToPropertyMap = FluidPipeBlock.PROPERTY_BY_DIRECTION;
-        BlockEntry<? extends FluidPipeBlock> originalBlockEntry = getOriginal();
-        return originalBlockEntry.get()
-                .updateBlockState(getOriginal().getDefaultState()
+
+        return originalEntry.get()
+                .updateBlockState(originalEntry.getDefaultState()
                         .setValue(facingToPropertyMap.get(side), true)
                         .setValue(facingToPropertyMap.get(side.getOpposite()), true), side, null, world, pos);
     }
-
     @Override
     public ItemRequirement getRequiredItems(BlockState state, BlockEntity be) {
-        return ItemRequirement.of(getOriginal().getDefaultState(), be);
+        return ItemRequirement.of(originalEntry.getDefaultState(), be);
     }
-
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos,
                                        Player player) {
-        return getOriginal().asStack();
+        return originalEntry.asStack();
     }
 
-    private BlockEntry<? extends FluidPipeBlock> getOriginal() {
-        if (type == WeatheringType.UNAFFECTED)
-            return AllBlocks.FLUID_PIPE;
-        return BlockRegistry.FLUID_PIPE_SET.getEntry(type, FluidPipeBlock.class);
-    }
-    
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         boolean isValidCasing = AllBlocks.COPPER_CASING.isIn(stack);
@@ -116,15 +102,12 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
         }
         if (!isValidCasing)
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
         if (level.isClientSide)
             return ItemInteractionResult.SUCCESS;
-
         BlockState newState;
         if (type == WeatheringType.UNAFFECTED && CasingType == WeatheringType.UNAFFECTED)
             newState = AllBlocks.ENCASED_FLUID_PIPE.getDefaultState();
         else newState = BlockRegistry.ENCASED_WHAT_FLUID_PIPES(type).getEntry(CasingType).getDefaultState();
-
         for (Direction d : Iterate.directionsInAxis(getAxis(state)))
             newState = newState.setValue(EncasedPipeBlock.FACING_TO_PROPERTY_MAP.get(d), true);
         FluidTransportBehaviour.cacheFlows(level, pos);

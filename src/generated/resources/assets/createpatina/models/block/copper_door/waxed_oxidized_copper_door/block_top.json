@@ -3,6 +3,6 @@
   "textures": {
     "0": "createpatina:block/copper_door/oxidized_copper_door_side",
     "2": "createpatina:block/copper_door/oxidized_copper_door_top",
-    "particle": "createpatina:block/oxidized_copper_casing"
+    "particle": "createpatina:block/casing/oxidized_copper_casing"
   }
 }

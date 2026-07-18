@@ -31,6 +31,8 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
+import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
+import com.simibubi.create.foundation.block.connected.HorizontalCTBehaviour;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -77,6 +79,7 @@ import static com.simibubi.create.api.behaviour.display.DisplaySource.displaySou
 import static com.simibubi.create.api.behaviour.interaction.MovingInteractionBehaviour.interactionBehaviour;
 import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType.mountedFluidStorage;
+import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.MetalBarsGen.barsBlockState;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -158,7 +161,7 @@ public class BlockRegistry {
             .register();
 
     public static final PatinaSet GLASS_FLUID_PIPE_SET = new PatinaSetBuilder<>(
-            REGISTRATE, "glass_fluid_pipe", WeatheringGlassFluidPipeBlock::new)
+            REGISTRATE, "glass_fluid_pipe", (type, props) -> new WeatheringGlassFluidPipeBlock(type, props, (BlockEntry<? extends FluidPipeBlock>) BlockRegistry.FLUID_PIPE_SET.getEntry(type)))
             .configure((type, b) -> b
                     .initialProperties(SharedProperties::copperMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
@@ -186,6 +189,12 @@ public class BlockRegistry {
                     .properties(p -> p.mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
                     .sound(SoundType.COPPER))
                     .transform(BuilderTransformers.casing(() -> SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type)))
+                    .blockstate((c, p) ->
+                            p.simpleBlock(c.get(), p.models()
+                                    .withExistingParent("block/copper_casing/" + c.getName(),
+                                            Create.asResource("block/copper_casing"))
+                                    .texture("all", p.modLoc("block/casing/" + type.getPrefixWithoutWaxed() + "copper_casing"))
+                            ))
             ).unaffected(AllBlocks.COPPER_CASING)
             .register();
 
@@ -204,8 +213,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -225,8 +244,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_exposed_fluid_pipe/" + name + "/block_flat",
+                                Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_exposed_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_exposed_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_exposed_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_exposed_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_exposed_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -246,8 +275,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_oxidized_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_oxidized_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_oxidized_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_oxidized_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_oxidized_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_oxidized_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -267,8 +306,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_weathered_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_weathered_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_weathered_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_weathered_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_weathered_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_weathered_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -288,8 +337,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_waxed_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_waxed_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -309,8 +368,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_exposed_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_exposed_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_exposed_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_exposed_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_waxed_exposed_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_waxed_exposed_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -330,8 +399,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_oxidized_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_oxidized_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_oxidized_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_oxidized_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_waxed_oxidized_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_waxed_oxidized_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -351,8 +430,18 @@ public class BlockRegistry {
                             .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
                     .transform(axeOrPickaxe())
                     .blockstate((c, p) -> {
+                        String name =  c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_weathered_fluid_pipe/" + name + "/block_flat",
+                                        Create.asResource("block/encased_fluid_pipe/block_flat"))
+                                .texture("0", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
+                        p.models().withExistingParent("block/encased_pipe/encased_waxed_weathered_fluid_pipe/" + name + "/block_open",
+                                        Create.asResource("block/encased_fluid_pipe/block_open"))
+                                .texture("0", p.modLoc("block/encased_pipe/" + prefix + "encased_weathered_pipe"))
+                                .texture("particle", p.modLoc("block/encased_pipe/" + prefix + "encased_weathered_pipe"));
                         DataGenContext<Block, EncasedPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "encased_waxed_weathered_fluid_pipe/" + c.getName(), c.getId());
+                                "encased_pipe/encased_waxed_weathered_fluid_pipe/" + c.getName(), c.getId());
                         BlockStateGen.encasedPipe().accept(cast, p);
                     })
                     .onRegister(connectedTextures(() -> new EncasedCTBehaviour(SpriteShiftRegistry.WEATHERING_COPPER_CASINGS.get(type))))
@@ -409,7 +498,7 @@ public class BlockRegistry {
                                 .withExistingParent("block/spout/" + name + "/block", Create.asResource("block/spout/block"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
-                                .texture("3", p.modLoc("block/" + prefix + "encased_" + prefix + "pipe"));
+                                .texture("3", p.modLoc("block/encased_pipe/" + prefix + "encased_" + prefix + "pipe"));
                         p.simpleBlock(c.get(), baseModel);
                         p.models().withExistingParent("block/spout/" + name + "/bottom", Create.asResource("block/spout/bottom"))
                                 .texture("2", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
@@ -422,7 +511,7 @@ public class BlockRegistry {
                         p.withExistingParent(name, Create.asResource("block/spout/item"))
                                 .texture("particle", p.modLoc("block/" + prefix + "copper_underside"))
                                 .texture("0", p.modLoc("block/spout/" + prefix + "spout"))
-                                .texture("4", p.modLoc("block/"+ prefix +"encased_" + prefix + "pipe"))
+                                .texture("4", p.modLoc("block/encased_pipe/"+ prefix +"encased_" + prefix + "pipe"))
                                 .texture("3", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
                     })
                     .build()
@@ -554,7 +643,7 @@ public class BlockRegistry {
                     .blockstate((c, p) -> p.directionalBlock(c.get(), p.models()
                             .withExistingParent("block/copper_valve_handle/" + c.getName(),
                                     Create.asResource("block/copper_valve_handle"))
-                            .texture("3", p.modLoc("block/" + type.getPrefixWithoutWaxed() + "valve_handle_copper"))))
+                            .texture("3", p.modLoc("block/valve_handle/" + type.getPrefixWithoutWaxed() + "valve_handle_copper"))))
                     .tag(AllTags.AllBlockTags.BRITTLE.tag, AllTags.AllBlockTags.VALVE_HANDLES.tag)
                     .onRegister(BlockStressValues.setGeneratorSpeed(32))
                     .onRegister(ItemUseOverrides::addBlock)
@@ -616,20 +705,20 @@ public class BlockRegistry {
                                         Create.asResource("block/portable_fluid_interface/block"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("2", p.modLoc("block/" + prefix + "copper_underside"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"))
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"))
                         );
                         p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_top",
                                         Create.asResource("block/portable_fluid_interface/block_top"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                         p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_middle",
                                         Create.asResource("block/portable_fluid_interface/block_middle"))
                                 .texture("2", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                         p.models().withExistingParent("block/portable_fluid_interface/" + name + "/block_middle_powered",
                                         Create.asResource("block/portable_fluid_interface/block_middle_powered"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                     })
                     .onRegister(movementBehaviour(new PortableStorageInterfaceMovement()))
                     .item()
@@ -640,7 +729,7 @@ public class BlockRegistry {
                         p.withExistingParent(name, Create.asResource("block/portable_fluid_interface/item"))
                                 .texture("0", p.modLoc("block/portable_fluid_interface/" + prefix + "portable_fluid_interface"))
                                 .texture("2", p.modLoc("block/" + prefix + "copper_underside"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                     })
                     .build()
             ).unaffected(AllBlocks.PORTABLE_FLUID_INTERFACE)
@@ -718,12 +807,12 @@ public class BlockRegistry {
                                         Create.asResource("block/copper_door/block_bottom"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                         ModelFile top = p.models().withExistingParent("block/copper_door/" + name + "/block_top",
                                         Create.asResource("block/copper_door/block_top"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                         p.doorBlock(c.get(), bottom, bottom, bottom, bottom, top, top, top, top);
 
                         p.models().withExistingParent("block/copper_door/" + name + "/fold_left",
@@ -731,13 +820,13 @@ public class BlockRegistry {
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("3", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                         p.models().withExistingParent("block/copper_door/" + name + "/fold_right",
                                         Create.asResource("block/copper_door/fold_right"))
                                 .texture("0", p.modLoc("block/copper_door/" + prefix + "copper_door_side"))
                                 .texture("3", p.modLoc("block/copper_door/" + prefix + "copper_door_bottom"))
                                 .texture("2", p.modLoc("block/copper_door/" + prefix + "copper_door_top"))
-                                .texture("particle", p.modLoc("block/" + prefix + "copper_casing"));
+                                .texture("particle", p.modLoc("block/casing/" + prefix + "copper_casing"));
                     })
                     .addLayer(() -> RenderType::cutoutMipped)
                     .transform(pickaxeOnly())
@@ -773,10 +862,10 @@ public class BlockRegistry {
                                                 .withExistingParent("block/copper_scaffold/" + name + suffix,
                                                         Create.asResource("block/scaffold/block" + suffix))
                                                 .texture("top", p.modLoc("block/" + prefix + "copper_funnel_frame"))
-                                                .texture("inside", p.modLoc("block/" + prefix + "copper_scaffold_inside"))
-                                                .texture("side", p.modLoc("block/" + prefix + "copper_scaffold"))
-                                                .texture("casing", p.modLoc("block/" + prefix + "copper_casing"))
-                                                .texture("particle", p.modLoc("block/" + prefix + "copper_scaffold")))
+                                                .texture("inside", p.modLoc("block/scaffold/" + prefix + "copper_scaffold_inside"))
+                                                .texture("side", p.modLoc("block/scaffold/" + prefix + "copper_scaffold"))
+                                                .texture("casing", p.modLoc("block/casing/" + prefix + "copper_casing"))
+                                                .texture("particle", p.modLoc("block/scaffold/" + prefix + "copper_scaffold")))
                                         .build();
                             }, MetalScaffoldingBlock.WATERLOGGED, MetalScaffoldingBlock.DISTANCE))
                     .onRegister(connectedTextures(

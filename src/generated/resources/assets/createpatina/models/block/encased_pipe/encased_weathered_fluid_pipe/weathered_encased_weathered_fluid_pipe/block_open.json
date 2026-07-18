@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/encased_fluid_pipe/block_open",
+  "textures": {
+    "0": "createpatina:block/encased_pipe/weathered_encased_weathered_pipe",
+    "particle": "createpatina:block/encased_pipe/weathered_encased_weathered_pipe"
+  }
+}

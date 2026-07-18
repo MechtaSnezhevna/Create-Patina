@@ -18,18 +18,18 @@ public class SpriteShiftRegistry {
     public static final Map<WeatheringType, CTSpriteShiftEntry> WEATHERING_COPPER_SCAFFOLD_INSIDES = new EnumMap<>(WeatheringType.class);
 
     static {
-        register(WEATHERING_COPPER_CASINGS, AllCTTypes.OMNIDIRECTIONAL, "copper_casing", AllSpriteShifts.COPPER_CASING);
-        register(WEATHERING_COPPER_SCAFFOLDS, AllCTTypes.HORIZONTAL, "copper_scaffold", AllSpriteShifts.COPPER_SCAFFOLD);
-        register(WEATHERING_COPPER_SCAFFOLD_INSIDES, AllCTTypes.HORIZONTAL, "copper_scaffold_inside", AllSpriteShifts.COPPER_SCAFFOLD_INSIDE);
+        register(WEATHERING_COPPER_CASINGS, AllCTTypes.OMNIDIRECTIONAL, "casing/", "copper_casing", AllSpriteShifts.COPPER_CASING);
+        register(WEATHERING_COPPER_SCAFFOLDS, AllCTTypes.HORIZONTAL, "scaffold/", "copper_scaffold", AllSpriteShifts.COPPER_SCAFFOLD);
+        register(WEATHERING_COPPER_SCAFFOLD_INSIDES, AllCTTypes.HORIZONTAL, "scaffold/", "copper_scaffold_inside", AllSpriteShifts.COPPER_SCAFFOLD_INSIDE);
     }
 
-    private static void register(Map<WeatheringType, CTSpriteShiftEntry> map, CTType ctType, String baseName, CTSpriteShiftEntry defaultEntry) {
+    private static void register(Map<WeatheringType, CTSpriteShiftEntry> map, CTType ctType,String dirName, String baseName, CTSpriteShiftEntry defaultEntry) {
         for (WeatheringType type : WeatheringType.values()) {
             if (type == WeatheringType.UNAFFECTED || type == WeatheringType.WAXED) {
                 map.put(type, defaultEntry);
             }
             else{
-                map.put(type, create(ctType, type.getPrefixWithoutWaxed() + baseName));
+                map.put(type, create(ctType, dirName + type.getPrefixWithoutWaxed() + baseName));
             }
         }
     }

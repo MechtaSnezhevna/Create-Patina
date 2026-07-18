@@ -3,7 +3,7 @@
   "textures": {
     "0": "createpatina:block/spout/weathered_spout",
     "3": "createpatina:block/spout/weathered_spout_nozzle",
-    "4": "createpatina:block/weathered_encased_weathered_pipe",
+    "4": "createpatina:block/encased_pipe/weathered_encased_weathered_pipe",
     "particle": "createpatina:block/weathered_copper_underside"
   }
 }

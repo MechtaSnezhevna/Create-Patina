@@ -37,7 +37,7 @@ public enum WeatheringType {
     }
 
     public String getPrefixWithoutWaxed(){
-        if (this == WAXED) return "";
+        if (this == WAXED || this == UNAFFECTED) return "";
         return this.prefix.replace("waxed_","") + "_";
     }
 

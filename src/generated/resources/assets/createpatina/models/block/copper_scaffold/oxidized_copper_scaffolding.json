@@ -1,10 +1,10 @@
 {
   "parent": "create:block/scaffold/block",
   "textures": {
-    "casing": "createpatina:block/oxidized_copper_casing",
-    "inside": "createpatina:block/oxidized_copper_scaffold_inside",
-    "particle": "createpatina:block/oxidized_copper_scaffold",
-    "side": "createpatina:block/oxidized_copper_scaffold",
+    "casing": "createpatina:block/casing/oxidized_copper_casing",
+    "inside": "createpatina:block/scaffold/oxidized_copper_scaffold_inside",
+    "particle": "createpatina:block/scaffold/oxidized_copper_scaffold",
+    "side": "createpatina:block/scaffold/oxidized_copper_scaffold",
     "top": "createpatina:block/oxidized_copper_funnel_frame"
   }
 }

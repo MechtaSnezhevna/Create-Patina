@@ -1,10 +1,10 @@
 {
   "parent": "create:block/scaffold/block_horizontal",
   "textures": {
-    "casing": "createpatina:block/weathered_copper_casing",
-    "inside": "createpatina:block/weathered_copper_scaffold_inside",
-    "particle": "createpatina:block/weathered_copper_scaffold",
-    "side": "createpatina:block/weathered_copper_scaffold",
+    "casing": "createpatina:block/casing/weathered_copper_casing",
+    "inside": "createpatina:block/scaffold/weathered_copper_scaffold_inside",
+    "particle": "createpatina:block/scaffold/weathered_copper_scaffold",
+    "side": "createpatina:block/scaffold/weathered_copper_scaffold",
     "top": "createpatina:block/weathered_copper_funnel_frame"
   }
 }

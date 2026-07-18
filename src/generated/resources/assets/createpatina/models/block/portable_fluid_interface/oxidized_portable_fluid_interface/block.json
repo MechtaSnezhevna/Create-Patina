@@ -3,6 +3,6 @@
   "textures": {
     "0": "createpatina:block/portable_fluid_interface/oxidized_portable_fluid_interface",
     "2": "createpatina:block/oxidized_copper_underside",
-    "particle": "createpatina:block/oxidized_copper_casing"
+    "particle": "createpatina:block/casing/oxidized_copper_casing"
   }
 }
