@@ -31,8 +31,6 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
-import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
-import com.simibubi.create.foundation.block.connected.HorizontalCTBehaviour;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -79,7 +77,6 @@ import static com.simibubi.create.api.behaviour.display.DisplaySource.displaySou
 import static com.simibubi.create.api.behaviour.interaction.MovingInteractionBehaviour.interactionBehaviour;
 import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType.mountedFluidStorage;
-import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.MetalBarsGen.barsBlockState;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -97,6 +94,7 @@ public class BlockRegistry {
                     .initialProperties(SharedProperties::copperMetal)
                     .properties(BlockBehaviour.Properties::randomTicks)
                     .transform(pickaxeOnly())
+                    .addLayer(() -> RenderType::cutoutMipped)
                     .blockstate((c, p) -> {
                         String name = c.getName();
                         String prefix = type.getPrefixWithoutWaxed();

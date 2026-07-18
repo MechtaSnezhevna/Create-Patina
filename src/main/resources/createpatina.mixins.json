@@ -35,6 +35,7 @@
     "oxidization.SpoutOxidizationMixin",
     "oxidization.SteamEngineOxidizationMixin",
     "oxidization.SteamWhistleOxidizationMixin",
+    "render.FluidTankCTBehaviourMixin",
     "render.FluidValveVisualMixin",
     "render.PipeAttachmentModelMixin",
     "render.PortableStorageInterfaceRendererMixin",
