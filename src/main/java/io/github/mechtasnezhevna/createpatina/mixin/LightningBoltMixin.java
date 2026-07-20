@@ -27,9 +27,11 @@ public class LightningBoltMixin {
             )
     )
     private static boolean createpatina$redirectSetBlockAndUpdate(
-            Level level, BlockPos pos, BlockState state,
-            Operation<Boolean> original, @Local(name = "blockstate1") BlockState oldState
+            Level level, BlockPos pos, BlockState state, Operation<Boolean> original
     ) {
+        // The wrapped call site is setBlockAndUpdate(blockpos, ...), and the block at that
+        // position has not changed since blockstate1 was read, so this is equivalent.
+        BlockState oldState = level.getBlockState(pos);
         Block block = state.getBlock();
         if (block instanceof WeatheringCopper) {
             OxidizeUtil.replaceWithState(oldState, WeatheringCopper.getFirst(oldState), level, pos);
@@ -47,9 +49,11 @@ public class LightningBoltMixin {
     )
     private static void createpatina$redirectSetBlockAndUpdateRandomStep(
             Optional<BlockState> optional, Consumer<BlockState> consumer,
-            Operation<Void> original, @Local(name = "blockstate") BlockState oldState,
-            @Local(name = "blockpos") BlockPos pos, @Local(name = "level") Level level
+            Operation<Void> original, @Local(ordinal = 1) BlockPos pos, @Local Level level
     ) {
+        // ordinal = 1: the first BlockPos local is the method argument, the second is the
+        // enhanced-for loop variable blockpos. Its blockstate is unchanged since it was read.
+        BlockState oldState = level.getBlockState(pos);
         optional.ifPresent(state -> {
             Block block = state.getBlock();
             if (block instanceof WeatheringCopper) {
