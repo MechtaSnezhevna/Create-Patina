@@ -3,7 +3,7 @@
   "textures": {
     "2": "createpatina:block/smart_pipe/exposed_smart_pipe_1",
     "3": "createpatina:block/smart_pipe/exposed_smart_pipe_2",
-    "4": "createpatina:block/exposed_pipes",
+    "4": "createpatina:block/fluid_pipe/exposed_pipes",
     "5": "createpatina:block/smart_pipe/exposed_smart_pipe_3",
     "particle": "minecraft:block/exposed_copper"
   }

@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/fluid_pipe/connection/south",
+  "textures": {
+    "0": "createpatina:block/fluid_pipe/exposed_pipes",
+    "particle": "createpatina:block/fluid_pipe/exposed_pipes"
+  }
+}

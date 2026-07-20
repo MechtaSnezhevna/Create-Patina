@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/fluid_pipe/rim/south",
+  "textures": {
+    "0": "createpatina:block/fluid_pipe/pipes",
+    "particle": "createpatina:block/fluid_pipe/pipes"
+  }
+}

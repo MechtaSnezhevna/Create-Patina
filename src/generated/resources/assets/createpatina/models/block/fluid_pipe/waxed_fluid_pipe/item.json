@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/fluid_pipe/item",
+  "textures": {
+    "1": "createpatina:block/fluid_pipe/pipes",
+    "particle": "minecraft:block/copper_block"
+  }
+}

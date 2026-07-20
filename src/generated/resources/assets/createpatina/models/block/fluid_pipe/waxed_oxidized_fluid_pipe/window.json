@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/fluid_pipe/window",
+  "textures": {
+    "0": "createpatina:block/fluid_pipe/oxidized_glass_fluid_pipe",
+    "particle": "minecraft:block/oxidized_copper"
+  }
+}

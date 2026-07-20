@@ -79,7 +79,6 @@ import static com.simibubi.create.api.behaviour.interaction.MovingInteractionBeh
 import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType.mountedFluidStorage;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
-import static com.simibubi.create.foundation.data.MetalBarsGen.barsBlockState;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -149,8 +148,45 @@ public class BlockRegistry {
                     .properties(BlockBehaviour.Properties::forceSolidOff)
                     .transform(pickaxeOnly())
                     .blockstate((c, p) -> {
+                        String name = c.getName();
+                        String prefix = type.getPrefixWithoutWaxed();
+                        String CopperBlockPath = "block/" + prefix + "copper" + (prefix.isEmpty() ? "_block" : "");
+
                         DataGenContext<Block, FluidPipeBlock> cast = new DataGenContext<>(NonNullSupplier.of(c::getEntry),
-                                "fluid_pipe/" + c.getName(), c.getId());
+                                "fluid_pipe/" + name, c.getId());
+
+                        String[] axis = {"x", "y", "z"};
+                        for (String ax : axis){
+                            p.models().withExistingParent("block/fluid_pipe/" + name + "/core_" + ax,
+                                    Create.asResource("block/fluid_pipe/core_" + ax))
+                                    .texture("0", p.modLoc("block/fluid_pipe/" + prefix + "pipes_connected"))
+                                    .texture("particle", p.mcLoc(CopperBlockPath));
+                        }
+
+                        String[] dirNames = {"connection/", "drain/", "rim/", "rim_connector/"};
+                        String[] directions = {"down", "up", "north", "south", "west", "east"};
+                        for (String dirName : dirNames){
+                            for (String d : directions){
+                                p.models().withExistingParent("block/fluid_pipe/" + name + "/" + dirName + d,
+                                                Create.asResource("block/fluid_pipe/" + dirName + d))
+                                        .texture("0", p.modLoc("block/fluid_pipe/" + prefix + "pipes"))
+                                        .texture("particle", p.modLoc("block/fluid_pipe/" + prefix + "pipes"));
+                            }
+                        }
+
+                        p.models().withExistingParent("block/fluid_pipe/" + name + "/casing",
+                                        Create.asResource("block/fluid_pipe/casing"))
+                                .texture("0", p.modLoc("block/fluid_pipe/" + prefix + "pipes"))
+                                .texture("particle", p.mcLoc(CopperBlockPath));
+                        p.models().withExistingParent("block/fluid_pipe/" + name + "/item",
+                                Create.asResource("block/fluid_pipe/item"))
+                                .texture("1", p.modLoc("block/fluid_pipe/" + prefix + "pipes"))
+                                .texture("particle", p.mcLoc(CopperBlockPath));
+                        p.models().withExistingParent("block/fluid_pipe/" + name + "/window",
+                                        Create.asResource("block/fluid_pipe/window"))
+                                .texture("0", p.modLoc("block/fluid_pipe/" + prefix + "glass_fluid_pipe"))
+                                .texture("particle", p.mcLoc(CopperBlockPath));
+
                         BlockStateGen.pipe().accept(cast, p);
                     })
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
@@ -580,7 +616,7 @@ public class BlockRegistry {
                         p.withExistingParent(name, Create.asResource("block/smart_fluid_pipe/item"))
                                 .texture("2", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_1"))
                                 .texture("3", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_2"))
-                                .texture("1", p.modLoc("block/" + prefix + "pipes"))
+                                .texture("1", p.modLoc("block/fluid_pipe/" + prefix + "pipes"))
                                 .texture("4", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_3"))
                                 .texture("particle", p.modLoc("block/smart_pipe/" + prefix + "smart_pipe_3"));
                     })

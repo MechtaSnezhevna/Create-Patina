@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/fluid_pipe/core_y",
+  "textures": {
+    "0": "createpatina:block/fluid_pipe/pipes_connected",
+    "particle": "minecraft:block/copper_block"
+  }
+}

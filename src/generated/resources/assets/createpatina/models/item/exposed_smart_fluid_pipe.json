@@ -1,7 +1,7 @@
 {
   "parent": "create:block/smart_fluid_pipe/item",
   "textures": {
-    "1": "createpatina:block/exposed_pipes",
+    "1": "createpatina:block/fluid_pipe/exposed_pipes",
     "2": "createpatina:block/smart_pipe/exposed_smart_pipe_1",
     "3": "createpatina:block/smart_pipe/exposed_smart_pipe_2",
     "4": "createpatina:block/smart_pipe/exposed_smart_pipe_3",

@@ -20,7 +20,7 @@ public class WeatheringSmartFluidPipeGenerator extends SmartFluidPipeGenerator {
                         Create.asResource("block/smart_fluid_pipe/block"))
                 .texture("2", prov.modLoc("block/smart_pipe/" + prefix + "smart_pipe_1"))
                 .texture("3", prov.modLoc("block/smart_pipe/" + prefix + "smart_pipe_2"))
-                .texture("4", prov.modLoc("block/" + prefix + "pipes"))
+                .texture("4", prov.modLoc("block/fluid_pipe/" + prefix + "pipes"))
                 .texture("5", prov.modLoc("block/smart_pipe/" + prefix + "smart_pipe_3"))
                 .texture("particle", prov.mcLoc("block/" + prefix + "copper" + (prefix.isEmpty() ? "_block" : "")));
     }
