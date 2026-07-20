@@ -37,6 +37,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.*;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringBarsGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringFluidTankGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFluidPipeGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringWhistleGenerator;
@@ -916,10 +917,10 @@ public class BlockRegistry {
                     .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
                     .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
                     .transform(TagGen.pickaxeOnly())
-                    .blockstate(barsBlockState(WeatheringType.getPrefixByName(b.getName()) + "copper", true))
+                    .blockstate(WeatheringBarsGenerator.barsBlockState(type.getPrefix() + "copper", true))
                     .item()
                     .model((c, p) -> {
-                        ResourceLocation barsTexture = p.modLoc("block/bars/" + b.getName());
+                        ResourceLocation barsTexture = p.modLoc("block/bars/" + b.getName().replace("waxed_",""));
                         p.generated(c, barsTexture);
                     })
                     .build()

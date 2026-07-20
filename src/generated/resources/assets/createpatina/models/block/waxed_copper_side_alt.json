@@ -1,8 +1,0 @@
-{
-  "parent": "createpatina:block/bars/side_alt",
-  "textures": {
-    "bars": "createpatina:block/bars/waxed_copper_bars",
-    "edge": "createpatina:block/bars/waxed_copper_bars_edge",
-    "particle": "createpatina:block/bars/waxed_copper_bars"
-  }
-}
