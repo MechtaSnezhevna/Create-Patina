@@ -2,6 +2,6 @@
   "parent": "create:block/steam_whistle/item",
   "textures": {
     "1": "createpatina:block/steam_engine/exposed_engine",
-    "2": "createpatina:block/exposed_copper_redstone_plate"
+    "2": "createpatina:block/general/exposed_copper_redstone_plate"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "create:block/fluid_valve/pointer",
   "textures": {
-    "2": "createpatina:block/weathered_fluid_valve",
-    "particle": "createpatina:block/weathered_copper_underside"
+    "2": "createpatina:block/valve/weathered_fluid_valve",
+    "particle": "createpatina:block/general/weathered_copper_underside"
   }
 }

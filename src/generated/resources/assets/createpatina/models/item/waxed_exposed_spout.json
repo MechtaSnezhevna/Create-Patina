@@ -4,6 +4,6 @@
     "0": "createpatina:block/spout/exposed_spout",
     "3": "createpatina:block/spout/exposed_spout_nozzle",
     "4": "createpatina:block/encased_pipe/exposed_encased_exposed_pipe",
-    "particle": "createpatina:block/exposed_copper_underside"
+    "particle": "createpatina:block/general/exposed_copper_underside"
   }
 }

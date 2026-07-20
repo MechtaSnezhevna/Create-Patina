@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "createpatina:block/oxidized_ladder_copper"
+    "layer0": "createpatina:block/ladder/oxidized_ladder_copper"
   }
 }

@@ -23,14 +23,14 @@ public class WeatheringWhistleGenerator extends WhistleGenerator {
                 .withExistingParent("block/steam_whistle/" + name + "/block_" + size + "_" + wall,
                         Create.asResource("block/steam_whistle/block_" + size + "_" + wall))
                 .texture("1", prov.modLoc("block/steam_engine/" + prefix + "engine"))
-                .texture("2", prov.modLoc("block/" + prefix + "copper_redstone_plate"));
+                .texture("2", prov.modLoc("block/general/" + prefix + "copper_redstone_plate"));
         if (!powered) {
             return baseModel;
         }
         return prov.models()
                 .withExistingParent("block/steam_whistle/" + name + "/block_" + size + "_" + wall + "_powered",
                         baseModel.getLocation())
-                .texture("2", prov.modLoc("block/" + prefix + "copper_redstone_plate_powered"));
+                .texture("2", prov.modLoc("block/general/" + prefix + "copper_redstone_plate_powered"));
     }
 
 }

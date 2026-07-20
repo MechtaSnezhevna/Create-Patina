@@ -2,6 +2,6 @@
   "parent": "create:block/steam_whistle/block_small_wall",
   "textures": {
     "1": "createpatina:block/steam_engine/oxidized_engine",
-    "2": "createpatina:block/oxidized_copper_redstone_plate"
+    "2": "createpatina:block/general/oxidized_copper_redstone_plate"
   }
 }

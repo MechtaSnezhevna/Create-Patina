@@ -5,6 +5,6 @@
     "inside": "createpatina:block/scaffold/oxidized_copper_scaffold_inside",
     "particle": "createpatina:block/scaffold/oxidized_copper_scaffold",
     "side": "createpatina:block/scaffold/oxidized_copper_scaffold",
-    "top": "createpatina:block/oxidized_copper_funnel_frame"
+    "top": "createpatina:block/scaffold/oxidized_copper_funnel_frame"
   }
 }

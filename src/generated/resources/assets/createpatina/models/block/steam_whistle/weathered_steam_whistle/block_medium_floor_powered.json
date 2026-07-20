@@ -1,6 +1,6 @@
 {
   "parent": "createpatina:block/steam_whistle/weathered_steam_whistle/block_medium_floor",
   "textures": {
-    "2": "createpatina:block/weathered_copper_redstone_plate_powered"
+    "2": "createpatina:block/general/weathered_copper_redstone_plate_powered"
   }
 }

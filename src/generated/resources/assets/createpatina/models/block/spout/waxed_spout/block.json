@@ -3,6 +3,6 @@
   "textures": {
     "0": "createpatina:block/spout/spout",
     "3": "createpatina:block/encased_pipe/encased_pipe",
-    "particle": "createpatina:block/copper_underside"
+    "particle": "createpatina:block/general/copper_underside"
   }
 }

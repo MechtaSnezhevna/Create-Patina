@@ -1,9 +1,9 @@
 {
   "parent": "create:block/fluid_valve/block_vertical_closed",
   "textures": {
-    "2": "createpatina:block/oxidized_fluid_valve",
-    "3": "createpatina:block/oxidized_valve_closed",
-    "4": "createpatina:block/oxidized_valve_closed",
-    "particle": "createpatina:block/oxidized_copper_underside"
+    "2": "createpatina:block/valve/oxidized_fluid_valve",
+    "3": "createpatina:block/valve/oxidized_valve_closed",
+    "4": "createpatina:block/valve/oxidized_valve_closed",
+    "particle": "createpatina:block/general/oxidized_copper_underside"
   }
 }

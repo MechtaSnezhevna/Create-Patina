@@ -5,6 +5,6 @@
     "inside": "createpatina:block/scaffold/copper_scaffold_inside",
     "particle": "createpatina:block/scaffold/copper_scaffold",
     "side": "createpatina:block/scaffold/copper_scaffold",
-    "top": "createpatina:block/copper_funnel_frame"
+    "top": "createpatina:block/scaffold/copper_funnel_frame"
   }
 }

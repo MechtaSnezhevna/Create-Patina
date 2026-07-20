@@ -1,9 +1,9 @@
 {
   "parent": "create:block/fluid_valve/item",
   "textures": {
-    "2": "createpatina:block/weathered_fluid_valve",
-    "3": "createpatina:block/weathered_valve_closed",
-    "4": "createpatina:block/weathered_valve_open",
-    "particle": "createpatina:block/weathered_valve_closed"
+    "2": "createpatina:block/valve/weathered_fluid_valve",
+    "3": "createpatina:block/valve/weathered_valve_closed",
+    "4": "createpatina:block/valve/weathered_valve_open",
+    "particle": "createpatina:block/valve/weathered_valve_closed"
   }
 }

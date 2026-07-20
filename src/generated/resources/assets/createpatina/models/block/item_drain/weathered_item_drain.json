@@ -3,7 +3,7 @@
   "textures": {
     "0": "createpatina:block/item_drain/weathered_item_drain_side",
     "3": "createpatina:block/pump/weathered_pump",
-    "4": "createpatina:block/weathered_copper_underside",
+    "4": "createpatina:block/general/weathered_copper_underside",
     "particle": "createpatina:block/item_drain/weathered_item_drain_side"
   }
 }
