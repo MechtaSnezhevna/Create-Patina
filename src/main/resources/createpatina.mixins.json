@@ -38,6 +38,7 @@
     "oxidization.SteamWhistleOxidizationMixin",
     "render.FluidTankCTBehaviourMixin",
     "render.FluidValveVisualMixin",
+    "render.LevelChunkMixin",
     "render.PipeAttachmentModelMixin",
     "render.PortableStorageInterfaceRendererMixin",
     "render.SlidingDoorRendererMixin",
