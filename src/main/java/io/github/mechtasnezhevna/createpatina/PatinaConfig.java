@@ -20,9 +20,9 @@ public class PatinaConfig {
     private PatinaConfig(ModConfigSpec.Builder builder) {
 
         ENABLE_FLUID_INTERFACE_CROSS_MATCHING = builder
-                .translation("createpatina.config.enable_fluid_interface_cross_matching")
-                .comment("If true, fluid interfaces will allow cross-matching of fluids with different weathering states.")
-                .define("enableFluidInterfaceCrossMatching", true);
+                .translation("createpatina.config.enable_portable_fluid_interface_cross_matching")
+                .comment("If true, portable fluid interfaces with different weathering states can be matched to each other.")
+                .define("enablePortableFluidInterfaceCrossMatching", true);
     }
 
 }

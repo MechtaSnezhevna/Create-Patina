@@ -219,5 +219,7 @@
   "item.createpatina.waxed_exposed_copper_backtank_placeable": "Waxed Exposed Copper Backtank Placeable",
   "item.createpatina.waxed_weathered_copper_backtank_placeable": "Waxed Weathered Copper Backtank Placeable",
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "Waxed Oxidized Copper Backtank Placeable",
-  "createpatina.config.enable_fluid_interface_cross_matching": "Enable Fluid Interface Cross-Matching"
+
+  "createpatina.config.enable_portable_fluid_interface_cross_matching": "Enable Fluid Interface Cross-Matching",
+  "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip":"If true, portable fluid interfaces with different weathering states can be matched to each other."
 }
