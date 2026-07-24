@@ -38,6 +38,9 @@ public class PartialModelRegistry {
 
     public static final Map<WeatheringType, PartialModel> WEATHERING_SPOUT_BOTTOM = new EnumMap<>(WeatheringType.class);
 
+    public static final Map<WeatheringType, PartialModel> WEATHERING_PULLEY_MAGNET = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, PartialModel> WEATHERING_HALF_MAGNET = new EnumMap<>(WeatheringType.class);
+
     static {
         for (WeatheringType type : WeatheringType.values()) {
             if (type == WeatheringType.UNAFFECTED) // The base type should be defined in Create.
@@ -64,6 +67,8 @@ public class PartialModelRegistry {
             WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE.put(type, block("portable_fluid_interface/" + prefix + "portable_fluid_interface/block_middle"));
             WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE_POWERED.put(type, block("portable_fluid_interface/" + prefix + "portable_fluid_interface/block_middle_powered"));
             WEATHERING_SPOUT_BOTTOM.put(type, block("spout/" + prefix + "spout/bottom"));
+            WEATHERING_PULLEY_MAGNET.put(type, block("hose_pulley/" + prefix + "hose_pulley/pulley_magnet"));
+            WEATHERING_HALF_MAGNET.put(type, block("hose_pulley/" + prefix + "hose_pulley/rope_half_magnet"));
         }
     }
 

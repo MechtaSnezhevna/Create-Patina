@@ -711,6 +711,14 @@ public class BlockRegistry {
                                 .texture("3", p.modLoc("block/pump/" + prefix + "pump"))
                                 .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"))
                         );
+                        p.models().withExistingParent("block/hose_pulley/" + name + "/pulley_magnet",
+                                Create.asResource("block/hose_pulley/pulley_magnet"))
+                                .texture("0", p.modLoc("block/hose_pulley/" + prefix + "hose"))
+                                .texture("particle", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"));
+                        p.models().withExistingParent("block/hose_pulley/" + name + "/rope_half_magnet",
+                                        Create.asResource("block/hose_pulley/rope_half_magnet"))
+                                .texture("0", p.modLoc("block/hose_pulley/" + prefix + "hose"))
+                                .texture("particle", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"));
                     })
                     .transform(PatinaStress.setImpact(4.0))
                     .item()

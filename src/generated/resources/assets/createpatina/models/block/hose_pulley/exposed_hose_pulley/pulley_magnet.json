@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/hose_pulley/pulley_magnet",
+  "textures": {
+    "0": "createpatina:block/hose_pulley/exposed_hose",
+    "particle": "createpatina:block/fluid_tank/exposed_fluid_tank_inner"
+  }
+}
