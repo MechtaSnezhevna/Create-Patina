@@ -10,7 +10,6 @@
     "SteamEngineBlockEntityMixin",
     "WhistleBlockUsageMixin",
     "WhistleExtenderBlockMixin",
-    "accessor.AbstractBlockEntityVisualAccessor",
     "accessor.FluidTankBlockEntityAccessor",
     "accessor.FluidTankBlockEntityInvoker",
     "accessor.HosePulleyBlockEntityAccessor",
@@ -38,6 +37,10 @@
     "oxidization.SpoutOxidizationMixin",
     "oxidization.SteamEngineOxidizationMixin",
     "oxidization.SteamWhistleOxidizationMixin",
+    "render.SteamEngineBlockEntityMixin"
+  ],
+  "client": [
+    "accessor.AbstractBlockEntityVisualAccessor",
     "render.AbstractPulleyRendererMixin",
     "render.FluidTankCTBehaviourMixin",
     "render.FluidValveVisualMixin",
@@ -47,10 +50,7 @@
     "render.PortableStorageInterfaceRendererMixin",
     "render.SlidingDoorRendererMixin",
     "render.SpoutRendererMixin",
-    "render.SteamEngineBlockEntityMixin",
     "render.ValveHandleVisualMixin"
-  ],
-  "client": [
   ],
   "server": [
   ],
