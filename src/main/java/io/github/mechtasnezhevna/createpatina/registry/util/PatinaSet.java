@@ -23,7 +23,7 @@ public record PatinaSet (
 
     @SuppressWarnings("unchecked")
     public <B extends Block> BlockEntry<B> getEntry(WeatheringType type, Class<B> clazz) {
-        if (clazz.isInstance(entries.get(type).getClass())) {
+        if (clazz.isInstance(entries.get(type).get())) {
             return (BlockEntry<B>) (entries.get(type));
         }
         throw new IllegalArgumentException("Cannot find block entry for type " + type + ". Type Mismatch");
