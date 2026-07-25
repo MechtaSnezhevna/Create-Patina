@@ -4,8 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
-import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.util.ConnectFuncs;
+import io.github.mechtasnezhevna.createpatina.block.PatinaFluidEndpoint;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -24,7 +23,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @Mixin(ItemDrainBlock.class)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class ItemDrainOxidizationMixin extends Block implements PatinaBlock {
+public abstract class ItemDrainOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public ItemDrainOxidizationMixin(Properties properties) {
         super(properties);
     }
@@ -41,11 +40,6 @@ public abstract class ItemDrainOxidizationMixin extends Block implements PatinaB
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
-    }
-
-    @Override
-    public void actionWhenReplaced(BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos) {
-        ConnectFuncs.reconnect(level, pos);
     }
 
     @Override

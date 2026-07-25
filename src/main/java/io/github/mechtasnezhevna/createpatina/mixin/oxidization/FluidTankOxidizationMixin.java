@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
-import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
+import io.github.mechtasnezhevna.createpatina.block.PatinaFluidEndpoint;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(FluidTankBlock.class)
-public class FluidTankOxidizationMixin extends Block implements PatinaBlock {
+public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public FluidTankOxidizationMixin(Properties properties) {
         super(properties);
     }

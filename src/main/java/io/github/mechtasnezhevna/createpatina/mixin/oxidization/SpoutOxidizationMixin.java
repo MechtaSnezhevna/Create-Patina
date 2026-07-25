@@ -3,7 +3,7 @@ package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
-import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
+import io.github.mechtasnezhevna.createpatina.block.PatinaFluidEndpoint;
 import io.github.mechtasnezhevna.createpatina.registry.BlockEntityRegistry;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SpoutBlock.class)
-public class SpoutOxidizationMixin extends Block implements PatinaBlock {
+public class SpoutOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public SpoutOxidizationMixin(Properties properties) {
         super(properties);
     }

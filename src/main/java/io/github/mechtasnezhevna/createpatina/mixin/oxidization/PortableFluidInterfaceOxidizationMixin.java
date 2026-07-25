@@ -1,7 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.oxidization;
 
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceBlock;
-import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
+import io.github.mechtasnezhevna.createpatina.block.PatinaFluidEndpoint;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(PortableStorageInterfaceBlock.class)
-public class PortableFluidInterfaceOxidizationMixin extends Block implements PatinaBlock {
+public class PortableFluidInterfaceOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public PortableFluidInterfaceOxidizationMixin(Properties properties) {
         super(properties);
     }
