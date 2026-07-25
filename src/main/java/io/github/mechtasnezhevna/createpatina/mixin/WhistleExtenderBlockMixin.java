@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleExtenderBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -12,7 +13,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -64,16 +64,15 @@ public class WhistleExtenderBlockMixin {
         return entry.has(state);
     }
 
-    /**
-     * @author Create Patina
-     * @reason match extender with its bottom block
-     */
-    @Overwrite
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+    @ModifyReturnValue(method = "getCloneItemStack", at = @At("RETURN"))
+    private ItemStack createpatina$matchCloneStackWithRoot(
+            ItemStack original, BlockState state, HitResult target,
+            LevelReader level, BlockPos pos, Player player
+    ) {
         BlockPos rootPos = WhistleExtenderBlock.findRoot((LevelAccessor) level, pos);
         BlockState rootState = level.getBlockState(rootPos);
         if (rootState.getBlock() instanceof WhistleExtenderBlock || rootState.isAir()) {
-            return AllBlocks.STEAM_WHISTLE.asStack();
+            return original;
         }
         return rootState.getCloneItemStack(target, level, pos, player);
     }

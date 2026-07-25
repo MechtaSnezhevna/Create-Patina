@@ -1,7 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.mixin.render;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceRenderer;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
@@ -11,41 +11,31 @@ import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(PortableStorageInterfaceRenderer.class)
 public class PortableStorageInterfaceRendererMixin {
 
-    /**
-     * @author Create Patina
-     * @reason enable variant texture
-     */
-    @Overwrite
-    static PartialModel getMiddleForState(BlockState state, boolean lit) {
+    @ModifyReturnValue(method = "getMiddleForState", at = @At("RETURN"))
+    private static PartialModel createpatina$getMiddleForState(
+            PartialModel original, BlockState state, boolean lit
+    ) {
         Block block = state.getBlock();
         if (block instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED && isFluidInterface(state)) {
             return lit
                     ? PartialModelRegistry.WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE_POWERED.get(patina.getType())
                     : PartialModelRegistry.WEATHERING_PORTABLE_FLUID_INTERFACE_MIDDLE.get(patina.getType());
         }
-        if (AllBlocks.PORTABLE_FLUID_INTERFACE.has(state))
-            return lit ? AllPartialModels.PORTABLE_FLUID_INTERFACE_MIDDLE_POWERED : AllPartialModels.PORTABLE_FLUID_INTERFACE_MIDDLE;
-        return lit ? AllPartialModels.PORTABLE_STORAGE_INTERFACE_MIDDLE_POWERED : AllPartialModels.PORTABLE_STORAGE_INTERFACE_MIDDLE;
+        return original;
     }
 
-    /**
-     * @author Create Patina
-     * @reason enable variant texture
-     */
-    @Overwrite
-    static PartialModel getTopForState(BlockState state) {
+    @ModifyReturnValue(method = "getTopForState", at = @At("RETURN"))
+    private static PartialModel createpatina$getTopForState(PartialModel original, BlockState state) {
         Block block = state.getBlock();
         if (block instanceof PatinaBlock patina && patina.getType() != WeatheringType.UNAFFECTED && isFluidInterface(state)) {
             return PartialModelRegistry.WEATHERING_PORTABLE_FLUID_INTERFACE_TOP.get(patina.getType());
         }
-        if (AllBlocks.PORTABLE_FLUID_INTERFACE.has(state))
-            return AllPartialModels.PORTABLE_FLUID_INTERFACE_TOP;
-        return AllPartialModels.PORTABLE_STORAGE_INTERFACE_TOP;
+        return original;
     }
 
     private static boolean isFluidInterface(BlockState state) {
