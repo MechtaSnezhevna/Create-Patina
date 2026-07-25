@@ -36,13 +36,11 @@ public abstract class CopperTableClothOxidizationMixin extends Block implements 
             patina$isCopperTableCloth = state.getBlock().getDescriptionId()
                     .contains("copper_table_cloth");;
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperTableCloth && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperTableCloth == null) {
             return false;
         }

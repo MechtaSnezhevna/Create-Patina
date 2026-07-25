@@ -34,8 +34,7 @@ public abstract class PumpOxidizationMixin extends Block implements PatinaBlock 
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return super.isRandomlyTicking(state) ||
-                (this.isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override

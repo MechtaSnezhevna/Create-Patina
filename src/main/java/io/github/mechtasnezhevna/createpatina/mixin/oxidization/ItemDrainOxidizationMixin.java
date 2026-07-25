@@ -34,8 +34,7 @@ public abstract class ItemDrainOxidizationMixin extends Block implements PatinaB
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return super.isRandomlyTicking(state) ||
-                (isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override

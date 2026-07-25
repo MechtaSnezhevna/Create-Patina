@@ -37,13 +37,11 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
             patina$isCopperDoor = state.getBlock().getDescriptionId()
                     .contains("copper_door");
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperDoor && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperDoor == null) {
             return false;
         }

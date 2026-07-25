@@ -33,13 +33,11 @@ public abstract class CopperBarsOxidizationMixin extends Block implements Patina
             patina$isCopperBars = state.getBlock().getDescriptionId()
                     .contains("copper_bars");
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperBars && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperBars == null) {
             return false;
         }

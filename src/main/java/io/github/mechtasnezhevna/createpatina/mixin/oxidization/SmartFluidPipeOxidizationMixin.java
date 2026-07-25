@@ -29,8 +29,7 @@ public abstract class SmartFluidPipeOxidizationMixin extends Block implements Pa
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return super.isRandomlyTicking(state) ||
-                (isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override

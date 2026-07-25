@@ -33,13 +33,11 @@ public abstract class CopperCasingOxidizationMixin extends Block implements Pati
             patina$isCopperCasing = state.getBlock().getDescriptionId()
                     .contains("copper_casing");
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperCasing && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperCasing == null) {
             return false;
         }

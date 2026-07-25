@@ -51,8 +51,7 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
     }
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return super.isRandomlyTicking(state) ||
-                (isWeatheringEnabled() && type != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {

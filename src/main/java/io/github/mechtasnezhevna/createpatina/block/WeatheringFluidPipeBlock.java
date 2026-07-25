@@ -95,8 +95,7 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return super.isRandomlyTicking(state) ||
-                (isWeatheringEnabled() && type != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override

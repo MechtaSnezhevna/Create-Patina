@@ -33,13 +33,11 @@ public abstract class CopperScaffoldOxidizationMixin extends Block implements Pa
             patina$isCopperScaffold = state.getBlock().getDescriptionId()
                     .contains("copper_scaffold");
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperScaffold && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperScaffold == null) {
             return false;
         }

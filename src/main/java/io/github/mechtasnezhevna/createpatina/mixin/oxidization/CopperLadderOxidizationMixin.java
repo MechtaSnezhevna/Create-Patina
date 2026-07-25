@@ -33,13 +33,11 @@ public abstract class CopperLadderOxidizationMixin extends Block implements Pati
             patina$isCopperLadder = state.getBlock().getDescriptionId()
                     .contains("copper_ladder");
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperLadder && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperLadder == null) {
             return false;
         }

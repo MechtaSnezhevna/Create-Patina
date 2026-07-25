@@ -35,8 +35,7 @@ public class SteamEngineOxidizationMixin extends Block implements PatinaBlock {
     public boolean isRandomlyTicking(BlockState state) {
 //        if(state.getBlock().getDescriptionId().equals("block.create.steam_engine"))
 //            return true;
-        return super.isRandomlyTicking(state) ||
-                (isWeatheringEnabled() && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override

@@ -35,13 +35,11 @@ public abstract class CopperBacktankOxidizationMixin extends Block implements Pa
             patina$isCopperBackTank = state.getBlock().getDescriptionId()
                     .contains("copper_backtank");
         }
-        return super.isRandomlyTicking(state) ||
-                (patina$isCopperBackTank && this.isWeatheringEnabled()
-                        && getType() != WeatheringType.OXIDIZED);
+        return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    public boolean isWeatheringEnabled() {
+    public boolean allowsNaturalWeathering() {
         if (patina$isCopperBackTank == null) {
             return false;
         }

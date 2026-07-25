@@ -24,13 +24,18 @@ public interface PatinaBlock extends WeatheringCopper {
     }
 
     /**
-     * Checks if this block can weather. If the block is waxed, it cannot weather.
-     * This method is used to determine if the block should be randomly ticking and if it should change over time.
-     * Override this method if you want to disable weathering for a block specifically.
-     * @return true if the block can weather, false otherwise
+     * Determines whether natural weathering is permitted for this block.
+     * Override this policy hook to exclude blocks that must not weather naturally.
      */
-    default boolean isWeatheringEnabled() {
+    default boolean allowsNaturalWeathering() {
         return !getType().isWaxed();
+    }
+
+    /**
+     * Determines whether this block is permitted to weather and still has a later weathering stage.
+     */
+    default boolean canAdvanceWeathering() {
+        return allowsNaturalWeathering() && getType().getNext() != null;
     }
 
     /**
