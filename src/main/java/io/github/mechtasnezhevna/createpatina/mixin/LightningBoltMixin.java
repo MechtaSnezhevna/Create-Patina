@@ -28,7 +28,7 @@ public class LightningBoltMixin {
     )
     private static boolean createpatina$redirectSetBlockAndUpdate(
             Level level, BlockPos pos, BlockState state,
-            Operation<Boolean> original, @Local(name = "blockstate1") BlockState oldState
+            Operation<Boolean> original, @Local(ordinal = 1) BlockState oldState
     ) {
         Block block = state.getBlock();
         if (block instanceof WeatheringCopper) {
@@ -47,8 +47,8 @@ public class LightningBoltMixin {
     )
     private static void createpatina$redirectSetBlockAndUpdateRandomStep(
             Optional<BlockState> optional, Consumer<BlockState> consumer,
-            Operation<Void> original, @Local(name = "blockstate") BlockState oldState,
-            @Local(name = "blockpos") BlockPos pos, @Local(name = "level") Level level
+            Operation<Void> original, @Local(ordinal = 0) BlockState oldState,
+            @Local(ordinal = 1) BlockPos pos, @Local(ordinal = 0, argsOnly = true) Level level
     ) {
         optional.ifPresent(state -> {
             Block block = state.getBlock();
