@@ -2,6 +2,7 @@ package io.github.mechtasnezhevna.createpatina.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
@@ -23,13 +24,19 @@ public abstract class FluidTankItemMixin {
                     target = "Lcom/simibubi/create/api/connectivity/ConnectivityHandler;partAt(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;"
             )
     )
-    private BlockEntity create_weathered_tanks$wrapPartAt(BlockEntityType<?> type, BlockGetter level, BlockPos pos, Operation<BlockEntity> original) {
+    private BlockEntity createPatina$findMatchingTank(
+            BlockEntityType<?> originalType, BlockGetter level, BlockPos pos, Operation<BlockEntity> original
+    ) {
         BlockState placedOnState = level.getBlockState(pos);
         Block placedOnBlock = placedOnState.getBlock();
-        Block currentBlock = ((BlockItem)(Object)this).getBlock();
+        Block currentBlock = ((BlockItem) (Object) this).getBlock();
         if (currentBlock != placedOnBlock) {
             return null;
         }
-        return original.call(type, level, pos);
+
+        BlockEntityType<?> actualType = currentBlock instanceof FluidTankBlock tank
+                ? tank.getBlockEntityType()
+                : originalType;
+        return original.call(actualType, level, pos);
     }
 }
