@@ -4,6 +4,7 @@
   "mixins": [
     "BoilerDataMixin",
     "ChangeOverTimeBlockMixin",
+    "ConnectivityHandlerMixin",
     "FluidTankItemMixin",
     "LightningBoltMixin",
     "PortableStorageInterfaceMovementMixin",

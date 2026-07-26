@@ -1,10 +1,13 @@
 package io.github.mechtasnezhevna.createpatina.util;
 
+import com.simibubi.create.api.connectivity.ConnectivityHandler;
+import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -30,18 +33,15 @@ public final class OxidizeUtil {
             return;
         }
 
-        BlockState finalState = newState;
-        for (Property<?> property : currentState.getProperties()) {
-            if (finalState.hasProperty(property)) {
-                finalState = copyProperty(currentState, finalState, property);
-            }
-        }
+        BlockState finalState = copySharedProperties(currentState, newState);
 
         if (currentState == finalState) {
             return;
         }
 
         BlockEntity oldBE = level.getBlockEntity(pos);
+        boolean replacingFluidTank = oldBE instanceof FluidTankBlockEntity;
+        BlockState stateToRestore = currentState;
         CompoundTag blockEntityData = null;
         if (oldBE != null) {
             if (!finalState.hasBlockEntity()) {
@@ -49,14 +49,25 @@ public final class OxidizeUtil {
                         + currentState + " with non-BlockEntity state " + finalState + " at " + pos);
             }
 
+            prepareBlockEntityForReplacement(oldBE);
+
+            /*
+             * ConnectivityHandler#splitMulti resets a tank's TOP, BOTTOM and SHAPE properties.
+             * Copy from that detached state instead of preserving the stale CT properties that
+             * belonged to the old multi-block.
+             */
+            stateToRestore = level.getBlockState(pos);
+            finalState = copySharedProperties(stateToRestore, newState);
             blockEntityData = oldBE.saveWithoutMetadata(level.registryAccess());
 
             level.removeBlockEntity(pos);
         }
 
-        if (!level.setBlockAndUpdate(pos, finalState)) {
+        if (!setReplacementState(level, pos, finalState, replacingFluidTank)) {
             if (oldBE != null) {
-                restoreOriginalBlockEntity(level, pos, currentState, oldBE, blockEntityData);
+                restoreOriginalBlockEntity(
+                        level, pos, stateToRestore, oldBE, blockEntityData, replacingFluidTank
+                );
             }
             throw new IllegalStateException("Failed to replace " + currentState + " with "
                     + finalState + " at " + pos);
@@ -65,12 +76,16 @@ public final class OxidizeUtil {
         if (blockEntityData != null) {
             BlockEntity newBE = level.getBlockEntity(pos);
             if (newBE == null) {
-                restoreOriginalBlockEntity(level, pos, currentState, oldBE, blockEntityData);
+                restoreOriginalBlockEntity(
+                        level, pos, stateToRestore, oldBE, blockEntityData, replacingFluidTank
+                );
                 throw new IllegalStateException("Replacement state " + finalState
                         + " did not create a BlockEntity at " + pos);
             }
             if (newBE.getClass() != oldBE.getClass()) {
-                restoreOriginalBlockEntity(level, pos, currentState, oldBE, blockEntityData);
+                restoreOriginalBlockEntity(
+                        level, pos, stateToRestore, oldBE, blockEntityData, replacingFluidTank
+                );
                 throw new IllegalStateException("Cannot migrate BlockEntity data between incompatible classes "
                         + oldBE.getClass().getName() + " and " + newBE.getClass().getName()
                         + " at " + pos);
@@ -79,7 +94,9 @@ public final class OxidizeUtil {
             try {
                 newBE.loadWithComponents(blockEntityData.copy(), level.registryAccess());
             } catch (RuntimeException exception) {
-                restoreOriginalBlockEntity(level, pos, currentState, oldBE, blockEntityData);
+                restoreOriginalBlockEntity(
+                        level, pos, stateToRestore, oldBE, blockEntityData, replacingFluidTank
+                );
                 throw new IllegalStateException("Failed to migrate BlockEntity data from "
                         + currentState + " to " + finalState + " at " + pos, exception);
             }
@@ -93,12 +110,67 @@ public final class OxidizeUtil {
         }
     }
 
+    private static void prepareBlockEntityForReplacement(BlockEntity blockEntity) {
+        if (!(blockEntity instanceof FluidTankBlockEntity tankBE)) {
+            return;
+        }
+
+        /*
+         * Original Create code from FluidTankBlock#onRemove:
+         * if (state.hasBlockEntity() && (state.getBlock() != newState.getBlock() || !newState.hasBlockEntity())) {
+         *     BlockEntity be = world.getBlockEntity(pos);
+         *     if (!(be instanceof FluidTankBlockEntity tankBE))
+         *         return;
+         *     world.removeBlockEntity(pos);
+         *     ConnectivityHandler.splitMulti(tankBE);
+         * }
+         */
+        ConnectivityHandler.splitMulti(tankBE);
+
+        /*
+         * Original Create code from ItemVaultBlock#onWrenched:
+         * if (be instanceof ItemVaultBlockEntity vault) {
+         *     ConnectivityHandler.splitMulti(vault);
+         *     vault.removeController(true);
+         * }
+         *
+         * splitMulti is a no-op for an existing 1x1 structure. Calling removeController(true)
+         * as Create does for a structural reset guarantees that even a single tank is saved
+         * with the Uninitialized marker and reconnects on its next BlockEntity tick.
+         */
+        tankBE.removeController(true);
+    }
+
+    private static boolean setReplacementState(
+            Level level, BlockPos pos, BlockState state, boolean suppressImmediateTankConnectivity
+    ) {
+        int flags = Block.UPDATE_ALL;
+        if (suppressImmediateTankConnectivity) {
+            /*
+             * Original Create code from FluidTankBlock#onPlace:
+             * if (oldState.getBlock() == state.getBlock())
+             *     return;
+             * if (moved)
+             *     return;
+             * withBlockEntityDo(world, pos, FluidTankBlockEntity::updateConnectivity);
+             *
+             * The replacement BlockEntity does not receive its preserved NBT until setBlock
+             * returns. UPDATE_MOVE_BY_PISTON supplies moved=true and prevents Create from
+             * forming a multi-block against that empty, not-yet-restored BlockEntity.
+             */
+            flags |= Block.UPDATE_MOVE_BY_PISTON;
+        }
+        return level.setBlock(pos, state, flags);
+    }
+
     private static void restoreOriginalBlockEntity(
-            Level level, BlockPos pos, BlockState oldState, BlockEntity oldBE, CompoundTag blockEntityData
+            Level level, BlockPos pos, BlockState oldState, BlockEntity oldBE,
+            CompoundTag blockEntityData, boolean restoringFluidTank
     ) {
         level.removeBlockEntity(pos);
 
-        if (level.getBlockState(pos) != oldState && !level.setBlockAndUpdate(pos, oldState)) {
+        if (level.getBlockState(pos) != oldState
+                && !setReplacementState(level, pos, oldState, restoringFluidTank)) {
             throw new IllegalStateException("Failed to restore original state " + oldState + " at " + pos);
         }
 
@@ -132,5 +204,14 @@ public final class OxidizeUtil {
 
     private static <T extends Comparable<T>> BlockState copyProperty(BlockState from, BlockState to, Property<T> property) {
         return to.setValue(property, from.getValue(property));
+    }
+
+    private static BlockState copySharedProperties(BlockState from, BlockState to) {
+        for (Property<?> property : from.getProperties()) {
+            if (to.hasProperty(property)) {
+                to = copyProperty(from, to, property);
+            }
+        }
+        return to;
     }
 }
