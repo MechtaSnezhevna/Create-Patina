@@ -52,7 +52,7 @@ public enum WeatheringType {
 
     @Contract(pure = true)
     public static String getPrefixByName(String name){
-        String[] prefixes = {"exposed_","weathered_","oxidized_","waxed_", "waxed_exposed_","waxed_weathered_","waxed_oxidized_"};
+        String[] prefixes = {"waxed_exposed_","waxed_weathered_","waxed_oxidized_", "waxed_", "exposed_", "weathered_", "oxidized_"};
         for (String prefix : prefixes) {
             if (name.startsWith(prefix)) {
                 return prefix;
