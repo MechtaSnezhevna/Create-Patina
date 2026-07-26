@@ -1,7 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.network;
 
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
-import io.github.mechtasnezhevna.createpatina.item.OxidizeStickItem;
+import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -15,34 +15,34 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record OxidizeStickActionPayload(BlockPos pos, int row, int value, Direction face)
+public record PatinaClockActionPayload(BlockPos pos, int row, int value, Direction face)
         implements CustomPacketPayload {
 
     public static final int SHORT_ACTION_ROW = -1;
 
-    public static final Type<OxidizeStickActionPayload> TYPE =
-            new Type<>(CreatePatina.asResource("oxidize_stick_action"));
+    public static final Type<PatinaClockActionPayload> TYPE =
+            new Type<>(CreatePatina.asResource("patina_clock_action"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, OxidizeStickActionPayload> STREAM_CODEC =
+    public static final StreamCodec<RegistryFriendlyByteBuf, PatinaClockActionPayload> STREAM_CODEC =
             StreamCodec.composite(
-                    BlockPos.STREAM_CODEC, OxidizeStickActionPayload::pos,
-                    ByteBufCodecs.VAR_INT, OxidizeStickActionPayload::row,
-                    ByteBufCodecs.VAR_INT, OxidizeStickActionPayload::value,
-                    Direction.STREAM_CODEC, OxidizeStickActionPayload::face,
-                    OxidizeStickActionPayload::new
+                    BlockPos.STREAM_CODEC, PatinaClockActionPayload::pos,
+                    ByteBufCodecs.VAR_INT, PatinaClockActionPayload::row,
+                    ByteBufCodecs.VAR_INT, PatinaClockActionPayload::value,
+                    Direction.STREAM_CODEC, PatinaClockActionPayload::face,
+                    PatinaClockActionPayload::new
             );
 
     // verified: NeoForge 21.1.228 RegisterPayloadHandlersEvent/PayloadRegistrar source, 2026-07-26
     public static void register(RegisterPayloadHandlersEvent event) {
-        event.registrar("1").playToServer(TYPE, STREAM_CODEC, OxidizeStickActionPayload::handle);
+        event.registrar("1").playToServer(TYPE, STREAM_CODEC, PatinaClockActionPayload::handle);
     }
 
-    private static void handle(OxidizeStickActionPayload payload, IPayloadContext context) {
+    private static void handle(PatinaClockActionPayload payload, IPayloadContext context) {
         if (!(context.player() instanceof ServerPlayer player)) {
             return;
         }
 
-        ItemStack itemStack = findHeldStick(player);
+        ItemStack itemStack = findHeldClock(player);
         if (itemStack.isEmpty()
                 || !player.level().isLoaded(payload.pos())
                 || !player.level().mayInteract(player, payload.pos())
@@ -52,19 +52,19 @@ public record OxidizeStickActionPayload(BlockPos pos, int row, int value, Direct
         }
 
         if (payload.row() == SHORT_ACTION_ROW) {
-            OxidizeStickItem.applyShortAction(player, payload.pos(), itemStack);
+            PatinaClockItem.applyShortAction(player, payload.pos(), itemStack);
             return;
         }
 
-        OxidizeStickItem.applySelectedState(
+        PatinaClockItem.applySelectedState(
                 player, payload.pos(), itemStack, payload.row(), payload.value()
         );
     }
 
-    private static ItemStack findHeldStick(ServerPlayer player) {
+    private static ItemStack findHeldClock(ServerPlayer player) {
         for (InteractionHand hand : InteractionHand.values()) {
             ItemStack stack = player.getItemInHand(hand);
-            if (stack.getItem() instanceof OxidizeStickItem) {
+            if (stack.getItem() instanceof PatinaClockItem) {
                 return stack;
             }
         }

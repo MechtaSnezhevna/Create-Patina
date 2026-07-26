@@ -7,12 +7,12 @@ import com.simibubi.create.content.equipment.armor.BacktankItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
-import io.github.mechtasnezhevna.createpatina.item.OxidizeStickItem;
+import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.EnumMap;
@@ -55,9 +55,11 @@ public class ItemRegistry
         }
     }
 
-    public static final ItemEntry<OxidizeStickItem> OXIDIZE_STICK = REGISTRATE
-            .item("oxidize_stick", OxidizeStickItem::new)
-            .properties(p -> p.stacksTo(1))
+    public static final ItemEntry<PatinaClockItem> PATINA_CLOCK = REGISTRATE
+            .item("patina_clock", PatinaClockItem::new)
+            .properties(p -> p.stacksTo(1)
+                    .rarity(Rarity.EPIC)
+            )
 //            .model(AssetLookup.itemModelWithPartials())
             .register();
 

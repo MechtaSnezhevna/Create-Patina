@@ -1,8 +1,8 @@
 package io.github.mechtasnezhevna.createpatina.client;
 
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.item.OxidizeStickItem;
-import io.github.mechtasnezhevna.createpatina.network.OxidizeStickActionPayload;
+import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
+import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
 import net.createmod.catnip.gui.ScreenOpener;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -16,7 +16,7 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-public final class OxidizeStickClientHandler {
+public final class PatinaClockClientHandler {
 
     private static final int LONG_PRESS_TICKS = 5;
 
@@ -25,14 +25,14 @@ public final class OxidizeStickClientHandler {
     private static Direction heldFace;
     private static InteractionHand heldHand;
 
-    private OxidizeStickClientHandler() {
+    private PatinaClockClientHandler() {
     }
 
     // verified: NeoForge 21.1.228 PlayerInteractEvent.RightClickBlock source, 2026-07-26
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         if (!event.getLevel().isClientSide
-                || !(event.getItemStack().getItem() instanceof OxidizeStickItem)
-                || !OxidizeStickItem.canInteractWith(event.getLevel().getBlockState(event.getPos()))) {
+                || !(event.getItemStack().getItem() instanceof PatinaClockItem)
+                || !PatinaClockItem.canInteractWith(event.getLevel().getBlockState(event.getPos()))) {
             return;
         }
 
@@ -62,7 +62,7 @@ public final class OxidizeStickClientHandler {
         }
 
         ItemStack heldStack = minecraft.player.getItemInHand(heldHand);
-        if (!(heldStack.getItem() instanceof OxidizeStickItem)
+        if (!(heldStack.getItem() instanceof PatinaClockItem)
                 || !(minecraft.hitResult instanceof BlockHitResult hitResult)
                 || !hitResult.getBlockPos().equals(heldPos)) {
             cancel();
@@ -71,8 +71,8 @@ public final class OxidizeStickClientHandler {
 
         if (!minecraft.options.keyUse.isDown()) {
             // verified: NeoForge 21.1.228 PacketDistributor source, 2026-07-26
-            PacketDistributor.sendToServer(new OxidizeStickActionPayload(
-                    heldPos, OxidizeStickActionPayload.SHORT_ACTION_ROW, 0, heldFace
+            PacketDistributor.sendToServer(new PatinaClockActionPayload(
+                    heldPos, PatinaClockActionPayload.SHORT_ACTION_ROW, 0, heldFace
             ));
             cancel();
             return;
@@ -80,12 +80,12 @@ public final class OxidizeStickClientHandler {
 
         BlockState state = minecraft.level.getBlockState(heldPos);
         if (++heldTicks < LONG_PRESS_TICKS
-                || !OxidizeStickItem.canAdjustState(state)
+                || !PatinaClockItem.canAdjustState(state)
                 || !(state.getBlock() instanceof PatinaBlock patinaBlock)) {
             return;
         }
 
-        ScreenOpener.open(new OxidizeStickValueSettingsScreen(
+        ScreenOpener.open(new PatinaClockValueSettingsScreen(
                 heldPos, heldFace, patinaBlock.getType()
         ));
         cancel();

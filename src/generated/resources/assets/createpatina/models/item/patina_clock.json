@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "createpatina:item/oxidize_stick"
+    "layer0": "createpatina:item/patina_clock"
   }
 }

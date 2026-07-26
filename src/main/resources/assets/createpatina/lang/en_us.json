@@ -220,9 +220,9 @@
   "item.createpatina.waxed_weathered_copper_backtank_placeable": "Waxed Weathered Copper Backtank Placeable",
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "Waxed Oxidized Copper Backtank Placeable",
 
-  "gui.createpatina.oxidize_stick.title": "Adjust Weathering State",
-  "gui.createpatina.oxidize_stick.unwaxed": "Unwaxed",
-  "gui.createpatina.oxidize_stick.waxed": "Waxed",
+  "gui.createpatina.patina_clock.title": "Adjust Weathering State",
+  "gui.createpatina.patina_clock.unwaxed": "Unwaxed",
+  "gui.createpatina.patina_clock.waxed": "Waxed",
   "gui.createpatina.weathering_type.unaffected": "Unaffected",
   "gui.createpatina.weathering_type.exposed": "Exposed",
   "gui.createpatina.weathering_type.weathered": "Weathered",

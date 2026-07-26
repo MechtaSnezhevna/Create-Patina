@@ -2,8 +2,8 @@ package io.github.mechtasnezhevna.createpatina;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.mechtasnezhevna.createpatina.event.CommonEvents;
-import io.github.mechtasnezhevna.createpatina.item.OxidizeStickItem;
-import io.github.mechtasnezhevna.createpatina.network.OxidizeStickActionPayload;
+import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
+import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
 import io.github.mechtasnezhevna.createpatina.registry.*;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaDataGen;
 import net.minecraft.resources.ResourceLocation;
@@ -42,10 +42,10 @@ public class CreatePatina {
 
         modEventBus.addListener(CreativeModeTabRegistry::editPatinaTab);
         modEventBus.addListener(EventPriority.LOWEST, PatinaDataGen::gatherData);
-        modEventBus.addListener(OxidizeStickActionPayload::register);
+        modEventBus.addListener(PatinaClockActionPayload::register);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
         NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);
-        NeoForge.EVENT_BUS.addListener(OxidizeStickItem::suppressImmediateServerInteraction);
+        NeoForge.EVENT_BUS.addListener(PatinaClockItem::suppressImmediateServerInteraction);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

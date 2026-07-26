@@ -23,7 +23,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import java.util.Map;
 import java.util.Optional;
 
-public class OxidizeStickItem extends Item {
+public class PatinaClockItem extends Item {
 
     private static final WeatheringType[][] SETTINGS = {
             {
@@ -40,7 +40,7 @@ public class OxidizeStickItem extends Item {
             }
     };
 
-    public OxidizeStickItem(Properties properties) {
+    public PatinaClockItem(Properties properties) {
         super(properties);
     }
 
@@ -59,7 +59,7 @@ public class OxidizeStickItem extends Item {
     // verified: NeoForge 21.1.228 PlayerInteractEvent.RightClickBlock source, 2026-07-26
     public static void suppressImmediateServerInteraction(PlayerInteractEvent.RightClickBlock event) {
         if (event.getLevel().isClientSide
-                || !(event.getItemStack().getItem() instanceof OxidizeStickItem)
+                || !(event.getItemStack().getItem() instanceof PatinaClockItem)
                 || !canInteractWith(event.getLevel().getBlockState(event.getPos()))) {
             return;
         }
