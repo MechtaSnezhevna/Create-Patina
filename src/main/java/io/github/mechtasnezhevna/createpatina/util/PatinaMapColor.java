@@ -12,21 +12,26 @@ public class PatinaMapColor {
         if (prefix == "" || prefix == "waxed_")
             return MapColor.COLOR_ORANGE;
         if (prefix == "exposed_" || prefix == "waxed_exposed_")
-            return MapColor.TERRACOTTA_ORANGE;
+            return MapColor.TERRACOTTA_LIGHT_GRAY;
         if (prefix == "weathered_" || prefix == "waxed_weathered_")
-            return MapColor.COLOR_GREEN;
+            return MapColor.WARPED_STEM;
         if (prefix == "oxidized_" || prefix == "waxed_oxidized_")
-            return MapColor.TERRACOTTA_GREEN;
+            return MapColor.WARPED_NYLIUM;
         return null;
     }
 
     @Contract(pure = true)
-    public static @Nullable MapColor getMapColorByType(@NotNull WeatheringType type){
-        return getMapColorByPrefix(type.getPrefix());
+    public static @NotNull MapColor getMapColorByType(@NotNull WeatheringType type){
+        return switch (type) {
+            case UNAFFECTED, WAXED -> MapColor.COLOR_ORANGE;
+            case EXPOSED, WAXED_EXPOSED -> MapColor.TERRACOTTA_LIGHT_GRAY;
+            case WEATHERED, WAXED_WEATHERED -> MapColor.WARPED_STEM;
+            case OXIDIZED, WAXED_OXIDIZED -> MapColor.WARPED_NYLIUM;
+        };
     }
 
     @Contract(pure = true)
     public static MapColor getMapColorByName(String name) {
-        return getMapColorByPrefix(WeatheringType.getPrefixByName(name));
+        return getMapColorByType(WeatheringType.fromIdString(name));
     }
 }

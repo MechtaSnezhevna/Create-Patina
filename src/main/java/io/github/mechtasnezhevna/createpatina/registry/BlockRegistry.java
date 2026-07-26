@@ -107,7 +107,8 @@ public class BlockRegistry {
                         p.simpleBlock(c.get(), modelFile);
                     })
                     .simpleItem()
-            ).unaffected(AllBlocks.ITEM_DRAIN)
+            ).mapColor()
+            .unaffected(AllBlocks.ITEM_DRAIN)
             .register();
 
     public static final PatinaSet MECHANICAL_PUMP_SET = new PatinaSetBuilder<>(
@@ -192,7 +193,8 @@ public class BlockRegistry {
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .item()
                     .transform(customItemModel("fluid_pipe", "_", "item"))
-            ).unaffected(AllBlocks.FLUID_PIPE)
+            ).mapColor()
+            .unaffected(AllBlocks.FLUID_PIPE)
             .register();
 
     public static final PatinaSet GLASS_FLUID_PIPE_SET = new PatinaSetBuilder<>(
@@ -215,7 +217,8 @@ public class BlockRegistry {
                             }, BlockStateProperties.WATERLOGGED))
                     .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::withAO))
                     .loot((p, block) -> p.dropOther(block, FLUID_PIPE_SET.get(type)))
-            ).unaffected(AllBlocks.GLASS_FLUID_PIPE)
+            ).mapColor()
+            .unaffected(AllBlocks.GLASS_FLUID_PIPE)
             .register();
 
     public static final PatinaSet COPPER_CASING_SET = new PatinaSetBuilder<>(
@@ -518,7 +521,8 @@ public class BlockRegistry {
                     .item(FluidTankItem::new)
                     .model(AssetLookup.customBlockItemModel("fluid_tank", "_", "block_single_window"))
                     .build()
-            ).unaffected(AllBlocks.FLUID_TANK)
+            ).mapColor()
+            .unaffected(AllBlocks.FLUID_TANK)
             .register();
 
     public static final PatinaSet SPOUT_SET = new PatinaSetBuilder<>(
@@ -550,7 +554,8 @@ public class BlockRegistry {
                                 .texture("3", p.modLoc("block/spout/" + prefix + "spout_nozzle"));
                     })
                     .build()
-            ).unaffected(AllBlocks.SPOUT)
+            ).mapColor()
+            .unaffected(AllBlocks.SPOUT)
             .register();
 
     public static final PatinaSet STEAM_ENGINE_SET = new PatinaSetBuilder<>(
@@ -579,7 +584,8 @@ public class BlockRegistry {
                                 .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
                     })
                     .build()
-            ).unaffected(AllBlocks.STEAM_ENGINE)
+            ).mapColor()
+            .unaffected(AllBlocks.STEAM_ENGINE)
             .register();
 
     public static final PatinaSet STEAM_WHISTLE_SET = new PatinaSetBuilder<>(
@@ -667,7 +673,8 @@ public class BlockRegistry {
                                 .texture("particle", p.modLoc("block/valve/" + prefix + "valve_closed"));
                     })
                     .build()
-            ).unaffected(AllBlocks.FLUID_VALVE)
+            ).mapColor()
+            .unaffected(AllBlocks.FLUID_VALVE)
             .register();
 
     public static final PatinaSet COPPER_VALVE_HANDLE_SET = new PatinaSetBuilder<>(
@@ -691,7 +698,8 @@ public class BlockRegistry {
                     //.tag(AllTags.AllItemTags.VALVE_HANDLES.tag)
                     // removed to prevent recipe to an unaffected handle
                     .build()
-            ).unaffected(AllBlocks.COPPER_VALVE_HANDLE)
+            ).mapColor()
+            .unaffected(AllBlocks.COPPER_VALVE_HANDLE)
             .register();
 
     public static final PatinaSet HOSE_PULLEY_SET = new PatinaSetBuilder<>(
@@ -731,7 +739,8 @@ public class BlockRegistry {
                                 .texture("partical", p.modLoc("block/fluid_tank/" + prefix + "fluid_tank_inner"));
                     })
                     .build()
-            ).unaffected(AllBlocks.HOSE_PULLEY)
+            ).mapColor()
+            .unaffected(AllBlocks.HOSE_PULLEY)
             .register();
 
     public static final PatinaSet PORTABLE_FLUID_INTERFACE_SET = new PatinaSetBuilder<>(
@@ -801,7 +810,8 @@ public class BlockRegistry {
                                     .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
                                         .include(AllDataComponents.BACKTANK_AIR)))));
                         });
-            }).unaffected(AllBlocks.COPPER_BACKTANK)
+            }).mapColor()
+            .unaffected(AllBlocks.COPPER_BACKTANK)
             .register();
 
     public static final PatinaSet COPPER_TABLE_CLOTH_SET = new PatinaSetBuilder<>(
@@ -832,7 +842,8 @@ public class BlockRegistry {
                     })
                     .tag(AllTags.AllItemTags.TABLE_CLOTHS.tag)
                     .build()
-            ).unaffected(AllBlocks.COPPER_TABLE_CLOTH)
+            ).mapColor()
+            .unaffected(AllBlocks.COPPER_TABLE_CLOTH)
             .register();
 
     public static final PatinaSet COPPER_DOOR_SET = new PatinaSetBuilder<>(
@@ -840,7 +851,6 @@ public class BlockRegistry {
             .configure((type, b) -> b
                     .initialProperties(() -> Blocks.IRON_DOOR)
                     .properties(p -> p.requiresCorrectToolForDrops()
-                            .mapColor(PatinaMapColor.getMapColorByName(b.getName()))
                             .noOcclusion()
                             .strength(3.0F, 6.0F))
                     .blockstate((c, p) -> {
@@ -885,15 +895,15 @@ public class BlockRegistry {
                     .model((c, p) ->
                             p.blockSprite(c, p.modLoc("item/copper_door/" + type.getPrefixWithoutWaxed() + "copper_door")))
                     .build()
-            ).unaffected(AllBlocks.COPPER_DOOR)
+            ).mapColor()
+            .unaffected(AllBlocks.COPPER_DOOR)
             .register();
 
     public static final PatinaSet COPPER_SCAFFOLD_SET = new PatinaSetBuilder<>(
             REGISTRATE, "copper_scaffolding", MetalScaffoldingBlock:: new)
             .configure((type, b) -> b
                     .initialProperties(() -> Blocks.SCAFFOLDING)
-                    .properties(p -> p.sound(SoundType.COPPER)
-                            .mapColor(PatinaMapColor.getMapColorByName(b.getName())))
+                    .properties(p -> p.sound(SoundType.COPPER))
                     .addLayer(() -> RenderType::cutout)
                     .blockstate((c, p) -> p.getVariantBuilder(c.get())
                             .forAllStatesExcept(s -> {
@@ -924,13 +934,13 @@ public class BlockRegistry {
                         p.withExistingParent(name, p.modLoc("block/copper_scaffold/" + name));
                     })
                     .build()
-            ).unaffected(AllBlocks.COPPER_SCAFFOLD)
+            ).mapColor()
+            .unaffected(AllBlocks.COPPER_SCAFFOLD)
             .register();
 
     public static final PatinaSet COPPER_LADDER_SET = new PatinaSetBuilder<>(
             REGISTRATE, "copper_ladder", MetalLadderBlock:: new)
             .configure((type, b) -> b
-                    .properties(p -> p.mapColor(PatinaMapColor.getMapColorByName(b.getName())))
                     .addLayer(() -> RenderType::cutout)
                     .blockstate((c, p) -> {
                         String name = c.getName();
@@ -949,7 +959,8 @@ public class BlockRegistry {
                     .model((c, p) -> p
                             .blockSprite(c::get, p.modLoc("block/ladder/" + type.getPrefixWithoutWaxed() + "ladder_copper")))
                     .build()
-            ).unaffected(AllBlocks.COPPER_LADDER)
+            ).mapColor()
+            .unaffected(AllBlocks.COPPER_LADDER)
             .register();
 
     public static final PatinaSet COPPER_BARS_SET = new PatinaSetBuilder<>(
@@ -957,8 +968,7 @@ public class BlockRegistry {
             .configure((type, b) -> b
                     .addLayer(() -> RenderType::cutoutMipped)
                     .initialProperties(() -> Blocks.IRON_BARS)
-                    .properties(p -> p.sound(SoundType.COPPER)
-                            .mapColor(PatinaMapColor.getMapColorByName(b.getName())))
+                    .properties(p -> p.sound(SoundType.COPPER))
                     .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
                     .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
                     .transform(TagGen.pickaxeOnly())
@@ -969,7 +979,8 @@ public class BlockRegistry {
                         p.generated(c, barsTexture);
                     })
                     .build()
-            ).unaffected(AllBlocks.COPPER_BARS)
+            ).mapColor()
+            .unaffected(AllBlocks.COPPER_BARS)
             .register();
 
     public static void register() {

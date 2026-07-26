@@ -3,6 +3,7 @@ package io.github.mechtasnezhevna.createpatina.registry.util;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import io.github.mechtasnezhevna.createpatina.util.PatinaMapColor;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -60,6 +61,12 @@ public class PatinaSetBuilder<B extends Block, R extends AbstractRegistrate<R>> 
         return this;
     }
 
+    public PatinaSetBuilder<B, R> mapColor() {
+        configure((type, builder) ->
+                builder.properties(p -> p.mapColor(PatinaMapColor.getMapColorByType(type))));
+        return this;
+    }
+
     public PatinaSetBuilder<B, R> unaffected(BlockEntry<? extends Block> unaffected) {
         unaffectedBlock = unaffected;
         return this;
@@ -87,5 +94,11 @@ public class PatinaSetBuilder<B extends Block, R extends AbstractRegistrate<R>> 
         CopperRegistries.addWaxable(res.get(WeatheringType.EXPOSED), res.get(WeatheringType.WAXED_EXPOSED));
         CopperRegistries.addWaxable(res.get(WeatheringType.WEATHERED), res.get(WeatheringType.WAXED_WEATHERED));
         CopperRegistries.addWaxable(res.get(WeatheringType.OXIDIZED), res.get(WeatheringType.WAXED_OXIDIZED));
+    }
+
+    private void addExtraPatinaSettings() {
+        builders.forEach((type, b) -> {
+            b.properties(p -> p.mapColor(PatinaMapColor.getMapColorByType(type)));
+        });
     }
 }
