@@ -91,7 +91,7 @@ config="${mod_id}.mixins.json"
     modId="create"
     type="required"
     versionRange="${create_version_range}"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
