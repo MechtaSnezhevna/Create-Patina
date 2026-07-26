@@ -16,6 +16,7 @@
     "accessor.HosePulleyBlockEntityAccessor",
     "accessor.ItemDrainBlockEntityAccessor",
     "accessor.PortableFluidInterfaceBlockEntityAccessor",
+    "accessor.PortableStorageInterfaceBlockEntityAccessor",
     "accessor.SpoutBlockEntityAccessor",
     "oxidization.CopperBacktankOxidizationMixin",
     "oxidization.CopperBarsOxidizationMixin",

@@ -23,7 +23,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WeatheringPortableStorageInterfaceBlock extends WrenchableDirectionalBlock
-        implements IBE<PortableStorageInterfaceBlockEntity>, PatinaBlock{
+        implements IBE<PortableStorageInterfaceBlockEntity>, PatinaFluidEndpoint {
 
     private final PortableStorageInterfaceBlock portableStorageInterfaceBlock;
     private final WeatheringType type;

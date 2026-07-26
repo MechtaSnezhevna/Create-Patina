@@ -1,8 +1,11 @@
 package io.github.mechtasnezhevna.createpatina.util;
 
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
+import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
+import com.simibubi.create.content.contraptions.actors.psi.PortableFluidInterfaceBlockEntity;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
+import io.github.mechtasnezhevna.createpatina.mixin.accessor.PortableStorageInterfaceBlockEntityAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -41,12 +44,28 @@ public final class OxidizeUtil {
 
         BlockEntity oldBE = level.getBlockEntity(pos);
         boolean replacingFluidTank = oldBE instanceof FluidTankBlockEntity;
+        AbstractContraptionEntity connectedContraption = null;
+        float portableInterfaceDistance = 0;
+        int portableInterfaceTransferTimer = 0;
+        int portableInterfaceKeepAlive = 0;
         BlockState stateToRestore = currentState;
         CompoundTag blockEntityData = null;
         if (oldBE != null) {
             if (!finalState.hasBlockEntity()) {
                 throw new IllegalArgumentException("Cannot preserve BlockEntity data when replacing "
                         + currentState + " with non-BlockEntity state " + finalState + " at " + pos);
+            }
+
+            if (oldBE instanceof PortableFluidInterfaceBlockEntity) {
+                PortableStorageInterfaceBlockEntityAccessor accessor =
+                        (PortableStorageInterfaceBlockEntityAccessor) oldBE;
+                if (accessor.createPatina$getConnectedEntity() instanceof AbstractContraptionEntity contraption) {
+                    connectedContraption = contraption;
+                    portableInterfaceDistance = accessor.createPatina$getDistance();
+                    portableInterfaceTransferTimer = accessor.createPatina$getTransferTimer();
+                    portableInterfaceKeepAlive =
+                            ((PortableFluidInterfaceBlockEntity) oldBE).keepAlive;
+                }
             }
 
             prepareBlockEntityForReplacement(oldBE);
@@ -99,6 +118,45 @@ public final class OxidizeUtil {
                 );
                 throw new IllegalStateException("Failed to migrate BlockEntity data from "
                         + currentState + " to " + finalState + " at " + pos, exception);
+            }
+
+            if (newBE instanceof PortableFluidInterfaceBlockEntity portableInterface
+                    && connectedContraption != null
+                    && connectedContraption.isAlive()
+                    && connectedContraption.getContraption() != null) {
+                /*
+                 * Original Create code from
+                 * PortableStorageInterfaceMovement#tick:
+                 * if (stationaryInterface.connectedEntity == null)
+                 *     stationaryInterface.startTransferringTo(context.contraption, stationaryInterface.distance);
+                 *
+                 * Original Create code from
+                 * PortableFluidInterfaceBlockEntity#startTransferringTo:
+                 * capability = new InterfaceFluidHandler(contraption.getStorage().getFluids());
+                 * invalidateCapability();
+                 * super.startTransferringTo(contraption, distance);
+                 */
+                portableInterface.startTransferringTo(
+                        connectedContraption.getContraption(), portableInterfaceDistance
+                );
+                /*
+                 * Original Create code from PortableStorageInterfaceBlockEntity#startTransferringTo:
+                 * this.distance = Math.min(2, distance);
+                 * connectedEntity = contraption.entity;
+                 * startConnecting();
+                 * notifyUpdate();
+                 *
+                 * Original Create code from PortableStorageInterfaceBlockEntity#startConnecting:
+                 * transferTimer = 6 + ANIMATION * 2;
+                 *
+                 * Rebinding must rebuild connectedEntity and the fluid handler, but replacing the
+                 * active timeout with the short initial-connection timer makes the contraption
+                 * leave before the refreshed pipe network can resume content transfer.
+                 */
+                PortableStorageInterfaceBlockEntityAccessor accessor =
+                        (PortableStorageInterfaceBlockEntityAccessor) portableInterface;
+                accessor.createPatina$setTransferTimer(portableInterfaceTransferTimer);
+                portableInterface.keepAlive = portableInterfaceKeepAlive;
             }
 
             newBE.setChanged();
