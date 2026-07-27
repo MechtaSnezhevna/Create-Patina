@@ -52,6 +52,11 @@ public class PatinaClockItem extends Item {
                 : InteractionResult.PASS;
     }
 
+    @Override
+    public boolean isFoil(ItemStack stack) {
+        return true;
+    }
+
     public static boolean canInteractWith(BlockState state) {
         return canAdjustState(state) || getNext(state).isPresent();
     }
