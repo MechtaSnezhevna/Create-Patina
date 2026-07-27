@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry.DataGen;
+package io.github.mechtasnezhevna.createpatina.registry.DataGen.model;
 
 import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.pipes.SmartFluidPipeGenerator;

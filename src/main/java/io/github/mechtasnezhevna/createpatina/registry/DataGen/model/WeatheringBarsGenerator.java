@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.registry.DataGen;
+package io.github.mechtasnezhevna.createpatina.registry.DataGen.model;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.EAST;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.NORTH;
