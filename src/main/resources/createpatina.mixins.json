@@ -52,7 +52,8 @@
     "render.PortableStorageInterfaceRendererMixin",
     "render.SlidingDoorRendererMixin",
     "render.SpoutRendererMixin",
-    "render.ValveHandleVisualMixin"
+    "render.ValveHandleVisualMixin",
+    "render.FluidTankRendererMixin"
   ],
   "server": [
   ],

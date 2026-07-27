@@ -7,7 +7,6 @@ import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.createmod.catnip.data.Iterate;
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.Direction;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -41,6 +40,10 @@ public class PartialModelRegistry {
     public static final Map<WeatheringType, PartialModel> WEATHERING_PULLEY_MAGNET = new EnumMap<>(WeatheringType.class);
     public static final Map<WeatheringType, PartialModel> WEATHERING_HALF_MAGNET = new EnumMap<>(WeatheringType.class);
 
+    public static final Map<WeatheringType, PartialModel> WEATHERING_BOILER_GAUGE = new EnumMap<>(WeatheringType.class);
+    public static final Map<WeatheringType, PartialModel> WEATHERING_BOILER_GAUGE_DIAL = new EnumMap<>(WeatheringType.class);
+
+
     static {
         for (WeatheringType type : WeatheringType.values()) {
             if (type == WeatheringType.UNAFFECTED) // The base type should be defined in Create.
@@ -69,6 +72,8 @@ public class PartialModelRegistry {
             WEATHERING_SPOUT_BOTTOM.put(type, block("spout/" + prefix + "spout/bottom"));
             WEATHERING_PULLEY_MAGNET.put(type, block("hose_pulley/" + prefix + "hose_pulley/pulley_magnet"));
             WEATHERING_HALF_MAGNET.put(type, block("hose_pulley/" + prefix + "hose_pulley/rope_half_magnet"));
+            WEATHERING_BOILER_GAUGE.put(type, block("steam_engine/" + prefix + "steam_engine/" + "gauge"));
+            WEATHERING_BOILER_GAUGE_DIAL.put(type, block("steam_engine/" + prefix + "steam_engine/" + "gauge_dial"));
         }
     }
 

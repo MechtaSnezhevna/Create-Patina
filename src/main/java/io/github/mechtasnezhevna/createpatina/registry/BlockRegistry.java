@@ -43,7 +43,6 @@ import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringSmartFl
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.WeatheringWhistleGenerator;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSetBuilder;
-import io.github.mechtasnezhevna.createpatina.util.PatinaMapColor;
 import io.github.mechtasnezhevna.createpatina.util.PatinaStress;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.RenderType;
@@ -572,6 +571,19 @@ public class BlockRegistry {
                                 .texture("particle", p.modLoc("block/general/" + prefix + "copper_underside"))
                                 .texture("1", p.modLoc("block/steam_engine/" + prefix + "engine"));
                         p.horizontalFaceBlock(c.get(), baseModel);
+
+                        p.models()
+                                .withExistingParent("block/steam_engine/" + name + "/gauge",
+                                        Create.asResource("block/steam_engine/gauge"))
+                                .texture("0", p.modLoc("block/steam_engine/" + prefix + "boiler_gauge"))
+                                .texture("particle", p.modLoc("block/steam_engine/" + prefix + "boiler_gauge"));
+
+                        p.models()
+                                .withExistingParent("block/steam_engine/" + name + "/gauge_dial",
+                                        Create.asResource("block/steam_engine/gauge_dial"))
+                                .texture("0", p.modLoc("block/steam_engine/" + prefix + "boiler_gauge"))
+                                .texture("particle", p.modLoc("block/steam_engine/" + prefix + "boiler_gauge"));
+
                     })
                     .transform(PatinaStress.setCapacity(1024.0))
                     .onRegister(BlockStressValues.setGeneratorSpeed(64, true))
