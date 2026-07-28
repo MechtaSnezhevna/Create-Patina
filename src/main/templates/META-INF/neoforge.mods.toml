@@ -93,6 +93,18 @@ config="${mod_id}.mixins.json"
     versionRange="${create_version_range}"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="aeronautics"
+    type="optional"
+    versionRange="[${aeronautics_version},)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="simulated"
+    type="optional"
+    versionRange="[${simulated_version},)"
+    ordering="AFTER"
+    side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't

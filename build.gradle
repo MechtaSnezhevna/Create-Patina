@@ -48,6 +48,14 @@ repositories {
     maven {
         url = "https://api.modrinth.com/maven"
     }
+    maven {
+        // Create Aeronautics, Simulated and Sable
+        url = "https://maven.ryanhcode.dev/releases"
+    }
+    maven {
+        // CC: Tweaked, a runtime dependency of Create Aeronautics
+        url = "https://maven.squiddev.cc"
+    }
 }
 
 base {
@@ -160,6 +168,8 @@ dependencies {
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
+    implementation("dev.eriksonn.aeronautics:aeronautics-neoforge-${minecraft_version}:${aeronautics_version}")
+    implementation("dev.simulated_team.simulated:simulated-neoforge-${minecraft_version}:${simulated_version}")
 
     // Example mod dependency using a file as dependency
     // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
@@ -184,7 +194,9 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_name               : mod_name,
             mod_license            : mod_license,
             mod_version            : mod_version,
-            create_version_range   : create_version_range
+            create_version_range   : create_version_range,
+            aeronautics_version    : aeronautics_version,
+            simulated_version      : simulated_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties
