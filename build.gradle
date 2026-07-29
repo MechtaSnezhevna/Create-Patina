@@ -219,6 +219,10 @@ tasks.withType(ProcessResources).configureEach {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+tasks.named("jar") {
+    archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}-neoforge.jar"
+}
+
 // IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
 idea {
     module {
