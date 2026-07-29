@@ -10,19 +10,14 @@ import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Rarity;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import static io.github.mechtasnezhevna.createpatina.CreatePatina.MODID;
-
 public class ItemRegistry
 {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     private static final CreateRegistrate REGISTRATE = CreatePatina.registrate();
 
     public static final Map<WeatheringType, ItemEntry<BacktankItem.BacktankBlockItem>> PLACEABLE_BACKTANKS = new EnumMap<>(WeatheringType.class);
@@ -43,14 +38,14 @@ public class ItemRegistry
             ARMOR_BACKTANKS.put(type, REGISTRATE
                     .item(baseName, p -> new BacktankItem(
                             AllArmorMaterials.COPPER, p,
-                            ResourceLocation.fromNamespaceAndPath(MODID,prefix + "copper_diving"),
+                            new ResourceLocation(CreatePatina.MODID, prefix + "copper_diving"),
                             PLACEABLE_BACKTANKS.get(type)))
                     .model((c, p) ->
                             p.withExistingParent(baseName, Create.asResource("block/copper_backtank/item"))
                              .texture("0", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
                              .texture("particle", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank")))
                     .tag(AllTags.AllItemTags.PRESSURIZED_AIR_SOURCES.tag)
-                    .tag(ItemTags.CHEST_ARMOR)
+                    .tag(AllTags.AllItemTags.CHESTPLATE_ARMORS.tag)
                     .register());
         }
     }
@@ -63,7 +58,6 @@ public class ItemRegistry
 //            .model(AssetLookup.itemModelWithPartials())
             .register();
 
-    public static void register(IEventBus bus) {
-        ITEMS.register(bus);
+    public static void register() {
     }
 }

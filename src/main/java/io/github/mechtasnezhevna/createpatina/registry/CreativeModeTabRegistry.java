@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry;
 
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
@@ -10,9 +9,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+
 
 import java.util.function.Supplier;
 
@@ -38,14 +38,15 @@ public class CreativeModeTabRegistry {
             for (WeatheringType type : WeatheringType.values()) {
                 if (type == WeatheringType.UNAFFECTED) {
                     ItemStack fullBacktank = new ItemStack(AllItems.COPPER_BACKTANK.asItem());
-                    fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
+                    // verified: Create 6.0.8 BacktankUtil/AllCreativeModeTabs source for Minecraft 1.20.1, 2026-07-30
+                    fullBacktank.getOrCreateTag().putInt("Air", BacktankUtil.maxAirWithoutEnchants());
                     e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                     continue;
                 }
-                e.remove(new ItemStack(ItemRegistry.PLACEABLE_BACKTANKS.get(type).asItem()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                e.remove(new ItemStack(ItemRegistry.ARMOR_BACKTANKS.get(type).asItem()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                e.getEntries().remove(new ItemStack(ItemRegistry.PLACEABLE_BACKTANKS.get(type).asItem()));
+                e.getEntries().remove(new ItemStack(ItemRegistry.ARMOR_BACKTANKS.get(type).asItem()));
                 ItemStack fullBacktank = new ItemStack(ItemRegistry.ARMOR_BACKTANKS.get(type).asItem());
-                fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
+                fullBacktank.getOrCreateTag().putInt("Air", BacktankUtil.maxAirWithoutEnchants());
                 e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
             insertBefore(e, BlockRegistry.ITEM_DRAIN_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
@@ -71,19 +72,20 @@ public class CreativeModeTabRegistry {
 
 
 
-    private static void insertBefore(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?, ?> existingEntry, ItemProviderEntry<?, ?> newEntry, CreativeModeTab.TabVisibility visibility) {
-        e.insertBefore(existingEntry.asStack(), newEntry.asStack(), visibility);
+    private static void insertBefore(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry, CreativeModeTab.TabVisibility visibility) {
+        // verified: Forge 1.20.1-47.1.33 BuildCreativeModeTabContentsEvent/MutableHashedLinkedMap source, 2026-07-30
+        e.getEntries().putBefore(newEntry.asStack(), existingEntry.asStack(), visibility);
     }
 
-    private static void insertBefore(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?, ?> existingEntry, ItemProviderEntry<?, ?> newEntry) {
+    private static void insertBefore(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry) {
         insertBefore(e, existingEntry, newEntry, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 
-    private static void insertAfter(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?, ?> existingEntry, ItemProviderEntry<?, ?> newEntry, CreativeModeTab.TabVisibility visibility) {
-        e.insertAfter(existingEntry.asStack(), newEntry.asStack(), visibility);
+    private static void insertAfter(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry, CreativeModeTab.TabVisibility visibility) {
+        e.getEntries().putAfter(newEntry.asStack(), existingEntry.asStack(), visibility);
     }
 
-    private static void insertAfter(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?, ?> existingEntry, ItemProviderEntry<?, ?> newEntry) {
+    private static void insertAfter(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry) {
         insertAfter(e, existingEntry, newEntry, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 

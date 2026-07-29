@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(IronBarsBlock.class)
+@Mixin(value = IronBarsBlock.class, remap = false)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public abstract class CopperBarsOxidizationMixin extends Block implements PatinaBlock {
@@ -45,7 +45,7 @@ public abstract class CopperBarsOxidizationMixin extends Block implements Patina
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
     }
 

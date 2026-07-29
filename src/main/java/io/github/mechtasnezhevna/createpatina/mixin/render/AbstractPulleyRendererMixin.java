@@ -9,10 +9,11 @@ import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.level.block.state.BlockState;
 import com.mojang.blaze3d.vertex.PoseStack;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(AbstractPulleyRenderer.class)
+@Mixin(value = AbstractPulleyRenderer.class, remap = false)
 public abstract class AbstractPulleyRendererMixin<T extends KineticBlockEntity> {
 
     @ModifyExpressionValue(
@@ -20,8 +21,8 @@ public abstract class AbstractPulleyRendererMixin<T extends KineticBlockEntity> 
             at = @At(
                     value = "FIELD",
                     target = "Lcom/simibubi/create/content/contraptions/pulley/AbstractPulleyRenderer;halfMagnet:Ldev/engine_room/flywheel/lib/model/baked/PartialModel;",
-                    ordinal = 0
-            )
+                    ordinal = 0,
+                    opcode = Opcodes.GETFIELD)
     )
     private PartialModel createpatina$modifyHalfMagnet(PartialModel original, T be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
         BlockState blockState = be.getBlockState();

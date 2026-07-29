@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.registry.util;
 
+import com.simibubi.create.foundation.block.CopperRegistries;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -86,14 +87,36 @@ public class PatinaSetBuilder<B extends Block, R extends AbstractRegistrate<R>> 
     }
 
     private void registerWeatheringAndWaxable(Map<WeatheringType, BlockEntry<? extends Block>> res) {
-        CopperRegistries.addWeathering(res.get(WeatheringType.UNAFFECTED), res.get(WeatheringType.EXPOSED));
-        CopperRegistries.addWeathering(res.get(WeatheringType.EXPOSED), res.get(WeatheringType.WEATHERED));
-        CopperRegistries.addWeathering(res.get(WeatheringType.WEATHERED), res.get(WeatheringType.OXIDIZED));
+        // verified: Create 6.0.8 CopperRegistries/CopperBlockSet source for Forge 1.20.1, 2026-07-30
+        CopperRegistries.addWeathering(
+                () -> res.get(WeatheringType.UNAFFECTED).get(),
+                () -> res.get(WeatheringType.EXPOSED).get()
+        );
+        CopperRegistries.addWeathering(
+                () -> res.get(WeatheringType.EXPOSED).get(),
+                () -> res.get(WeatheringType.WEATHERED).get()
+        );
+        CopperRegistries.addWeathering(
+                () -> res.get(WeatheringType.WEATHERED).get(),
+                () -> res.get(WeatheringType.OXIDIZED).get()
+        );
 
-        CopperRegistries.addWaxable(res.get(WeatheringType.UNAFFECTED), res.get(WeatheringType.WAXED));
-        CopperRegistries.addWaxable(res.get(WeatheringType.EXPOSED), res.get(WeatheringType.WAXED_EXPOSED));
-        CopperRegistries.addWaxable(res.get(WeatheringType.WEATHERED), res.get(WeatheringType.WAXED_WEATHERED));
-        CopperRegistries.addWaxable(res.get(WeatheringType.OXIDIZED), res.get(WeatheringType.WAXED_OXIDIZED));
+        CopperRegistries.addWaxable(
+                () -> res.get(WeatheringType.UNAFFECTED).get(),
+                () -> res.get(WeatheringType.WAXED).get()
+        );
+        CopperRegistries.addWaxable(
+                () -> res.get(WeatheringType.EXPOSED).get(),
+                () -> res.get(WeatheringType.WAXED_EXPOSED).get()
+        );
+        CopperRegistries.addWaxable(
+                () -> res.get(WeatheringType.WEATHERED).get(),
+                () -> res.get(WeatheringType.WAXED_WEATHERED).get()
+        );
+        CopperRegistries.addWaxable(
+                () -> res.get(WeatheringType.OXIDIZED).get(),
+                () -> res.get(WeatheringType.WAXED_OXIDIZED).get()
+        );
     }
 
     private void addExtraPatinaSettings() {

@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(FluidTankBlock.class)
+@Mixin(value = FluidTankBlock.class, remap = false)
 public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public FluidTankOxidizationMixin(Properties properties) {
         super(properties);
@@ -45,7 +45,7 @@ public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpo
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

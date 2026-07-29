@@ -1,19 +1,20 @@
 package io.github.mechtasnezhevna.createpatina.util;
 
+import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.DataMapHooks;
 
 import java.util.Optional;
 
 public class WaxUtil {
 
     public static Optional<Block> getWaxed(Block block) {
-        return Optional.ofNullable(DataMapHooks.getBlockWaxed(block));
+        // verified: Minecraft 1.20.1 HoneycombItem WAXABLES/WAX_OFF_BY_BLOCK source, 2026-07-30
+        return Optional.ofNullable(HoneycombItem.WAXABLES.get().get(block));
     }
 
     public static Optional<Block> getUnwaxed(Block block) {
-        return Optional.ofNullable(DataMapHooks.getBlockUnwaxed(block));
+        return Optional.ofNullable(HoneycombItem.WAX_OFF_BY_BLOCK.get().get(block));
     }
 
     public static Optional<BlockState> getWaxed(BlockState state) {

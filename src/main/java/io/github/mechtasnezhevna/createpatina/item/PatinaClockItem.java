@@ -1,15 +1,13 @@
 package io.github.mechtasnezhevna.createpatina.item;
 
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
-import io.github.mechtasnezhevna.createpatina.registry.util.CopperRegistries;
 import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -18,7 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.Map;
 import java.util.Optional;
@@ -61,7 +59,7 @@ public class PatinaClockItem extends Item {
         return canAdjustState(state) || getNext(state).isPresent();
     }
 
-    // verified: NeoForge 21.1.228 PlayerInteractEvent.RightClickBlock source, 2026-07-26
+    // verified: Forge 1.20.1-47.1.33 PlayerInteractEvent.RightClickBlock source, 2026-07-30
     public static void suppressImmediateServerInteraction(PlayerInteractEvent.RightClickBlock event) {
         if (event.getLevel().isClientSide
                 || !(event.getItemStack().getItem() instanceof PatinaClockItem)
@@ -78,11 +76,11 @@ public class PatinaClockItem extends Item {
             return false;
         }
 
-        Holder<Block> holder = state.getBlock().builtInRegistryHolder();
-        return CopperRegistries.getWeatheringView().containsKey(holder)
-                || CopperRegistries.getWeatheringView().containsValue(holder)
-                || CopperRegistries.getWaxableView().containsKey(holder)
-                || CopperRegistries.getWaxableView().containsValue(holder);
+        Block block = state.getBlock();
+        return WeatheringCopper.NEXT_BY_BLOCK.get().containsKey(block)
+                || WeatheringCopper.NEXT_BY_BLOCK.get().containsValue(block)
+                || HoneycombItem.WAXABLES.get().containsKey(block)
+                || HoneycombItem.WAXABLES.get().containsValue(block);
     }
 
     public static void applyShortAction(ServerPlayer player, BlockPos pos, ItemStack itemStack) {
@@ -138,10 +136,10 @@ public class PatinaClockItem extends Item {
     private static Optional<BlockState> findStateForType(BlockState state, WeatheringType targetType) {
         PatinaBlock patinaBlock = (PatinaBlock) state.getBlock();
         WeatheringType currentType = patinaBlock.getType();
-        Holder<Block> current = state.getBlock().builtInRegistryHolder();
+        Block current = state.getBlock();
 
         if (currentType.isWaxed()) {
-            Optional<Holder<Block>> unwaxed = findKeyByValue(CopperRegistries.getWaxableView(), current);
+            Optional<Block> unwaxed = findKeyByValue(HoneycombItem.WAXABLES.get(), current);
             if (unwaxed.isEmpty()) {
                 return Optional.empty();
             }
@@ -150,7 +148,7 @@ public class PatinaClockItem extends Item {
 
         int currentStage = valueFor(currentType);
         for (int i = 0; i < currentStage; i++) {
-            Optional<Holder<Block>> previous = findKeyByValue(CopperRegistries.getWeatheringView(), current);
+            Optional<Block> previous = findKeyByValue(WeatheringCopper.NEXT_BY_BLOCK.get(), current);
             if (previous.isEmpty()) {
                 return Optional.empty();
             }
@@ -159,7 +157,7 @@ public class PatinaClockItem extends Item {
 
         int targetStage = valueFor(targetType);
         for (int i = 0; i < targetStage; i++) {
-            Holder<Block> next = CopperRegistries.getWeatheringView().get(current);
+            Block next = WeatheringCopper.NEXT_BY_BLOCK.get().get(current);
             if (next == null) {
                 return Optional.empty();
             }
@@ -167,18 +165,18 @@ public class PatinaClockItem extends Item {
         }
 
         if (targetType.isWaxed()) {
-            Holder<Block> waxed = CopperRegistries.getWaxableView().get(current);
+            Block waxed = HoneycombItem.WAXABLES.get().get(current);
             if (waxed == null) {
                 return Optional.empty();
             }
             current = waxed;
         }
 
-        return Optional.of(current.value().defaultBlockState());
+        return Optional.of(current.defaultBlockState());
     }
 
-    private static Optional<Holder<Block>> findKeyByValue(
-            Map<Holder<Block>, Holder<Block>> map, Holder<Block> value
+    private static Optional<Block> findKeyByValue(
+            Map<Block, Block> map, Block value
     ) {
         return map.entrySet().stream()
                 .filter(entry -> entry.getValue().equals(value))

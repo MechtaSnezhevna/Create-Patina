@@ -7,16 +7,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
+import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.Optional;
 
@@ -25,8 +24,8 @@ public class CommonEvents {
     /**
      * 处理涂蜡
      */
-    @SubscribeEvent
-    public static void onUseHoneycomb(UseItemOnBlockEvent event) {
+    // verified: Forge 1.20.1-47.1.33 PlayerInteractEvent.RightClickBlock source, 2026-07-30
+    public static void onUseHoneycomb(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
         if (!stack.is(Items.HONEYCOMB)) return;
 
@@ -41,7 +40,7 @@ public class CommonEvents {
 
             OxidizeUtil.replaceWithState(state, waxedState.get(), level, pos);
 
-            if (event.getPlayer() instanceof ServerPlayer sp) {
+            if (event.getEntity() instanceof ServerPlayer sp) {
                 CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(sp, pos, stack);
             }
 
@@ -49,21 +48,21 @@ public class CommonEvents {
             level.levelEvent(LevelEvent.PARTICLES_AND_SOUND_WAX_ON, pos, 0);
         }
 
-        if (event.getPlayer() != null && !event.getPlayer().isCreative()) {
+        if (!event.getEntity().isCreative()) {
             stack.shrink(1);
         }
 
         event.setCanceled(true);
-        event.setCancellationResult(ItemInteractionResult.SUCCESS);
+        event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
     }
 
     /**
      * 处理斧头脱蜡和除锈
      */
-    @SubscribeEvent
-    public static void onUseAxe(UseItemOnBlockEvent event) {
+    // verified: Forge 1.20.1-47.1.33 ToolActions/PlayerInteractEvent.RightClickBlock source, 2026-07-30
+    public static void onUseAxe(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
-        if (!stack.canPerformAction(ItemAbilities.AXE_SCRAPE)) return;
+        if (!stack.canPerformAction(ToolActions.AXE_SCRAPE)) return;
 
         BlockPos pos = event.getPos();
         Level level = event.getLevel();
@@ -80,7 +79,7 @@ public class CommonEvents {
                 triggerCriteriaAndDamage(event);
             }
             event.setCanceled(true);
-            event.setCancellationResult(ItemInteractionResult.SUCCESS);
+            event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
             return;
         }
 
@@ -95,17 +94,19 @@ public class CommonEvents {
                 triggerCriteriaAndDamage(event);
             }
             event.setCanceled(true);
-            event.setCancellationResult(ItemInteractionResult.SUCCESS);
+            event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
         }
     }
 
-    private static void triggerCriteriaAndDamage(UseItemOnBlockEvent event) {
-        if (event.getPlayer() instanceof ServerPlayer sp) {
+    private static void triggerCriteriaAndDamage(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getEntity() instanceof ServerPlayer sp) {
             CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(sp, event.getPos(), event.getItemStack());
         }
-        if (event.getPlayer() != null) {
-            ItemStack stack = event.getItemStack();
-            stack.hurtAndBreak(1, event.getPlayer(), event.getPlayer().getEquipmentSlotForItem(stack));
-        }
+        ItemStack stack = event.getItemStack();
+        stack.hurtAndBreak(
+                1,
+                event.getEntity(),
+                player -> player.broadcastBreakEvent(event.getHand())
+        );
     }
 }

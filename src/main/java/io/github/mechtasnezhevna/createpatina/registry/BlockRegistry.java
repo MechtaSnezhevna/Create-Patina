@@ -55,12 +55,14 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
+
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
@@ -536,8 +538,11 @@ public class BlockRegistry {
                                 .when(survivesExplosion)
                                 .setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(ItemRegistry.ARMOR_BACKTANKS.get(type).get())
-                                    .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
-                                        .include(AllDataComponents.BACKTANK_AIR)))));
+                                    // verified: Create 6.0.8 BuilderTransformers#backtank source for Forge 1.20.1, 2026-07-30
+                                    .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
+                                        .copy("VanillaTag", "{}", CopyNbtFunction.MergeStrategy.MERGE))
+                                    .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
+                                        .copy("Air", "Air")))));
                         });
             }).mapColor()
             .unaffected(AllBlocks.COPPER_BACKTANK)

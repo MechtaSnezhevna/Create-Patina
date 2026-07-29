@@ -18,12 +18,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -48,12 +48,14 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
     public WeatheringType getType() {
         return this.type;
     }
+
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
+
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
     }
     @Override
@@ -75,13 +77,14 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
         return ItemRequirement.of(originalEntry.getDefaultState(), be);
     }
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos,
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos,
                                        Player player) {
         return originalEntry.asStack();
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemStack stack = player.getItemInHand(hand);
         boolean isValidCasing = AllBlocks.COPPER_CASING.isIn(stack);
         WeatheringType CasingType = WeatheringType.UNAFFECTED;
         for(WeatheringType t : WeatheringType.values()) {
@@ -95,9 +98,9 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
             }
         }
         if (!isValidCasing)
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         if (level.isClientSide)
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         BlockState newState;
         if (type == WeatheringType.UNAFFECTED && CasingType == WeatheringType.UNAFFECTED)
             newState = AllBlocks.ENCASED_FLUID_PIPE.getDefaultState();
@@ -107,6 +110,6 @@ public class WeatheringGlassFluidPipeBlock extends GlassFluidPipeBlock implement
         FluidTransportBehaviour.cacheFlows(level, pos);
         level.setBlockAndUpdate(pos, newState);
         FluidTransportBehaviour.loadFlows(level, pos);
-        return ItemInteractionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 }

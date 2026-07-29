@@ -13,21 +13,27 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.ChunkRenderTypeSet;
-import net.neoforged.neoforge.client.model.data.ModelData;
+import net.minecraftforge.client.ChunkRenderTypeSet;
+import net.minecraftforge.client.model.data.ModelData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(PipeAttachmentModel.class)
-public class PipeAttachmentModelMixin {
+@Mixin(value = PipeAttachmentModel.class, remap = false)
+public abstract class PipeAttachmentModelMixin {
 
+    /*
+     * Original Create code from PipeAttachmentModel#getRenderTypes:
+     * set.add(AllPartialModels.FLUID_PIPE_CASING.get().getRenderTypes(state, rand, data));
+     */
     @WrapOperation(
             method = "getRenderTypes",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;Lnet/neoforged/neoforge/client/model/data/ModelData;)Lnet/neoforged/neoforge/client/ChunkRenderTypeSet;",
-                    ordinal = 0
-            )
+                    target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;Lnet/minecraftforge/client/model/data/ModelData;)Lnet/minecraftforge/client/ChunkRenderTypeSet;",
+                    ordinal = 0,
+                    remap = false
+            ),
+            remap = false
     )
     private ChunkRenderTypeSet wrapGetRenderTypes_casing(
             BakedModel instance,
@@ -44,13 +50,21 @@ public class PipeAttachmentModelMixin {
         }
     }
 
+    /*
+     * Original Create code from PipeAttachmentModel#getRenderTypes:
+     * ChunkRenderTypeSet attachmentRenderTypeSet = AllPartialModels.PIPE_ATTACHMENTS.get(partial).get(d)
+     *     .get().getRenderTypes(state, rand, data);
+     * set.add(attachmentRenderTypeSet);
+     */
     @WrapOperation(
             method = "getRenderTypes",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;Lnet/neoforged/neoforge/client/model/data/ModelData;)Lnet/neoforged/neoforge/client/ChunkRenderTypeSet;",
-                    ordinal = 1
-            )
+                    target = "Lnet/minecraft/client/resources/model/BakedModel;getRenderTypes(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;Lnet/minecraftforge/client/model/data/ModelData;)Lnet/minecraftforge/client/ChunkRenderTypeSet;",
+                    ordinal = 1,
+                    remap = false
+            ),
+            remap = false
     )
     private ChunkRenderTypeSet wrapGetRenderTypes_normal(
             BakedModel instance,
@@ -69,13 +83,22 @@ public class PipeAttachmentModelMixin {
         }
     }
 
+    /*
+     * Original Create code from PipeAttachmentModel#addQuads:
+     * quads.addAll(AllPartialModels.PIPE_ATTACHMENTS.get(partial)
+     *     .get(d)
+     *     .get()
+     *     .getQuads(state, side, rand, data, renderType));
+     */
     @WrapOperation(
             method = "addQuads",
             at = @At(
                     value = "INVOKE",
                     target = "Ldev/engine_room/flywheel/lib/model/baked/PartialModel;get()Lnet/minecraft/client/resources/model/BakedModel;",
-                    ordinal = 0
-            )
+                    ordinal = 0,
+                    remap = false
+            ),
+            remap = false
     )
     private BakedModel wrapAddQuads_normal(
             PartialModel instance,
@@ -92,13 +115,21 @@ public class PipeAttachmentModelMixin {
         }
     }
 
+    /*
+     * Original Create code from PipeAttachmentModel#addQuads:
+     * if (pipeData.isEncased())
+     *     quads.addAll(AllPartialModels.FLUID_PIPE_CASING.get()
+     *         .getQuads(state, side, rand, data, renderType));
+     */
     @WrapOperation(
             method = "addQuads",
             at = @At(
                     value = "INVOKE",
                     target = "Ldev/engine_room/flywheel/lib/model/baked/PartialModel;get()Lnet/minecraft/client/resources/model/BakedModel;",
-                    ordinal = 1
-            )
+                    ordinal = 1,
+                    remap = false
+            ),
+            remap = false
     )
     private BakedModel wrapAddQuads_casing(
             PartialModel instance,

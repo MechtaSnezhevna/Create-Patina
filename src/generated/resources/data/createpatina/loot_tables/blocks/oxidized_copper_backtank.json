@@ -13,9 +13,24 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:copy_components",
-              "include": [
-                "create:banktank_air"
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "merge",
+                  "source": "VanillaTag",
+                  "target": "{}"
+                }
+              ],
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "Air",
+                  "target": "Air"
+                }
               ],
               "source": "block_entity"
             }

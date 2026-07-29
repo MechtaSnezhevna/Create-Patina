@@ -14,7 +14,7 @@ import net.minecraft.world.level.BlockGetter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(FluidTankItem.class)
+@Mixin(value = FluidTankItem.class, remap = false)
 public abstract class FluidTankItemMixin {
 
     @WrapOperation(

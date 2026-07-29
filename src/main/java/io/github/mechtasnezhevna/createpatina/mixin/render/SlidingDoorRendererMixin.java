@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Map;
 
-@Mixin(SlidingDoorRenderer.class)
+@Mixin(value = SlidingDoorRenderer.class, remap = false)
 public class SlidingDoorRendererMixin {
 
     @Redirect(

@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(SlidingDoorBlock.class)
+@Mixin(value = SlidingDoorBlock.class, remap = false)
 public abstract class CopperDoorOxidizationMixin extends Block implements PatinaBlock {
     public CopperDoorOxidizationMixin(Properties properties) {
         super(properties);
@@ -49,7 +49,7 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         if (state.getValue(SlidingDoorBlock.HALF) == DoubleBlockHalf.LOWER) {
             this.changeOverTime(state, level, pos, random);
@@ -57,7 +57,7 @@ public abstract class CopperDoorOxidizationMixin extends Block implements Patina
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         boolean isOldDoor = state.getBlock().getDescriptionId().equals("block.create.copper_door") || state.getBlock() instanceof PatinaBlock;
         boolean isNewDoor = newState.getBlock().getDescriptionId().equals("block.create.copper_door") || newState.getBlock() instanceof PatinaBlock;
         if (isOldDoor && isNewDoor) {

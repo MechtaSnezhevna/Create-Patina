@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(SpoutBlock.class)
+@Mixin(value = SpoutBlock.class, remap = false)
 public class SpoutOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public SpoutOxidizationMixin(Properties properties) {
         super(properties);
@@ -31,7 +31,7 @@ public class SpoutOxidizationMixin extends Block implements PatinaFluidEndpoint 
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

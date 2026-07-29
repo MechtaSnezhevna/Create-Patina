@@ -4,41 +4,65 @@ import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.minecraftforge.network.NetworkDirection;
+import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 
-public record PatinaClockActionPayload(BlockPos pos, int row, int value, Direction face)
-        implements CustomPacketPayload {
+import java.util.function.Supplier;
+
+public record PatinaClockActionPayload(BlockPos pos, int row, int value, Direction face) {
 
     public static final int SHORT_ACTION_ROW = -1;
 
-    public static final Type<PatinaClockActionPayload> TYPE =
-            new Type<>(CreatePatina.asResource("patina_clock_action"));
+    private static final String PROTOCOL_VERSION = "1";
+    private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
+            CreatePatina.asResource("patina_clock_action"),
+            () -> PROTOCOL_VERSION,
+            PROTOCOL_VERSION::equals,
+            PROTOCOL_VERSION::equals
+    );
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, PatinaClockActionPayload> STREAM_CODEC =
-            StreamCodec.composite(
-                    BlockPos.STREAM_CODEC, PatinaClockActionPayload::pos,
-                    ByteBufCodecs.VAR_INT, PatinaClockActionPayload::row,
-                    ByteBufCodecs.VAR_INT, PatinaClockActionPayload::value,
-                    Direction.STREAM_CODEC, PatinaClockActionPayload::face,
-                    PatinaClockActionPayload::new
-            );
-
-    // verified: NeoForge 21.1.228 RegisterPayloadHandlersEvent/PayloadRegistrar source, 2026-07-26
-    public static void register(RegisterPayloadHandlersEvent event) {
-        event.registrar("1").playToServer(TYPE, STREAM_CODEC, PatinaClockActionPayload::handle);
+    // verified: Forge 1.20.1-47.1.33 SimpleChannel.MessageBuilder source, 2026-07-30
+    public static void register() {
+        CHANNEL.messageBuilder(PatinaClockActionPayload.class, 0, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(PatinaClockActionPayload::encode)
+                .decoder(PatinaClockActionPayload::decode)
+                .consumerMainThread(PatinaClockActionPayload::handle)
+                .add();
     }
 
-    private static void handle(PatinaClockActionPayload payload, IPayloadContext context) {
-        if (!(context.player() instanceof ServerPlayer player)) {
+    public static void sendToServer(PatinaClockActionPayload payload) {
+        CHANNEL.sendToServer(payload);
+    }
+
+    private static void encode(PatinaClockActionPayload payload, FriendlyByteBuf buffer) {
+        buffer.writeBlockPos(payload.pos());
+        buffer.writeVarInt(payload.row());
+        buffer.writeVarInt(payload.value());
+        buffer.writeEnum(payload.face());
+    }
+
+    private static PatinaClockActionPayload decode(FriendlyByteBuf buffer) {
+        return new PatinaClockActionPayload(
+                buffer.readBlockPos(),
+                buffer.readVarInt(),
+                buffer.readVarInt(),
+                buffer.readEnum(Direction.class)
+        );
+    }
+
+    private static void handle(
+            PatinaClockActionPayload payload,
+            Supplier<NetworkEvent.Context> contextSupplier
+    ) {
+        ServerPlayer player = contextSupplier.get().getSender();
+        if (player == null) {
             return;
         }
 
@@ -69,10 +93,5 @@ public record PatinaClockActionPayload(BlockPos pos, int row, int value, Directi
             }
         }
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
     }
 }

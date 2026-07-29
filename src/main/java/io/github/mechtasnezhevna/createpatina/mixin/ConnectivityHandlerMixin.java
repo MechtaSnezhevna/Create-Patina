@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.Optional;
 
-@Mixin(ConnectivityHandler.class)
+@Mixin(value = ConnectivityHandler.class, remap = false)
 public abstract class ConnectivityHandlerMixin {
 
     /*

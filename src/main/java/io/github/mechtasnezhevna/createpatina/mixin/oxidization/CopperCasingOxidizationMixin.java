@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(CasingBlock.class)
+@Mixin(value = CasingBlock.class, remap = false)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public abstract class CopperCasingOxidizationMixin extends Block implements PatinaBlock {
@@ -45,7 +45,7 @@ public abstract class CopperCasingOxidizationMixin extends Block implements Pati
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

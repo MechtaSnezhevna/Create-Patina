@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(SpoutRenderer.class)
+@Mixin(value = SpoutRenderer.class, remap = false)
 public class SpoutRendererMixin {
 
     @WrapOperation(

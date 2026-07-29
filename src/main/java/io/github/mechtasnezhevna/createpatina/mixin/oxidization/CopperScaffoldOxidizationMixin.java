@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(MetalScaffoldingBlock.class)
+@Mixin(value = MetalScaffoldingBlock.class, remap = false)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public abstract class CopperScaffoldOxidizationMixin extends Block implements PatinaBlock {
@@ -45,7 +45,7 @@ public abstract class CopperScaffoldOxidizationMixin extends Block implements Pa
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

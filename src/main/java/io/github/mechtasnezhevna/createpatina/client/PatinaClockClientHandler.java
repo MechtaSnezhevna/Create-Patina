@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.client;
 
+import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
@@ -12,10 +13,17 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(
+        modid = CreatePatina.MODID,
+        value = Dist.CLIENT,
+        bus = Mod.EventBusSubscriber.Bus.FORGE
+)
 public final class PatinaClockClientHandler {
 
     private static final int LONG_PRESS_TICKS = 5;
@@ -28,7 +36,8 @@ public final class PatinaClockClientHandler {
     private PatinaClockClientHandler() {
     }
 
-    // verified: NeoForge 21.1.228 PlayerInteractEvent.RightClickBlock source, 2026-07-26
+    // verified: Forge 1.20.1-47.1.33 PlayerInteractEvent.RightClickBlock source, 2026-07-30
+    @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         if (!event.getLevel().isClientSide
                 || !(event.getItemStack().getItem() instanceof PatinaClockItem)
@@ -49,9 +58,10 @@ public final class PatinaClockClientHandler {
         heldHand = event.getHand();
     }
 
-    // verified: NeoForge 21.1.228 ClientTickEvent.Post source, 2026-07-26
-    public static void onClientTick(ClientTickEvent.Post event) {
-        if (heldTicks == -1) {
+    // verified: Forge 1.20.1-47.1.33 TickEvent.ClientTickEvent source, 2026-07-30
+    @SubscribeEvent
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || heldTicks == -1) {
             return;
         }
 
@@ -70,8 +80,7 @@ public final class PatinaClockClientHandler {
         }
 
         if (!minecraft.options.keyUse.isDown()) {
-            // verified: NeoForge 21.1.228 PacketDistributor source, 2026-07-26
-            PacketDistributor.sendToServer(new PatinaClockActionPayload(
+            PatinaClockActionPayload.sendToServer(new PatinaClockActionPayload(
                     heldPos, PatinaClockActionPayload.SHORT_ACTION_ROW, 0, heldFace
             ));
             cancel();

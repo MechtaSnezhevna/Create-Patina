@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(FluidValveBlock.class)
+@Mixin(value = FluidValveBlock.class, remap = false)
 public abstract class FluidValveOxidizationMixin extends Block implements PatinaBlock {
 
     public FluidValveOxidizationMixin(Properties properties) {
@@ -33,7 +33,7 @@ public abstract class FluidValveOxidizationMixin extends Block implements Patina
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

@@ -1,30 +1,21 @@
 package io.github.mechtasnezhevna.createpatina;
 
-import io.github.mechtasnezhevna.createpatina.client.PatinaClockClientHandler;
 import io.github.mechtasnezhevna.createpatina.registry.PartialModelRegistry;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-// This class will not load on dedicated servers. Accessing client side code from here is safe.
-@Mod(value = CreatePatina.MODID, dist = Dist.CLIENT)
-public class CreatePatinaClient {
-    public CreatePatinaClient(ModContainer container, IEventBus modEventBus) {
-        NeoForge.EVENT_BUS.addListener(PatinaClockClientHandler::onRightClickBlock);
-        NeoForge.EVENT_BUS.addListener(PatinaClockClientHandler::onClientTick);
-        // Allows NeoForge to create a config screen for this mod's configs.
-        // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
-        // Do not forget to add translations for your config options to the en_us.json file.
-        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-
-        modEventBus.addListener(CreatePatinaClient::clientInit);
+@Mod.EventBusSubscriber(
+        modid = CreatePatina.MODID,
+        value = Dist.CLIENT,
+        bus = Mod.EventBusSubscriber.Bus.MOD
+)
+public final class CreatePatinaClient {
+    private CreatePatinaClient() {
     }
 
+    @SubscribeEvent
     public static void clientInit(final FMLClientSetupEvent event) {
         PartialModelRegistry.init();
     }

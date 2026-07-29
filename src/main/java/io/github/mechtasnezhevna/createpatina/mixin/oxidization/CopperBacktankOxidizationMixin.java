@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(BacktankBlock.class)
+@Mixin(value = BacktankBlock.class, remap = false)
 public abstract class CopperBacktankOxidizationMixin extends Block implements PatinaBlock {
 
     public CopperBacktankOxidizationMixin(Properties properties) {
@@ -47,7 +47,7 @@ public abstract class CopperBacktankOxidizationMixin extends Block implements Pa
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.neoforged.neoforge.capabilities.Capabilities;
 
 public final class OxidizeUtil {
     
@@ -77,7 +76,7 @@ public final class OxidizeUtil {
              */
             stateToRestore = level.getBlockState(pos);
             finalState = copySharedProperties(stateToRestore, newState);
-            blockEntityData = oldBE.saveWithoutMetadata(level.registryAccess());
+            blockEntityData = oldBE.saveWithoutMetadata();
 
             level.removeBlockEntity(pos);
         }
@@ -111,7 +110,7 @@ public final class OxidizeUtil {
             }
 
             try {
-                newBE.loadWithComponents(blockEntityData.copy(), level.registryAccess());
+                newBE.load(blockEntityData.copy());
             } catch (RuntimeException exception) {
                 restoreOriginalBlockEntity(
                         level, pos, stateToRestore, oldBE, blockEntityData, replacingFluidTank
@@ -243,7 +242,7 @@ public final class OxidizeUtil {
                     + oldBE.getType() + " at " + pos);
         }
 
-        restoredBE.loadWithComponents(blockEntityData.copy(), level.registryAccess());
+        restoredBE.load(blockEntityData.copy());
         level.setBlockEntity(restoredBE);
         restoredBE.setChanged();
         markBlockEntityForSync(level, pos);

@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(PumpBlock.class)
+@Mixin(value = PumpBlock.class, remap = false)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public abstract class PumpOxidizationMixin extends Block implements PatinaBlock {
@@ -37,7 +37,7 @@ public abstract class PumpOxidizationMixin extends Block implements PatinaBlock 
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

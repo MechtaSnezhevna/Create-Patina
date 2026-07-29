@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(PortableStorageInterfaceRenderer.class)
+@Mixin(value = PortableStorageInterfaceRenderer.class, remap = false)
 public class PortableStorageInterfaceRendererMixin {
 
     @ModifyReturnValue(method = "getMiddleForState", at = @At("RETURN"))

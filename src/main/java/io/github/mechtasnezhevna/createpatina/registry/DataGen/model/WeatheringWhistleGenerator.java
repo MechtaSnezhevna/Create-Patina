@@ -8,7 +8,7 @@ import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 public class WeatheringWhistleGenerator extends WhistleGenerator {
 

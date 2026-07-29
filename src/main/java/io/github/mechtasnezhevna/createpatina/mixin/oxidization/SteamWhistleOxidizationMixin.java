@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(WhistleBlock.class)
+@Mixin(value = WhistleBlock.class, remap = false)
 public class SteamWhistleOxidizationMixin extends Block implements PatinaBlock {
     public SteamWhistleOxidizationMixin(BlockBehaviour.Properties properties) {
         super(properties);
@@ -33,7 +33,7 @@ public class SteamWhistleOxidizationMixin extends Block implements PatinaBlock {
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

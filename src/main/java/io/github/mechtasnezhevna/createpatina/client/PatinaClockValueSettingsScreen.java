@@ -15,7 +15,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 
@@ -187,12 +186,12 @@ public class PatinaClockValueSettingsScreen extends AbstractSimiScreen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
-        if (scrollY == 0) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        if (delta == 0) {
             return false;
         }
 
-        setSelectedState(selectedState + (int) Math.signum(scrollY));
+        setSelectedState(selectedState + (int) Math.signum(delta));
         setCursorToState(selectedState);
         return true;
     }
@@ -202,7 +201,7 @@ public class PatinaClockValueSettingsScreen extends AbstractSimiScreen {
         double guiX = width / 2.0 + Math.sin(angle) * SLOT_RADIUS;
         double guiY = height / 2.0 - 8 - Math.cos(angle) * SLOT_RADIUS;
 
-        // verified: Minecraft 1.21.1 Window/GLFW usage in Create ValueSettingsScreen, 2026-07-26
+        // verified: Minecraft 1.20.1 Window/GLFW usage in Create ValueSettingsScreen, 2026-07-30
         Window window = minecraft.getWindow();
         double guiScale = window.getGuiScale();
         GLFW.glfwSetCursorPos(window.getWindow(), guiX * guiScale, guiY * guiScale);
@@ -253,8 +252,7 @@ public class PatinaClockValueSettingsScreen extends AbstractSimiScreen {
     private void saveAndClose() {
         int row = selectedState / STATES_PER_ROW;
         int value = selectedState % STATES_PER_ROW;
-        // verified: NeoForge 21.1.228 PacketDistributor source, 2026-07-26
-        PacketDistributor.sendToServer(new PatinaClockActionPayload(
+        PatinaClockActionPayload.sendToServer(new PatinaClockActionPayload(
                 targetPos, row, value, clickedFace
         ));
         onClose();
@@ -266,7 +264,7 @@ public class PatinaClockValueSettingsScreen extends AbstractSimiScreen {
      * graphics.fillGradient(0, 0, this.width, this.height, 0x101010 | a, 0x101010 | a);
      */
     @Override
-    public void renderBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+    public void renderBackground(@NotNull GuiGraphics graphics) {
         int alpha = (int) (0x70 * Math.min(
                 1,
                 (ticksOpen + AnimationTickHolder.getPartialTicks()) / 20f

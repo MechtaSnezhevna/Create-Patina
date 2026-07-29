@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(ValveHandleBlock.class)
+@Mixin(value = ValveHandleBlock.class, remap = false)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class CopperValveHandleOxidizationMixin extends Block implements PatinaBlock{
@@ -27,7 +27,7 @@ public class CopperValveHandleOxidizationMixin extends Block implements PatinaBl
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         this.changeOverTime(state, level, pos, random);
     }
 

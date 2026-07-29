@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(PortableStorageInterfaceMovement.class)
+@Mixin(value = PortableStorageInterfaceMovement.class, remap = false)
 public class PortableStorageInterfaceMovementMixin {
 
     @Redirect(

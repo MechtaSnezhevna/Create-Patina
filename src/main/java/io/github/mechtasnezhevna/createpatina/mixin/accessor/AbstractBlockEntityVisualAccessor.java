@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(AbstractBlockEntityVisual.class)
+@Mixin(value = AbstractBlockEntityVisual.class, remap = false)
 public interface AbstractBlockEntityVisualAccessor {
 
     @Accessor("blockState")

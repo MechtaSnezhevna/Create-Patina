@@ -18,6 +18,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -49,13 +50,13 @@ public class WeatheringEncasedPipeBlock extends EncasedPipeBlock implements Pati
     }
 
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return super.isRandomlyTicking(state) || canAdvanceWeathering();
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        this.changeOverTime(state, level, pos, random);
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        this.applyChangeOverTime(state, level, pos, random);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class WeatheringEncasedPipeBlock extends EncasedPipeBlock implements Pati
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos,
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos,
                                        Player player) {
         return casedBlockEntry.asStack();
     }

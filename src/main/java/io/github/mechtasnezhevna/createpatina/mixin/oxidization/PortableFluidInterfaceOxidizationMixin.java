@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(PortableStorageInterfaceBlock.class)
+@Mixin(value = PortableStorageInterfaceBlock.class, remap = false)
 public class PortableFluidInterfaceOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public PortableFluidInterfaceOxidizationMixin(Properties properties) {
         super(properties);
@@ -23,7 +23,7 @@ public class PortableFluidInterfaceOxidizationMixin extends Block implements Pat
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

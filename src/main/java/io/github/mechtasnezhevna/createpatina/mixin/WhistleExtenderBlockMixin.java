@@ -35,7 +35,7 @@ public class WhistleExtenderBlockMixin {
     }
 
     @Redirect(
-            method = "useItemOn",
+            method = "use",
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/tterrag/registrate/util/entry/BlockEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z"

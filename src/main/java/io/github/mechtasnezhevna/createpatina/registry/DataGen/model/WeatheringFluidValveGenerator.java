@@ -11,7 +11,7 @@ import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 import java.util.HashMap;
 import java.util.Map;

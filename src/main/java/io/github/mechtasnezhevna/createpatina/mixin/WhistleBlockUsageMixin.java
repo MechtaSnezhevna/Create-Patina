@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(WhistleBlock.class)
+@Mixin(value = WhistleBlock.class, remap = false)
 public class WhistleBlockUsageMixin {
 
     @Redirect(

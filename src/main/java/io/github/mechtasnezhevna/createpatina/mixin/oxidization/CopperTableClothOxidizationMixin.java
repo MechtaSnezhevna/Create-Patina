@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(TableClothBlock.class)
+@Mixin(value = TableClothBlock.class, remap = false)
 public abstract class CopperTableClothOxidizationMixin extends Block implements PatinaBlock {
 
     public CopperTableClothOxidizationMixin(Properties properties) {
@@ -47,7 +47,7 @@ public abstract class CopperTableClothOxidizationMixin extends Block implements 
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

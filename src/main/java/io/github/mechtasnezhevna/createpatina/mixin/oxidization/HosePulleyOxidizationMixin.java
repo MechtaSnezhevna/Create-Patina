@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(HosePulleyBlock.class)
+@Mixin(value = HosePulleyBlock.class, remap = false)
 public class HosePulleyOxidizationMixin extends Block implements PatinaFluidEndpoint {
     public HosePulleyOxidizationMixin(Properties properties) {
         super(properties);
@@ -32,7 +32,7 @@ public class HosePulleyOxidizationMixin extends Block implements PatinaFluidEndp
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         this.changeOverTime(state, level, pos, random);
     }

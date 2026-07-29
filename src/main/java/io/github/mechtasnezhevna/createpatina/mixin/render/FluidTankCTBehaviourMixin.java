@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(FluidTankCTBehaviour.class)
+@Mixin(value = FluidTankCTBehaviour.class, remap = false)
 public class FluidTankCTBehaviourMixin {
     @Inject(method = "getShift", at = @At("HEAD"), cancellable = true)
     private void createpatina$getShiftHead(BlockState state, Direction direction, @Nullable TextureAtlasSprite sprite, CallbackInfoReturnable<CTSpriteShiftEntry> cir) {

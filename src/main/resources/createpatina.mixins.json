@@ -3,7 +3,6 @@
   "package": "io.github.mechtasnezhevna.createpatina.mixin",
   "mixins": [
     "BoilerDataMixin",
-    "ChangeOverTimeBlockMixin",
     "ConnectivityHandlerMixin",
     "FluidTankItemMixin",
     "LightningBoltMixin",
@@ -11,13 +10,7 @@
     "SteamEngineBlockEntityMixin",
     "WhistleBlockUsageMixin",
     "WhistleExtenderBlockMixin",
-    "accessor.FluidTankBlockEntityAccessor",
-    "accessor.FluidTankBlockEntityInvoker",
-    "accessor.HosePulleyBlockEntityAccessor",
-    "accessor.ItemDrainBlockEntityAccessor",
-    "accessor.PortableFluidInterfaceBlockEntityAccessor",
     "accessor.PortableStorageInterfaceBlockEntityAccessor",
-    "accessor.SpoutBlockEntityAccessor",
     "oxidization.CopperBacktankOxidizationMixin",
     "oxidization.CopperBarsOxidizationMixin",
     "oxidization.CopperCasingOxidizationMixin",
@@ -57,7 +50,7 @@
   ],
   "server": [
   ],
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "injectors": {
     "defaultRequire": 1
   }
