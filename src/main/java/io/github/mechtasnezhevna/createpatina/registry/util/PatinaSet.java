@@ -7,11 +7,26 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public record PatinaSet (
         Map<WeatheringType, BlockEntry<? extends Block>> entries
 ) {
+
+    private static final List<PatinaSet> ALL = new ArrayList<>();
+
+    public PatinaSet {
+        entries = Collections.unmodifiableMap(new EnumMap<>(entries));
+        ALL.add(this);
+    }
+
+    public static List<PatinaSet> all() {
+        return List.copyOf(ALL);
+    }
 
     public Block get(WeatheringType type) {
         return getEntry(type).get();

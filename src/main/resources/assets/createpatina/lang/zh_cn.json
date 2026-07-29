@@ -234,5 +234,7 @@
   "gui.createpatina.weathering_type.waxed_oxidized": "涂蜡的氧化",
 
   "createpatina.config.enable_portable_fluid_interface_cross_matching": "启用移动式流体接口交叉匹配",
-  "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip": "若启用，不同氧化程度的移动式流体接口可以相互对接。"
+  "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip": "若启用，不同氧化程度的移动式流体接口可以相互对接。",
+  "createpatina.config.collapse_patina_sets_in_jei": "在 JEI 中折叠同类方块",
+  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "将每组氧化系列显示为未锈蚀方块；悬浮其上可浏览其他变体。"
 }

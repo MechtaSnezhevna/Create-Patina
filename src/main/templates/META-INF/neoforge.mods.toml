@@ -52,6 +52,8 @@ A Create addon introducing oxidized variants and oxidizing mechanisms of copper 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 [[mixins]]
 config="${mod_id}.mixins.json"
+[[mixins]]
+config="${mod_id}.jei.mixins.json"
 
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
@@ -105,6 +107,12 @@ config="${mod_id}.mixins.json"
     versionRange="[${simulated_version},)"
     ordering="AFTER"
     side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="jei"
+    type="optional"
+    versionRange="[19.27.0.340,20)"
+    ordering="AFTER"
+    side="CLIENT"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't

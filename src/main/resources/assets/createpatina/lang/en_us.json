@@ -233,5 +233,7 @@
   "gui.createpatina.weathering_type.waxed_oxidized": "Waxed Oxidized",
 
   "createpatina.config.enable_portable_fluid_interface_cross_matching": "Enable Portable Fluid Interface Cross-Matching",
-  "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip":"If true, portable fluid interfaces with different weathering states can be matched to each other."
+  "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip":"If true, portable fluid interfaces with different weathering states can be matched to each other.",
+  "createpatina.config.collapse_patina_sets_in_jei": "Collapse Similar Blocks in JEI",
+  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "Show each oxidation series as its unaffected block. Hover it to browse the other variants."
 }

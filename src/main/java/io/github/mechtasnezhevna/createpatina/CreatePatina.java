@@ -32,6 +32,7 @@ public class CreatePatina {
     public CreatePatina(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         modContainer.registerConfig(ModConfig.Type.SERVER, PatinaConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, PatinaConfig.CLIENT_SPEC);
         REGISTRATE.registerEventListeners(modEventBus);
         CreativeModeTabRegistry.register(modEventBus);
 
