@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import io.github.mechtasnezhevna.createpatina.event.CommonEvents;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
 import io.github.mechtasnezhevna.createpatina.registry.*;
@@ -43,8 +42,6 @@ public class CreatePatina {
         modEventBus.addListener(CreativeModeTabRegistry::editPatinaTab);
         modEventBus.addListener(EventPriority.LOWEST, PatinaDataGen::gatherData);
         modEventBus.addListener(PatinaClockActionPayload::register);
-        NeoForge.EVENT_BUS.addListener(CommonEvents::onUseHoneycomb);
-        NeoForge.EVENT_BUS.addListener(CommonEvents::onUseAxe);
         NeoForge.EVENT_BUS.addListener(PatinaClockItem::suppressImmediateServerInteraction);
     }
 

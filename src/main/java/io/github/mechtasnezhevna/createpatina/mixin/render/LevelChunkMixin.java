@@ -1,0 +1,37 @@
+package io.github.mechtasnezhevna.createpatina.mixin.render;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
+import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+@Mixin(LevelChunk.class)
+public class LevelChunkMixin {
+
+    @WrapOperation(
+            method = "setBlockState",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/level/chunk/LevelChunk;removeBlockEntity(Lnet/minecraft/core/BlockPos;)V",
+                    ordinal = 0
+            )
+    )
+    private void createpatina$keepBlockEntityOnPatinaSwap(
+            LevelChunk chunk, BlockPos pos, Operation<Void> original,
+            @Local(argsOnly = true) BlockState newState
+    ) {
+        if (newState.getBlock() instanceof PatinaBlock) {
+            BlockEntity blockEntity = chunk.getBlockEntity(pos);
+            if (blockEntity != null && blockEntity.isValidBlockState(newState)) {
+                return;
+            }
+        }
+        original.call(chunk, pos);
+    }
+}
