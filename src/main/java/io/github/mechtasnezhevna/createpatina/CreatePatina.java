@@ -38,6 +38,8 @@ public class CreatePatina {
         CreativeModeTabRegistry.register(modEventBus);
 
         ItemRegistry.register(modEventBus);
+        PatinaRecipeTypes.register(modEventBus);
+        PatinaFanProcessingTypes.register(modEventBus);
         BlockEntityRegistry.register();
         BlockRegistry.register();
         DefaultPatinaSets.register();
