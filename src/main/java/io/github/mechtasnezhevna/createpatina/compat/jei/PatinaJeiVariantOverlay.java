@@ -178,7 +178,7 @@ final class PatinaJeiVariantOverlay {
             EnumMap<WeatheringType, ItemStack> variants = new EnumMap<>(WeatheringType.class);
             set.entries().forEach((type, entry) -> {
                 if (type != WeatheringType.UNAFFECTED) {
-                    ItemStack stack = entry.asStack();
+                    ItemStack stack = entry.get().asItem().getDefaultInstance();
                     if (!stack.isEmpty()) {
                         variants.put(type, stack);
                     }

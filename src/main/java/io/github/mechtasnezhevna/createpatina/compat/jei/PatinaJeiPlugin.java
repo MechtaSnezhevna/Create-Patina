@@ -51,7 +51,7 @@ public class PatinaJeiPlugin implements IModPlugin {
             Set<String> aliases = new LinkedHashSet<>();
             for (var entry : set.entries().entrySet()) {
                 if (entry.getKey() != WeatheringType.UNAFFECTED) {
-                    ItemStack variant = entry.getValue().asStack();
+                    ItemStack variant = entry.getValue().get().asItem().getDefaultInstance();
                     if (!variant.isEmpty()) {
                         aliases.add(variant.getDescriptionId());
                     }
@@ -74,7 +74,7 @@ public class PatinaJeiPlugin implements IModPlugin {
         for (PatinaSet set : PatinaSet.all()) {
             for (var entry : set.entries().entrySet()) {
                 if (entry.getKey() != WeatheringType.UNAFFECTED) {
-                    ItemStack stack = entry.getValue().asStack();
+                    ItemStack stack = entry.getValue().get().asItem().getDefaultInstance();
                     if (!stack.isEmpty()) {
                         hiddenVariants.putIfAbsent(stack.getItem(), stack);
                     }

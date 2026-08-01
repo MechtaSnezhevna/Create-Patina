@@ -13,14 +13,19 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public record PatinaSet (
-        Map<WeatheringType, BlockEntry<? extends Block>> entries
-) {
+public final class PatinaSet {
 
     private static final List<PatinaSet> ALL = new ArrayList<>();
 
-    public PatinaSet {
-        entries = Collections.unmodifiableMap(new EnumMap<>(entries));
+    private final Map<WeatheringType, NonNullSupplier<? extends Block>> entries;
+
+    public PatinaSet(Map<WeatheringType, ? extends NonNullSupplier<? extends Block>> entries) {
+        EnumMap<WeatheringType, NonNullSupplier<? extends Block>> copy = new EnumMap<>(WeatheringType.class);
+        copy.putAll(entries);
+        if (copy.size() != WeatheringType.values().length) {
+            throw new IllegalArgumentException("A PatinaSet must contain every weathering and waxed variant");
+        }
+        this.entries = Collections.unmodifiableMap(copy);
         ALL.add(this);
     }
 
@@ -28,27 +33,47 @@ public record PatinaSet (
         return List.copyOf(ALL);
     }
 
-    public Block get(WeatheringType type) {
-        return getEntry(type).get();
+    public Map<WeatheringType, NonNullSupplier<? extends Block>> entries() {
+        return entries;
     }
 
+    public Block get(WeatheringType type) {
+        return getSupplier(type).get();
+    }
+
+    public NonNullSupplier<? extends Block> getSupplier(WeatheringType type) {
+        NonNullSupplier<? extends Block> supplier = entries.get(type);
+        if (supplier == null) {
+            throw new IllegalArgumentException("Cannot find block for type " + type);
+        }
+        return supplier;
+    }
+
+    /**
+     * Returns the Registrate entry backing a mod-owned patina set.
+     * Vanilla entries in {@link DefaultPatinaSets} are available through {@link #getSupplier(WeatheringType)}
+     * or {@link #get(WeatheringType)} instead.
+     */
     public BlockEntry<? extends Block> getEntry(WeatheringType type) {
-        return entries.get(type);
+        NonNullSupplier<? extends Block> supplier = getSupplier(type);
+        if (supplier instanceof BlockEntry<?> entry) {
+            return entry;
+        }
+        throw new IllegalStateException("The " + type + " variant is not backed by a Registrate BlockEntry");
     }
 
     @SuppressWarnings("unchecked")
     public <B extends Block> BlockEntry<B> getEntry(WeatheringType type, Class<B> clazz) {
-        if (clazz.isInstance(entries.get(type).get())) {
-            return (BlockEntry<B>) (entries.get(type));
+        BlockEntry<? extends Block> entry = getEntry(type);
+        if (clazz.isInstance(entry.get())) {
+            return (BlockEntry<B>) entry;
         }
-        throw new IllegalArgumentException("Cannot find block entry for type " + type + ". Type Mismatch");
+        throw new IllegalArgumentException("Cannot find block entry for type " + type + ". Type mismatch");
     }
 
     @SuppressWarnings("unchecked")
     public NonNullSupplier<? extends Block>[] getAllEntries() {
-        return entries.values().stream()
-                .map(entry -> (NonNullSupplier<? extends Block>) entry)
-                .toArray(size -> (NonNullSupplier<? extends Block>[]) new NonNullSupplier[size]);
+        return entries.values().toArray(size -> (NonNullSupplier<? extends Block>[]) new NonNullSupplier[size]);
     }
 
     public boolean has(BlockEntry<? extends Block> entry) {
@@ -56,21 +81,10 @@ public record PatinaSet (
     }
 
     public boolean has(BlockState state) {
-        for (BlockEntry<? extends Block> entry : entries.values()) {
-            if (entry.has(state)) {
-                return true;
-            }
-        }
-        return false;
+        return entries.values().stream().anyMatch(entry -> entry.get() == state.getBlock());
     }
 
     public boolean isIn(ItemStack stack) {
-        for (BlockEntry<? extends Block> entry : entries.values()) {
-            if (entry.isIn(stack)) {
-                return true;
-            }
-        }
-        return false;
+        return entries.values().stream().anyMatch(entry -> stack.is(entry.get().asItem()));
     }
-
 }

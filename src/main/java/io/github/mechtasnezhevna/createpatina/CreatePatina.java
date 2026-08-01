@@ -5,6 +5,7 @@ import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
 import io.github.mechtasnezhevna.createpatina.registry.*;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaDataGen;
+import io.github.mechtasnezhevna.createpatina.registry.util.DefaultPatinaSets;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -39,6 +40,7 @@ public class CreatePatina {
         ItemRegistry.register(modEventBus);
         BlockEntityRegistry.register();
         BlockRegistry.register();
+        DefaultPatinaSets.register();
 
         modEventBus.addListener(CreativeModeTabRegistry::editPatinaTab);
         modEventBus.addListener(EventPriority.LOWEST, PatinaDataGen::gatherData);
