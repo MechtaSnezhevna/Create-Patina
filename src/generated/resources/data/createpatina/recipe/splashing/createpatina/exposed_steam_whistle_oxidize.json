@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_steam_whistle"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_steam_whistle"
+    }
+  ]
+}

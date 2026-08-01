@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:fluid_pipe"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_fluid_pipe"
+    }
+  ]
+}

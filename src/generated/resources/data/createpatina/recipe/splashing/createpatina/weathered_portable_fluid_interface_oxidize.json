@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_portable_fluid_interface"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:oxidized_portable_fluid_interface"
+    }
+  ]
+}

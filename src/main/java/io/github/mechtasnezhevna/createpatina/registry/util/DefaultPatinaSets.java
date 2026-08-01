@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public final class DefaultPatinaSets {
@@ -56,11 +57,22 @@ public final class DefaultPatinaSets {
     public static final PatinaSet COPPER_TILE_STAIRS = create(AllBlocks.COPPER_TILES, CopperBlockSet.StairVariant.INSTANCE);
     public static final PatinaSet COPPER_TILE_SLAB = create(AllBlocks.COPPER_TILES, CopperBlockSet.SlabVariant.INSTANCE);
 
+    private static final List<PatinaSet> ALL = List.of(
+            COPPER_FULL_BLOCK, CUT_COPPER, CUT_COPPER_STAIRS, CUT_COPPER_SLAB,
+            CHISELED_COPPER, COPPER_GRATE, COPPER_BULB, COPPER_DOOR, COPPER_TRAPDOOR,
+            COPPER_SHINGLES, COPPER_SHINGLE_STAIRS, COPPER_SHINGLE_SLAB,
+            COPPER_TILES, COPPER_TILE_STAIRS, COPPER_TILE_SLAB
+    );
+
     private DefaultPatinaSets() {
     }
 
     public static void register() {
         // Triggers class initialization and PatinaSet registration.
+    }
+
+    public static boolean contains(PatinaSet set) {
+        return ALL.contains(set);
     }
 
     private static PatinaSet vanilla(Block unaffected, Block exposed, Block weathered, Block oxidized,

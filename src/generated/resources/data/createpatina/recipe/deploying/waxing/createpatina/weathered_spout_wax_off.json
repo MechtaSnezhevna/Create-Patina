@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_weathered_spout"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_spout"
+    }
+  ]
+}

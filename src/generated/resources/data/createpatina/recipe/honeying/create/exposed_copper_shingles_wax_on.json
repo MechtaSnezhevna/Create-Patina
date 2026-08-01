@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:exposed_copper_shingles"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:waxed_exposed_copper_shingles"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:oxidized_copper_bars"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_oxidized_copper_bars"
+    }
+  ]
+}

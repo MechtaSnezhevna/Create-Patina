@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "minecraft:waxed_copper_trapdoor"
+    },
+    {
+      "tag": "create:sandpaper"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:copper_trapdoor"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_copper_backtank_placeable"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:copper_backtank_placeable"
+    }
+  ]
+}

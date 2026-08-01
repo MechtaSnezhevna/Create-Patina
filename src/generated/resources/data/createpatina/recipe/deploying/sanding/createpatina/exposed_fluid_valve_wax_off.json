@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_exposed_fluid_valve"
+    },
+    {
+      "tag": "create:sandpaper"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_fluid_valve"
+    }
+  ]
+}

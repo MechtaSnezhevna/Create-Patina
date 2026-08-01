@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:weathered_copper_tile_stairs"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:oxidized_copper_tile_stairs"
+    }
+  ]
+}

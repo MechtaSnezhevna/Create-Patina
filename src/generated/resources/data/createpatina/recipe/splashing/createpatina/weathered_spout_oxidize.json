@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_spout"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:oxidized_spout"
+    }
+  ]
+}

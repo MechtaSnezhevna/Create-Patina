@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_scaffolding"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:oxidized_copper_scaffolding"
+    }
+  ]
+}

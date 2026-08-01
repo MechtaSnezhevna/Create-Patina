@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_mechanical_pump"
+    },
+    {
+      "tag": "create:sandpaper"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:mechanical_pump"
+    }
+  ]
+}

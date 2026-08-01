@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_cut_copper_slab"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:waxed_exposed_cut_copper_slab"
+    }
+  ]
+}

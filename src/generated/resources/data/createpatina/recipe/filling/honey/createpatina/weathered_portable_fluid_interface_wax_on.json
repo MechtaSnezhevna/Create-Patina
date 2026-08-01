@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_portable_fluid_interface"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:honey"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_portable_fluid_interface"
+    }
+  ]
+}

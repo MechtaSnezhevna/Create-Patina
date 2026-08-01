@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_copper_bars"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_copper_bars"
+    }
+  ]
+}

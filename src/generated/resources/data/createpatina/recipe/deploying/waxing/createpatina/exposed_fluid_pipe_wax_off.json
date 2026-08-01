@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_exposed_fluid_pipe"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_fluid_pipe"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_exposed_copper_table_cloth"
+    },
+    {
+      "tag": "create:sandpaper"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_copper_table_cloth"
+    }
+  ]
+}

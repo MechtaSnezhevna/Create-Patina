@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_valve_handle"
+    },
+    {
+      "tag": "create:sandpaper"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_copper_valve_handle"
+    }
+  ]
+}

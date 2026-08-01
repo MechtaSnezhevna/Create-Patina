@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_item_drain"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_exposed_item_drain"
+    }
+  ]
+}

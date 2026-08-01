@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:copper_door"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_copper_door"
+    }
+  ]
+}

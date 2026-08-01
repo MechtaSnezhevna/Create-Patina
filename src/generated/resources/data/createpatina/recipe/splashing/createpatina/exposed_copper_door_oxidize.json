@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_copper_door"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_copper_door"
+    }
+  ]
+}

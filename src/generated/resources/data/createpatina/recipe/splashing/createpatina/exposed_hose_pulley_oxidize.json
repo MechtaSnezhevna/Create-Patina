@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_hose_pulley"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_hose_pulley"
+    }
+  ]
+}

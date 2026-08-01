@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:weathered_copper_shingle_stairs"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:waxed_weathered_copper_shingle_stairs"
+    }
+  ]
+}

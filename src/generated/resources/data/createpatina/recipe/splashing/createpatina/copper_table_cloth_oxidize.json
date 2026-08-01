@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:copper_table_cloth"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_copper_table_cloth"
+    }
+  ]
+}

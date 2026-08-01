@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_scaffolding"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_copper_scaffolding"
+    }
+  ]
+}

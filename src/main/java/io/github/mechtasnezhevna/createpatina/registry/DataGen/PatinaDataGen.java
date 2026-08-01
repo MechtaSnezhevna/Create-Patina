@@ -20,5 +20,8 @@ public class PatinaDataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeServer(), new PatinaDataMapProvider(packOutput, lookupProvider));
+        PatinaRecipeProvider.registerAllProcessing(
+                generator, packOutput, lookupProvider, event.includeServer()
+        );
     }
 }

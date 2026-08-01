@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createpatina:oxidized_smart_fluid_pipe"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:honey"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_oxidized_smart_fluid_pipe"
+    }
+  ]
+}

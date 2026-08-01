@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:item_drain"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_item_drain"
+    }
+  ]
+}

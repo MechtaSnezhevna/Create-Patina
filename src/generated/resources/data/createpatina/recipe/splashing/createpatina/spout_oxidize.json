@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:spout"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_spout"
+    }
+  ]
+}

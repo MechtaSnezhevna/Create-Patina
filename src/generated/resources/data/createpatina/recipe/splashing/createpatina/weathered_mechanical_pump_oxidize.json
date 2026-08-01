@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_mechanical_pump"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:oxidized_mechanical_pump"
+    }
+  ]
+}

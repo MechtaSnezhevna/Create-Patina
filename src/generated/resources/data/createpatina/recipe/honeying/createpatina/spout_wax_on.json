@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:spout"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_spout"
+    }
+  ]
+}

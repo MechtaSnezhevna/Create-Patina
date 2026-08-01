@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:fluid_valve"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_fluid_valve"
+    }
+  ]
+}

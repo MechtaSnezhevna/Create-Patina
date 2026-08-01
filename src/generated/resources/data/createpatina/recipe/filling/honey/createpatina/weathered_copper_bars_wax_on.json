@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_bars"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:honey"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_copper_bars"
+    }
+  ]
+}

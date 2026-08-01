@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:oxidized_steam_whistle"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_oxidized_steam_whistle"
+    }
+  ]
+}

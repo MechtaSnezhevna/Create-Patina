@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_trapdoor"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:exposed_copper_trapdoor"
+    }
+  ]
+}

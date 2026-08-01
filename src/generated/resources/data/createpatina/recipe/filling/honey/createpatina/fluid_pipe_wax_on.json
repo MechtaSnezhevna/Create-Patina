@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "create:fluid_pipe"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:honey"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_fluid_pipe"
+    }
+  ]
+}

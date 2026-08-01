@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:weathered_copper_grate"
+    },
+    {
+      "type": "neoforge:tag",
+      "amount": 100,
+      "tag": "c:honey"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:waxed_weathered_copper_grate"
+    }
+  ]
+}

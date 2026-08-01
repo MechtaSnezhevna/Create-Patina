@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:oxidized_copper_shingle_stairs"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:waxed_oxidized_copper_shingle_stairs"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:exposed_copper_tile_stairs"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:waxed_exposed_copper_tile_stairs"
+    }
+  ]
+}

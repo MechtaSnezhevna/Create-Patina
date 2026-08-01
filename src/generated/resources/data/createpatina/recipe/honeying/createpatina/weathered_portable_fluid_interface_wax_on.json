@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_portable_fluid_interface"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_portable_fluid_interface"
+    }
+  ]
+}

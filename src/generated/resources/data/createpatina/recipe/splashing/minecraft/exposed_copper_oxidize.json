@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_copper"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:weathered_copper"
+    }
+  ]
+}

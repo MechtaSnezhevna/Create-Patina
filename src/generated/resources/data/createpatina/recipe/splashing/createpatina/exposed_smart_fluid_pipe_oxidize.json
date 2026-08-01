@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_smart_fluid_pipe"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_smart_fluid_pipe"
+    }
+  ]
+}

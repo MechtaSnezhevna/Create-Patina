@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:copper_shingles"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:exposed_copper_shingles"
+    }
+  ]
+}

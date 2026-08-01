@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:copper_valve_handle"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_copper_valve_handle"
+    }
+  ]
+}

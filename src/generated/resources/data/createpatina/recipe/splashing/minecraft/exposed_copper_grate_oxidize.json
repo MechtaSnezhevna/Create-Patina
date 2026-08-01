@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_copper_grate"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:weathered_copper_grate"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:chiseled_copper"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:exposed_chiseled_copper"
+    }
+  ]
+}

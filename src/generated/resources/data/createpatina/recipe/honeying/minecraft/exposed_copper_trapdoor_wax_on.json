@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_copper_trapdoor"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:waxed_exposed_copper_trapdoor"
+    }
+  ]
+}

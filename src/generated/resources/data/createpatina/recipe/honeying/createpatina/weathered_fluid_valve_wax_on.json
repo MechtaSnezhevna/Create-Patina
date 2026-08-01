@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_fluid_valve"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_fluid_valve"
+    }
+  ]
+}

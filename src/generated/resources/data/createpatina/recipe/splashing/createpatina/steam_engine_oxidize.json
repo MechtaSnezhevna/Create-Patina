@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:steam_engine"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_steam_engine"
+    }
+  ]
+}

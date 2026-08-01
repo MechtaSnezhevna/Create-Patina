@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "minecraft:oxidized_chiseled_copper"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:waxed_oxidized_chiseled_copper"
+    }
+  ]
+}

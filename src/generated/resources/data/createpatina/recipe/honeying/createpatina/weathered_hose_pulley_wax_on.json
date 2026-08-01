@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_hose_pulley"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_hose_pulley"
+    }
+  ]
+}

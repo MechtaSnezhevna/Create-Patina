@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:mechanical_pump"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_mechanical_pump"
+    }
+  ]
+}

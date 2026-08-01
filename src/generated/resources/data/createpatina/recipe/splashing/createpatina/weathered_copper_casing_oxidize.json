@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_casing"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:oxidized_copper_casing"
+    }
+  ]
+}

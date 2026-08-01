@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:portable_fluid_interface"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:waxed_portable_fluid_interface"
+    }
+  ]
+}

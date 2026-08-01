@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:fluid_tank"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_fluid_tank"
+    }
+  ]
+}
