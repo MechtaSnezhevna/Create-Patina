@@ -234,6 +234,9 @@
   "gui.createpatina.weathering_type.waxed_weathered": "涂蜡的锈蚀",
   "gui.createpatina.weathering_type.waxed_oxidized": "涂蜡的氧化",
 
+  "createpatina.recipe.fan_honeying": "批量涂蜜",
+  "create.recipe.fan_honeying.fan": "在蜂蜜后放置鼓风机",
+
   "createpatina.config.enable_portable_fluid_interface_cross_matching": "启用移动式流体接口交叉匹配",
   "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip": "若启用，不同氧化程度的移动式流体接口可以相互对接。",
   "createpatina.config.collapse_patina_sets_in_jei": "在 JEI 中折叠同类方块",
