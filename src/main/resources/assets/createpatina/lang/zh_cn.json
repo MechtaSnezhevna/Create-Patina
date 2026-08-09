@@ -221,6 +221,7 @@
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "可放置的涂蜡氧化铜背罐",
 
   "item.createpatina.patina_clock": "铜锈时钟",
+
   "gui.createpatina.patina_clock.title": "调整氧化状态",
   "gui.createpatina.patina_clock.unwaxed": "未涂蜡",
   "gui.createpatina.patina_clock.waxed": "已涂蜡",
@@ -236,5 +237,5 @@
   "createpatina.config.enable_portable_fluid_interface_cross_matching": "启用移动式流体接口交叉匹配",
   "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip": "若启用，不同氧化程度的移动式流体接口可以相互对接。",
   "createpatina.config.collapse_patina_sets_in_jei": "在 JEI 中折叠同类方块",
-  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "将每组氧化系列显示为未锈蚀方块；悬浮其上可浏览其他变体。"
+  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "若启用，不分别显示氧化变种，悬浮鼠标于未氧化物品上可浏览其变体。"
 }

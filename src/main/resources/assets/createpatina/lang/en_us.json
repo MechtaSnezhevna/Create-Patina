@@ -220,6 +220,8 @@
   "item.createpatina.waxed_weathered_copper_backtank_placeable": "Waxed Weathered Copper Backtank Placeable",
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "Waxed Oxidized Copper Backtank Placeable",
 
+  "item.createpatina.patina_clock": "Patina Clock",
+
   "gui.createpatina.patina_clock.title": "Adjust Weathering State",
   "gui.createpatina.patina_clock.unwaxed": "Unwaxed",
   "gui.createpatina.patina_clock.waxed": "Waxed",
@@ -235,5 +237,5 @@
   "createpatina.config.enable_portable_fluid_interface_cross_matching": "Enable Portable Fluid Interface Cross-Matching",
   "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip":"If true, portable fluid interfaces with different weathering states can be matched to each other.",
   "createpatina.config.collapse_patina_sets_in_jei": "Collapse Similar Blocks in JEI",
-  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "Show each oxidation series as its unaffected block. Hover it to browse the other variants."
+  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "If true, weathering variants will not be displayed separately. Hover your mouse over an unaffected item to browse its variants."
 }
