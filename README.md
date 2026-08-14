@@ -6,6 +6,8 @@ A Create addon introducing oxidized variants and oxidizing mechanisms of copper 
 **Read this in other languages:**
 [English](README.md) | [简体中文](docs/i18n/README.zh-CN.md)
 
+**What's new? See** [Changelog](CHANGELOG.md)
+
 ## Features
 
 ### New Blocks
@@ -25,3 +27,8 @@ This provides a realistic and immersive machine-building experience!
 - **Turning blocks into their next weathering stage** by `filling with water` or `bulk washing`.
 - **Waxing blocks** by `filling with honey` or `bulk waxing (fan with honey fluid)`.
 - **Unwaxing/Scraping blocks** by `using a deployer with an axe or sandpaper`.
+
+## Configs
+
+- **Collapse Similar Blocks in JEI**: If true, weathering variants will **not** be displayed separately. Hover your mouse over an unaffected item to browse its variants.
+- **Enable Portable Fluid Interface Cross-Matching**: If true, portable fluid interfaces with different weathering states can be matched to each other.
