@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "create:waxed_oxidized_copper_tiles"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:oxidized_copper_tiles"
+    }
+  ]
+}

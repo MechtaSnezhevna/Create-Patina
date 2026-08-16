@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_fluid_valve"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:fluid_valve"
+    }
+  ]
+}

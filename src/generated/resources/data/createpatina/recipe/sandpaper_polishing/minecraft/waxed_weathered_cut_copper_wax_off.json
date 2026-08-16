@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "minecraft:waxed_weathered_cut_copper"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:weathered_cut_copper"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_hose_pulley"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:hose_pulley"
+    }
+  ]
+}

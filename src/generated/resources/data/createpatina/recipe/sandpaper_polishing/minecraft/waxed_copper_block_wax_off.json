@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "minecraft:waxed_copper_block"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:copper_block"
+    }
+  ]
+}

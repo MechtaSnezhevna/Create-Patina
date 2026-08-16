@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_exposed_smart_fluid_pipe"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_smart_fluid_pipe"
+    }
+  ]
+}

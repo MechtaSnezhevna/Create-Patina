@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_table_cloth"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_copper_table_cloth"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_weathered_steam_engine"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_steam_engine"
+    }
+  ]
+}

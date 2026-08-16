@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_fluid_valve"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_fluid_valve"
+    }
+  ]
+}

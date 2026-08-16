@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_steam_whistle"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_steam_whistle"
+    }
+  ]
+}

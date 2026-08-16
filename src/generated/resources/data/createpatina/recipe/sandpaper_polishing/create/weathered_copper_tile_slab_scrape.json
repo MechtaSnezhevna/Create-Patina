@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "create:weathered_copper_tile_slab"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:exposed_copper_tile_slab"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:oxidized_copper_scaffolding"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_copper_scaffolding"
+    }
+  ]
+}

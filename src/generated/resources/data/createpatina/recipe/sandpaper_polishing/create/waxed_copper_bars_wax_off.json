@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_copper_bars"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:copper_bars"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_chiseled_copper"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:chiseled_copper"
+    }
+  ]
+}

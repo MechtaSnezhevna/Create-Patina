@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_copper_door"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:copper_door"
+    }
+  ]
+}

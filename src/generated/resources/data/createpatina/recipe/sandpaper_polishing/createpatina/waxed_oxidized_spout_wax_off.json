@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_oxidized_spout"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:oxidized_spout"
+    }
+  ]
+}

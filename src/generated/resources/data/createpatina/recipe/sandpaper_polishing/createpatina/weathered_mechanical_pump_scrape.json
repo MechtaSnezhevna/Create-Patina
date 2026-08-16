@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_mechanical_pump"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_mechanical_pump"
+    }
+  ]
+}

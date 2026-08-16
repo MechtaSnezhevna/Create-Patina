@@ -10,6 +10,7 @@
     "HoneycombItemMixin",
     "LightningBoltMixin",
     "PortableStorageInterfaceMovementMixin",
+    "SandPaperItemMixin",
     "SteamEngineBlockEntityMixin",
     "WhistleBlockUsageMixin",
     "WhistleExtenderBlockMixin",

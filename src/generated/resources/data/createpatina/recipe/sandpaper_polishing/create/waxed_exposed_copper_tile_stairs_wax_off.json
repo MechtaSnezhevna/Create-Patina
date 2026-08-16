@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "create:waxed_exposed_copper_tile_stairs"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:exposed_copper_tile_stairs"
+    }
+  ]
+}

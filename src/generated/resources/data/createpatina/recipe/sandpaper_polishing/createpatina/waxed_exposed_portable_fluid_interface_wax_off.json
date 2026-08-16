@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_exposed_portable_fluid_interface"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_portable_fluid_interface"
+    }
+  ]
+}

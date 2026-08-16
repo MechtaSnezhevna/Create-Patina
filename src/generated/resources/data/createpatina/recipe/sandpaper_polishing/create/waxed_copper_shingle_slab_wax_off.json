@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "create:waxed_copper_shingle_slab"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:copper_shingle_slab"
+    }
+  ]
+}

@@ -26,7 +26,7 @@ This provides a realistic and immersive machine-building experience!
 
 - **Turning blocks into their next weathering stage** by `filling with water` or `bulk washing`.
 - **Waxing blocks** by `filling with honey` or `bulk waxing (fan with honey fluid)`.
-- **Unwaxing/Scraping blocks** by `using a deployer with an axe or sandpaper`.
+- **Unwaxing/Scraping blocks** by `using a deployer with an axe or sandpaper` or holding `sandpaper` in your hand and using it on them, just like polishing rough rose quartz.
 
 ## Configs
 

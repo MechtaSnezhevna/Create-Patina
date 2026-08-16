@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_fluid_pipe"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:fluid_pipe"
+    }
+  ]
+}

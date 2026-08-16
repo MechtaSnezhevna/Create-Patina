@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "minecraft:weathered_copper_trapdoor"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:exposed_copper_trapdoor"
+    }
+  ]
+}
