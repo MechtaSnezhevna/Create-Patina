@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Polishing oxidized/waxed blocks by hand**: holding `sandpaper` in your hand and using it on items, just like polishing rough rose quartz.
 
+### Fixed
+
+#### Interactions
+
+- **Item Drain tool interactions**: right-clicking a weathering item drain with an `axe` or `sandpaper` now scrapes/de-waxes the drain block, and using `honeycomb` waxes it, instead of the right-click being consumed with no effect.
+
 ## 1.1.0 - 2026-08-14
 
 ### Added

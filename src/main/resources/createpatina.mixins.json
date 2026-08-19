@@ -8,6 +8,7 @@
     "ConnectivityHandlerMixin",
     "FluidTankItemMixin",
     "HoneycombItemMixin",
+    "ItemDrainToolInteractionMixin",
     "LightningBoltMixin",
     "PortableStorageInterfaceMovementMixin",
     "SandPaperItemMixin",
