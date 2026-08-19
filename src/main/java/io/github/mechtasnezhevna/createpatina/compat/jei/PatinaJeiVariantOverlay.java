@@ -12,8 +12,8 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.runtime.IIngredientListOverlay;
 import mezz.jei.api.runtime.IJeiRuntime;
 import mezz.jei.common.util.ImmutableRect2i;
+import mezz.jei.gui.overlay.IIngredientListOverlayContents;
 import mezz.jei.gui.overlay.IngredientGrid;
-import mezz.jei.gui.overlay.IngredientGridWithNavigation;
 import mezz.jei.gui.overlay.IngredientListOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -148,7 +148,7 @@ final class PatinaJeiVariantOverlay {
             return null;
         }
 
-        IngredientGridWithNavigation contents =
+        IIngredientListOverlayContents contents =
                 ((IngredientListOverlayAccessor) concreteOverlay).createpatina$getContents();
         IngredientGrid ingredientGrid =
                 ((IngredientGridWithNavigationAccessor) contents).createpatina$getIngredientGrid();
