@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Interactions
 
 - **Polishing oxidized/waxed blocks by hand**: holding `sandpaper` in your hand and using it on items, just like polishing rough rose quartz.
+- **Polishing wearable backtanks**: when the other hand holds sandpaper, right-clicking a wearable copper backtank polishes it instead of equipping it to the armor slot.
 
 ### Fixed
 
