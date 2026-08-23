@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Interactions
 
 - **Item Drain tool interactions**: right-clicking a weathering item drain with an `axe` or `sandpaper` now scrapes/de-waxes the drain block, and using `honeycomb` waxes it, instead of the right-click being consumed with no effect.
+- **Backtank air kept when polishing**: polishing a wearable copper backtank by hand or with a deployer now carries over the stored air instead of resetting the tank.
 
 ## 1.1.0 - 2026-08-14
 
