@@ -1,0 +1,17 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_copper_backtank"
+    },
+    {
+      "item": "minecraft:honeycomb_block"
+    }
+  ],
+  "keep_held_item": true,
+  "results": [
+    {
+      "id": "createpatina:waxed_weathered_copper_backtank"
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 package io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe;
 
+import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags.AllItemTags;
 import com.simibubi.create.api.data.recipe.DeployingRecipeGen;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
+import io.github.mechtasnezhevna.createpatina.registry.ItemRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.util.DefaultPatinaSets;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
@@ -13,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
 import java.util.HashSet;
@@ -34,6 +37,7 @@ public final class PatinaDeployingRecipeGen extends DeployingRecipeGen {
             }
             addSandpaperRecipes(set);
         });
+        addArmorBacktankRecipes();
     }
 
     private void addWaxingRecipes(PatinaSet set, boolean includeNonHoneycombRecipes) {
@@ -110,7 +114,7 @@ public final class PatinaDeployingRecipeGen extends DeployingRecipeGen {
     }
 
     private void addDeployingRecipe(
-            String operation, String name, Block input, Ingredient heldItem, Block output, boolean keepHeldItem
+            String operation, String name, ItemLike input, Ingredient heldItem, ItemLike output, boolean keepHeldItem
     ) {
         if (input.asItem() == Items.AIR || output.asItem() == Items.AIR) {
             return;
@@ -134,5 +138,32 @@ public final class PatinaDeployingRecipeGen extends DeployingRecipeGen {
             }
             return builder;
         });
+    }
+
+    private void addArmorBacktankRecipes() {
+        for (WeatheringType type : WeatheringType.values()) {
+            if (type.isWaxed()) {
+                continue;
+            }
+
+            ItemLike nonWaxed = backtankItem(type);
+            ItemLike waxed = backtankItem(type.getWaxed());
+            ResourceLocation nonWaxedId = BuiltInRegistries.ITEM.getKey(nonWaxed.asItem());
+
+            addDeployingRecipe(
+                    "waxing", nonWaxedId.getPath() + "_wax_on",
+                    nonWaxed, Ingredient.of(Items.HONEYCOMB), waxed, false
+            );
+            addDeployingRecipe(
+                    "waxing_block", nonWaxedId.getPath() + "_wax_on",
+                    nonWaxed, Ingredient.of(Items.HONEYCOMB_BLOCK), waxed, true
+            );
+        }
+    }
+
+    private static ItemLike backtankItem(WeatheringType type) {
+        return type == WeatheringType.UNAFFECTED
+                ? AllItems.COPPER_BACKTANK.get()
+                : ItemRegistry.ARMOR_BACKTANKS.get(type).asItem();
     }
 }

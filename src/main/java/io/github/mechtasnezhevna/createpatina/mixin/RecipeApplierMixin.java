@@ -1,7 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.mixin;
 
 import com.simibubi.create.AllDataComponents;
-import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -14,8 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 /**
- * Belt deployers apply polishing recipes through RecipeApplier#applyRecipeOn,
- * which rolls fresh output stacks and drops the backtank stored air.
+ * Belt/depot deployers and fan processing apply recipes through
+ * RecipeApplier#applyRecipeOn, which rolls fresh output stacks and drops the
+ * backtank stored air.
  */
 @Mixin(RecipeApplier.class)
 public abstract class RecipeApplierMixin {
@@ -28,7 +28,7 @@ public abstract class RecipeApplierMixin {
             Level level, ItemStack stackIn, Recipe<?> recipe, boolean returnProcessingRemainder,
             CallbackInfoReturnable<List<ItemStack>> cir
     ) {
-        if (!(recipe instanceof SandPaperPolishingRecipe) || !stackIn.has(AllDataComponents.BACKTANK_AIR)) {
+        if (!stackIn.has(AllDataComponents.BACKTANK_AIR)) {
             return;
         }
         int air = stackIn.get(AllDataComponents.BACKTANK_AIR);

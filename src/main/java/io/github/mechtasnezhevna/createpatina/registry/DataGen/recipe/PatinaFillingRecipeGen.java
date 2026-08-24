@@ -1,7 +1,9 @@
 package io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe;
 
+import com.simibubi.create.AllItems;
 import com.simibubi.create.api.data.recipe.FillingRecipeGen;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
+import io.github.mechtasnezhevna.createpatina.registry.ItemRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.HolderLookup;
@@ -9,6 +11,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
@@ -30,6 +33,7 @@ public final class PatinaFillingRecipeGen extends FillingRecipeGen {
             addWaterRecipes(set);
             addHoneyRecipes(set);
         });
+        addArmorBacktankRecipes();
     }
 
     private void addWaterRecipes(PatinaSet set) {
@@ -60,7 +64,7 @@ public final class PatinaFillingRecipeGen extends FillingRecipeGen {
         }
     }
 
-    private void addWaterRecipe(String name, Block input, Block output) {
+    private void addWaterRecipe(String name, ItemLike input, ItemLike output) {
         if (!canGenerate(input, output)) {
             return;
         }
@@ -77,7 +81,7 @@ public final class PatinaFillingRecipeGen extends FillingRecipeGen {
                 .output(output));
     }
 
-    private void addHoneyRecipe(String name, Block input, Block output) {
+    private void addHoneyRecipe(String name, ItemLike input, ItemLike output) {
         if (!canGenerate(input, output)) {
             return;
         }
@@ -94,12 +98,42 @@ public final class PatinaFillingRecipeGen extends FillingRecipeGen {
                 .output(output));
     }
 
-    private boolean canGenerate(Block input, Block output) {
+    private boolean canGenerate(ItemLike input, ItemLike output) {
         return input.asItem() != Items.AIR && output.asItem() != Items.AIR;
     }
 
-    private ResourceLocation recipeId(String fluid, String name, Block output) {
+    private ResourceLocation recipeId(String fluid, String name, ItemLike output) {
         ResourceLocation outputId = BuiltInRegistries.ITEM.getKey(output.asItem());
         return CreatePatina.asResource(fluid + "/" + outputId.getNamespace() + "/" + name);
+    }
+
+    private void addArmorBacktankRecipes() {
+        for (WeatheringType type : WeatheringType.values()) {
+            if (type.isWaxed() || type == WeatheringType.OXIDIZED) {
+                continue;
+            }
+
+            ItemLike input = backtankItem(type);
+            ItemLike output = backtankItem(type.getNext());
+            String inputPath = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
+            addWaterRecipe(inputPath + "_oxidize", input, output);
+        }
+
+        for (WeatheringType type : WeatheringType.values()) {
+            if (type.isWaxed()) {
+                continue;
+            }
+
+            ItemLike input = backtankItem(type);
+            ItemLike output = backtankItem(type.getWaxed());
+            String inputPath = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
+            addHoneyRecipe(inputPath + "_wax_on", input, output);
+        }
+    }
+
+    private static ItemLike backtankItem(WeatheringType type) {
+        return type == WeatheringType.UNAFFECTED
+                ? AllItems.COPPER_BACKTANK.get()
+                : ItemRegistry.ARMOR_BACKTANKS.get(type).asItem();
     }
 }
