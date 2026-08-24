@@ -50,6 +50,9 @@ public final class PatinaPolishingRecipeGen extends PolishingRecipeGen {
         }
 
         ResourceLocation inputId = BuiltInRegistries.ITEM.getKey(input.asItem());
+        if (inputId.getPath().endsWith("_placeable")) {
+            return;
+        }
         ResourceLocation outputId = BuiltInRegistries.ITEM.getKey(output.asItem());
         ResourceLocation recipeId = CreatePatina.asResource(
                 outputId.getNamespace() + "/" + inputId.getPath() + suffix

@@ -44,6 +44,9 @@ public final class PatinaHoneyingRecipeGen extends StandardProcessingRecipeGen<H
             }
 
             ResourceLocation inputId = BuiltInRegistries.ITEM.getKey(input.asItem());
+            if (inputId.getPath().endsWith("_placeable")) {
+                continue;
+            }
             ResourceLocation outputId = BuiltInRegistries.ITEM.getKey(output.asItem());
             ResourceLocation recipeId = CreatePatina.asResource(
                     outputId.getNamespace() + "/" + inputId.getPath() + "_wax_on"

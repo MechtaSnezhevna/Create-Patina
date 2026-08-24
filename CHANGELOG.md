@@ -13,15 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Interactions
 
 - **Polishing oxidized/waxed blocks by hand**: holding `sandpaper` in your hand and using it on items, just like polishing rough rose quartz.
-- **Polishing wearable backtanks**: when the other hand holds sandpaper, right-clicking a wearable copper backtank polishes it instead of equipping it to the armor slot.
-- **Waxing and filling wearable backtanks**: item-form backtanks now support `waxing` (deployer with honeycomb, or bulk honey fan) and `filling` with water (advance weathering stage) or honey (wax), carrying over the stored air.
+- **Wearable backtank weathering**: wearable backtank items support the full weathering cycle — hand/deployer sandpaper polishing, honeycomb/honey waxing, axe/sandpaper de-waxing and scraping, water/honey spout filling, and fan washing — with the stored air carried over. These interactions apply only to the wearable item form.
 
 ### Fixed
 
 #### Interactions
 
 - **Item Drain tool interactions**: right-clicking a weathering item drain with an `axe` or `sandpaper` now scrapes/de-waxes the drain block, and using `honeycomb` waxes it, instead of the right-click being consumed with no effect.
-- **Backtank air kept when polishing**: polishing a wearable copper backtank by hand or with a deployer now carries over the stored air instead of resetting the tank.
+- **Backtank air kept when processing**: stored air now survives every backtank processing step (polishing, waxing, water/honey filling, fan washing) instead of resetting to empty.
 
 ## 1.1.0 - 2026-08-14
 

@@ -120,6 +120,11 @@ public final class PatinaDeployingRecipeGen extends DeployingRecipeGen {
             return;
         }
 
+        ResourceLocation inputId = BuiltInRegistries.ITEM.getKey(input.asItem());
+        if (inputId.getPath().endsWith("_placeable")) {
+            return;
+        }
+
         ResourceLocation outputId = BuiltInRegistries.ITEM.getKey(output.asItem());
         ResourceLocation recipeId = CreatePatina.asResource(
                 operation + "/" + outputId.getNamespace() + "/" + name

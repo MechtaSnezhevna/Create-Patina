@@ -99,7 +99,8 @@ public final class PatinaFillingRecipeGen extends FillingRecipeGen {
     }
 
     private boolean canGenerate(ItemLike input, ItemLike output) {
-        return input.asItem() != Items.AIR && output.asItem() != Items.AIR;
+        return input.asItem() != Items.AIR && output.asItem() != Items.AIR
+                && !BuiltInRegistries.ITEM.getKey(input.asItem()).getPath().endsWith("_placeable");
     }
 
     private ResourceLocation recipeId(String fluid, String name, ItemLike output) {
