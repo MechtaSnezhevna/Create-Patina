@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create:stock_link"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:exposed_stock_link"
+    }
+  ]
+}

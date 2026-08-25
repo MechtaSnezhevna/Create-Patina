@@ -66,6 +66,7 @@ public class CreativeModeTabRegistry {
             insertBefore(e, BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.PORTABLE_FLUID_INTERFACE);
             insertBefore(e, BlockRegistry.HOSE_PULLEY_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.HOSE_PULLEY);
             insertBefore(e, BlockRegistry.FLUID_TANK_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_TANK);
+            insertBefore(e, BlockRegistry.STOCK_LINK.getEntry(WeatheringType.EXPOSED), AllBlocks.STOCK_LINK);
         }
     }
 

@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_stock_link"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:stock_link"
+    }
+  ]
+}

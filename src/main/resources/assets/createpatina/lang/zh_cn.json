@@ -204,6 +204,13 @@
   "block.createpatina.waxed_exposed_fluid_tank": "涂蜡的斑驳流体储罐",
   "block.createpatina.waxed_weathered_fluid_tank": "涂蜡的锈蚀流体储罐",
   "block.createpatina.waxed_oxidized_fluid_tank": "涂蜡的氧化流体储罐",
+  "block.createpatina.exposed_stock_link": "斑驳的仓储链接站",
+  "block.createpatina.weathered_stock_link": "锈蚀的仓储链接站",
+  "block.createpatina.oxidized_stock_link": "氧化的仓储链接站",
+  "block.createpatina.waxed_stock_link": "涂蜡的仓储链接站",
+  "block.createpatina.waxed_exposed_stock_link": "涂蜡的斑驳仓储链接站",
+  "block.createpatina.waxed_weathered_stock_link": "涂蜡的锈蚀仓储链接站",
+  "block.createpatina.waxed_oxidized_stock_link": "涂蜡的氧化仓储链接站",
 
   "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
   "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",

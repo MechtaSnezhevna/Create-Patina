@@ -32,8 +32,10 @@ import com.simibubi.create.content.kinetics.crank.ValveHandleVisual;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineRenderer;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
+import com.simibubi.create.content.logistics.packagerLink.PackagerLinkBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
+import com.simibubi.create.content.redstone.displayLink.LinkBulbRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -156,6 +158,12 @@ public class BlockEntityRegistry {
             .blockEntity("fluid_tank", FluidTankBlockEntity::new)
             .validBlocks(BlockRegistry.FLUID_TANK_SET.getAllEntries())
             .renderer(() -> FluidTankRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<PackagerLinkBlockEntity> WEATHERING_PACKAGER_LINK = REGISTRATE
+            .blockEntity("packager_link", PackagerLinkBlockEntity::new)
+            .validBlocks(BlockRegistry.STOCK_LINK.getAllEntries())
+            .renderer(() -> LinkBulbRenderer::new)
             .register();
 
     public static void register() {

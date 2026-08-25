@@ -26,6 +26,10 @@ import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.tank.*;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
+import com.simibubi.create.content.logistics.packagerLink.LogisticallyLinkedBlockItem;
+import com.simibubi.create.content.logistics.packagerLink.PackagerLinkBlock;
+import com.simibubi.create.content.logistics.packagerLink.PackagerLinkBlockEntity;
+import com.simibubi.create.content.logistics.packagerLink.PackagerLinkGenerator;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
@@ -514,6 +518,20 @@ public class BlockRegistry {
                     .model((c, p) -> WeatheringPortableFluidInterfaceGenerator.genItemModel(c, p, type))
                     .build()
             ).unaffected(AllBlocks.PORTABLE_FLUID_INTERFACE)
+            .register();
+
+    public static final PatinaSet STOCK_LINK = new PatinaSetBuilder<>(
+            REGISTRATE, "stock_link", PackagerLinkBlock:: new)
+            .configure((type, builder) -> {
+                builder.initialProperties(SharedProperties::softMetal)
+                        .properties(p -> p.mapColor(MapColor.TERRACOTTA_BLUE)
+                                .sound(SoundType.NETHERITE_BLOCK))
+                        .transform(pickaxeOnly())
+                        .blockstate(new WeatheringStockLinkGenerator()::generate)
+                        .item(LogisticallyLinkedBlockItem::new)
+                        .transform(customItemModel("stock_link", "_", "block_vertical"))
+                        .build();
+            }).unaffected(AllBlocks.STOCK_LINK)
             .register();
 
     public static final PatinaSet COPPER_BACKTANK_SET = new PatinaSetBuilder<>(
