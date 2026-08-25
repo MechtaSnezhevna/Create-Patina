@@ -48,12 +48,14 @@
     "oxidization.SpoutOxidizationMixin",
     "oxidization.SteamEngineOxidizationMixin",
     "oxidization.SteamWhistleOxidizationMixin",
+    "oxidization.StockLinkOxidizationMixin",
     "render.SteamEngineBlockEntityMixin"
   ],
   "client": [
     "accessor.AbstractBlockEntityVisualAccessor",
     "render.AbstractPulleyRendererMixin",
     "render.FluidTankCTBehaviourMixin",
+    "render.FluidTankRendererMixin",
     "render.FluidValveVisualMixin",
     "render.HosePulleyRendererMixin",
     "render.HosePulleyVisualMixin",
@@ -62,8 +64,7 @@
     "render.PortableStorageInterfaceRendererMixin",
     "render.SlidingDoorRendererMixin",
     "render.SpoutRendererMixin",
-    "render.ValveHandleVisualMixin",
-    "render.FluidTankRendererMixin"
+    "render.ValveHandleVisualMixin"
   ],
   "server": [
   ],
