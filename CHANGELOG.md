@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+#### Blocks
+- **Weathering Stock Link**: Thanks for reminding us that there is a copper coil on a stock link.
+
 #### Interactions
 
 - **Polishing oxidized/waxed blocks by hand**: holding `sandpaper` in your hand and using it on items, just like polishing rough rose quartz.
