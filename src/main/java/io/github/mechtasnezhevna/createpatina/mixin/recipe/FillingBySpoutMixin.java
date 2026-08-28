@@ -1,29 +1,29 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.recipe;
 
 import com.simibubi.create.AllDataComponents;
-import com.simibubi.create.content.equipment.sandPaper.SandPaperPolishingRecipe;
+import com.simibubi.create.content.fluids.spout.FillingBySpout;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * SandPaperPolishingRecipe assembles a fresh output stack, dropping item data
- * such as the backtank stored air. Restore BACKTANK_AIR from the input so
- * polishing a tank by hand or with a deployer keeps its remaining air.
+ * The spout rolls a fresh output stack for filling recipes, dropping the
+ * backtank stored air. Restore BACKTANK_AIR from the input so water/honey
+ * filling keeps the tank remaining air.
  */
-@Mixin(SandPaperPolishingRecipe.class)
-public abstract class SandPaperPolishingRecipeMixin {
+@Mixin(FillingBySpout.class)
+public abstract class FillingBySpoutMixin {
 
     @Inject(
-            method = "applyPolish(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;",
+            method = "fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/neoforged/neoforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;",
             at = @At("RETURN")
     )
     private static void createpatina$preserveBacktankAir(
-            Level level, Vec3 position, ItemStack input, ItemStack sandPaperStack,
+            Level level, int requiredAmount, ItemStack input, FluidStack availableFluid,
             CallbackInfoReturnable<ItemStack> cir
     ) {
         if (!input.has(AllDataComponents.BACKTANK_AIR)) {

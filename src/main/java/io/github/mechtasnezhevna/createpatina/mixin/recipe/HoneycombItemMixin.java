@@ -1,28 +1,29 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.recipe;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.simibubi.create.content.equipment.sandPaper.SandPaperItem;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(SandPaperItem.class)
-public abstract class SandPaperItemMixin {
+@Mixin(HoneycombItem.class)
+public abstract class HoneycombItemMixin {
+
 
     @WrapOperation(
-            method = "useOn(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;",
+            method = "lambda$useOn$2(Lnet/minecraft/world/item/context/UseOnContext;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/InteractionResult;",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/Level;setBlockAndUpdate(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"
+                    target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"
             )
     )
-    private boolean createpatina$preserveBlockEntity(
-            Level level, BlockPos pos, BlockState newState, Operation<Boolean> original
+    private static boolean createpatina$preserveBlockEntity(
+            Level level, BlockPos pos, BlockState newState, int flags, Operation<Boolean> original
     ) {
         BlockState oldState = level.getBlockState(pos);
         if (oldState.getBlock() instanceof PatinaBlock
@@ -30,6 +31,6 @@ public abstract class SandPaperItemMixin {
             OxidizeUtil.replaceWithState(oldState, newState, level, pos);
             return true;
         }
-        return original.call(level, pos, newState);
+        return original.call(level, pos, newState, flags);
     }
 }

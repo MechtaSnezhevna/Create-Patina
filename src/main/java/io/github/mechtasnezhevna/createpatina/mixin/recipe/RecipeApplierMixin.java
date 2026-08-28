@@ -1,4 +1,4 @@
-package io.github.mechtasnezhevna.createpatina.mixin;
+package io.github.mechtasnezhevna.createpatina.mixin.recipe;
 
 import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
