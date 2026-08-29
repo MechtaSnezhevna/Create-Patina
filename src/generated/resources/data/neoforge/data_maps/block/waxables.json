@@ -24,6 +24,9 @@
     "create:copper_valve_handle": {
       "waxed": "createpatina:waxed_copper_valve_handle"
     },
+    "create:display_link": {
+      "waxed": "createpatina:waxed_display_link"
+    },
     "create:encased_fluid_pipe": {
       "waxed": "createpatina:waxed_encased_fluid_pipe"
     },
@@ -110,6 +113,9 @@
     },
     "createpatina:exposed_copper_valve_handle": {
       "waxed": "createpatina:waxed_exposed_copper_valve_handle"
+    },
+    "createpatina:exposed_display_link": {
+      "waxed": "createpatina:waxed_exposed_display_link"
     },
     "createpatina:exposed_encased_exposed_fluid_pipe": {
       "waxed": "createpatina:waxed_exposed_encased_exposed_fluid_pipe"
@@ -198,6 +204,9 @@
     "createpatina:oxidized_copper_valve_handle": {
       "waxed": "createpatina:waxed_oxidized_copper_valve_handle"
     },
+    "createpatina:oxidized_display_link": {
+      "waxed": "createpatina:waxed_oxidized_display_link"
+    },
     "createpatina:oxidized_encased_exposed_fluid_pipe": {
       "waxed": "createpatina:waxed_oxidized_encased_exposed_fluid_pipe"
     },
@@ -284,6 +293,9 @@
     },
     "createpatina:weathered_copper_valve_handle": {
       "waxed": "createpatina:waxed_weathered_copper_valve_handle"
+    },
+    "createpatina:weathered_display_link": {
+      "waxed": "createpatina:waxed_weathered_display_link"
     },
     "createpatina:weathered_encased_exposed_fluid_pipe": {
       "waxed": "createpatina:waxed_weathered_encased_exposed_fluid_pipe"

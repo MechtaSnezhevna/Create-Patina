@@ -211,6 +211,13 @@
   "block.createpatina.waxed_exposed_stock_link": "Waxed Exposed Stock Link",
   "block.createpatina.waxed_weathered_stock_link": "Waxed Weathered Stock Link",
   "block.createpatina.waxed_oxidized_stock_link": "Waxed Oxidized Stock Link",
+  "block.createpatina.exposed_display_link": "Exposed Display Link",
+  "block.createpatina.weathered_display_link": "Weathered Display Link",
+  "block.createpatina.oxidized_display_link": "Oxidized Display Link",
+  "block.createpatina.waxed_display_link": "Waxed Display Link",
+  "block.createpatina.waxed_exposed_display_link": "Waxed Exposed Display Link",
+  "block.createpatina.waxed_weathered_display_link": "Waxed Weathered Display Link",
+  "block.createpatina.waxed_oxidized_display_link": "Waxed Oxidized Display Link",
 
   "item.createpatina.exposed_copper_backtank": "Exposed Copper Backtank",
   "item.createpatina.weathered_copper_backtank": "Weathered Copper Backtank",

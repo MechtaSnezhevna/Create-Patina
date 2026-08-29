@@ -211,6 +211,13 @@
   "block.createpatina.waxed_exposed_stock_link": "涂蜡的斑驳仓储链接站",
   "block.createpatina.waxed_weathered_stock_link": "涂蜡的锈蚀仓储链接站",
   "block.createpatina.waxed_oxidized_stock_link": "涂蜡的氧化仓储链接站",
+  "block.createpatina.exposed_display_link": "斑驳的显示链接器",
+  "block.createpatina.weathered_display_link": "锈蚀的显示链接器",
+  "block.createpatina.oxidized_display_link": "氧化的显示链接器",
+  "block.createpatina.waxed_display_link": "涂蜡的显示链接器",
+  "block.createpatina.waxed_exposed_display_link": "涂蜡的斑驳显示链接器",
+  "block.createpatina.waxed_weathered_display_link": "涂蜡的锈蚀显示链接器",
+  "block.createpatina.waxed_oxidized_display_link": "涂蜡的氧化显示链接器",
 
   "item.createpatina.exposed_copper_backtank": "斑驳的铜背罐",
   "item.createpatina.weathered_copper_backtank": "锈蚀的铜背罐",

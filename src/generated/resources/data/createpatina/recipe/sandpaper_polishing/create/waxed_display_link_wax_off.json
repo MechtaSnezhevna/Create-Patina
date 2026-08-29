@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_display_link"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:display_link"
+    }
+  ]
+}

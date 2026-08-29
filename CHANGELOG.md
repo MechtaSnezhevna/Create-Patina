@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Blocks
-- **Weathering Stock Link**: Thanks for reminding us that there is a copper coil on a stock link.
+- **Weathering Stock Link** & **Weathering Display Link**: Thanks for reminding us that there are copper coils on them. (Stock Ticker **won't** be added as there's a glass cover outside the coil)
 
 #### Interactions
 

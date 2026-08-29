@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "createpatina:exposed_display_link"
+    }
+  ],
+  "results": [
+    {
+      "id": "createpatina:weathered_display_link"
+    }
+  ]
+}

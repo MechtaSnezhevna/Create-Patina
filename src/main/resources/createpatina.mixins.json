@@ -29,6 +29,7 @@
     "oxidization.CopperScaffoldOxidizationMixin",
     "oxidization.CopperTableClothOxidizationMixin",
     "oxidization.CopperValveHandleOxidizationMixin",
+    "oxidization.DisplayLinkOxidizationMixin",
     "oxidization.EncasedPipeOxidizationMixin",
     "oxidization.FluidPipeOxidizationMixin",
     "oxidization.FluidTankOxidizationMixin",

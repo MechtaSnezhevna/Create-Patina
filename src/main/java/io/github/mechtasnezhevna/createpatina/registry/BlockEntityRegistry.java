@@ -35,6 +35,7 @@ import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
 import com.simibubi.create.content.logistics.packagerLink.PackagerLinkBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
+import com.simibubi.create.content.redstone.displayLink.DisplayLinkBlockEntity;
 import com.simibubi.create.content.redstone.displayLink.LinkBulbRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -162,7 +163,13 @@ public class BlockEntityRegistry {
 
     public static final BlockEntityEntry<PackagerLinkBlockEntity> WEATHERING_PACKAGER_LINK = REGISTRATE
             .blockEntity("packager_link", PackagerLinkBlockEntity::new)
-            .validBlocks(BlockRegistry.STOCK_LINK.getAllEntries())
+            .validBlocks(BlockRegistry.STOCK_LINK_SET.getAllEntries())
+            .renderer(() -> LinkBulbRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<DisplayLinkBlockEntity> WEATHERING_DISPLAY_LINK = REGISTRATE
+            .blockEntity("display_link", DisplayLinkBlockEntity::new)
+            .validBlocks(BlockRegistry.DISPLAY_LINK_SET.getAllEntries())
             .renderer(() -> LinkBulbRenderer::new)
             .register();
 
