@@ -33,3 +33,4 @@ This provides a realistic and immersive machine-building experience!
 - **Collapse Similar Blocks in JEI**: If true, weathering variants will **not** be displayed separately. Hover your mouse over an unaffected item to browse its variants.
 - **Enable Portable Fluid Interface Cross-Matching**: If true, portable fluid interfaces with different weathering states can be matched to each other.
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
+- **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact.

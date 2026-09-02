@@ -12,7 +12,6 @@ import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
 import io.github.mechtasnezhevna.createpatina.util.TankWeatherGuard;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +23,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+
+import java.util.Optional;
 
 @Mixin(FluidTankBlock.class)
 public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpoint {
@@ -107,31 +108,17 @@ public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpo
 
         /*
          * Every part of the multiblock must advance to the same next weathering stage, otherwise
-         * the mixed states would split the structure (see ConnectivityHandlerMixin). The box
-         * mirrors ConnectivityHandler#splitMultiAndInvalidate: width x width x height starting at
-         * the controller. Width and height are captured up front because the first replacement
-         * detaches the multiblock and resets them to 1.
+         * the mixed states would split the structure (see ConnectivityHandlerMixin). The swap is
+         * structure-preserving: the multiblock never detaches, so no async re-formation or extra
+         * block updates are needed afterwards.
          */
-        int width = controller.getWidth();
-        int height = controller.getHeight();
-        Direction.Axis axis = controller.getMainConnectionAxis();
-        for (int yOffset = 0; yOffset < height; yOffset++) {
-            for (int xOffset = 0; xOffset < width; xOffset++) {
-                for (int zOffset = 0; zOffset < width; zOffset++) {
-                    BlockPos partPos = switch (axis) {
-                        case X -> controllerPos.offset(yOffset, xOffset, zOffset);
-                        case Y -> controllerPos.offset(xOffset, yOffset, zOffset);
-                        case Z -> controllerPos.offset(xOffset, zOffset, yOffset);
-                    };
-                    BlockState partState = level.getBlockState(partPos);
-                    if (!(partState.getBlock() instanceof PatinaBlock patina) || !patina.canAdvanceWeathering()) {
-                        continue;
-                    }
-                    WeatheringCopper.getNext(partState.getBlock()).ifPresent(nextBlock ->
-                            OxidizeUtil.replaceWithState(partState, nextBlock.defaultBlockState(), level, partPos));
-                }
+        OxidizeUtil.weatherWholeFluidTank(controller, level, partState -> {
+            if (!(partState.getBlock() instanceof PatinaBlock patina) || !patina.canAdvanceWeathering()) {
+                return Optional.empty();
             }
-        }
+            return WeatheringCopper.getNext(partState.getBlock())
+                    .map(nextBlock -> nextBlock.defaultBlockState());
+        });
     }
 
     @Override

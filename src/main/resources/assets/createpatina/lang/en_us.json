@@ -256,5 +256,7 @@
   "createpatina.config.collapse_patina_sets_in_jei": "Collapse Similar Blocks in JEI",
   "createpatina.config.collapse_patina_sets_in_jei.tooltip": "If true, weathering variants will not be displayed separately. Hover your mouse over an unaffected item to browse its variants.",
   "createpatina.config.oxidize_whole_fluid_tank": "Oxidize Whole Fluid Tank",
-  "createpatina.config.oxidize_whole_fluid_tank.tooltip": "If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces."
+  "createpatina.config.oxidize_whole_fluid_tank.tooltip": "If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.",
+  "createpatina.config.weather_whole_fluid_tank_with_tools": "Weather Whole Fluid Tank with Tools",
+  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact."
 }

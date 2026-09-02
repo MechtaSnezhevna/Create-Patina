@@ -3,17 +3,23 @@ package io.github.mechtasnezhevna.createpatina.util;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.content.contraptions.actors.psi.PortableFluidInterfaceBlockEntity;
+import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.mixin.accessor.PortableStorageInterfaceBlockEntityAccessor;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
+
+import java.util.Optional;
+import java.util.function.Function;
 
 public final class OxidizeUtil {
     
@@ -256,6 +262,195 @@ public final class OxidizeUtil {
          */
         if (level instanceof ServerLevel serverLevel) {
             serverLevel.getChunkSource().blockChanged(pos);
+        }
+    }
+
+    /**
+     * Applies a tool-driven weathering-state change to a block, or to the entire fluid tank
+     * multiblock when {@code wholeTank} is enabled and the target is part of one.
+     *
+     * <p>Waxing, de-waxing or scraping one block of a large tank splits its multiblock, because
+     * mixed weathering states never connect to each other (see ConnectivityHandlerMixin). When
+     * the whole tank is operated on instead, every part shifts through the same transition while
+     * the multiblock structure, fluid contents and connected-texture state are left untouched, so
+     * the tank never splits apart, flickers, or loses its fluid-level display.</p>
+     */
+    public static void applyToolWeathering(
+            BlockState oldState, BlockState newState, Level level, BlockPos pos, boolean wholeTank
+    ) {
+        if (!wholeTank) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (!(blockEntity instanceof FluidTankBlockEntity tankBE)) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+        FluidTankBlockEntity controller = tankBE.getControllerBE();
+        if (controller == null) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+
+        Function<BlockState, Optional<BlockState>> transition = toolTransition(oldState, newState);
+        if (transition == null) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+
+        /*
+         * The whole-tank replacement runs on the server as well as on the client-side prediction,
+         * so both sides apply the identical change to the identical blocks.
+         */
+        weatherWholeFluidTank(controller, level, transition);
+    }
+
+    /**
+     * Derives the per-part transition a tool applied to the clicked block. All parts of one tank
+     * multiblock share the same weathering type, so the same transition applies to every part.
+     */
+    private static Function<BlockState, Optional<BlockState>> toolTransition(
+            BlockState current, BlockState target
+    ) {
+        if (sameBlock(WaxUtil.getWaxed(current), target)) {
+            return WaxUtil::getWaxed;
+        }
+        if (sameBlock(WeatheringCopper.getPrevious(current), target)) {
+            return WeatheringCopper::getPrevious;
+        }
+        if (sameBlock(WaxUtil.getUnwaxed(current), target)) {
+            return WaxUtil::getUnwaxed;
+        }
+        return null;
+    }
+
+    private static boolean sameBlock(Optional<BlockState> candidate, BlockState target) {
+        return candidate.isPresent() && candidate.get().getBlock() == target.getBlock();
+    }
+
+    /**
+     * Moves every part of a fluid tank multiblock through the same weathering transition without
+     * splitting the structure: controller position, width and height, fluid contents, BlockEntity
+     * data and connected-texture properties are all preserved, only the block type itself changes.
+     *
+     * <p>Because the multiblock never detaches, no async re-formation on a later BlockEntity tick
+     * is needed, and the client never renders a transient per-block split state. Used by tool
+     * interactions (axe / honeycomb / sandpaper, by hand or by deployer) and by natural
+     * random-tick weathering when whole-tank weathering is enabled.</p>
+     */
+    public static void weatherWholeFluidTank(
+            FluidTankBlockEntity controller, Level level,
+            Function<BlockState, Optional<BlockState>> transition
+    ) {
+        /*
+         * Mirrors ConnectivityHandler#splitMultiAndInvalidate: width x width x height starting at
+         * the controller. Width, height, axis and origin are captured up front because replacing
+         * the controller block swaps its BlockEntity for a fresh instance.
+         */
+        int width = controller.getWidth();
+        int height = controller.getHeight();
+        Direction.Axis axis = controller.getMainConnectionAxis();
+        BlockPos origin = controller.getBlockPos();
+        for (int yOffset = 0; yOffset < height; yOffset++) {
+            for (int xOffset = 0; xOffset < width; xOffset++) {
+                for (int zOffset = 0; zOffset < width; zOffset++) {
+                    BlockPos partPos = switch (axis) {
+                        case X -> origin.offset(yOffset, xOffset, zOffset);
+                        case Y -> origin.offset(xOffset, yOffset, zOffset);
+                        case Z -> origin.offset(xOffset, zOffset, yOffset);
+                    };
+                    BlockState partState = level.getBlockState(partPos);
+                    if (!(partState.getBlock() instanceof FluidTankBlock)) {
+                        continue;
+                    }
+                    BlockEntity partBE = level.getBlockEntity(partPos);
+                    if (!(partBE instanceof FluidTankBlockEntity partTank)
+                            || !isPartOfMultiblock(partTank, origin)) {
+                        continue;
+                    }
+                    Optional<BlockState> nextState = transition.apply(partState);
+                    if (nextState.isEmpty()) {
+                        continue;
+                    }
+                    replaceTankPartState(level, partPos, partState, nextState.get());
+                }
+            }
+        }
+    }
+
+    private static boolean isPartOfMultiblock(FluidTankBlockEntity part, BlockPos controllerPos) {
+        return part.isController() ? part.getBlockPos().equals(controllerPos)
+                : controllerPos.equals(part.getController());
+    }
+
+    /**
+     * Swaps the weathering type of one tank part while keeping its BlockEntity data and leaving
+     * the multiblock it belongs to connected. Unlike {@link #replaceWithState(BlockState,
+     * BlockState, Level, BlockPos)}, the surrounding tank is never split into single blocks.
+     */
+    private static void replaceTankPartState(
+            Level level, BlockPos pos, BlockState oldState, BlockState newState
+    ) {
+        BlockState currentState = level.getBlockState(pos);
+        if (currentState != oldState) {
+            return;
+        }
+
+        BlockState finalState = copySharedProperties(currentState, newState);
+        if (currentState == finalState) {
+            return;
+        }
+
+        BlockEntity oldBE = level.getBlockEntity(pos);
+        CompoundTag blockEntityData = null;
+        if (oldBE instanceof FluidTankBlockEntity) {
+            if (!finalState.hasBlockEntity()) {
+                throw new IllegalArgumentException("Cannot preserve BlockEntity data when replacing "
+                        + currentState + " with non-BlockEntity state " + finalState + " at " + pos);
+            }
+
+            blockEntityData = oldBE.saveWithoutMetadata(level.registryAccess());
+            level.removeBlockEntity(pos);
+        }
+
+        if (!setReplacementState(level, pos, finalState, true)) {
+            if (blockEntityData != null) {
+                restoreOriginalBlockEntity(
+                        level, pos, currentState, oldBE, blockEntityData, true
+                );
+            }
+            throw new IllegalStateException("Failed to replace " + currentState + " with "
+                    + finalState + " at " + pos);
+        }
+
+        if (blockEntityData != null) {
+            BlockEntity newBE = level.getBlockEntity(pos);
+            if (newBE == null || newBE.getClass() != oldBE.getClass()) {
+                restoreOriginalBlockEntity(
+                        level, pos, currentState, oldBE, blockEntityData, true
+                );
+                throw new IllegalStateException("Replacement state " + finalState
+                        + " did not create a compatible BlockEntity at " + pos);
+            }
+
+            try {
+                newBE.loadWithComponents(blockEntityData.copy(), level.registryAccess());
+            } catch (RuntimeException exception) {
+                restoreOriginalBlockEntity(
+                        level, pos, currentState, oldBE, blockEntityData, true
+                );
+                throw new IllegalStateException("Failed to migrate BlockEntity data from "
+                        + currentState + " to " + finalState + " at " + pos, exception);
+            }
+
+            newBE.setChanged();
+            markBlockEntityForSync(level, pos);
+        }
+
+        if (finalState.getBlock() instanceof PatinaBlock patina && level instanceof ServerLevel server) {
+            patina.actionWhenReplaced(currentState, finalState, server, pos);
         }
     }
 
