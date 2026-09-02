@@ -5,12 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+#### Configs
+
+- **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
 
 ## 1.1.1 - 2026-09-02
 
 ### Added
 
 #### Blocks
+
 - **Weathering Stock Link** & **Weathering Display Link**: Thanks for reminding us that there are copper coils on them. (Stock Ticker **won't** be added as there's a glass cover outside the coil)
 
 #### Interactions

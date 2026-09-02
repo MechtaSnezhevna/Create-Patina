@@ -11,6 +11,7 @@ public class PatinaConfig {
     public static final ModConfigSpec CLIENT_SPEC;
 
     public final ModConfigSpec.ConfigValue<Boolean> ENABLE_FLUID_INTERFACE_CROSS_MATCHING;
+    public final ModConfigSpec.ConfigValue<Boolean> OXIDIZE_WHOLE_FLUID_TANK;
 
     static {
         Pair<PatinaConfig, ModConfigSpec> serverPair = new ModConfigSpec.Builder().configure(PatinaConfig::new);
@@ -28,6 +29,11 @@ public class PatinaConfig {
                 .translation("createpatina.config.enable_portable_fluid_interface_cross_matching")
                 .comment("If true, portable fluid interfaces with different weathering states can be matched to each other.")
                 .define("enablePortableFluidInterfaceCrossMatching", true);
+
+        OXIDIZE_WHOLE_FLUID_TANK = builder
+                .translation("createpatina.config.oxidize_whole_fluid_tank")
+                .comment("If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.")
+                .define("oxidizeWholeFluidTank", false);
     }
 
     public static class Client {

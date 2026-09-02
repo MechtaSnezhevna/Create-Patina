@@ -254,5 +254,7 @@
   "createpatina.config.enable_portable_fluid_interface_cross_matching": "Enable Portable Fluid Interface Cross-Matching",
   "createpatina.config.enable_portable_fluid_interface_cross_matching.tooltip":"If true, portable fluid interfaces with different weathering states can be matched to each other.",
   "createpatina.config.collapse_patina_sets_in_jei": "Collapse Similar Blocks in JEI",
-  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "If true, weathering variants will not be displayed separately. Hover your mouse over an unaffected item to browse its variants."
+  "createpatina.config.collapse_patina_sets_in_jei.tooltip": "If true, weathering variants will not be displayed separately. Hover your mouse over an unaffected item to browse its variants.",
+  "createpatina.config.oxidize_whole_fluid_tank": "Oxidize Whole Fluid Tank",
+  "createpatina.config.oxidize_whole_fluid_tank.tooltip": "If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces."
 }
