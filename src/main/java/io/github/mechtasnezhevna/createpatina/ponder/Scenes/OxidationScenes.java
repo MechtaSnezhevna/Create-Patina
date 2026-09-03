@@ -115,7 +115,7 @@ public class OxidationScenes {
             .get(ResourceLocation.fromNamespaceAndPath(MODID, "waxed_exposed_item_drain"))
             .defaultBlockState(), false);
         scene.idle(40);
-        scene.overlay().showControls(util.vector().blockSurface(ladderToOxidizePos, Direction.NORTH), Pointing.RIGHT, 40).rightClick()
+        scene.overlay().showControls(util.vector().blockSurface(ladderToOxidizePos, Direction.SOUTH), Pointing.RIGHT, 40).rightClick()
             .withItem(diamondAxe);
         scene.idle(20);
         scene.overlay().showText(40)
@@ -129,7 +129,7 @@ public class OxidationScenes {
             .defaultBlockState()
             .setValue(LadderBlock.FACING, Direction.NORTH), false);
         scene.idle(40);
-        scene.overlay().showControls(util.vector().blockSurface(drainPos, Direction.SOUTH), Pointing.RIGHT, 40).rightClick()
+        scene.overlay().showControls(util.vector().blockSurface(drainPos, Direction.NORTH), Pointing.RIGHT, 40).rightClick()
             .withItem(diamondAxe);
         scene.idle(20);
         scene.overlay().showText(40)

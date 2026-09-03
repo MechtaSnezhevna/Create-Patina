@@ -235,6 +235,11 @@
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "可放置的涂蜡氧化铜背罐",
 
   "item.createpatina.patina_clock": "铜锈时钟",
+  "item.createpatina.patina_clock.tooltip.summary": "用于自由设定铜质元件_氧化_与_涂蜡_状态的工具。",
+  "item.createpatina.patina_clock.tooltip.condition1": "右击铜质元件时",
+  "item.createpatina.patina_clock.tooltip.behaviour1": "将其推进到下一_氧化_阶段",
+  "item.createpatina.patina_clock.tooltip.condition2": "按住右击时",
+  "item.createpatina.patina_clock.tooltip.behaviour2": "打开_氧化状态界面_，选择_氧化_与_涂蜡_状态",
 
   "gui.createpatina.patina_clock.title": "调整氧化状态",
   "gui.createpatina.patina_clock.unwaxed": "未涂蜡",
