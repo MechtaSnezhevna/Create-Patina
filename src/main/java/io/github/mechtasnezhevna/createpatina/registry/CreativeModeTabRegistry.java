@@ -48,6 +48,8 @@ public class CreativeModeTabRegistry {
                 fullBacktank.set(AllDataComponents.BACKTANK_AIR, BacktankUtil.maxAirWithoutEnchants());
                 e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
+            e.remove(new ItemStack(ItemRegistry.INCOMPLETE_PATINA_CLOCK.asItem()),
+                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             insertBefore(e, BlockRegistry.ITEM_DRAIN_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
             insertBefore(e, BlockRegistry.MECHANICAL_PUMP_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.MECHANICAL_PUMP);
             insertBefore(e, BlockRegistry.FLUID_PIPE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_PIPE);

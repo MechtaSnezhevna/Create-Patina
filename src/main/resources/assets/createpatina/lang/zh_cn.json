@@ -234,6 +234,7 @@
   "item.createpatina.waxed_weathered_copper_backtank_placeable": "可放置的涂蜡锈蚀铜背罐",
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "可放置的涂蜡氧化铜背罐",
 
+  "item.createpatina.incomplete_patina_clock": "铜锈时钟（半成品）",
   "item.createpatina.patina_clock": "铜锈时钟",
   "item.createpatina.patina_clock.tooltip.summary": "用于自由设定铜质元件_氧化_与_涂蜡_状态的工具。",
   "item.createpatina.patina_clock.tooltip.condition1": "右击铜质元件时",
@@ -249,9 +250,9 @@
   "gui.createpatina.weathering_type.weathered": "锈蚀",
   "gui.createpatina.weathering_type.oxidized": "氧化",
   "gui.createpatina.weathering_type.waxed": "涂蜡",
-  "gui.createpatina.weathering_type.waxed_exposed": "涂蜡的斑驳",
-  "gui.createpatina.weathering_type.waxed_weathered": "涂蜡的锈蚀",
-  "gui.createpatina.weathering_type.waxed_oxidized": "涂蜡的氧化",
+  "gui.createpatina.weathering_type.waxed_exposed": "涂蜡斑驳",
+  "gui.createpatina.weathering_type.waxed_weathered": "涂蜡锈蚀",
+  "gui.createpatina.weathering_type.waxed_oxidized": "涂蜡氧化",
 
   "createpatina.recipe.fan_honeying": "批量涂蜜",
   "create.recipe.fan_honeying.fan": "在蜂蜜后放置鼓风机",
@@ -425,4 +426,5 @@
   "createpatina.ponder.valve_pipe.text_2": "对其上的传动杆输入动力可以控制阀门的开启或关闭",
   "createpatina.ponder.valve_pipe.text_3": "提供向“打开”方向的旋转力会打开阀门，使得流体可以通过",
   "createpatina.ponder.valve_pipe.text_4": "提供反方向的旋转力可以关闭阀门，阻止流体通过"
+  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "若启用，对流体储罐方块使用蜜脾涂蜡，或用斧/砂纸除蜡、除锈（手持或机械手）时，会作用于整个多方块储罐，大型储罐不会被拆散。使用铜锈时钟调整氧化状态时也会作用于整个多方块储罐。"
 }

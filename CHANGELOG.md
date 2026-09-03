@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
 - **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks never split apart.
 
+### Changed
+
+#### Items
+
+- **Patina Clock is now craftable in Survival**: assemble it with a `Deployer` (Sequenced Assembly) by installing a `Precision Mechanism`, `Copper Sheet` and `Honeycomb` onto a `Clock`. It now has `256` durability (1 point per applied state change, not consumed in Creative) and no longer shows the enchantment glint.
+
+#### Interactions
+
+- **Patina Clock adjusts whole fluid tanks**: when the **Weather Whole Fluid Tank with Tools** config is enabled, advancing a large tank or setting it to any weathering/waxed state with the Patina Clock applies to the entire tank multiblock at once, so the tank no longer splits apart.
+
 ## 1.1.1 - 2026-09-02
 
 ### Added

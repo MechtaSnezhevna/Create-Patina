@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.item;
 
+import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.registry.util.CopperRegistries;
 import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
@@ -9,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -52,11 +54,6 @@ public class PatinaClockItem extends Item {
                 : InteractionResult.PASS;
     }
 
-    @Override
-    public boolean isFoil(ItemStack stack) {
-        return true;
-    }
-
     public static boolean canInteractWith(BlockState state) {
         return canAdjustState(state) || getNext(state).isPresent();
     }
@@ -88,7 +85,10 @@ public class PatinaClockItem extends Item {
     public static void applyShortAction(ServerPlayer player, BlockPos pos, ItemStack itemStack) {
         Level level = player.level();
         BlockState state = level.getBlockState(pos);
-        getNext(state).ifPresent(nextState -> replaceState(player, itemStack, pos, state, nextState));
+        getNext(state).ifPresent(nextState -> {
+            replaceState(player, itemStack, pos, state, nextState);
+            damageClock(player, itemStack);
+        });
     }
 
     public static void applySelectedState(ServerPlayer player, BlockPos pos, ItemStack itemStack, int row, int value) {
@@ -104,7 +104,10 @@ public class PatinaClockItem extends Item {
 
         findStateForType(oldState, SETTINGS[row][value])
                 .filter(newState -> !newState.is(oldState.getBlock()))
-                .ifPresent(newState -> replaceState(player, itemStack, pos, oldState, newState));
+                .ifPresent(newState -> {
+                    replaceState(player, itemStack, pos, oldState, newState);
+                    damageClock(player, itemStack);
+                });
     }
 
     public static int rowFor(WeatheringType type) {
@@ -131,8 +134,14 @@ public class PatinaClockItem extends Item {
             ServerPlayer player, ItemStack itemStack, BlockPos pos, BlockState oldState, BlockState newState
     ) {
         CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(player, pos, itemStack);
-        OxidizeUtil.replaceWithState(oldState, newState, player.level(), pos);
+        OxidizeUtil.applySelectionWeathering(oldState, newState, player.level(), pos,
+                PatinaConfig.CONFIG.WEATHER_WHOLE_FLUID_TANK_WITH_TOOLS.get());
         player.level().gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
+    }
+
+    private static void damageClock(ServerPlayer player, ItemStack itemStack) {
+        itemStack.hurtAndBreak(1, player.serverLevel(), player,
+                item -> player.onEquippedItemBroken(item, EquipmentSlot.MAINHAND));
     }
 
     private static Optional<BlockState> findStateForType(BlockState state, WeatheringType targetType) {

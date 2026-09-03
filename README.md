@@ -20,17 +20,18 @@ This provides a realistic and immersive machine-building experience!
 
 ### New Items
 
-- **Patina Clock**: (**CREATIVE GAMEMODE ONLY**) `Right-click` to advance an unwaxed block to the next weathering stage, `hold right-click` to select any weathering stage via a dashboard interface.
+- **Patina Clock**: `Right-click` to advance an unwaxed block to the next weathering stage, `hold right-click` to select any weathering stage via a dashboard interface. It has `256` durability (each state change costs 1 point, not consumed in Creative) and is craftable in Survival.
 
 ### New Recipes
 
 - **Turning blocks into their next weathering stage** by `filling with water` or `bulk washing`.
 - **Waxing blocks** by `filling with honey` or `bulk waxing (fan with honey fluid)`.
 - **Unwaxing/Scraping blocks** by `using a deployer with an axe or sandpaper` or holding `sandpaper` in your hand and using it on them, just like polishing rough rose quartz.
+- **Assembling the Patina Clock** by Sequenced Assembly: a `Deployer` installs a `Precision Mechanism`, `Copper Sheet` and `Honeycomb` onto a `Clock`.
 
 ## Configs
 
 - **Collapse Similar Blocks in JEI**: If true, weathering variants will **not** be displayed separately. Hover your mouse over an unaffected item to browse its variants.
 - **Enable Portable Fluid Interface Cross-Matching**: If true, portable fluid interfaces with different weathering states can be matched to each other.
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
-- **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact.
+- **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well.

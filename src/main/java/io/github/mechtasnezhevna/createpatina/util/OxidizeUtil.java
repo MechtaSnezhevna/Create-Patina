@@ -308,6 +308,38 @@ public final class OxidizeUtil {
     }
 
     /**
+     * Applies a freely chosen weathering-state change (as made with the Patina Clock) to a block,
+     * or to the entire fluid tank multiblock when {@code wholeTank} is enabled and the target is
+     * part of one.
+     *
+     * <p>Unlike {@link #applyToolWeathering(BlockState, BlockState, Level, BlockPos, boolean)},
+     * the target state is not derived from tool semantics. Every part of a tank multiblock shares
+     * the clicked block's weathering type, so they all move to the clicked target state together
+     * while the multiblock structure, fluid contents and connected-texture state stay intact.</p>
+     */
+    public static void applySelectionWeathering(
+            BlockState oldState, BlockState newState, Level level, BlockPos pos, boolean wholeTank
+    ) {
+        if (!wholeTank) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (!(blockEntity instanceof FluidTankBlockEntity tankBE)) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+        FluidTankBlockEntity controller = tankBE.getControllerBE();
+        if (controller == null) {
+            replaceWithState(oldState, newState, level, pos);
+            return;
+        }
+
+        weatherWholeFluidTank(controller, level, partState -> Optional.of(newState));
+    }
+
+    /**
      * Derives the per-part transition a tool applied to the clicked block. All parts of one tank
      * multiblock share the same weathering type, so the same transition applies to every part.
      */
