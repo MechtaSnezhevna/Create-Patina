@@ -4,6 +4,7 @@ import io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe.PatinaDepl
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe.PatinaFillingRecipeGen;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe.PatinaHoneyingRecipeGen;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe.PatinaPolishingRecipeGen;
+import io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe.PatinaSequencedAssemblyRecipeGen;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.recipe.PatinaWashingRecipeGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -23,6 +24,7 @@ public final class PatinaRecipeProvider {
         generator.addProvider(includeServer, new PatinaFillingRecipeGen(output, registries));
         generator.addProvider(includeServer, new PatinaHoneyingRecipeGen(output, registries));
         generator.addProvider(includeServer, new PatinaPolishingRecipeGen(output, registries));
+        generator.addProvider(includeServer, new PatinaSequencedAssemblyRecipeGen(output, registries));
         generator.addProvider(includeServer, new PatinaWashingRecipeGen(output, registries));
     }
 }

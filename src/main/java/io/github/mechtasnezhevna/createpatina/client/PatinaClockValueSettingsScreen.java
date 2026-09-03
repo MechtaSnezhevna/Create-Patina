@@ -31,8 +31,8 @@ public class PatinaClockValueSettingsScreen extends AbstractSimiScreen {
     private static final int FACE_BORDER_COLOR = 0xFF9B6A32;
     private static final int FACE_COLOR = 0xED201A17;
     private static final int HAND_COLOR = 0xFFFBDC7D;
-    private static final int UNWAXED_COLOR = 0xFFD98A48;
-    private static final int WAXED_COLOR = 0xFF63B6AE;
+    private static final int UNWAXED_COLOR = 0xFF63B6AE;
+    private static final int WAXED_COLOR = 0xFFD98A48;
 
     private final BlockPos targetPos;
     private final Direction clickedFace;

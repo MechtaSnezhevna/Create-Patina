@@ -234,6 +234,7 @@
   "item.createpatina.waxed_weathered_copper_backtank_placeable": "Waxed Weathered Copper Backtank Placeable",
   "item.createpatina.waxed_oxidized_copper_backtank_placeable": "Waxed Oxidized Copper Backtank Placeable",
 
+  "item.createpatina.incomplete_patina_clock": "Incomplete Patina Clock",
   "item.createpatina.patina_clock": "Patina Clock",
 
   "gui.createpatina.patina_clock.title": "Adjust Weathering State",
@@ -258,5 +259,5 @@
   "createpatina.config.oxidize_whole_fluid_tank": "Oxidize Whole Fluid Tank",
   "createpatina.config.oxidize_whole_fluid_tank.tooltip": "If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.",
   "createpatina.config.weather_whole_fluid_tank_with_tools": "Weather Whole Fluid Tank with Tools",
-  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact."
+  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well."
 }

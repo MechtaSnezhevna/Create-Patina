@@ -4,6 +4,7 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
 import com.simibubi.create.content.equipment.armor.BacktankItem;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
@@ -58,9 +59,16 @@ public class ItemRegistry
     public static final ItemEntry<PatinaClockItem> PATINA_CLOCK = REGISTRATE
             .item("patina_clock", PatinaClockItem::new)
             .properties(p -> p.stacksTo(1)
-                    .rarity(Rarity.EPIC)
+                    .rarity(Rarity.UNCOMMON)
+                    .durability(256)
             )
 //            .model(AssetLookup.itemModelWithPartials())
+            .register();
+
+    public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_PATINA_CLOCK = REGISTRATE
+            .item("incomplete_patina_clock", SequencedAssemblyItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), p.mcLoc("item/generated"))
+                    .texture("layer0", p.modLoc("item/patina_clock")))
             .register();
 
     public static void register(IEventBus bus) {
