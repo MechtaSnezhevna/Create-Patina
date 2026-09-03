@@ -426,5 +426,4 @@
   "createpatina.ponder.valve_pipe.text_2": "对其上的传动杆输入动力可以控制阀门的开启或关闭",
   "createpatina.ponder.valve_pipe.text_3": "提供向“打开”方向的旋转力会打开阀门，使得流体可以通过",
   "createpatina.ponder.valve_pipe.text_4": "提供反方向的旋转力可以关闭阀门，阻止流体通过"
-  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "若启用，对流体储罐方块使用蜜脾涂蜡，或用斧/砂纸除蜡、除锈（手持或机械手）时，会作用于整个多方块储罐，大型储罐不会被拆散。使用铜锈时钟调整氧化状态时也会作用于整个多方块储罐。"
 }
