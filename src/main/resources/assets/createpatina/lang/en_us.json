@@ -259,5 +259,14 @@
   "createpatina.config.oxidize_whole_fluid_tank": "Oxidize Whole Fluid Tank",
   "createpatina.config.oxidize_whole_fluid_tank.tooltip": "If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.",
   "createpatina.config.weather_whole_fluid_tank_with_tools": "Weather Whole Fluid Tank with Tools",
-  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well."
+  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well.",
+
+  "tag.item.createpatina.unaffected": "New Copper Parts",
+  "tag.item.createpatina.exposed": "Exposed Copper Parts",
+  "tag.item.createpatina.weathered": "Weathered Copper Parts",
+  "tag.item.createpatina.oxidized": "Oxidized Copper Parts",
+  "tag.item.createpatina.waxed": "Waxed Copper Parts",
+  "tag.item.createpatina.waxed_exposed": "Waxed Exposed Copper Parts",
+  "tag.item.createpatina.waxed_weathered": "Waxed Weathered Copper Parts",
+  "tag.item.createpatina.waxed_oxidized": "Waxed Oxidized Copper Parts"
 }

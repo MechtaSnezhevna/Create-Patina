@@ -29,6 +29,15 @@ This provides a realistic and immersive machine-building experience!
 - **Unwaxing/Scraping blocks** by `using a deployer with an axe or sandpaper` or holding `sandpaper` in your hand and using it on them, just like polishing rough rose quartz.
 - **Assembling the Patina Clock** by Sequenced Assembly: a `Deployer` installs a `Precision Mechanism`, `Copper Sheet` and `Honeycomb` onto a `Clock`.
 
+### New Tags
+
+Eight item tags classify every weathering copper part by its exact stage:
+
+- `createpatina:unaffected`, `createpatina:exposed`, `createpatina:weathered`, `createpatina:oxidized` - unwaxed stages.
+- `createpatina:waxed`, `createpatina:waxed_exposed`, `createpatina:waxed_weathered`, `createpatina:waxed_oxidized` - their waxed counterparts.
+
+Vanilla copper blocks, Create's copper blocks and all Patina weathering variants are included.
+
 ## Configs
 
 - **Collapse Similar Blocks in JEI**: If true, weathering variants will **not** be displayed separately. Hover your mouse over an unaffected item to browse its variants.

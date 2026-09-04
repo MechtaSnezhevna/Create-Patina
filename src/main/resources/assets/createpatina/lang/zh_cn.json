@@ -259,5 +259,14 @@
   "createpatina.config.oxidize_whole_fluid_tank": "流体储罐整体氧化",
   "createpatina.config.oxidize_whole_fluid_tank.tooltip": "若启用，自然氧化会让整个流体储罐多方块结构同时进入下一氧化阶段，因而不再被拆分成支离破碎的独立小储罐。",
   "createpatina.config.weather_whole_fluid_tank_with_tools": "工具作用于整个流体储罐",
-  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "若启用，对流体储罐方块使用蜜脾涂蜡，或用斧/砂纸除蜡、除锈（手持或机械手）时，会作用于整个多方块储罐，大型储罐不会被拆散。使用铜锈时钟调整氧化状态时也会作用于整个多方块储罐。"
+  "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "若启用，对流体储罐方块使用蜜脾涂蜡，或用斧/砂纸除蜡、除锈（手持或机械手）时，会作用于整个多方块储罐，大型储罐不会被拆散。使用铜锈时钟调整氧化状态时也会作用于整个多方块储罐。",
+
+  "tag.item.createpatina.unaffected": "未氧化的铜部件",
+  "tag.item.createpatina.exposed": "斑驳的铜部件",
+  "tag.item.createpatina.weathered": "锈蚀的铜部件",
+  "tag.item.createpatina.oxidized": "氧化的铜部件",
+  "tag.item.createpatina.waxed": "涂蜡的铜部件",
+  "tag.item.createpatina.waxed_exposed": "涂蜡的斑驳铜部件",
+  "tag.item.createpatina.waxed_weathered": "涂蜡的锈蚀铜部件",
+  "tag.item.createpatina.waxed_oxidized": "涂蜡的氧化铜部件"
 }
