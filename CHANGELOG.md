@@ -23,6 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add tooltip for patina clock and backtanks. (Thanks, @Shio796)
 
+#### Ponder
+
+- Ponders for bulk-waxing and weathering machanism is added.
+
+#### Tooltip
+
+- Add tooltip for patina clock and backtanks.
+
 #### Tags
 
 - **8 weathering-stage item tags**: `#createpatina:unaffected`, `#createpatina:exposed`, `#createpatina:weathered`, `#createpatina:oxidized`, `#createpatina:waxed`, `#createpatina:waxed_exposed`, `#createpatina:waxed_weathered` and `#createpatina:waxed_oxidized` now include every weathering copper part - vanilla, Create and Patina items - grouped by its current stage, ready for advancements, recipes and other content packs.

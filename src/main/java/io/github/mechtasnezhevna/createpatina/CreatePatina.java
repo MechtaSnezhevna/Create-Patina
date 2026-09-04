@@ -1,11 +1,15 @@
 package io.github.mechtasnezhevna.createpatina;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
+import com.simibubi.create.foundation.item.KineticStats;
+import com.simibubi.create.foundation.item.TooltipModifier;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
 import io.github.mechtasnezhevna.createpatina.registry.*;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaDataGen;
 import io.github.mechtasnezhevna.createpatina.registry.util.DefaultPatinaSets;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -28,6 +32,9 @@ public class CreatePatina {
 
     static {
         REGISTRATE.defaultCreativeTab(CreativeModeTabRegistry.CREATEPATINA_TAB, "createpatina_tab");
+        REGISTRATE.setTooltipModifierFactory(item ->
+            new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
+                .andThen(TooltipModifier.mapNull(KineticStats.create(item))));
     }
 
     public CreatePatina(IEventBus modEventBus, ModContainer modContainer) {
