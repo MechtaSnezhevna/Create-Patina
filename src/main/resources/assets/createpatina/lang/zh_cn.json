@@ -260,6 +260,8 @@
   "createpatina.config.oxidize_whole_fluid_tank.tooltip": "若启用，自然氧化会让整个流体储罐多方块结构同时进入下一氧化阶段，因而不再被拆分成支离破碎的独立小储罐。",
   "createpatina.config.weather_whole_fluid_tank_with_tools": "工具作用于整个流体储罐",
   "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "若启用，对流体储罐方块使用蜜脾涂蜡，或用斧/砂纸除蜡、除锈（手持或机械手）时，会作用于整个多方块储罐，大型储罐不会被拆散。使用铜锈时钟调整氧化状态时也会作用于整个多方块储罐。",
+  "createpatina.config.is_random_tick_weathering_enabled": "启用随机刻氧化",
+  "createpatina.config.is_random_tick_weathering_enabled.tooltip": "若关闭，机械动力的未氧化方块以及本模组添加的氧化变种方块将不再被随机刻氧化，氧化状态只能通过工具进行调整。",
 
   "tag.item.createpatina.unaffected": "未氧化的铜部件",
   "tag.item.createpatina.exposed": "斑驳的铜部件",

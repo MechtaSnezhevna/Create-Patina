@@ -1,5 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
+import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -47,6 +48,9 @@ public interface PatinaBlock extends WeatheringCopper {
 
     @Override
     default void changeOverTime(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!PatinaConfig.CONFIG.IS_RANDOM_TICK_WEATHERING_ENABLED.get()) {
+            return;
+        }
         float f = 0.05688889F;
         if (random.nextFloat() < f) {
             this.getNextState(state, level, pos, random).ifPresent((next) ->

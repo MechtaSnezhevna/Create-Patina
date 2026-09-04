@@ -260,6 +260,8 @@
   "createpatina.config.oxidize_whole_fluid_tank.tooltip": "If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.",
   "createpatina.config.weather_whole_fluid_tank_with_tools": "Weather Whole Fluid Tank with Tools",
   "createpatina.config.weather_whole_fluid_tank_with_tools.tooltip": "If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well.",
+  "createpatina.config.is_random_tick_weathering_enabled": "Enable Random-Tick Weathering",
+  "createpatina.config.is_random_tick_weathering_enabled.tooltip": "If false, unaffected copper blocks from Create and the weathering variants added by this mod no longer oxidize on random ticks, so their weathering state can only be changed with tools.",
 
   "tag.item.createpatina.unaffected": "New Copper Parts",
   "tag.item.createpatina.exposed": "Exposed Copper Parts",

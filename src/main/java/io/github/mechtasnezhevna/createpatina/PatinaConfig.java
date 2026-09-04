@@ -13,6 +13,7 @@ public class PatinaConfig {
     public final ModConfigSpec.ConfigValue<Boolean> ENABLE_FLUID_INTERFACE_CROSS_MATCHING;
     public final ModConfigSpec.ConfigValue<Boolean> OXIDIZE_WHOLE_FLUID_TANK;
     public final ModConfigSpec.ConfigValue<Boolean> WEATHER_WHOLE_FLUID_TANK_WITH_TOOLS;
+    public final ModConfigSpec.ConfigValue<Boolean> IS_RANDOM_TICK_WEATHERING_ENABLED;
 
     static {
         Pair<PatinaConfig, ModConfigSpec> serverPair = new ModConfigSpec.Builder().configure(PatinaConfig::new);
@@ -40,6 +41,11 @@ public class PatinaConfig {
                 .translation("createpatina.config.weather_whole_fluid_tank_with_tools")
                 .comment("If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or by a deployer) applies to the entire tank multiblock at once, so large tanks never split apart.")
                 .define("weatherWholeFluidTankWithTools", true);
+
+        IS_RANDOM_TICK_WEATHERING_ENABLED = builder
+                .translation("createpatina.config.is_random_tick_weathering_enabled")
+                .comment("If false, unoxidized copper blocks from Create and the weathering variants added by Create: Patina no longer oxidize on random ticks, so their weathering state can only be changed with tools.")
+                .define("IsRandomTickWeatheringEnabled", true);
     }
 
     public static class Client {

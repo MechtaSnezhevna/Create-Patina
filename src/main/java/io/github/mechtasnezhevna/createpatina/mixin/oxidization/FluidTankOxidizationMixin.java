@@ -60,6 +60,9 @@ public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpo
 
     @Override
     public void changeOverTime(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!PatinaConfig.CONFIG.IS_RANDOM_TICK_WEATHERING_ENABLED.get()) {
+            return;
+        }
         if (!PatinaConfig.CONFIG.OXIDIZE_WHOLE_FLUID_TANK.get()) {
             /*
              * Mirrors PatinaBlock#changeOverTime exactly so the default behaviour is unchanged

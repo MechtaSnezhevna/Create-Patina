@@ -44,3 +44,4 @@ Vanilla copper blocks, Create's copper blocks and all Patina weathering variants
 - **Enable Portable Fluid Interface Cross-Matching**: If true, portable fluid interfaces with different weathering states can be matched to each other.
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
 - **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well.
+- **Enable Random-Tick Weathering**: If false, unaffected copper blocks from Create and the weathering variants added by this mod no longer oxidize on random ticks, so their weathering state can only be changed with tools.

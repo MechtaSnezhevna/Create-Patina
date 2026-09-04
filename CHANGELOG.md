@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
 - **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks never split apart.
+- **Enable Random-Tick Weathering**: If false, unaffected copper blocks from Create and the weathering variants added by this mod no longer oxidize on random ticks, so their weathering state can only be changed with tools.
+
+#### Ponder
+
+- Ponders for bulk-waxing and weathering machanism is added. (Thanks, @Shio796)
+
+#### Tooltip
+
+- Add tooltip for patina clock and backtanks. (Thanks, @Shio796)
 
 #### Tags
 
