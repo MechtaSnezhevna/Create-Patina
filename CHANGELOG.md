@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
 - **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks never split apart.
 
+#### Tags
+
+- **8 weathering-stage item tags**: `#createpatina:unaffected`, `#createpatina:exposed`, `#createpatina:weathered`, `#createpatina:oxidized`, `#createpatina:waxed`, `#createpatina:waxed_exposed`, `#createpatina:waxed_weathered` and `#createpatina:waxed_oxidized` now include every weathering copper part - vanilla, Create and Patina items - grouped by its current stage, ready for advancements, recipes and other content packs.
+
 ### Changed
 
 #### Items

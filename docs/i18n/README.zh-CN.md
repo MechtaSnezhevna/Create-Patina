@@ -29,6 +29,15 @@
 - **脱蜡/除锈**：通过`使用握持斧或砂纸的机械手`或像打磨粗玫瑰石英一样，`手持砂纸`对其`右键`即可逐级除锈或脱蜡
 - **装配铜锈时钟**：通过`序列装配`，用`机械手`依次向`钟`安装`精密构件`、`铜板`与`蜜脾`
 
+### 新增标签
+
+新增 8 个按氧化程度划分的物品标签：
+
+- `createpatina:unaffected`、`createpatina:exposed`、`createpatina:weathered`、`createpatina:oxidized`——未涂蜡的四个阶段。
+- `createpatina:waxed`、`createpatina:waxed_exposed`、`createpatina:waxed_weathered`、`createpatina:waxed_oxidized`——对应的涂蜡版本。
+
+原版铜方块、机械动力的铜制方块，以及本模组的全部氧化变体都会被归入对应标签。
+
 ## 配置
 
 - **在 JEI 中折叠同类方块**: 若启用，**不**分别显示氧化变种，悬浮鼠标于未氧化物品上可浏览其变体。
