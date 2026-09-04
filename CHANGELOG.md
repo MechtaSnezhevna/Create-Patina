@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Interactions
 
 - **Patina Clock adjusts whole fluid tanks**: when the **Weather Whole Fluid Tank with Tools** config is enabled, advancing a large tank or setting it to any weathering/waxed state with the Patina Clock applies to the entire tank multiblock at once, so the tank no longer splits apart.
+- **Patina Clock on copper table cloths**: a plain `right-click` now places the clock onto the table (Create's default table behaviour); `shift + right-click` or holding the right button still advances weathering or opens the stage selector.
 
 ## 1.1.1 - 2026-09-02
 

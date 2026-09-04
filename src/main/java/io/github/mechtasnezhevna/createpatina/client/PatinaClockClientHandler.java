@@ -19,11 +19,14 @@ import net.neoforged.neoforge.network.PacketDistributor;
 public final class PatinaClockClientHandler {
 
     private static final int LONG_PRESS_TICKS = 5;
+    private static final int TABLE_LONG_PRESS_TICKS = 10;
 
     private static int heldTicks = -1;
     private static BlockPos heldPos;
     private static Direction heldFace;
     private static InteractionHand heldHand;
+    private static boolean heldShift;
+    private static boolean heldIsCopperTableCloth;
 
     private PatinaClockClientHandler() {
     }
@@ -47,6 +50,8 @@ public final class PatinaClockClientHandler {
         heldPos = event.getPos().immutable();
         heldFace = event.getHitVec().getDirection();
         heldHand = event.getHand();
+        heldShift = event.getEntity().isShiftKeyDown();
+        heldIsCopperTableCloth = PatinaClockItem.isCopperTableCloth(event.getLevel().getBlockState(event.getPos()));
     }
 
     // verified: NeoForge 21.1.228 ClientTickEvent.Post source, 2026-07-26
@@ -70,16 +75,20 @@ public final class PatinaClockClientHandler {
         }
 
         if (!minecraft.options.keyUse.isDown()) {
+            int row = heldIsCopperTableCloth && !heldShift
+                    ? PatinaClockActionPayload.PLACE_ON_TABLE_ROW
+                    : PatinaClockActionPayload.SHORT_ACTION_ROW;
             // verified: NeoForge 21.1.228 PacketDistributor source, 2026-07-26
             PacketDistributor.sendToServer(new PatinaClockActionPayload(
-                    heldPos, PatinaClockActionPayload.SHORT_ACTION_ROW, 0, heldFace
+                    heldPos, row, 0, heldFace
             ));
             cancel();
             return;
         }
 
         BlockState state = minecraft.level.getBlockState(heldPos);
-        if (++heldTicks < LONG_PRESS_TICKS
+        int longPressTicks = heldIsCopperTableCloth ? TABLE_LONG_PRESS_TICKS : LONG_PRESS_TICKS;
+        if (++heldTicks < longPressTicks
                 || !PatinaClockItem.canAdjustState(state)
                 || !(state.getBlock() instanceof PatinaBlock patinaBlock)) {
             return;
@@ -96,5 +105,7 @@ public final class PatinaClockClientHandler {
         heldPos = null;
         heldFace = null;
         heldHand = null;
+        heldShift = false;
+        heldIsCopperTableCloth = false;
     }
 }

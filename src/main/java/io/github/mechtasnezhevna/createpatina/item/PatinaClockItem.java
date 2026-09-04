@@ -8,6 +8,7 @@ import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -56,6 +57,20 @@ public class PatinaClockItem extends Item {
 
     public static boolean canInteractWith(BlockState state) {
         return canAdjustState(state) || getNext(state).isPresent();
+    }
+
+    /**
+     * Whether the given block is the copper table cloth (Create's unaffected block or any of the
+     * Create: Patina weathering variants). Plain right-clicks with the clock on these blocks place
+     * the clock onto the table instead of running the weathering actions.
+     */
+    public static boolean isCopperTableCloth(BlockState state) {
+        if (!(state.getBlock() instanceof PatinaBlock)) {
+            return false;
+        }
+        return BuiltInRegistries.BLOCK.getKey(state.getBlock())
+                .getPath()
+                .contains("copper_table_cloth");
     }
 
     // verified: NeoForge 21.1.228 PlayerInteractEvent.RightClickBlock source, 2026-07-26

@@ -11,6 +11,9 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -19,6 +22,7 @@ public record PatinaClockActionPayload(BlockPos pos, int row, int value, Directi
         implements CustomPacketPayload {
 
     public static final int SHORT_ACTION_ROW = -1;
+    public static final int PLACE_ON_TABLE_ROW = -2;
 
     public static final Type<PatinaClockActionPayload> TYPE =
             new Type<>(CreatePatina.asResource("patina_clock_action"));
@@ -56,9 +60,32 @@ public record PatinaClockActionPayload(BlockPos pos, int row, int value, Directi
             return;
         }
 
+        if (payload.row() == PLACE_ON_TABLE_ROW) {
+            placeClockOnTable(player, payload.pos(), payload.face(), itemStack);
+            return;
+        }
+
         PatinaClockItem.applySelectedState(
                 player, payload.pos(), itemStack, payload.row(), payload.value()
         );
+    }
+
+    /**
+     * Places the held Patina Clock onto a copper table cloth, mirroring the table cloth's own
+     * right-click placement so a plain right-click no longer runs the clock's weathering actions.
+     */
+    private static void placeClockOnTable(ServerPlayer player, BlockPos pos, Direction face, ItemStack clockStack) {
+        Level level = player.level();
+        BlockState state = level.getBlockState(pos);
+        if (face == Direction.DOWN || !PatinaClockItem.isCopperTableCloth(state)) {
+            return;
+        }
+
+        InteractionHand hand = player.getMainHandItem().is(clockStack.getItem())
+                ? InteractionHand.MAIN_HAND
+                : InteractionHand.OFF_HAND;
+        state.useItemOn(clockStack, level, player, hand,
+                new BlockHitResult(Vec3.atCenterOf(pos), face, pos, false));
     }
 
     private static ItemStack findHeldClock(ServerPlayer player) {
