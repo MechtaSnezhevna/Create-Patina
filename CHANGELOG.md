@@ -44,6 +44,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Wearable backtank variants now collapse in JEI**: the **Collapse Similar Blocks in JEI** config previously left wearable backtank variants listed separately and showed no variant panel when hovering the unaffected Copper Backtank; they now collapse like every other copper set and stay displayed with a full tank, matching the creative tab.
 
+#### Interactions
+
+- **Backtank air kept when filled by a Spout**: passing a backtank with stored air under a `Spout` that fills it with water or honey (oxidizing or waxing the tank) used to clear the stored air; the remaining air is now carried over to the output tank.
+
 ## 1.1.1 - 2026-09-02
 
 ### Added

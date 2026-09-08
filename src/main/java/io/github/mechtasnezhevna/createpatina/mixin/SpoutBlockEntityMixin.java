@@ -13,8 +13,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 /**
  * Safety net for the spout delivery point: whatever path the filling recipe
  * took, the item handed back to the depot/belt carries the input tank's
- * remaining air. Complements FillingBySpoutMixin, which restores the air
- * inside fillItem.
+ * remaining air. The air must be captured before fillItem runs, because a
+ * matching filling recipe consumes (shrinks) the input stack before the
+ * output is returned.
  */
 @Mixin(SpoutBlockEntity.class)
 public abstract class SpoutBlockEntityMixin {
@@ -26,12 +27,15 @@ public abstract class SpoutBlockEntityMixin {
                     target = "Lcom/simibubi/create/content/fluids/spout/FillingBySpout;fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/neoforged/neoforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;"
             )
     )
-    private static ItemStack createpatina$fillItemPreservingBacktankAir(
+    private ItemStack createpatina$fillItemPreservingBacktankAir(
             Level level, int requiredAmount, ItemStack input, FluidStack availableFluid
     ) {
+        int air = input.has(AllDataComponents.BACKTANK_AIR)
+                ? input.get(AllDataComponents.BACKTANK_AIR)
+                : -1;
         ItemStack result = FillingBySpout.fillItem(level, requiredAmount, input, availableFluid);
-        if (!result.isEmpty() && input.has(AllDataComponents.BACKTANK_AIR)) {
-            result.set(AllDataComponents.BACKTANK_AIR, input.get(AllDataComponents.BACKTANK_AIR));
+        if (air >= 0 && !result.isEmpty()) {
+            result.set(AllDataComponents.BACKTANK_AIR, air);
         }
         return result;
     }
