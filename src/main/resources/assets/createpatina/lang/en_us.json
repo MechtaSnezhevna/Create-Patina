@@ -254,6 +254,9 @@
   "gui.createpatina.weathering_type.waxed_weathered": "Waxed Weathered",
   "gui.createpatina.weathering_type.waxed_oxidized": "Waxed Oxidized",
 
+  "jade.createpatina.casing_state": "Casing State: %s",
+  "jade.createpatina.pipe_state": "Pipe State: %s",
+
   "createpatina.recipe.fan_honeying": "Bulk Honeying",
   "create.recipe.fan_honeying.fan": "Fan behind Flowing Honey",
 

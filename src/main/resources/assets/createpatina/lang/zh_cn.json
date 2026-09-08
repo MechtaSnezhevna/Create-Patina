@@ -254,6 +254,9 @@
   "gui.createpatina.weathering_type.waxed_weathered": "涂蜡锈蚀",
   "gui.createpatina.weathering_type.waxed_oxidized": "涂蜡氧化",
 
+  "jade.createpatina.casing_state": "机壳状态：%s",
+  "jade.createpatina.pipe_state": "管道状态：%s",
+
   "createpatina.recipe.fan_honeying": "批量涂蜜",
   "create.recipe.fan_honeying.fan": "在蜂蜜后放置鼓风机",
 
