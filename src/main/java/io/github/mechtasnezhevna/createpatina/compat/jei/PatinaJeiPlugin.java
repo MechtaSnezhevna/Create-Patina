@@ -7,8 +7,6 @@ import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.recipe.HoneyingRecipe;
 import io.github.mechtasnezhevna.createpatina.registry.PatinaRecipeTypes;
-import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
-import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -56,19 +54,11 @@ public class PatinaJeiPlugin implements IModPlugin {
             return;
         }
 
-        for (PatinaSet set : PatinaSet.all()) {
-            ItemStack representative = set.get(WeatheringType.UNAFFECTED).asItem().getDefaultInstance();
-            if (representative.isEmpty()) {
-                continue;
-            }
+        for (PatinaJeiVariantGroup group : PatinaJeiVariantGroup.all()) {
+            ItemStack representative = group.representative();
             Set<String> aliases = new LinkedHashSet<>();
-            for (var entry : set.entries().entrySet()) {
-                if (entry.getKey() != WeatheringType.UNAFFECTED) {
-                    ItemStack variant = entry.getValue().get().asItem().getDefaultInstance();
-                    if (!variant.isEmpty()) {
-                        aliases.add(variant.getDescriptionId());
-                    }
-                }
+            for (ItemStack variant : group.variants()) {
+                aliases.add(variant.getDescriptionId());
             }
             if (!aliases.isEmpty()) {
                 // verified: JEI 19.27.0.340 IIngredientAliasRegistration source, 2026-07-28
@@ -86,14 +76,9 @@ public class PatinaJeiPlugin implements IModPlugin {
         }
 
         Map<Item, ItemStack> hiddenVariants = new LinkedHashMap<>();
-        for (PatinaSet set : PatinaSet.all()) {
-            for (var entry : set.entries().entrySet()) {
-                if (entry.getKey() != WeatheringType.UNAFFECTED) {
-                    ItemStack stack = entry.getValue().get().asItem().getDefaultInstance();
-                    if (!stack.isEmpty()) {
-                        hiddenVariants.putIfAbsent(stack.getItem(), stack);
-                    }
-                }
+        for (PatinaJeiVariantGroup group : PatinaJeiVariantGroup.all()) {
+            for (ItemStack variant : group.variants()) {
+                hiddenVariants.putIfAbsent(variant.getItem(), variant);
             }
         }
 

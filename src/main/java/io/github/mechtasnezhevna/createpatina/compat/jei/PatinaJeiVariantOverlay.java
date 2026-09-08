@@ -3,8 +3,6 @@ package io.github.mechtasnezhevna.createpatina.compat.jei;
 import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.mixin.compat.jei.IngredientGridWithNavigationAccessor;
 import io.github.mechtasnezhevna.createpatina.mixin.compat.jei.IngredientListOverlayAccessor;
-import io.github.mechtasnezhevna.createpatina.registry.util.PatinaSet;
-import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.IFocusFactory;
@@ -25,7 +23,6 @@ import net.neoforged.neoforge.client.event.ScreenEvent;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
-import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +41,12 @@ final class PatinaJeiVariantOverlay {
     private static final int BORDER_COLOR = 0xFFA0A0A0;
     private static final int HOVER_COLOR = 0x60FFFFFF;
 
-    private final Map<Item, PatinaSet> setsByRepresentative = new LinkedHashMap<>();
+    private final Map<Item, PatinaJeiVariantGroup> groupsByRepresentative = new LinkedHashMap<>();
 
     @Nullable
     private IJeiRuntime runtime;
     @Nullable
-    private PatinaSet activeSet;
+    private PatinaJeiVariantGroup activeGroup;
     private List<ItemStack> activeVariants = List.of();
     @Nullable
     private Bounds panelBounds;
@@ -65,11 +62,11 @@ final class PatinaJeiVariantOverlay {
     }
 
     private void rebuildSetIndex() {
-        setsByRepresentative.clear();
-        for (PatinaSet set : PatinaSet.all()) {
-            ItemStack representative = set.get(WeatheringType.UNAFFECTED).asItem().getDefaultInstance();
+        groupsByRepresentative.clear();
+        for (PatinaJeiVariantGroup group : PatinaJeiVariantGroup.all()) {
+            ItemStack representative = group.representative();
             if (!representative.isEmpty()) {
-                setsByRepresentative.put(representative.getItem(), set);
+                groupsByRepresentative.put(representative.getItem(), group);
             }
         }
     }
@@ -95,7 +92,7 @@ final class PatinaJeiVariantOverlay {
 
         HoveredSource hoveredSource = findHoveredSource(ingredientOverlay, mouseX, mouseY);
         if (hoveredSource != null) {
-            activate(hoveredSource.set(), hoveredSource.bounds(), mouseY, screen.width, screen.height);
+            activate(hoveredSource.group(), hoveredSource.bounds(), mouseY, screen.width, screen.height);
         } else {
             clear();
             return;
@@ -159,12 +156,12 @@ final class PatinaJeiVariantOverlay {
                         .flatMap(element -> element.getTypedIngredient()
                                 .getIngredient(VanillaTypes.ITEM_STACK).stream())
                         .map(stack -> {
-                            PatinaSet set = setsByRepresentative.get(stack.getItem());
-                            if (set == null) {
+                            PatinaJeiVariantGroup group = groupsByRepresentative.get(stack.getItem());
+                            if (group == null) {
                                 return null;
                             }
                             ImmutableRect2i area = slot.getArea();
-                            return new HoveredSource(set,
+                            return new HoveredSource(group,
                                     new Bounds(area.getX(), area.getY(), area.getWidth(), area.getHeight()));
                         }))
                 .filter(source -> source != null)
@@ -172,19 +169,10 @@ final class PatinaJeiVariantOverlay {
                 .orElse(null);
     }
 
-    private void activate(PatinaSet set, Bounds sourceBounds, int mouseY, int screenWidth, int screenHeight) {
-        if (activeSet != set) {
-            activeSet = set;
-            EnumMap<WeatheringType, ItemStack> variants = new EnumMap<>(WeatheringType.class);
-            set.entries().forEach((type, entry) -> {
-                if (type != WeatheringType.UNAFFECTED) {
-                    ItemStack stack = entry.get().asItem().getDefaultInstance();
-                    if (!stack.isEmpty()) {
-                        variants.put(type, stack);
-                    }
-                }
-            });
-            activeVariants = variants.values().stream().toList();
+    private void activate(PatinaJeiVariantGroup group, Bounds sourceBounds, int mouseY, int screenWidth, int screenHeight) {
+        if (activeGroup != group) {
+            activeGroup = group;
+            activeVariants = group.variants();
         }
 
         int panelX;
@@ -286,7 +274,7 @@ final class PatinaJeiVariantOverlay {
     }
 
     private void clear() {
-        activeSet = null;
+        activeGroup = null;
         activeVariants = List.of();
         panelBounds = null;
         renderingVariantTooltip = false;
@@ -314,6 +302,6 @@ final class PatinaJeiVariantOverlay {
         }
     }
 
-    private record HoveredSource(PatinaSet set, Bounds bounds) {
+    private record HoveredSource(PatinaJeiVariantGroup group, Bounds bounds) {
     }
 }
