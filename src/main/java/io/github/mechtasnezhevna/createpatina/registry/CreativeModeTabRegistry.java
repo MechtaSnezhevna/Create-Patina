@@ -76,8 +76,10 @@ public class CreativeModeTabRegistry {
 
 
     private static void insertBefore(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry, CreativeModeTab.TabVisibility visibility) {
-        // verified: Forge 1.20.1-47.1.33 BuildCreativeModeTabContentsEvent/MutableHashedLinkedMap source, 2026-07-30
-        e.getEntries().putBefore(newEntry.asStack(), existingEntry.asStack(), visibility);
+        // MutableHashedLinkedMap#putBefore(before, key, value) inserts key *before* the positioning key,
+        // so the in-tab entry (anchor) has to be passed first, matching NeoForge's
+        // BuildCreativeModeTabContentsEvent#insertBefore(existingEntry, newEntry, visibility).
+        e.getEntries().putBefore(existingEntry.asStack(), newEntry.asStack(), visibility);
     }
 
     private static void insertBefore(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry) {
@@ -85,7 +87,7 @@ public class CreativeModeTabRegistry {
     }
 
     private static void insertAfter(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry, CreativeModeTab.TabVisibility visibility) {
-        e.getEntries().putAfter(newEntry.asStack(), existingEntry.asStack(), visibility);
+        e.getEntries().putAfter(existingEntry.asStack(), newEntry.asStack(), visibility);
     }
 
     private static void insertAfter(BuildCreativeModeTabContentsEvent e, ItemProviderEntry<?> existingEntry, ItemProviderEntry<?> newEntry) {

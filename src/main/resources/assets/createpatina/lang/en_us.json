@@ -254,6 +254,7 @@
   "gui.createpatina.weathering_type.waxed_weathered": "Waxed Weathered",
   "gui.createpatina.weathering_type.waxed_oxidized": "Waxed Oxidized",
 
+  "config.jade.plugin_createpatina.encased_pipe_weathering": "Encased Pipe Weathering",
   "jade.createpatina.casing_state": "Casing State: %s",
   "jade.createpatina.pipe_state": "Pipe State: %s",
 

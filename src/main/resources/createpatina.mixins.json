@@ -1,5 +1,6 @@
 {
   "required": true,
+  "minVersion": "0.8.5",
   "package": "io.github.mechtasnezhevna.createpatina.mixin",
   "refmap": "createpatina.refmap.json",
   "mixins": [

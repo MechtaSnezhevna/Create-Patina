@@ -5,6 +5,7 @@ import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
+import io.github.mechtasnezhevna.createpatina.client.ConfigScreenRegistration;
 import io.github.mechtasnezhevna.createpatina.network.PatinaClockActionPayload;
 import io.github.mechtasnezhevna.createpatina.registry.*;
 import io.github.mechtasnezhevna.createpatina.registry.DataGen.PatinaDataGen;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
@@ -42,6 +44,9 @@ public class CreatePatina {
         modEventBus.addListener(this::commonSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, PatinaConfig.SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, PatinaConfig.CLIENT_SPEC);
+        if (FMLEnvironment.dist.isClient()) {
+            ConfigScreenRegistration.register();
+        }
         REGISTRATE.registerEventListeners(modEventBus);
         CreativeModeTabRegistry.register(modEventBus);
 

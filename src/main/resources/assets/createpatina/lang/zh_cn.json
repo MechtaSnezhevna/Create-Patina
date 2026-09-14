@@ -254,6 +254,7 @@
   "gui.createpatina.weathering_type.waxed_weathered": "涂蜡锈蚀",
   "gui.createpatina.weathering_type.waxed_oxidized": "涂蜡氧化",
 
+  "config.jade.plugin_createpatina.encased_pipe_weathering": "流体管道箱氧化状态",
   "jade.createpatina.casing_state": "机壳状态：%s",
   "jade.createpatina.pipe_state": "管道状态：%s",
 
