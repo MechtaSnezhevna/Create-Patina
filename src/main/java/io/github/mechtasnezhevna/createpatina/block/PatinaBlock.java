@@ -42,18 +42,18 @@ public interface PatinaBlock extends WeatheringCopper {
     }
 
     /**
-     * Keeps vanilla's 1.20.1 weathering scan and probability calculation, while ignoring
-     * non-weathering Patina neighbours and preserving BlockEntity data during replacement.
+     * Runs vanilla's 1.20.1 neighbourhood scan and probability roll without changing the world.
+     *
+     * <p>Equivalent to the {@code ChangeOverTimeBlock#getNextState} test of the 1.21.1 branch:
+     * returning {@code true} means the weathering roll of this random tick succeeded.</p>
      */
-    @Override
-    default void applyChangeOverTime(
-            BlockState state,
+    default boolean passesWeatheringRoll(
             ServerLevel level,
             BlockPos pos,
             RandomSource random
     ) {
         if (!allowsNaturalWeathering()) {
-            return;
+            return false;
         }
 
         int age = getAge().ordinal();
@@ -113,7 +113,7 @@ public interface PatinaBlock extends WeatheringCopper {
 
             int neighbourOrdinal = neighbourAge.ordinal();
             if (neighbourOrdinal < age) {
-                return;
+                return false;
             }
             if (neighbourOrdinal > age) {
                 olderNeighbours++;
@@ -125,7 +125,21 @@ public interface PatinaBlock extends WeatheringCopper {
         float ageRatio = (float) (olderNeighbours + 1)
                 / (float) (olderNeighbours + sameAgeNeighbours + 1);
         float chance = ageRatio * ageRatio * getChanceModifier();
-        if (random.nextFloat() >= chance) {
+        return random.nextFloat() < chance;
+    }
+
+    /**
+     * Keeps vanilla's 1.20.1 weathering scan and probability calculation, while ignoring
+     * non-weathering Patina neighbours and preserving BlockEntity data during replacement.
+     */
+    @Override
+    default void applyChangeOverTime(
+            BlockState state,
+            ServerLevel level,
+            BlockPos pos,
+            RandomSource random
+    ) {
+        if (!passesWeatheringRoll(level, pos, random)) {
             return;
         }
 

@@ -70,8 +70,7 @@ public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpo
              */
             float weatheringSpeed = 0.05688889F;
             if (random.nextFloat() < weatheringSpeed) {
-                this.getNext(state)
-                        .ifPresent(next -> OxidizeUtil.replaceWithState(state, next, level, pos));
+                applyChangeOverTime(state, level, pos, random);
             }
             return;
         }
@@ -94,13 +93,14 @@ public class FluidTankOxidizationMixin extends Block implements PatinaFluidEndpo
 
         /*
          * Same probability path as PatinaBlock#changeOverTime for the ticked block: the base
-         * weathering speed roll, then the neighbour-scan roll from ChangeOverTimeBlock#getNextState.
+         * weathering speed roll, then the neighbour scan and chance roll performed by
+         * PatinaBlock#passesWeatheringRoll.
          */
         float weatheringSpeed = 0.05688889F;
         if (random.nextFloat() >= weatheringSpeed) {
             return;
         }
-        if (this.getNext(state).isEmpty()) {
+        if (!passesWeatheringRoll(level, pos, random)) {
             return;
         }
 
