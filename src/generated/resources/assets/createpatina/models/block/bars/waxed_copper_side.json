@@ -1,8 +1,0 @@
-{
-  "parent": "create:block/bars/side",
-  "textures": {
-    "bars": "createpatina:block/bars/copper_bars",
-    "edge": "createpatina:block/bars/copper_bars_edge",
-    "particle": "createpatina:block/bars/copper_bars"
-  }
-}

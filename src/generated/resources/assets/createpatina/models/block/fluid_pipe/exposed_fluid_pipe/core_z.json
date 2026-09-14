@@ -1,7 +1,0 @@
-{
-  "parent": "create:block/fluid_pipe/core_z",
-  "textures": {
-    "0": "createpatina:block/fluid_pipe/exposed_pipes_connected",
-    "particle": "minecraft:block/exposed_copper"
-  }
-}

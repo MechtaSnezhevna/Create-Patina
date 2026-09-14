@@ -13,12 +13,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class WhistleBlockUsageMixin {
 
     @Redirect(
-            method = "useItemOn",
+            // verified: Create 6.0.8 WhistleBlock#use source for Minecraft 1.20.1, 2026-09-14
+            method = "use",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z"
+                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z",
+                    remap = false
             ),
-            remap = false
+            remap = true
     )
     private boolean redirectWhistleIsIn(BlockEntry<?> entry, ItemStack stack) {
         if (entry == AllBlocks.STEAM_WHISTLE) {

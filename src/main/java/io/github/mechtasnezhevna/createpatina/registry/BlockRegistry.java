@@ -26,10 +26,14 @@ import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.tank.*;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
+import com.simibubi.create.content.logistics.packagerLink.LogisticallyLinkedBlockItem;
+import com.simibubi.create.content.logistics.packagerLink.PackagerLinkBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothModel;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
+import com.simibubi.create.content.redstone.displayLink.DisplayLinkBlock;
+import com.simibubi.create.content.redstone.displayLink.DisplayLinkBlockItem;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -516,6 +520,35 @@ public class BlockRegistry {
                     .model((c, p) -> WeatheringPortableFluidInterfaceGenerator.genItemModel(c, p, type))
                     .build()
             ).unaffected(AllBlocks.PORTABLE_FLUID_INTERFACE)
+            .register();
+
+    public static final PatinaSet STOCK_LINK_SET = new PatinaSetBuilder<>(
+            REGISTRATE, "stock_link", PackagerLinkBlock:: new)
+            .configure((type, builder) -> {
+                builder.initialProperties(SharedProperties::softMetal)
+                        .properties(p -> p.mapColor(MapColor.TERRACOTTA_BLUE)
+                                .sound(SoundType.NETHERITE_BLOCK))
+                        .transform(pickaxeOnly())
+                        .blockstate(new WeatheringStockLinkGenerator()::generate)
+                        .item(LogisticallyLinkedBlockItem::new)
+                        .transform(customItemModel("stock_link", "_", "block_vertical"))
+                        .build();
+            }).unaffected(AllBlocks.STOCK_LINK)
+            .register();
+
+    public static final PatinaSet DISPLAY_LINK_SET = new PatinaSetBuilder<>(
+            REGISTRATE, "display_link", DisplayLinkBlock::new)
+            .configure((type, builder)->{
+                builder.initialProperties(SharedProperties::softMetal)
+                        .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+                        .addLayer(() -> RenderType::translucent)
+                        .transform(axeOrPickaxe())
+                        .blockstate((c, p) ->
+                                p.directionalBlock(c.get(), AssetLookup.forPowered(c, p, "display_link/" + c.getName() + "/block")))
+                        .item(DisplayLinkBlockItem::new)
+                        .transform(customItemModel("display_link", "_", "block"))
+                        .build();
+            }).unaffected(AllBlocks.DISPLAY_LINK)
             .register();
 
     public static final PatinaSet COPPER_BACKTANK_SET = new PatinaSetBuilder<>(

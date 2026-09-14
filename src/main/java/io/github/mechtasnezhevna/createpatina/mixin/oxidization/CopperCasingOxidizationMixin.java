@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-@Mixin(value = CasingBlock.class, remap = false)
+@Mixin(CasingBlock.class)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public abstract class CopperCasingOxidizationMixin extends Block implements PatinaBlock {

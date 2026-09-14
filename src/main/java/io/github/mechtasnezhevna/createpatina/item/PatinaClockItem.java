@@ -1,15 +1,18 @@
 package io.github.mechtasnezhevna.createpatina.item;
 
+import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.block.PatinaBlock;
 import io.github.mechtasnezhevna.createpatina.util.OxidizeUtil;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.HoneycombItem;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -50,16 +53,25 @@ public class PatinaClockItem extends Item {
                 : InteractionResult.PASS;
     }
 
-    @Override
-    public boolean isFoil(ItemStack stack) {
-        return true;
-    }
-
     public static boolean canInteractWith(BlockState state) {
         return canAdjustState(state) || getNext(state).isPresent();
     }
 
-    // verified: Forge 1.20.1-47.1.33 PlayerInteractEvent.RightClickBlock source, 2026-07-30
+    /**
+     * Whether the given block is the copper table cloth (Create's unaffected block or any of the
+     * Create: Patina weathering variants). Plain right-clicks with the clock on these blocks place
+     * the clock onto the table instead of running the weathering actions.
+     */
+    public static boolean isCopperTableCloth(BlockState state) {
+        if (!(state.getBlock() instanceof PatinaBlock)) {
+            return false;
+        }
+        return BuiltInRegistries.BLOCK.getKey(state.getBlock())
+                .getPath()
+                .contains("copper_table_cloth");
+    }
+
+    // verified: Forge 1.20.1-47.4.22 PlayerInteractEvent.RightClickBlock source, 2026-09-14
     public static void suppressImmediateServerInteraction(PlayerInteractEvent.RightClickBlock event) {
         if (event.getLevel().isClientSide
                 || !(event.getItemStack().getItem() instanceof PatinaClockItem)
@@ -86,7 +98,10 @@ public class PatinaClockItem extends Item {
     public static void applyShortAction(ServerPlayer player, BlockPos pos, ItemStack itemStack) {
         Level level = player.level();
         BlockState state = level.getBlockState(pos);
-        getNext(state).ifPresent(nextState -> replaceState(player, itemStack, pos, state, nextState));
+        getNext(state).ifPresent(nextState -> {
+            replaceState(player, itemStack, pos, state, nextState);
+            damageClock(player, itemStack);
+        });
     }
 
     public static void applySelectedState(ServerPlayer player, BlockPos pos, ItemStack itemStack, int row, int value) {
@@ -102,7 +117,10 @@ public class PatinaClockItem extends Item {
 
         findStateForType(oldState, SETTINGS[row][value])
                 .filter(newState -> !newState.is(oldState.getBlock()))
-                .ifPresent(newState -> replaceState(player, itemStack, pos, oldState, newState));
+                .ifPresent(newState -> {
+                    replaceState(player, itemStack, pos, oldState, newState);
+                    damageClock(player, itemStack);
+                });
     }
 
     public static int rowFor(WeatheringType type) {
@@ -129,8 +147,14 @@ public class PatinaClockItem extends Item {
             ServerPlayer player, ItemStack itemStack, BlockPos pos, BlockState oldState, BlockState newState
     ) {
         CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(player, pos, itemStack);
-        OxidizeUtil.replaceWithState(oldState, newState, player.level(), pos);
+        OxidizeUtil.applySelectionWeathering(oldState, newState, player.level(), pos,
+                PatinaConfig.CONFIG.WEATHER_WHOLE_FLUID_TANK_WITH_TOOLS.get());
         player.level().gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
+    }
+
+    private static void damageClock(ServerPlayer player, ItemStack itemStack) {
+        itemStack.hurtAndBreak(1, player,
+                broken -> player.broadcastBreakEvent(EquipmentSlot.MAINHAND));
     }
 
     private static Optional<BlockState> findStateForType(BlockState state, WeatheringType targetType) {
@@ -175,9 +199,7 @@ public class PatinaClockItem extends Item {
         return Optional.of(current.defaultBlockState());
     }
 
-    private static Optional<Block> findKeyByValue(
-            Map<Block, Block> map, Block value
-    ) {
+    private static Optional<Block> findKeyByValue(Map<Block, Block> map, Block value) {
         return map.entrySet().stream()
                 .filter(entry -> entry.getValue().equals(value))
                 .map(Map.Entry::getKey)

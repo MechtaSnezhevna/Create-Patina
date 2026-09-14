@@ -49,6 +49,7 @@ public class CreativeModeTabRegistry {
                 fullBacktank.getOrCreateTag().putInt("Air", BacktankUtil.maxAirWithoutEnchants());
                 e.accept(fullBacktank, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             }
+            e.getEntries().remove(new ItemStack(ItemRegistry.INCOMPLETE_PATINA_CLOCK.asItem()));
             insertBefore(e, BlockRegistry.ITEM_DRAIN_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.ITEM_DRAIN);
             insertBefore(e, BlockRegistry.MECHANICAL_PUMP_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.MECHANICAL_PUMP);
             insertBefore(e, BlockRegistry.FLUID_PIPE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_PIPE);
@@ -67,6 +68,8 @@ public class CreativeModeTabRegistry {
             insertBefore(e, BlockRegistry.PORTABLE_FLUID_INTERFACE_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.PORTABLE_FLUID_INTERFACE);
             insertBefore(e, BlockRegistry.HOSE_PULLEY_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.HOSE_PULLEY);
             insertBefore(e, BlockRegistry.FLUID_TANK_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.FLUID_TANK);
+            insertBefore(e, BlockRegistry.STOCK_LINK_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.STOCK_LINK);
+            insertBefore(e, BlockRegistry.DISPLAY_LINK_SET.getEntry(WeatheringType.EXPOSED), AllBlocks.DISPLAY_LINK);
         }
     }
 

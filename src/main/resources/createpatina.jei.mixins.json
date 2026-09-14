@@ -1,0 +1,15 @@
+{
+  "required": false,
+  "package": "io.github.mechtasnezhevna.createpatina.mixin",
+  "refmap": "createpatina.refmap.json",
+  "client": [
+    "compat.jei.GuiEventHandlerMixin",
+    "compat.jei.IngredientGridMixin",
+    "compat.jei.IngredientGridWithNavigationAccessor",
+    "compat.jei.IngredientListOverlayAccessor"
+  ],
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

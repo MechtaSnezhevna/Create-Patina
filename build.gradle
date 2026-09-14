@@ -133,17 +133,29 @@ legacyForge {
     }
 }
 
-// Sets up a dependency configuration called 'localRuntime'.
-// This configuration should be used instead of 'runtimeOnly' to declare
-// a dependency that will be present for runtime testing but that is
-// "optional", meaning it will not be pulled by dependents of this mod.
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
+// Minecraft 1.20.1 runs on Forge, whose production runtime uses SRG names, so the Mixin annotation processor
+// has to emit a refmap that translates the names used in the sources. ModDevGradle wires the processor and
+// the required official -> SRG mapping up here, and the generated refmap is added to the built jar.
+// NeoForge (the Minecraft 1.21.1 target) runs on official names and does not need any of this.
+mixin {
+    config "createpatina.mixins.json"
+    config "createpatina.jei.mixins.json"
+    add sourceSets.main, "createpatina.refmap.json"
 }
 
 dependencies {
-    // Optional development-only helpers. They are not published as dependencies of Create: Patina.
+    // Optional development-only helpers (JEI, Jade). Minecraft 1.20.1 runs on Forge, whose production runtime
+    // uses SRG names, and ModDevGradle only remaps the 'mod*' dependency configurations into the named
+    // development namespace. A plain module dependency therefore lands on the classpath as a raw SRG jar and
+    // dies with NoSuchMethodError the moment the mod calls into Minecraft, so these are declared on
+    // 'modCompileOnly' + 'modRuntimeOnly' instead of a plain 'localRuntime'/'runtimeOnly' configuration.
+    // The JEI artifact is declared for compile time use, while the full JEI mod is used at runtime.
+    // The complete artifact (not only an api jar) is required because the optional overlay mixins target
+    // JEI's GUI internals.
+    modCompileOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    // Jade API, needed only to compile the optional Jade integration; the full mod is a development runtime.
+    modCompileOnly("maven.modrinth:jade:${jade_version}") { transitive = false }
     modRuntimeOnly("maven.modrinth:jade:${jade_version}")
 
     // Match the dependency set used by Create 6.0.8's official Minecraft 1.20.1 build.
@@ -210,7 +222,7 @@ tasks.withType(ProcessResources).configureEach {
 tasks.named("jar") {
     archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}-forge.jar"
     manifest {
-        attributes("MixinConfigs": "${mod_id}.mixins.json")
+        attributes("MixinConfigs": "${mod_id}.mixins.json,${mod_id}.jei.mixins.json")
     }
 }
 

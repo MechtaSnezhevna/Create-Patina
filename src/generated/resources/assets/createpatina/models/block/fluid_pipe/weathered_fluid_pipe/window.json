@@ -1,7 +1,0 @@
-{
-  "parent": "create:block/fluid_pipe/window",
-  "textures": {
-    "0": "createpatina:block/fluid_pipe/weathered_glass_fluid_pipe",
-    "particle": "minecraft:block/weathered_copper"
-  }
-}

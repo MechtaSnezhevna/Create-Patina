@@ -1,0 +1,156 @@
+package io.github.mechtasnezhevna.createpatina.compat.jei;
+
+import com.simibubi.create.AllItems;
+import com.simibubi.create.compat.jei.DoubleItemIcon;
+import com.simibubi.create.compat.jei.EmptyBackground;
+import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.compat.jei.category.ProcessingViaFanCategory;
+import io.github.mechtasnezhevna.createpatina.CreatePatina;
+import io.github.mechtasnezhevna.createpatina.PatinaConfig;
+import io.github.mechtasnezhevna.createpatina.recipe.HoneyingRecipe;
+import io.github.mechtasnezhevna.createpatina.registry.PatinaRecipeTypes;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.registration.IIngredientAliasRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.runtime.IJeiRuntime;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.common.MinecraftForge;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+@JeiPlugin
+public class PatinaJeiPlugin implements IModPlugin {
+
+    private static final ResourceLocation UID = CreatePatina.asResource("jei_plugin");
+    private static final PatinaJeiVariantOverlay VARIANT_OVERLAY = new PatinaJeiVariantOverlay();
+    private static boolean eventListenersRegistered;
+    private CreateRecipeCategory<HoneyingRecipe> honeyingCategory;
+
+    @Override
+    public ResourceLocation getPluginUid() {
+        return UID;
+    }
+
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registration) {
+        registration.addRecipeCategories(getHoneyingCategory());
+    }
+
+    @Override
+    public void registerIngredientAliases(IIngredientAliasRegistration registration) {
+        if (!PatinaConfig.CLIENT.COLLAPSE_PATINA_SETS_IN_JEI.get()) {
+            return;
+        }
+
+        for (PatinaJeiVariantGroup group : PatinaJeiVariantGroup.all()) {
+            ItemStack representative = group.representative();
+            Set<String> aliases = new LinkedHashSet<>();
+            for (ItemStack variant : group.variants()) {
+                aliases.add(variant.getDescriptionId());
+            }
+            if (!aliases.isEmpty()) {
+                // verified: JEI 19.27.0.340 IIngredientAliasRegistration source, 2026-07-28
+                registration.addAliases(VanillaTypes.ITEM_STACK, representative, aliases);
+            }
+        }
+    }
+
+    @Override
+    public void registerRecipes(IRecipeRegistration registration) {
+        getHoneyingCategory().registerRecipes(registration);
+
+        if (!PatinaConfig.CLIENT.COLLAPSE_PATINA_SETS_IN_JEI.get()) {
+            return;
+        }
+
+        Map<Item, ItemStack> hiddenVariants = new LinkedHashMap<>();
+        for (PatinaJeiVariantGroup group : PatinaJeiVariantGroup.all()) {
+            for (ItemStack variant : group.variants()) {
+                hiddenVariants.putIfAbsent(variant.getItem(), variant);
+            }
+        }
+
+        if (!hiddenVariants.isEmpty()) {
+            // verified: JEI 19.27.0.340 IIngredientManager source and JEI hiding guide, 2026-07-28
+            registration.getIngredientManager()
+                    .removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, new ArrayList<>(hiddenVariants.values()));
+        }
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        getHoneyingCategory().registerCatalysts(registration);
+    }
+
+    @Override
+    public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+        VARIANT_OVERLAY.setRuntime(jeiRuntime);
+        if (!eventListenersRegistered) {
+            eventListenersRegistered = true;
+            // verified: NeoForge 21.1.228 ScreenEvent source, 2026-07-28
+            MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, VARIANT_OVERLAY::onMouseClicked);
+            // verified: NeoForge 21.1.228 RenderTooltipEvent.Pre source, 2026-07-28
+            MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, VARIANT_OVERLAY::onRenderTooltipPre);
+        }
+    }
+
+    @Override
+    public void onRuntimeUnavailable() {
+        VARIANT_OVERLAY.setRuntime(null);
+    }
+
+    public static void renderAfterJei(Screen screen, GuiGraphics graphics, int mouseX, int mouseY) {
+        VARIANT_OVERLAY.renderAfterJei(screen, graphics, mouseX, mouseY);
+    }
+
+    public static boolean isMouseOverVariantPanel(double mouseX, double mouseY) {
+        return VARIANT_OVERLAY.isMouseOverPanel(mouseX, mouseY);
+    }
+
+    private CreateRecipeCategory<HoneyingRecipe> getHoneyingCategory() {
+        if (honeyingCategory == null) {
+            // verified: Create 6.0.8 CreateJEI.CategoryBuilder#build source for JEI 15.20, 2026-09-14
+            honeyingCategory = new FanHoneyingCategory(new CreateRecipeCategory.Info<>(
+                    new RecipeType<>(CreatePatina.asResource("fan_honeying"), HoneyingRecipe.class),
+                    Component.translatable("createpatina.recipe.fan_honeying"),
+                    new EmptyBackground(178, 72),
+                    new DoubleItemIcon(() -> new ItemStack(AllItems.PROPELLER.get()),
+                            () -> new ItemStack(Items.HONEY_BOTTLE)),
+                    PatinaJeiPlugin::honeyingRecipes,
+                    List.of(ProcessingViaFanCategory.getFan("fan_honeying"))
+            ));
+        }
+        return honeyingCategory;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static List<HoneyingRecipe> honeyingRecipes() {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.level == null) {
+            return List.of();
+        }
+        return minecraft.level.getRecipeManager()
+                .getAllRecipesFor((net.minecraft.world.item.crafting.RecipeType<HoneyingRecipe>)
+                        PatinaRecipeTypes.HONEYING.getType())
+                .stream()
+                .toList();
+    }
+}

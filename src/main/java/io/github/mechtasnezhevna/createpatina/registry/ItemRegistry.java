@@ -4,20 +4,30 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
 import com.simibubi.create.content.equipment.armor.BacktankItem;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
 import io.github.mechtasnezhevna.createpatina.item.PatinaClockItem;
 import io.github.mechtasnezhevna.createpatina.util.WeatheringType;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.common.Tags;
 
 import java.util.EnumMap;
 import java.util.Map;
 
+import static io.github.mechtasnezhevna.createpatina.CreatePatina.MODID;
+
 public class ItemRegistry
 {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final CreateRegistrate REGISTRATE = CreatePatina.registrate();
 
     public static final Map<WeatheringType, ItemEntry<BacktankItem.BacktankBlockItem>> PLACEABLE_BACKTANKS = new EnumMap<>(WeatheringType.class);
@@ -29,23 +39,27 @@ public class ItemRegistry
 
             String prefix = type.getPrefixWithoutWaxed();
             String baseName = type.getPrefix() + "copper_backtank";
+            // Weathering variants behave exactly like the original Copper Backtank, so once
+            // registered they reuse its tooltip text instead of duplicating it.
             PLACEABLE_BACKTANKS.put(type, REGISTRATE
                     .item(baseName + "_placeable", p -> new BacktankItem.BacktankBlockItem(
                             BlockRegistry.COPPER_BACKTANK_SET.get(type),
                             () -> ARMOR_BACKTANKS.get(type).get(), p))
                     .model((c, p) -> p.withExistingParent(c.getName(), p.mcLoc("item/barrier")))
+                    .onRegisterAfter(Registries.ITEM, v -> ItemDescription.useKey(v, "item.create.copper_backtank"))
                     .register());
             ARMOR_BACKTANKS.put(type, REGISTRATE
                     .item(baseName, p -> new BacktankItem(
                             AllArmorMaterials.COPPER, p,
-                            new ResourceLocation(CreatePatina.MODID, prefix + "copper_diving"),
+                            ResourceLocation.fromNamespaceAndPath(MODID,prefix + "copper_diving"),
                             PLACEABLE_BACKTANKS.get(type)))
                     .model((c, p) ->
                             p.withExistingParent(baseName, Create.asResource("block/copper_backtank/item"))
                              .texture("0", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank"))
                              .texture("particle", p.modLoc("block/copper_backtank/" + prefix + "copper_backtank")))
                     .tag(AllTags.AllItemTags.PRESSURIZED_AIR_SOURCES.tag)
-                    .tag(AllTags.AllItemTags.CHESTPLATE_ARMORS.tag)
+                    .tag(Tags.Items.ARMORS_CHESTPLATES)
+                    .onRegisterAfter(Registries.ITEM, v -> ItemDescription.useKey(v, "item.create.copper_backtank"))
                     .register());
         }
     }
@@ -53,11 +67,19 @@ public class ItemRegistry
     public static final ItemEntry<PatinaClockItem> PATINA_CLOCK = REGISTRATE
             .item("patina_clock", PatinaClockItem::new)
             .properties(p -> p.stacksTo(1)
-                    .rarity(Rarity.EPIC)
+                    .rarity(Rarity.UNCOMMON)
+                    .durability(256)
             )
 //            .model(AssetLookup.itemModelWithPartials())
             .register();
 
-    public static void register() {
+    public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_PATINA_CLOCK = REGISTRATE
+            .item("incomplete_patina_clock", SequencedAssemblyItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), p.mcLoc("item/generated"))
+                    .texture("layer0", p.modLoc("item/patina_clock")))
+            .register();
+
+    public static void register(IEventBus bus) {
+        ITEMS.register(bus);
     }
 }

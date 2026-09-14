@@ -18,7 +18,8 @@ public class PortableStorageInterfaceMovementMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/level/block/state/BlockState;getBlock()Lnet/minecraft/world/level/block/Block;",
-                    ordinal = 0
+                    ordinal = 0,
+                    remap = true
             )
     )
     private Block redirectTargetBlock(BlockState instance) {
@@ -36,7 +37,8 @@ public class PortableStorageInterfaceMovementMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/level/block/state/BlockState;getBlock()Lnet/minecraft/world/level/block/Block;",
-                    ordinal = 1
+                    ordinal = 1,
+                    remap = true
             )
     )
     private Block redirectOriginalBlock(BlockState instance) {

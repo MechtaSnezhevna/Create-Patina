@@ -8,8 +8,8 @@ import io.github.mechtasnezhevna.createpatina.registry.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,9 +23,10 @@ public class WhistleExtenderBlockMixin {
             method = "canSurvive",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;has(Lnet/minecraft/world/level/block/state/BlockState;)Z"
+                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;has(Lnet/minecraft/world/level/block/state/BlockState;)Z",
+                    remap = false
             ),
-            remap = false
+            remap = true
     )
     private boolean redirectHasCanSurvive(BlockEntry<?> entry, BlockState state) {
         if (entry == AllBlocks.STEAM_WHISTLE) {
@@ -38,9 +39,10 @@ public class WhistleExtenderBlockMixin {
             method = "use",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z"
+                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;isIn(Lnet/minecraft/world/item/ItemStack;)Z",
+                    remap = false
             ),
-            remap = false
+            remap = true
     )
     private boolean redirectIsIn(BlockEntry<?> entry, ItemStack stack) {
         if (entry == AllBlocks.STEAM_WHISTLE) {
@@ -67,7 +69,7 @@ public class WhistleExtenderBlockMixin {
     @ModifyReturnValue(method = "getCloneItemStack", at = @At("RETURN"))
     private ItemStack createpatina$matchCloneStackWithRoot(
             ItemStack original, BlockState state, HitResult target,
-            LevelReader level, BlockPos pos, Player player
+            BlockGetter level, BlockPos pos, Player player
     ) {
         BlockPos rootPos = WhistleExtenderBlock.findRoot((LevelAccessor) level, pos);
         BlockState rootState = level.getBlockState(rootPos);

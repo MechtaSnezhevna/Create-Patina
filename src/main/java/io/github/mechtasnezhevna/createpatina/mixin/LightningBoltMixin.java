@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-@Mixin(value = LightningBolt.class, remap = false)
+@Mixin(LightningBolt.class)
 public class LightningBoltMixin {
 
     @WrapOperation(
