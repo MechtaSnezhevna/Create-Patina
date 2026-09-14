@@ -1,0 +1,17 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "create:weathered_copper_tile_stairs"
+    },
+    {
+      "amount": 100,
+      "fluidTag": "forge:honey"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:waxed_weathered_copper_tile_stairs"
+    }
+  ]
+}

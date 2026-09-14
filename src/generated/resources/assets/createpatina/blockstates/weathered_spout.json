@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createpatina:block/spout/weathered_spout/block"
+    }
+  }
+}

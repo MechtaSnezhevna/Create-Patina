@@ -1,0 +1,17 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:oxidized_cut_copper_stairs"
+    },
+    {
+      "amount": 100,
+      "fluidTag": "forge:honey"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:waxed_oxidized_cut_copper_stairs"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_portable_fluid_interface"
+    },
+    {
+      "amount": 100,
+      "fluidTag": "forge:honey"
+    }
+  ],
+  "results": [
+    {
+      "item": "createpatina:waxed_weathered_portable_fluid_interface"
+    }
+  ]
+}

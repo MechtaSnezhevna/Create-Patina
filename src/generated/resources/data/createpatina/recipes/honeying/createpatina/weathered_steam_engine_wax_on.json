@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "createpatina:weathered_steam_engine"
+    }
+  ],
+  "results": [
+    {
+      "item": "createpatina:waxed_weathered_steam_engine"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "createpatina:waxed_item_drain"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:item_drain"
+    }
+  ]
+}

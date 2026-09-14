@@ -1,0 +1,68 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "minecraft:clock"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "item": "createpatina:patina_clock",
+      "nbt": {
+        "Damage": 0
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createpatina:incomplete_patina_clock"
+        },
+        {
+          "item": "create:precision_mechanism"
+        }
+      ],
+      "results": [
+        {
+          "item": "createpatina:incomplete_patina_clock"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createpatina:incomplete_patina_clock"
+        },
+        {
+          "item": "create:copper_sheet"
+        }
+      ],
+      "results": [
+        {
+          "item": "createpatina:incomplete_patina_clock"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createpatina:incomplete_patina_clock"
+        },
+        {
+          "item": "minecraft:honeycomb"
+        }
+      ],
+      "results": [
+        {
+          "item": "createpatina:incomplete_patina_clock"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "createpatina:incomplete_patina_clock"
+  }
+}

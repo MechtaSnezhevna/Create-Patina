@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/fluid_pipe/casing",
+  "textures": {
+    "0": "createpatina:block/fluid_pipe/oxidized_pipes",
+    "particle": "minecraft:block/oxidized_copper"
+  }
+}

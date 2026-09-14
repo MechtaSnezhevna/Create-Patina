@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "createpatina:item/copper_door/copper_door"
+  }
+}

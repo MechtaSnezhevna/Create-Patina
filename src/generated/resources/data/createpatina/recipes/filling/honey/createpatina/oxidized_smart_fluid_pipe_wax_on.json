@@ -1,0 +1,17 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createpatina:oxidized_smart_fluid_pipe"
+    },
+    {
+      "amount": 100,
+      "fluidTag": "forge:honey"
+    }
+  ],
+  "results": [
+    {
+      "item": "createpatina:waxed_oxidized_smart_fluid_pipe"
+    }
+  ]
+}

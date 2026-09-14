@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createpatina:block/item_drain/exposed_item_drain"
+    }
+  }
+}

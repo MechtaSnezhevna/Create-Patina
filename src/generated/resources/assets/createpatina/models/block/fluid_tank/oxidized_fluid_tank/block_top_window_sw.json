@@ -1,0 +1,11 @@
+{
+  "parent": "create:block/fluid_tank/block_top_window_sw",
+  "textures": {
+    "0": "createpatina:block/fluid_tank/oxidized_fluid_tank_top",
+    "1": "createpatina:block/fluid_tank/oxidized_fluid_tank",
+    "3": "createpatina:block/fluid_tank/oxidized_fluid_tank_window",
+    "4": "createpatina:block/fluid_tank/oxidized_fluid_tank_inner",
+    "5": "createpatina:block/fluid_tank/oxidized_fluid_tank_window_single",
+    "particle": "createpatina:block/fluid_tank/oxidized_fluid_tank"
+  }
+}

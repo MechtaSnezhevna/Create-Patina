@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:exposed_cut_copper_slab"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:weathered_cut_copper_slab"
+    }
+  ]
+}

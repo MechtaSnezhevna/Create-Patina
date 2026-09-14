@@ -1,0 +1,6 @@
+{
+  "parent": "create:block/spout/bottom",
+  "textures": {
+    "2": "createpatina:block/spout/spout_nozzle"
+  }
+}

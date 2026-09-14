@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/steam_engine/gauge_dial",
+  "textures": {
+    "0": "createpatina:block/steam_engine/exposed_boiler_gauge",
+    "particle": "createpatina:block/steam_engine/exposed_boiler_gauge"
+  }
+}

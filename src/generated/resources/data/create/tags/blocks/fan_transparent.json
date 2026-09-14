@@ -1,0 +1,11 @@
+{
+  "values": [
+    "createpatina:exposed_copper_bars",
+    "createpatina:weathered_copper_bars",
+    "createpatina:oxidized_copper_bars",
+    "createpatina:waxed_copper_bars",
+    "createpatina:waxed_exposed_copper_bars",
+    "createpatina:waxed_weathered_copper_bars",
+    "createpatina:waxed_oxidized_copper_bars"
+  ]
+}

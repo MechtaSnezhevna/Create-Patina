@@ -1,0 +1,6 @@
+{
+  "parent": "create:block/copper_casing",
+  "textures": {
+    "all": "createpatina:block/casing/weathered_copper_casing"
+  }
+}

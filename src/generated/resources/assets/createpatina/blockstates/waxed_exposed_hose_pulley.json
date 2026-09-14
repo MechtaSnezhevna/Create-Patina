@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "createpatina:block/hose_pulley/waxed_exposed_hose_pulley/block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "createpatina:block/hose_pulley/waxed_exposed_hose_pulley/block"
+    },
+    "facing=south": {
+      "model": "createpatina:block/hose_pulley/waxed_exposed_hose_pulley/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "createpatina:block/hose_pulley/waxed_exposed_hose_pulley/block",
+      "y": 270
+    }
+  }
+}

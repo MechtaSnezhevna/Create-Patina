@@ -1,0 +1,13 @@
+{
+  "type": "createpatina:honeying",
+  "ingredients": [
+    {
+      "item": "create:stock_link"
+    }
+  ],
+  "results": [
+    {
+      "item": "createpatina:waxed_stock_link"
+    }
+  ]
+}
