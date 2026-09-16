@@ -444,6 +444,29 @@ public final class OxidizeUtil {
             }
 
             blockEntityData = oldBE.saveWithoutMetadata();
+            /*
+             * Original Create code from FluidTankBlockEntity#removeController:
+             * updateConnectivity = true;
+             *
+             * Original Create code from FluidTankBlockEntity#write and #read:
+             * if (updateConnectivity)
+             *     compound.putBoolean("Uninitialized", true);
+             * updateConnectivity = compound.contains("Uninitialized");
+             *
+             * Original Create code from FluidTankBlockEntity#tick:
+             * if (updateConnectivity)
+             *     updateConnectivity();
+             *
+             * setReplacementState suppresses the connectivity update of FluidTankBlock#onPlace,
+             * because the replacement BlockEntity does not receive its preserved NBT until
+             * setBlock returns. A part saved without this marker comes back believing that its
+             * multiblock is already resolved and never looks for neighbours again, so a tank
+             * whose weathering state changes next to a tank of that same state stays a detached
+             * 1x1 tank instead of merging with it. removeController cannot supply the marker
+             * here, as it would reset the part to a 1x1 shape and break the very multiblock this
+             * swap keeps intact.
+             */
+            blockEntityData.putBoolean("Uninitialized", true);
             level.removeBlockEntity(pos);
         }
 

@@ -39,8 +39,12 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
 
     @Override
     public InteractionResult onWrenched(BlockState state, UseOnContext context) {
-        if (tryRemoveBracket(context))
+        if (tryRemoveBracket(context)) {
+            Level world = context.getLevel();
+            if (!world.isClientSide)
+                updatePipeConnections(world, context.getClickedPos());
             return InteractionResult.SUCCESS;
+        }
 
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -85,6 +89,25 @@ public class WeatheringFluidPipeBlock extends FluidPipeBlock implements PatinaBl
 
     private BlockEntry<? extends GlassFluidPipeBlock> getGlassVariant() {
         return BlockRegistry.GLASS_FLUID_PIPE_SET.getEntry(type, GlassFluidPipeBlock.class);
+    }
+
+    /**
+     * Repeats the connection refresh of {@code IWrenchableWithBracket#tryRemoveBracket}.
+     *
+     * <p>Create 1.20.1 guards that refresh with {@code AllBlocks.FLUID_PIPE.has(blockState)},
+     * which is false for every weathering variant. Without it a weathering pipe keeps the
+     * connections that were suppressed while the bracket was still occluding them, and only a
+     * later neighbour change lets it connect to the pipes next to it.</p>
+     */
+    private void updatePipeConnections(Level world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        Direction.Axis axis = FluidPropagator.getStraightPipeAxis(state);
+        Direction preferredDirection = axis == null
+                ? Direction.UP
+                : Direction.get(Direction.AxisDirection.POSITIVE, axis);
+        BlockState updated = updateBlockState(state, preferredDirection, null, world, pos);
+        if (updated != state)
+            world.setBlockAndUpdate(pos, updated);
     }
 
     @Override

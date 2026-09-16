@@ -27,18 +27,4 @@ public class SteamEngineBlockEntityMixin {
         return entry.has(state);
     }
 
-    @Redirect(
-            method = "tick",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lcom/tterrag/registrate/util/entry/BlockEntry;has(Lnet/minecraft/world/level/block/state/BlockState;)Z"
-            ),
-            remap = false
-    )
-    private boolean redirectHasInTick(BlockEntry<?> entry, BlockState state) {
-        if (entry == AllBlocks.STEAM_ENGINE) {
-            return BlockRegistry.STEAM_ENGINE_SET.has(state);
-        }
-        return entry.has(state);
-    }
 }
