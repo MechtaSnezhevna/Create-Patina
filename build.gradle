@@ -26,6 +26,23 @@ sourceSets.main.resources {
     exclude("src/generated/**/.cache") // datagen cache files
 }
 
+sourceSets {
+    // GameTests are compiled separately and are only placed on the GameTest run classpath.
+    gameTest {
+        java.srcDir('src/gametest/java')
+        resources.srcDir('src/gametest/resources')
+
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    gameTestImplementation.extendsFrom implementation
+    gameTestCompileOnly.extendsFrom compileOnly
+    gameTestRuntimeOnly.extendsFrom runtimeOnly
+}
+
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
     maven {
@@ -74,6 +91,9 @@ neoForge {
         minecraftVersion = project.parchment_minecraft_version
     }
 
+    // Give the isolated GameTest source set the same Minecraft/NeoForge compile setup as main.
+    addModdingDependenciesTo sourceSets.gameTest
+
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -98,6 +118,9 @@ neoForge {
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
             type = "gameTestServer"
+            // Keep native libraries, test worlds and logs separate from a running client.
+            gameDirectory = file('build/fluid-swap-gametest-run')
+            sourceSet = sourceSets.gameTest
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
@@ -137,6 +160,7 @@ neoForge {
         // multi mod projects should define one per mod
         "${mod_id}" {
             sourceSet(sourceSets.main)
+            sourceSet(sourceSets.gameTest)
         }
     }
 }
