@@ -1,6 +1,6 @@
 package io.github.mechtasnezhevna.createpatina.block;
 
-import io.github.mechtasnezhevna.createpatina.util.FluidNetworkUtil;
+import io.github.mechtasnezhevna.createpatina.util.FluidEndpointSwap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,6 +14,8 @@ public interface PatinaFluidEndpoint extends PatinaBlock {
     default void actionWhenReplaced(
             BlockState oldState, BlockState newState, ServerLevel level, BlockPos pos
     ) {
-        FluidNetworkUtil.refreshEndpointConnections(level, pos);
+        if (!FluidEndpointSwap.defersRefresh(level, pos)) {
+            FluidEndpointSwap.refreshEndpointConnections(level, pos);
+        }
     }
 }

@@ -36,6 +36,15 @@ public final class OxidizeUtil {
      * about to be migrated.</p>
      */
     public static void replaceWithState(BlockState oldState, BlockState newState, Level level, BlockPos pos) {
+        if (level instanceof ServerLevel server) {
+            FluidEndpointSwap.replace(server, pos, oldState, newState);
+            return;
+        }
+        replaceWithStateInternal(oldState, newState, level, pos);
+    }
+
+    /** Original replacement/rebuild path, also used by the enhanced path's fallback. */
+    public static void replaceWithStateInternal(BlockState oldState, BlockState newState, Level level, BlockPos pos) {
         BlockState currentState = level.getBlockState(pos);
         if (currentState != oldState) {
             return;
