@@ -2,7 +2,6 @@ package io.github.mechtasnezhevna.createpatina.compat.jei;
 
 import io.github.mechtasnezhevna.createpatina.PatinaConfig;
 import io.github.mechtasnezhevna.createpatina.mixin.compat.jei.IngredientGridWithNavigationAccessor;
-import io.github.mechtasnezhevna.createpatina.mixin.compat.jei.IngredientListOverlayAccessor;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.IFocusFactory;
@@ -10,7 +9,6 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.runtime.IIngredientListOverlay;
 import mezz.jei.api.runtime.IJeiRuntime;
 import mezz.jei.common.util.ImmutableRect2i;
-import mezz.jei.gui.overlay.IIngredientListOverlayContents;
 import mezz.jei.gui.overlay.IngredientGrid;
 import mezz.jei.gui.overlay.IngredientListOverlay;
 import net.minecraft.client.Minecraft;
@@ -145,8 +143,7 @@ final class PatinaJeiVariantOverlay {
             return null;
         }
 
-        IIngredientListOverlayContents contents =
-                ((IngredientListOverlayAccessor) concreteOverlay).createpatina$getContents();
+        Object contents = PatinaJeiCompat.getContents(concreteOverlay);
         IngredientGrid ingredientGrid =
                 ((IngredientGridWithNavigationAccessor) contents).createpatina$getIngredientGrid();
 
