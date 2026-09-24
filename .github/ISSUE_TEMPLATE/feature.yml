@@ -1,0 +1,26 @@
+name: Feature Request
+description: "A feature request or suggestion to improve Create: Patina."
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Provide a summary of the issue in the Title above, please do not "[Tag]" it.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the feature
+      description: >
+        Tell us how your idea should work.
+    validations:
+      required: true
+
+  - type: textarea
+    id: Additional
+    attributes:
+      label: Additional details
+      description: >
+        Use this for further details, e.g. screenshots, links to mods for integrations.
+        Features will only be considered for the latest/next version, no backports at all.
