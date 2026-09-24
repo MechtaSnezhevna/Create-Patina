@@ -6,6 +6,7 @@
     "createpatina:waxed_copper_bars",
     "createpatina:waxed_exposed_copper_bars",
     "createpatina:waxed_weathered_copper_bars",
-    "createpatina:waxed_oxidized_copper_bars"
+    "createpatina:waxed_oxidized_copper_bars",
+    "minecraft:honey_block"
   ]
 }
