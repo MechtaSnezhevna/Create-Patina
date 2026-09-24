@@ -52,6 +52,7 @@ public class CreatePatina {
         DefaultPatinaSets.register();
 
         modEventBus.addListener(CreativeModeTabRegistry::editPatinaTab);
+        modEventBus.addListener(EventPriority.HIGHEST, PatinaDataGen::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, PatinaDataGen::gatherData);
         modEventBus.addListener(PatinaClockActionPayload::register);
         NeoForge.EVENT_BUS.addListener(PatinaClockItem::suppressImmediateServerInteraction);

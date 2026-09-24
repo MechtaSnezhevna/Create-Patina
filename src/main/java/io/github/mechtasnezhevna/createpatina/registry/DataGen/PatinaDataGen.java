@@ -11,11 +11,14 @@ import java.util.concurrent.CompletableFuture;
 
 public class PatinaDataGen {
 
+    public static void gatherDataHighPriority(GatherDataEvent event) {
+        if (event.getMods().contains(CreatePatina.MODID))
+            PatinaFanProcessingCatalystTagGen.addGenerators();
+    }
+
     public static void gatherData(GatherDataEvent event) {
         if (!event.getMods().contains(CreatePatina.MODID))
             return;
-
-        PatinaFanProcessingCatalystTagGen.addGenerators();
 
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
