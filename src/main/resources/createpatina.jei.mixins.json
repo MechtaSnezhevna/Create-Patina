@@ -4,8 +4,7 @@
   "client": [
     "compat.jei.GuiEventHandlerMixin",
     "compat.jei.IngredientGridMixin",
-    "compat.jei.IngredientGridWithNavigationAccessor",
-    "compat.jei.IngredientListOverlayAccessor"
+    "compat.jei.IngredientGridWithNavigationAccessor"
   ],
   "compatibilityLevel": "JAVA_21",
   "injectors": {
