@@ -10,6 +10,8 @@ import java.util.concurrent.CompletableFuture;
 public class PatinaDataGen {
 
     public static void gatherData(GatherDataEvent event) {
+        PatinaFanProcessingCatalystTagGen.addGenerators();
+
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
