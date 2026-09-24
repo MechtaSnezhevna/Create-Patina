@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+#### Tags
+
+- **Fan processing catalyst tags**: `#createpatina:fan_processing_catalysts/honeying` (block and fluid tags) now drive bulk-waxing fan detection, mirroring Create's `#create:fan_processing_catalysts/*`. Honey fluids are still catalysts by default; ordinary blocks such as `minecraft:honey_block` (also added to `#create:fan_transparent`) and other fluids can now act as catalysts through the tags.
+
 ## 1.1.2 - 2026-09-09
 
 ### Added
@@ -103,3 +111,4 @@ First release of the mod!
 #### Config
 
 - **Enable Portable Fluid Interface Cross-Matching**: If true, portable fluid interfaces with different weathering states can be matched to each other.
+

@@ -37,6 +37,7 @@ Eight item tags classify every weathering copper part by its exact stage:
 - `createpatina:waxed`, `createpatina:waxed_exposed`, `createpatina:waxed_weathered`, `createpatina:waxed_oxidized` - their waxed counterparts.
 
 Vanilla copper blocks, Create's copper blocks and all Patina weathering variants are included.
+- `createpatina:fan_processing_catalysts/honeying` - block & fluid tags for the bulk-waxing fan catalyst, mirroring Create's `create:fan_processing_catalysts/*`. Honey fluids are catalysts by default, and any ordinary block or other fluid can be added through the tags (e.g. `minecraft:honey_block` is included and fan-transparent).
 
 ## Configs
 
@@ -45,3 +46,4 @@ Vanilla copper blocks, Create's copper blocks and all Patina weathering variants
 - **Oxidize Whole Fluid Tank**: If true, natural weathering advances the entire fluid tank multiblock at once, so large tanks no longer split into separate weathered pieces.
 - **Weather Whole Fluid Tank with Tools**: If true, waxing, de-waxing or scraping a fluid tank block with a honeycomb, axe or sandpaper (by hand or with a deployer) applies to the entire tank multiblock at once, so large tanks stay intact. Adjusting a fluid tank's weathering state with the Patina Clock applies to the whole multiblock as well.
 - **Enable Random-Tick Weathering**: If false, unaffected copper blocks from Create and the weathering variants added by this mod no longer oxidize on random ticks, so their weathering state can only be changed with tools.
+

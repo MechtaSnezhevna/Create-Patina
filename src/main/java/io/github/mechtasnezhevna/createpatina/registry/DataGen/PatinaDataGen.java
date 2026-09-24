@@ -15,6 +15,8 @@ public class PatinaDataGen {
         if (!event.getMods().contains(CreatePatina.MODID))
             return;
 
+        PatinaFanProcessingCatalystTagGen.addGenerators();
+
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();

@@ -4,6 +4,7 @@ import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
+import io.github.mechtasnezhevna.createpatina.registry.util.PatinaFanProcessingCatalystTags;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -16,7 +17,6 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +43,8 @@ public final class PatinaFanProcessingTypes {
 
         @Override
         public boolean isValidAt(Level level, BlockPos pos) {
-            return level.getFluidState(pos).is(Tags.Fluids.HONEY);
+            return level.getFluidState(pos).is(PatinaFanProcessingCatalystTags.HONEYING_FLUID)
+                    || level.getBlockState(pos).is(PatinaFanProcessingCatalystTags.HONEYING_BLOCK);
         }
 
         @Override
