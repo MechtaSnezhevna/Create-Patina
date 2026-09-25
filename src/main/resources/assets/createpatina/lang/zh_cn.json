@@ -439,5 +439,7 @@
   "tag.item.createpatina.waxed": "涂蜡的铜部件",
   "tag.item.createpatina.waxed_exposed": "涂蜡的斑驳铜部件",
   "tag.item.createpatina.waxed_weathered": "涂蜡的锈蚀铜部件",
-  "tag.item.createpatina.waxed_oxidized": "涂蜡的氧化铜部件"
+  "tag.item.createpatina.waxed_oxidized": "涂蜡的氧化铜部件",
+  "tag.block.createpatina.fan_processing_catalysts.honeying": "涂蜜触媒",
+  "tag.fluid.createpatina.fan_processing_catalysts.honeying": "涂蜜触媒"
 }
