@@ -37,6 +37,7 @@
 - `createpatina:waxed`、`createpatina:waxed_exposed`、`createpatina:waxed_weathered`、`createpatina:waxed_oxidized`——对应的涂蜡版本。
 
 原版铜方块、机械动力的铜制方块，以及本模组的全部氧化变体都会被归入对应标签。
+- `createpatina:fan_processing_catalysts/honeying`——批量涂蜡鼓风机触媒的方块与流体标签，与机械动力的 `create:fan_processing_catalysts/*` 约定一致。蜂蜜流体默认即为触媒，任何普通方块或其它流体都可以通过加入标签来成为触媒（例如 `minecraft:honey_block` 已默认加入，且对风扇气流透明）。
 
 ## 配置
 
