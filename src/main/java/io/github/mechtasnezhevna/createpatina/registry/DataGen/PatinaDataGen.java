@@ -1,6 +1,7 @@
 package io.github.mechtasnezhevna.createpatina.registry.DataGen;
 
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
+import io.github.mechtasnezhevna.createpatina.registry.PatinaTagRegistry;
 import io.github.mechtasnezhevna.createpatina.registry.util.PatinaDataMapProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -12,8 +13,9 @@ import java.util.concurrent.CompletableFuture;
 public class PatinaDataGen {
 
     public static void gatherDataHighPriority(GatherDataEvent event) {
-        if (event.getMods().contains(CreatePatina.MODID))
-            PatinaFanProcessingCatalystTagGen.addGenerators();
+        if (event.getMods().contains(CreatePatina.MODID)) {
+            PatinaTagRegistry.addGenerators();
+        }
     }
 
     public static void gatherData(GatherDataEvent event) {
@@ -25,7 +27,6 @@ public class PatinaDataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeServer(), new PatinaDataMapProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new PatinaWeatheringItemTagProvider(packOutput, lookupProvider));
         PatinaRecipeProvider.registerAllProcessing(
                 generator, packOutput, lookupProvider, event.includeServer()
         );

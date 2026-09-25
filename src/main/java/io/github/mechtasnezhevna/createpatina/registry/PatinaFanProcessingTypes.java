@@ -4,7 +4,6 @@ import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import io.github.mechtasnezhevna.createpatina.CreatePatina;
-import io.github.mechtasnezhevna.createpatina.registry.util.PatinaFanProcessingCatalystTags;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -15,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -23,6 +24,8 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.List;
+
+import static io.github.mechtasnezhevna.createpatina.registry.util.PatinaTags.*;
 
 public final class PatinaFanProcessingTypes {
 
@@ -43,8 +46,15 @@ public final class PatinaFanProcessingTypes {
 
         @Override
         public boolean isValidAt(Level level, BlockPos pos) {
-            return level.getFluidState(pos).is(PatinaFanProcessingCatalystTags.HONEYING_FLUID)
-                    || level.getBlockState(pos).is(PatinaFanProcessingCatalystTags.HONEYING_BLOCK);
+            FluidState fluidState = level.getFluidState(pos);
+            if (PatinaFluidTags.FAN_PROCESSING_CATALYSTS_HONEYING.matches(fluidState)) {
+                return true;
+            }
+            BlockState blockState = level.getBlockState(pos);
+            if (PatinaBlockTags.FAN_PROCESSING_CATALYSTS_HONEYING.matches(blockState)) {
+                return true;
+            }
+            return false;
         }
 
         @Override
