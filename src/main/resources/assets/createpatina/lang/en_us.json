@@ -440,5 +440,7 @@
   "tag.item.createpatina.waxed": "Waxed Copper Parts",
   "tag.item.createpatina.waxed_exposed": "Waxed Exposed Copper Parts",
   "tag.item.createpatina.waxed_weathered": "Waxed Weathered Copper Parts",
-  "tag.item.createpatina.waxed_oxidized": "Waxed Oxidized Copper Parts"
+  "tag.item.createpatina.waxed_oxidized": "Waxed Oxidized Copper Parts",
+  "tag.block.createpatina.fan_processing_catalysts.honeying": "Honeying Catalysts",
+  "tag.fluid.createpatina.fan_processing_catalysts.honeying": "Honeying Catalysts"
 }
