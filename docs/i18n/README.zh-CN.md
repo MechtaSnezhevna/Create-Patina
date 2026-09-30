@@ -3,6 +3,10 @@
 
 一个机械动力附属模组，为含有铜材质的物品与方块添加了氧化变种及其氧化机制。
 
+**下载链接:** [Modrinth](https://modrinth.com/mod/create-patina) or [Github Releases](https://github.com/MechtaSnezhevna/Create-Patina/releases)
+
+**相关资源:** [Better Create Patina Pipes](https://modrinth.com/resourcepack/better-create-patina-pipes), [Touhou Little Maid: Patina](https://github.com/Billadom0123/MaidPatina)
+
 **其他语言版本:**
 [English](../../README.md) | [简体中文](README.zh-CN.md)
 
