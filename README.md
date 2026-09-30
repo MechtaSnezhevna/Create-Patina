@@ -3,6 +3,10 @@
 
 A Create addon introducing oxidized variants and oxidizing mechanisms of copper items & blocks.
 
+**Download:** [Modrinth](https://modrinth.com/mod/create-patina) or [Github Releases](https://github.com/MechtaSnezhevna/Create-Patina/releases)
+
+**Also check:** [Better Create Patina Pipes](https://modrinth.com/resourcepack/better-create-patina-pipes), [Touhou Little Maid: Patina](https://github.com/Billadom0123/MaidPatina)
+
 **Read this in other languages:**
 [English](README.md) | [简体中文](docs/i18n/README.zh-CN.md)
 
