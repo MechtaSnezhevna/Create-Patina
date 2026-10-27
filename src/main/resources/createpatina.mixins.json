@@ -9,6 +9,8 @@
     "FluidTankItemMixin",
     "ItemDrainToolInteractionMixin",
     "LightningBoltMixin",
+    "PackagerBlockEntityMixin",
+    "PackagerBlockMixin",
     "PortableStorageInterfaceMovementMixin",
     "SpoutBlockEntityMixin",
     "SteamEngineBlockEntityMixin",
